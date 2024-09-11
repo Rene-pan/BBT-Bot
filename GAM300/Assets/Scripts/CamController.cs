@@ -104,10 +104,10 @@ public class CamController : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, minVerticalAngle, maxVerticalAngle);
             rotationY += Input.GetAxis("Mouse X") * invertXVal * rotationSpeed;
             var targetRotation = Quaternion.Euler(rotationX, rotationY, 0);
-            //var focusPosition = followTarget.position + new Vector3(framingOffset.x, framingOffset.y);
+            //var focusPosition = new Vector3(framingOffset.x, framingOffset.y);
             //make sure camera is always behind player and how far it is looking at, Rotation By cameraAngle 
             //transform.position = focusPosition - Quaternion.Euler(rotationX, rotationY, 0) * new Vector3(0, 0, cameraZDistance);
-            //transform.rotation = targetRotation;
+            transform.rotation = targetRotation;
         }
     }
     void CamViewToggle()
