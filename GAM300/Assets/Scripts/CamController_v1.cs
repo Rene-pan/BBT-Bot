@@ -1,31 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Unity.VisualScripting;
 using UnityEngine;
 using static System.TimeZoneInfo;
 
-public class CamController : MonoBehaviour
+public class CamController_v1 : MonoBehaviour
 {
-    //[SerializeField] float cameraZDistance;//bigger = viewport will be bigger, smaller = viewport will be smaller
-    //[SerializeField] float rotationSpeed = 1f;
-    //[SerializeField] float minVerticalAngle = 10;
-    //[SerializeField] float maxVerticalAngle = 45;
-    //[SerializeField] bool invertX;
-    //[SerializeField] bool invertY;
-    //float rotationX;
-    //float rotationY;
-    //float invertXVal;
-    //float invertYVal;
-    //[SerializeField] Vector2 framingOffset;
+    public enum CamState { THIRDPERSON, OVERSHOULDER };
+    [SerializeField] CamState currentState = CamState.THIRDPERSON;
     [Header("Cam Vars")]
     [SerializeField] Transform followTarget;
     [SerializeField] float mouseSensitivity = 10;
     [SerializeField] float distFromTarget = 2;
     [SerializeField] Vector2 pitchMinMax = new Vector2(10, 45);
-    [SerializeField] float minVerticalAngle = 10;
-    [SerializeField] float maxVerticalAngle = 45;
 
-    [SerializeField] float rotationSmoothTime = .12f;
+    [SerializeField] float rotationSmoothTime = 8f;
     Vector3 rotationSmoothVelocity;
     Vector3 currentRotation;
     float yaw;
@@ -54,21 +44,18 @@ public class CamController : MonoBehaviour
     public float evenCloserDistanceToPlayer = 1;
 
     [Header("Mask")]
-    private LayerMask collisionMask;
+    public LayerMask collisionMask;
     private bool pitchLock = false;
 
     [Header("Aiming Var")]
     public Vector3 playerOffset;
     public float distanceFromOffset;
     public Transform rotator;
-
-    public enum CamState {THIRDPERSON, OVERSHOULDER};
-    [SerializeField] CamState currentState = CamState.THIRDPERSON;
     private void Update()
     {
         ChangeCursorVisibility();
         //CamViewToggle();
-        switch (currentState) 
+        switch (currentState)
         {
             case CamState.THIRDPERSON:
                 CamFunctions();
@@ -115,22 +102,21 @@ public class CamController : MonoBehaviour
     {
         if (followTarget != null && !transitionTrue)
         {
-            //invertXVal = (invertX) ? -1 : 1;
-            //invertYVal = (invertY) ? -1 : 1;
-            //rotationX += Input.GetAxis("Mouse Y") * invertYVal * rotationSpeed;
-            //rotationX = Mathf.Clamp(rotationX, minVerticalAngle, maxVerticalAngle);
-            //rotationY += Input.GetAxis("Mouse X") * invertXVal * rotationSpeed;
-            //var targetRotation = Quaternion.Euler(rotationX, rotationY, 0);
-            //var focusPosition = followTarget.position + new Vector3(framingOffset.x, framingOffset.y);
-            ////make sure camera is always behind player and how far it is looking at, Rotation By cameraAngle 
-            //transform.position = focusPosition - Quaternion.Euler(rotationX, rotationY, 0) * new Vector3(0, 0, cameraZDistance);
-            //transform.rotation = targetRotation;
-            yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
-            pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
-            currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw), ref rotationSmoothVelocity, rotationSmoothTime);
+            CollisionCheck(followTarget.position - transform.forward * distFromTarget);
+            if (!pitchLock)
+            {
+                yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
+                pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+                pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
+                currentRotation = Vector3.Lerp(currentRotation, new Vector3(pitch, yaw), rotationSmoothTime * Time.deltaTime);
+            }
+            else
+            {
+                yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
+                pitch = pitchMinMax.y;
+                currentRotation = Vector3.Lerp(currentRotation, new Vector3(pitch, yaw), rotationSmoothTime * Time.deltaTime);
+            }
             transform.eulerAngles = currentRotation;
-            transform.position = followTarget.position - transform.forward * distFromTarget;
         }
     }
     //B key to toggle Cam View Perspective
@@ -139,17 +125,7 @@ public class CamController : MonoBehaviour
         if (transitionTrue) return;
         if (Input.GetMouseButtonDown(1))
         {
-            transform.eulerAngles = new Vector3 (0, transform.eulerAngles.y, transform.eulerAngles.y);
-            //invertXVal = (invertX) ? -1 : 1;
-            //invertYVal = (invertY) ? -1 : 1;
-            //rotationX += Input.GetAxis("Mouse Y") * invertYVal * rotationSpeed;
-            //rotationX = Mathf.Clamp(rotationX, minVerticalAngle, maxVerticalAngle);
-            //rotationY += Input.GetAxis("Mouse X") * invertXVal * rotationSpeed;
-            //var targetRotation = Quaternion.Euler(rotationX, rotationY, 0);
-            //var focusPosition = new Vector3(framingOffset.x, framingOffset.y);
-            //make sure camera is always behind player and how far it is looking at, Rotation By cameraAngle
-            //transform.position = focusPosition - Quaternion.Euler(rotationX, rotationY, 0) * new Vector3(0, 0, cameraZDistance);
-            //transform.rotation = targetRotation;
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.y);
         }
         else if (Input.GetMouseButton(1))
         {
@@ -180,7 +156,7 @@ public class CamController : MonoBehaviour
         {
             print("Help3");
             transitionTrue = true;
-            t += Time.deltaTime* (Time.deltaTime/transitionDuration);
+            t += Time.deltaTime * (Time.deltaTime / transitionDuration);
             transform.position = Vector3.Lerp(startPos, endPos, t);
             yield return 0;
         }
@@ -202,4 +178,74 @@ public class CamController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(r, 0.1f);
     }
+
+    private void WallCheck()
+    {
+        Ray ray = new Ray(transform.position, -transform.forward);
+        RaycastHit hit;
+        if (Physics.SphereCast(ray, 0.5f, out hit, 0.7f, collisionMask))
+        {
+            pitchLock = true;
+        }
+        else
+        {
+            pitchLock = false;
+        }
+    }
+    private void CollisionCheck(Vector3 retPoint)
+    {
+        RaycastHit hit;
+        if (Physics.Linecast (followTarget.position, retPoint, out hit, collisionMask))
+        {
+            Vector3 norm = hit.normal * wallPush;
+            Vector3 p = hit.point + norm;
+            //TransparencyCheck();
+            if (Vector3.Distance(Vector3.Lerp(transform.position, p, collideSpeed * Time.deltaTime), followTarget.position) <= evenCloserDistanceToPlayer)
+            {
+
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, p, collideSpeed * Time.deltaTime);
+            }
+            return;
+        }
+        //FullTransparency();
+        transform.position = Vector3.Lerp(transform.position, retPoint, returnSpeed * Time.deltaTime);
+        pitchLock = false;
+    }
+    //private void TransparencyCheck()
+    //{
+    //    if (changeTransparency) 
+    //    {
+    //        if (Vector3.Distance(transform.position, followTarget.position) <= closestDistanceToPlayer)
+    //        {
+    //            Color temp = targetRenderer.sharedMaterial.color;
+    //            temp.a = Mathf.Lerp(temp.a, 0.2f, collideSpeed * Time.deltaTime);
+    //            targetRenderer.sharedMaterial.color = temp;
+    //        }
+    //        else
+    //        {
+    //            if (targetRenderer.sharedMaterial.color.a <= 0.99f)
+    //            {
+    //                Color temp = targetRenderer.sharedMaterial.color;
+    //                temp.a = Mathf.Lerp(temp.a, 1, collideSpeed * Time.deltaTime);
+    //                targetRenderer.sharedMaterial.color = temp;
+    //            }
+    //        }
+    //    }
+    //}
+    //private void FullTransparency()
+    //{
+    //    if (changeTransparency) 
+    //    {
+    //        if (targetRenderer.sharedMaterial.color.a <= 0.99f)
+    //        {
+    //            Color temp = targetRenderer.sharedMaterial.color;
+    //            temp.a = Mathf.Lerp(temp.a, 0.2f, collideSpeed * Time.deltaTime);
+    //            targetRenderer.sharedMaterial.color = temp;
+    //        }
+    //    }
+    //}
 }
+
