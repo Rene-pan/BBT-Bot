@@ -8,15 +8,15 @@ using static System.TimeZoneInfo;
 public class CamController_v1 : MonoBehaviour
 {
     public enum CamState { THIRDPERSON, OVERSHOULDER };
-    [SerializeField] CamState currentState = CamState.THIRDPERSON;
+    public CamState currentState = CamState.THIRDPERSON;
     [Header("Cam Vars")]
     [SerializeField] Transform followTarget;
     [SerializeField] float mouseSensitivity = 10;
     [SerializeField] float distFromTarget = 2;
     [SerializeField] Vector2 pitchMinMax = new Vector2(10, 45);
+    float cameraVerticalRotation = 0;
 
     [SerializeField] float rotationSmoothTime = 8f;
-    Vector3 rotationSmoothVelocity;
     Vector3 currentRotation;
     float yaw;
     float pitch;
@@ -27,12 +27,6 @@ public class CamController_v1 : MonoBehaviour
     [SerializeField] bool transitionTrue = false;
     Vector3 camStartPos;
     Vector3 camEndPos;
-
-    [Header("Collision Vars")]
-
-    [Header("Transparency")]
-    public bool changeTransparency = true;
-    public MeshRenderer targetRenderer;
 
     [Header("Speeds")]
     public float collideSpeed = 5;
@@ -47,10 +41,6 @@ public class CamController_v1 : MonoBehaviour
     public LayerMask collisionMask;
     private bool pitchLock = false;
 
-    [Header("Aiming Var")]
-    public Vector3 playerOffset;
-    public float distanceFromOffset;
-    public Transform rotator;
     private void Update()
     {
         ChangeCursorVisibility();
@@ -102,6 +92,7 @@ public class CamController_v1 : MonoBehaviour
     {
         if (followTarget != null && !transitionTrue)
         {
+            Parent(followTarget, this.gameObject, 1);
             CollisionCheck(followTarget.position - transform.forward * distFromTarget);
             if (!pitchLock)
             {
@@ -123,18 +114,15 @@ public class CamController_v1 : MonoBehaviour
     void CamFunctions_OS()
     {
         if (transitionTrue) return;
-        if (Input.GetMouseButtonDown(1))
-        {
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.y);
-        }
-        else if (Input.GetMouseButton(1))
-        {
-            print("oh so liddat");
-        }
-        else
-        {
-            rotator.eulerAngles = new Vector3(0, rotator.eulerAngles.y, rotator.eulerAngles.z);
-        }
+        //CollisionCheck(followTarget.position - transform.forward * distFromTarget);
+        Parent(followTarget, this.gameObject, 0);
+        float inputX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float inputY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        cameraVerticalRotation -= inputY;
+        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, pitchMinMax.x, pitchMinMax.y);
+        transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
+        followTarget.Rotate(Vector3.up * inputX);
+
     }
 
     IEnumerator Transition(Vector3 startPos, Vector3 endPos, int PositionNo)
@@ -170,28 +158,6 @@ public class CamController_v1 : MonoBehaviour
             currentState = newState;
         }
     }
-
-    //Draw gizmos 
-    private void OnDrawGizmos()
-    {
-        Vector3 r = target.TransformPoint(playerOffset);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(r, 0.1f);
-    }
-
-    private void WallCheck()
-    {
-        Ray ray = new Ray(transform.position, -transform.forward);
-        RaycastHit hit;
-        if (Physics.SphereCast(ray, 0.5f, out hit, 0.7f, collisionMask))
-        {
-            pitchLock = true;
-        }
-        else
-        {
-            pitchLock = false;
-        }
-    }
     private void CollisionCheck(Vector3 retPoint)
     {
         RaycastHit hit;
@@ -213,6 +179,19 @@ public class CamController_v1 : MonoBehaviour
         //FullTransparency();
         transform.position = Vector3.Lerp(transform.position, retPoint, returnSpeed * Time.deltaTime);
         pitchLock = false;
+    }
+
+    private void Parent(Transform Parent, GameObject child, int state)
+    {
+        switch (state) 
+        {
+            case 0:
+                child.transform.SetParent(Parent);
+                break;
+            case 1:
+                child.transform.SetParent(null);
+                break;
+        }
     }
     //private void TransparencyCheck()
     //{
