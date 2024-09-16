@@ -7,8 +7,8 @@ public class ProjectileThrow : MonoBehaviour
 
     public Rigidbody objectToThrow;
 
-    [SerializeField, Range(0.0f, 50.0f)]
-    float force;
+    [Range(0.0f, 50.0f)]
+    public float force;
 
     [SerializeField]
     Transform StartPosition;
@@ -25,10 +25,6 @@ public class ProjectileThrow : MonoBehaviour
     void Update()
     {
         Predict();
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            ThrowObject();
-        }
     }
 
     void Predict()
@@ -50,7 +46,7 @@ public class ProjectileThrow : MonoBehaviour
         return properties;
     }
 
-    void ThrowObject()
+    public void ThrowObject()
     {
         Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
         thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);

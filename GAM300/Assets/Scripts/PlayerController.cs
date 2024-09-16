@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -25,11 +26,22 @@ public class PlayerController : MonoBehaviour
     public int hand_amount = 0;
     public GameObject currentIngredient;
     public GameObject currentFood;
+
+    [Header("Throwing")]
+    public bool canThrow;
+    private ProjectileThrow throwscript;
+    public float minThrowDistance;
+
+    private void Start()
+    {
+        throwscript = FindAnyObjectByType<ProjectileThrow>();
+    }
     private void Update()
     {
         Move();
         Collect();
         Merge();
+        Throw();
     }
     void Move()
     {
@@ -78,4 +90,23 @@ public class PlayerController : MonoBehaviour
             currentFood = Instantiate(foods[0],hand);
         }
     }
+
+    void Throw()
+    {
+        if (camScript.currentState == CamController_v1.CamState.THIRDPERSON) return;
+        if (canThrow && Input.GetMouseButton(0))
+        {
+            throwscript.force += 1;
+        }
+        else if (canThrow && throwscript.force >= minThrowDistance)
+        {
+            print("Reduce boost");
+            throwscript.force -= 1;
+        }
+        if (canThrow && Input.GetMouseButtonDown(1))
+        {
+            throwscript.ThrowObject();
+            canThrow = false;
+        }
+    } 
 }

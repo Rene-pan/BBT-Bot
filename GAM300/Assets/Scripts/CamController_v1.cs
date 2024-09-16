@@ -7,13 +7,14 @@ using static System.TimeZoneInfo;
 
 public class CamController_v1 : MonoBehaviour
 {
-    public enum CamState { THIRDPERSON, OVERSHOULDER };
+    public enum CamState { THIRDPERSON, FIRSTPERSON };
     public CamState currentState = CamState.THIRDPERSON;
     [Header("Cam Vars")]
     [SerializeField] Transform followTarget;
     [SerializeField] float mouseSensitivity = 10;
     [SerializeField] float distFromTarget = 2;
     [SerializeField] Vector2 pitchMinMax = new Vector2(10, 45);
+    [SerializeField] Vector2 pitchMinMax_OS = new Vector2(10, 45);
     float cameraVerticalRotation = 0;
 
     [SerializeField] float rotationSmoothTime = 8f;
@@ -41,6 +42,8 @@ public class CamController_v1 : MonoBehaviour
     public LayerMask collisionMask;
     private bool pitchLock = false;
 
+    //[SerializeField] TrajectoryPredictor trajectoryPredictor;
+
     private void Update()
     {
         ChangeCursorVisibility();
@@ -57,7 +60,7 @@ public class CamController_v1 : MonoBehaviour
                     StartCoroutine(Transition(camStartPos, target.position, PressedB));
                 }
                 break;
-            case CamState.OVERSHOULDER:
+            case CamState.FIRSTPERSON:
                 //this cam function, can look around but without the changing the transform?
                 camEndPos = transform.position;
                 CamFunctions_OS();
@@ -119,7 +122,7 @@ public class CamController_v1 : MonoBehaviour
         float inputX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float inputY = Input.GetAxis("Mouse Y") * mouseSensitivity;
         cameraVerticalRotation -= inputY;
-        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, pitchMinMax.x, pitchMinMax.y);
+        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, pitchMinMax_OS.x, pitchMinMax_OS.y);
         transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
         followTarget.Rotate(Vector3.up * inputX);
 
@@ -127,14 +130,13 @@ public class CamController_v1 : MonoBehaviour
 
     IEnumerator Transition(Vector3 startPos, Vector3 endPos, int PositionNo)
     {
-        print("Help1");
         float t = 0.0f;
         //if transitioning, nothing will happen
         if (transitionTrue) yield return 0;
         switch (PositionNo)
         {
             case 0:
-                ChangeState(CamState.OVERSHOULDER);
+                ChangeState(CamState.FIRSTPERSON);
                 break;
             case 1:
                 ChangeState(CamState.THIRDPERSON);
@@ -142,14 +144,12 @@ public class CamController_v1 : MonoBehaviour
         }
         while (t < 1.0f)
         {
-            print("Help3");
             transitionTrue = true;
             t += Time.deltaTime * (Time.deltaTime / transitionDuration);
             transform.position = Vector3.Lerp(startPos, endPos, t);
             yield return 0;
         }
         transitionTrue = false;
-        print("Help2");
     }
     public void ChangeState(CamState newState)
     {
