@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,15 +20,12 @@ public class PlayerController : MonoBehaviour
     [Header("Grab ingredient")]
     public bool NearCollectionPoint = false;
     public bool NearMergePoint = false;
-    [SerializeField] GameObject[] ingredients;
-    [SerializeField] GameObject[] foods;
-    public int ingredientNo;
-    public int foodNo;
     public Transform hand;
     public int hand_amount = 0;
     public GameObject currentIngredient;
     public GameObject currentFood;
     public GameObject currentKopiMaker;
+    private GameObject holdIngredient;
 
 
     [Header("Throwing")]
@@ -46,7 +44,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
-        Collect();
+        CollectIngredient();
+        CollectFood();
         Merge();
         Throw();
     }
@@ -64,15 +63,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Collect()
+    void CollectIngredient()
     {
-        var canCollect = NearCollectionPoint && Input.GetKeyDown(KeyCode.E);
-        if (canCollect && hand_amount <1)
+        if (currentIngredient == null) return;
+        var canCollectIngredient = NearCollectionPoint && Input.GetKeyDown(KeyCode.E);
+        var canCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
+            && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
+        if (canCollectIngredient && hand_amount <1 && !canCollectFood)
         {
-            currentIngredient = Instantiate(ingredients[ingredientNo],hand);
+            holdIngredient = Instantiate(currentIngredient, hand);
             hand_amount += 1;
         }
         
+    }
+    void CollectFood()
+    {
+        var canCollectIngredient = NearCollectionPoint && Input.GetKeyDown(KeyCode.E);
+        var canCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
+            && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
+        if (!canCollectIngredient && canCollectFood)
+        {
+            throwscript.objectToThrow = Instantiate(currentFood, hand).GetComponent<Rigidbody>();
+        }
     }
 
     private void Parent(Transform Parent, GameObject child, int state)
@@ -95,6 +107,7 @@ public class PlayerController : MonoBehaviour
         if (startCookingTimer)
         {
             Destroy(currentIngredient);
+            hand_amount = 0;
             var KopiMakerScript = currentKopiMaker.GetComponent<MergeIngredient>();
             KopiMakerScript.ChangeState(MergeIngredient.KopiMakerStates.PREP);
             //currentFood = Instantiate(foods[0],hand);

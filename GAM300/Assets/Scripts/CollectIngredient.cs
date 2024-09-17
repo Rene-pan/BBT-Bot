@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class CollectIngredient : MonoBehaviour
 {
+    public GameObject[] ingredients;
+    public int CurrentingredientID = 0;
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
+            var playerScript = other.GetComponent<PlayerController>();
             print("You reached collection area!");
-            FindAnyObjectByType<PlayerController>().NearCollectionPoint = true;
-            FindAnyObjectByType<PlayerController>().ingredientNo = 0;
+            playerScript.NearCollectionPoint = true;
+            playerScript.currentIngredient = ingredients[CurrentingredientID];
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
+            var playerScript = other.GetComponent<PlayerController>();
             print("You left collection area!");
-            FindAnyObjectByType<PlayerController>().NearCollectionPoint = false;
+            playerScript.NearCollectionPoint = false;
+            playerScript.currentIngredient = null;
         }
     }
 }

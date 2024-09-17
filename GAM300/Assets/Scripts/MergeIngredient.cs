@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MergeIngredient : MonoBehaviour
 {
     public enum KopiMakerStates {READY, PREP, COMPLETE}
     public KopiMakerStates currentState = KopiMakerStates.READY;
-    public int foodid = 0;
+    public GameObject[] foods;
+    public int CurrentfoodID = 0;
+    public float waitingTime = 5f;  
+    [SerializeField] float cookingTimer = 0;
+    [SerializeField] Slider slider;
+    [SerializeField] GameObject PopUp;
+
+    private void Start()
+    {
+        SetSlider(slider, waitingTime, cookingTimer);
+        PopUp.SetActive(false);
+    }
 
     private void Update()
     {
@@ -21,6 +33,7 @@ public class MergeIngredient : MonoBehaviour
             playerScript.NearMergePoint = true;
             //playerScript.foodNo = 0;
             playerScript.currentKopiMaker = this.gameObject;
+            playerScript.currentFood = foods[CurrentfoodID];
             
         }
     }
@@ -32,6 +45,7 @@ public class MergeIngredient : MonoBehaviour
             print("You left collection area!");
             playerScript.NearMergePoint = false;
             playerScript.currentKopiMaker = null;
+            playerScript.currentFood = null;
         }
     }
 
@@ -40,12 +54,19 @@ public class MergeIngredient : MonoBehaviour
         switch (currentState)
         {
             case KopiMakerStates.READY:
-                print("Boooo rene what you doing");
                 break;
             case KopiMakerStates.PREP:
-                print("YAY!!!");
+                PopUp.SetActive(true);
+                cookingTimer += Time.deltaTime;
+                UpdateSlider(slider, cookingTimer);
+                if (cookingTimer >= waitingTime)
+                {
+                    ChangeState(KopiMakerStates.COMPLETE);
+                }
                 break;
             case KopiMakerStates.COMPLETE:
+                //off UI
+                print("YAY");
                 break;
         }
     }
@@ -56,5 +77,19 @@ public class MergeIngredient : MonoBehaviour
         {
             currentState = newState;
         }
+    }
+
+    void SetSlider(Slider slider, float maxValue, float StartingValue)
+    {
+        slider.maxValue = maxValue;
+        slider.value = StartingValue;
+    }
+    void SliderVisibility(GameObject slider, bool visible)
+    {
+        slider.SetActive(visible);
+    }
+    void UpdateSlider(Slider slider, float currentValue)
+    {
+        slider.value = currentValue;
     }
 }
