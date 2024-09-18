@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
@@ -23,13 +24,16 @@ public class PlayerController : MonoBehaviour
     public Transform hand;
     public int hand_amount = 0;
     public GameObject currentIngredient;
-    public GameObject currentFood;
+    public GameObject currentFoodCollectable;
+    public GameObject currentFoodThrowable;
     public GameObject currentKopiMaker;
     private GameObject holdIngredient;
+    private GameObject holdFood;
 
 
     [Header("Throwing")]
     public bool canThrow;
+    public bool ThrowOnce = true;
     private ProjectileThrow throwscript;
     public float minThrowDistance;
     [SerializeField] Slider throwStrength;
@@ -83,7 +87,10 @@ public class PlayerController : MonoBehaviour
             && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
         if (!canCollectIngredient && canCollectFood)
         {
-            throwscript.objectToThrow = Instantiate(currentFood, hand).GetComponent<Rigidbody>();
+            holdFood = Instantiate(currentFoodThrowable, hand);
+            throwscript.objectToThrow = holdFood.GetComponent<Rigidbody>();
+            currentKopiMaker.GetComponent<MergeIngredient>().currentState = MergeIngredient.KopiMakerStates.READY;
+            ThrowOnce = false;
         }
     }
 
@@ -106,7 +113,7 @@ public class PlayerController : MonoBehaviour
         if (currentKopiMaker == null) return;
         if (startCookingTimer)
         {
-            Destroy(currentIngredient);
+            Destroy(holdIngredient);
             hand_amount = 0;
             var KopiMakerScript = currentKopiMaker.GetComponent<MergeIngredient>();
             KopiMakerScript.ChangeState(MergeIngredient.KopiMakerStates.PREP);
@@ -137,10 +144,13 @@ public class PlayerController : MonoBehaviour
             throwscript.force -= 1;
             UpdateSlider(throwStrength, throwscript.force);
         }
-        if (canThrow && Input.GetMouseButtonDown(1))
+        if (canThrow && Input.GetMouseButtonDown(1) && !ThrowOnce)
         {
             throwscript.ThrowObject();
-            canThrow = false;
+            Destroy(holdFood);
+            throwscript.force = minThrowDistance;
+            UpdateSlider(throwStrength, throwscript.force);
+            ThrowOnce = true;
         }
     } 
     void SetSlider(Slider slider, float maxValue, float StartingValue)

@@ -124,6 +124,7 @@ public class CamController_v1 : MonoBehaviour
         cameraVerticalRotation -= inputY;
         cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, pitchMinMax_OS.x, pitchMinMax_OS.y);
         transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
+        //float cameraHori
         followTarget.Rotate(Vector3.up * inputX);
 
     }

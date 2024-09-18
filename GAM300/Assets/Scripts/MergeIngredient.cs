@@ -8,12 +8,13 @@ public class MergeIngredient : MonoBehaviour
     public enum KopiMakerStates {READY, PREP, COMPLETE}
     public KopiMakerStates currentState = KopiMakerStates.READY;
     public GameObject[] foods;
-    public int CurrentfoodID = 0;
+    public int CurrentCollectfoodID = 0;
+    public int CurrentThrowfoodID = 1;
     public float waitingTime = 5f;  
     [SerializeField] float cookingTimer = 0;
     [SerializeField] Slider slider;
     [SerializeField] GameObject PopUp;
-
+    [SerializeField] GameObject CompletePopUp;
     private void Start()
     {
         SetSlider(slider, waitingTime, cookingTimer);
@@ -33,7 +34,8 @@ public class MergeIngredient : MonoBehaviour
             playerScript.NearMergePoint = true;
             //playerScript.foodNo = 0;
             playerScript.currentKopiMaker = this.gameObject;
-            playerScript.currentFood = foods[CurrentfoodID];
+            playerScript.currentFoodThrowable = foods[CurrentCollectfoodID];
+            playerScript.currentFoodThrowable = foods[CurrentThrowfoodID];
             
         }
     }
@@ -45,7 +47,8 @@ public class MergeIngredient : MonoBehaviour
             print("You left collection area!");
             playerScript.NearMergePoint = false;
             playerScript.currentKopiMaker = null;
-            playerScript.currentFood = null;
+            playerScript.currentFoodThrowable = null;
+            playerScript.currentFoodThrowable = null;
         }
     }
 
@@ -54,6 +57,8 @@ public class MergeIngredient : MonoBehaviour
         switch (currentState)
         {
             case KopiMakerStates.READY:
+                CompletePopUp.SetActive(false);
+                PopUp.SetActive(false);
                 break;
             case KopiMakerStates.PREP:
                 PopUp.SetActive(true);
@@ -66,6 +71,7 @@ public class MergeIngredient : MonoBehaviour
                 break;
             case KopiMakerStates.COMPLETE:
                 //off UI
+                CompletePopUp.SetActive(true);
                 print("YAY");
                 break;
         }
