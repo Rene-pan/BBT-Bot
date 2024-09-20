@@ -12,6 +12,7 @@ public class CollectIngredient : MonoBehaviour
         {
             var playerScript = other.GetComponent<PlayerController>();
             print("You reached collection area!");
+            print(other.name);
             playerScript.NearCollectionPoint = true;
             playerScript.currentIngredient = ingredients[CurrentingredientID];
         }

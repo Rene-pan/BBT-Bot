@@ -1,46 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 using static System.TimeZoneInfo;
 
-public class CamController_v1 : MonoBehaviour
+public class CamController_v3 : MonoBehaviour
 {
-    public enum CamState { THIRDPERSON, FIRSTPERSON };
+    public enum CamState { THIRDPERSON, OVERSHOULDER };
     public CamState currentState = CamState.THIRDPERSON;
-    [Header("Cam Vars")]
+
+    [Header("Cam Functions Variables")]
     [SerializeField] Transform followTarget;
     [SerializeField] float mouseSensitivity = 10;
     [SerializeField] float distFromTarget = 2;
     [SerializeField] Vector2 pitchMinMax = new Vector2(10, 45);
-    [SerializeField] Vector2 pitchMinMax_OS = new Vector2(10, 45);
-    float cameraVerticalRotation = 0;
-
-    [SerializeField] float rotationSmoothTime = 8f;
-    Vector3 currentRotation;
     float yaw;
     float pitch;
-    int PressedV = 0;
-    int PressedB = 0;
-    [SerializeField] float transitionDuration = 2.5f;
-    [SerializeField] Transform target;
-    [SerializeField] bool transitionTrue = false;
+    public LayerMask collisionMask;
+    private bool pitchLock = false;
+    Vector3 currentRotation;
+    [SerializeField] float rotationSmoothTime;
+
+    [Header("Change Cursor visibility")]
+    int PressedV;
+
+    [Header("Change Camera View")]
+    int PressedB;
     Vector3 camStartPos;
     Vector3 camEndPos;
+    bool transitionTrue;
+    [SerializeField] Transform target; //Lerp towards this position before switch state
+    [SerializeField] float transitionDuration;
+    [SerializeField] GameObject RotateAxis;
+    [SerializeField] GameObject Player;
 
-    [Header("Speeds")]
+    [Header("CollisionCheck")]
     public float collideSpeed = 5;
     public float returnSpeed = 9;
     public float wallPush = 0.7f;
-
-    [Header("Distances")]
     public float closestDistanceToPlayer = 2;
     public float evenCloserDistanceToPlayer = 1;
-
-    [Header("Mask")]
-    public LayerMask collisionMask;
-    private bool pitchLock = false;
 
     private void Update()
     {
@@ -57,42 +56,65 @@ public class CamController_v1 : MonoBehaviour
                     StartCoroutine(Transition(camStartPos, target.position, PressedB));
                 }
                 break;
-            case CamState.FIRSTPERSON:
+            case CamState.OVERSHOULDER:
+                OSCam();
                 //this cam function, can look around but without the changing the transform?
                 camEndPos = transform.position;
-                CamFunctions_OS();
                 //if press B key again, change state to Third person
                 if (Input.GetKeyDown(KeyCode.B))
                 {
                     PressedB = 1;
+                    //RotateAxis.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                    //RotateAxis.transform.rotation = Quaternion.Euler(0, 0, 0);
                     StartCoroutine(Transition(camEndPos, camStartPos, PressedB));
                 }
                 break;
         }
 
     }
-    //V Key to toggle Cursor visibility
-    void ChangeCursorVisibility()
+    public void ChangeState(CamState newState)
     {
-        if (Input.GetKeyDown(KeyCode.V) && PressedV == 0)
+        if (currentState != newState)
         {
-            PressedV = 1;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            currentState = newState;
         }
-        else if (Input.GetKeyDown(KeyCode.V) && PressedV == 1)
+    }
+    //Lerp between Cams
+    IEnumerator Transition(Vector3 startPos, Vector3 endPos, int PositionNo)
+    {
+        float t = 0.0f;
+        //if transitioning, nothing will happen
+        if (transitionTrue) yield return 0;
+        while (t < 1.0f)
         {
-            PressedV = 0;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            t += Time.deltaTime * (Time.deltaTime / transitionDuration);
+            transform.position = Vector3.Lerp(startPos, endPos, t);
+            transitionTrue = true;
+            yield return 0;
         }
+        switch (PositionNo)
+        {
+            case 0:
+                ChangeState(CamState.OVERSHOULDER);
+                break;
+            case 1:
+                ChangeState(CamState.THIRDPERSON);
+                break;
+        }
+        transitionTrue = false;
     }
     //3rd Person Cam Stuff
     void CamFunctions()
     {
+        RotateAxis.GetComponent<CamController_v2>().enabled = false;
+        GetComponent<Camera>().enabled = true;
+        target.GetComponent<Camera>().enabled = false;
+        followTarget.GetComponent<Movement>().cam = this.gameObject.transform;
+        Player.transform.localEulerAngles = new Vector3(0, 180, 0);
+        RotateAxis.transform.localEulerAngles = new Vector3(0, 0, 0);
         if (followTarget != null && !transitionTrue)
         {
-            Parent(followTarget, this.gameObject, 1);
+            //Parent(followTarget, this.gameObject, 1);
             CollisionCheck(followTarget.position - transform.forward * distFromTarget);
             if (!pitchLock)
             {
@@ -110,58 +132,21 @@ public class CamController_v1 : MonoBehaviour
             transform.eulerAngles = currentRotation;
         }
     }
-    //B key to toggle Cam View Perspective
-    void CamFunctions_OS()
+    void OSCam()
     {
-        if (transitionTrue) return;
-        Parent(followTarget, this.gameObject, 0);
-        float inputX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float inputY = Input.GetAxis("Mouse Y") * mouseSensitivity;
-        cameraVerticalRotation -= inputY;
-        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, pitchMinMax_OS.x, pitchMinMax_OS.y);
-        transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
-        followTarget.Rotate(Vector3.up * inputX);
-
-    }
-
-    IEnumerator Transition(Vector3 startPos, Vector3 endPos, int PositionNo)
-    {
-        float t = 0.0f;
-        //if transitioning, nothing will happen
-        if (transitionTrue) yield return 0;
-        switch (PositionNo)
-        {
-            case 0:
-                ChangeState(CamState.FIRSTPERSON);
-                break;
-            case 1:
-                ChangeState(CamState.THIRDPERSON);
-                break;
-        }
-        while (t < 1.0f)
-        {
-            transitionTrue = true;
-            t += Time.deltaTime * (Time.deltaTime / transitionDuration);
-            transform.position = Vector3.Lerp(startPos, endPos, t);
-            yield return 0;
-        }
-        transitionTrue = false;
-    }
-    public void ChangeState(CamState newState)
-    {
-        if (currentState != newState)
-        {
-            currentState = newState;
-        }
+        target.GetComponent<Camera>().enabled = true;
+        RotateAxis.GetComponent<CamController_v2>().enabled = true;
+        GetComponent<Camera>().enabled = false;
+        followTarget.GetComponent<Movement>().cam = target;
+        Player.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
     private void CollisionCheck(Vector3 retPoint)
     {
         RaycastHit hit;
-        if (Physics.Linecast (followTarget.position, retPoint, out hit, collisionMask))
+        if (Physics.Linecast(followTarget.position, retPoint, out hit, collisionMask))
         {
             Vector3 norm = hit.normal * wallPush;
             Vector3 p = hit.point + norm;
-            //TransparencyCheck();
             if (Vector3.Distance(Vector3.Lerp(transform.position, p, collideSpeed * Time.deltaTime), followTarget.position) <= evenCloserDistanceToPlayer)
             {
 
@@ -172,23 +157,24 @@ public class CamController_v1 : MonoBehaviour
             }
             return;
         }
-        //FullTransparency();
         transform.position = Vector3.Lerp(transform.position, retPoint, returnSpeed * Time.deltaTime);
         pitchLock = false;
     }
-
-    private void Parent(Transform Parent, GameObject child, int state)
+    //V Key to toggle Cursor visibility
+    void ChangeCursorVisibility()
     {
-        switch (state) 
+        if (Input.GetKeyDown(KeyCode.V) && PressedV == 0)
         {
-            case 0:
-                child.transform.SetParent(Parent);
-                break;
-            case 1:
-                child.transform.SetParent(null);
-                break;
+            PressedV = 1;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else if (Input.GetKeyDown(KeyCode.V) && PressedV == 1)
+        {
+            PressedV = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
-    
-}
 
+}

@@ -49,6 +49,7 @@ public class ProjectileThrow : MonoBehaviour
     public void ThrowObject()
     {
         Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
+        thrownObject.constraints = RigidbodyConstraints.None;
         thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);
     }
 }

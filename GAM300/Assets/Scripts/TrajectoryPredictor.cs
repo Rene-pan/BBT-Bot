@@ -16,12 +16,12 @@ public class TrajectoryPredictor : MonoBehaviour
         float increment = 0.025f;
         [SerializeField, Range(1.05f, 2f), Tooltip("The raycast overlap between points in the trajectory, this is a multiplier of the length between points. 2 = twice as long")]
         float rayOverlap = 1.1f;
-        public CamController_v1 cam;
+        public CamController_v3 cam;
         #endregion
 
         private void Start()
         {
-        cam = FindFirstObjectByType<CamController_v1>();
+        cam = FindFirstObjectByType<CamController_v3>();
         if (trajectoryLine == null)
         {
             trajectoryLine = GetComponent<LineRenderer>();
@@ -33,10 +33,10 @@ public class TrajectoryPredictor : MonoBehaviour
         {
         switch (cam.currentState) 
         {
-            case CamController_v1.CamState.THIRDPERSON:
+            case CamController_v3.CamState.THIRDPERSON:
                 SetTrajectoryVisible(false);
                 break;
-            case CamController_v1.CamState.FIRSTPERSON:
+            case CamController_v3.CamState.OVERSHOULDER:
                 SetTrajectoryVisible(true);
                 Vector3 velocity = projectile.direction * (projectile.initialSpeed / projectile.mass);
                 Vector3 position = projectile.initialPosition;

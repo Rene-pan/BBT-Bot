@@ -8,15 +8,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector3 PlayerMovementInput;
-    private Vector3 PlayerMouseInput;
-    [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float turnSmoothTime = 0.1f;
-    float turnSmoothVelocity = 2;
 
-    [SerializeField] Rigidbody playerbody;
     [SerializeField] Transform cam;
-    [SerializeField] CamController_v1 camScript;
+    [SerializeField] CamController_v3 camScript;
 
     [Header("Grab ingredient")]
     public bool NearCollectionPoint = false;
@@ -47,23 +41,15 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        Move();
-        CollectIngredient();
-        CollectFood();
-        Merge();
-        Throw();
-    }
-    void Move()
-    {
-        PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * moveSpeed;
-        playerbody.velocity = new Vector3(MoveVector.x, playerbody.velocity.y, MoveVector.z);
-        if (PlayerMovementInput.magnitude >= 0.1f && camScript.currentState == CamController_v1.CamState.THIRDPERSON)
+        if (camScript.currentState == CamController_v3.CamState.THIRDPERSON)
         {
-            float targetAngle = Mathf.Atan2(PlayerMovementInput.x, PlayerMovementInput.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0, angle, 0);
-            Vector3 moveDir = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
+            CollectIngredient();
+            CollectFood();
+            Merge();
+        }
+        else if (camScript.currentState == CamController_v3.CamState.OVERSHOULDER)
+        {
+            Throw();
         }
     }
 
@@ -88,24 +74,14 @@ public class PlayerController : MonoBehaviour
         if (!canCollectIngredient && canCollectFood)
         {
             holdFood = Instantiate(currentFoodThrowable, hand);
+            holdFood.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX|
+                RigidbodyConstraints.FreezePositionZ|RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
             throwscript.objectToThrow = holdFood.GetComponent<Rigidbody>();
             currentKopiMaker.GetComponent<MergeIngredient>().currentState = MergeIngredient.KopiMakerStates.READY;
             ThrowOnce = false;
         }
     }
 
-    private void Parent(Transform Parent, GameObject child, int state)
-    {
-        switch (state)
-        {
-            case 0:
-                child.transform.SetParent(Parent);
-                break;
-            case 1:
-                child.transform.SetParent(null);
-                break;
-        }
-    }
 
     void Merge()
     {
@@ -117,18 +93,17 @@ public class PlayerController : MonoBehaviour
             hand_amount = 0;
             var KopiMakerScript = currentKopiMaker.GetComponent<MergeIngredient>();
             KopiMakerScript.ChangeState(MergeIngredient.KopiMakerStates.PREP);
-            //currentFood = Instantiate(foods[0],hand);
         }
     }
 
     void Throw()
     {
-        if (camScript.currentState == CamController_v1.CamState.THIRDPERSON)
+        if (camScript.currentState == CamController_v3.CamState.THIRDPERSON)
         {
             canThrow = false;
             SliderVisibility(throwStrength.gameObject, canThrow);
         }
-        else if (camScript.currentState == CamController_v1.CamState.FIRSTPERSON)
+        else if (camScript.currentState == CamController_v3.CamState.OVERSHOULDER)
         {
             canThrow = true;
             SliderVisibility(throwStrength.gameObject,canThrow);
@@ -147,10 +122,10 @@ public class PlayerController : MonoBehaviour
         if (canThrow && Input.GetMouseButtonDown(1) && !ThrowOnce)
         {
             throwscript.ThrowObject();
-            Destroy(holdFood);
             throwscript.force = minThrowDistance;
             UpdateSlider(throwStrength, throwscript.force);
             ThrowOnce = true;
+            Destroy(holdFood);
         }
     } 
     void SetSlider(Slider slider, float maxValue, float StartingValue)
