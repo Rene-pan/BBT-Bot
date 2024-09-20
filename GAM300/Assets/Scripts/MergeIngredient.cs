@@ -30,6 +30,7 @@ public class MergeIngredient : MonoBehaviour
         if (other.tag == "Player")
         {
             var playerScript = other.GetComponent<PlayerController>();
+            print(other.name);
             print("You reached collection area!");
             playerScript.NearMergePoint = true;
             //playerScript.foodNo = 0;
@@ -72,6 +73,7 @@ public class MergeIngredient : MonoBehaviour
             case KopiMakerStates.COMPLETE:
                 //off UI
                 CompletePopUp.SetActive(true);
+                cookingTimer = 0;
                 print("YAY");
                 break;
         }

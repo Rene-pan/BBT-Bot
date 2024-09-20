@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] Transform cam;
     [SerializeField] CamController_v3 camScript;
 
     [Header("Grab ingredient")]
@@ -32,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public float minThrowDistance;
     [SerializeField] Slider throwStrength;
     [SerializeField] int maxStrengthValue;
+    [SerializeField] float addStrengthValue;
 
 
     private void Start()
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
         }
         if (canThrow && Input.GetMouseButton(0))
         {
-            throwscript.force += 1;
+            throwscript.force += addStrengthValue;
             UpdateSlider(throwStrength, throwscript.force);
         }
         else if (canThrow && throwscript.force >= minThrowDistance)
