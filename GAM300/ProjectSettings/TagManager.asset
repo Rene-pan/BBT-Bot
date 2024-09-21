@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Customer
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

@@ -29,6 +29,7 @@ public class ProjectileThrow : MonoBehaviour
 
     void Predict()
     {
+        if (objectToThrow == null) return;
         trajectoryPredictor.PredictTrajectory(ProjectileData());
     }
 
@@ -48,6 +49,7 @@ public class ProjectileThrow : MonoBehaviour
 
     public void ThrowObject()
     {
+        if (objectToThrow == null) return;
         Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
         thrownObject.constraints = RigidbodyConstraints.None;
         thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);

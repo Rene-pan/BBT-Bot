@@ -46,9 +46,14 @@ public class PlayerController : MonoBehaviour
             CollectIngredient();
             CollectFood();
             Merge();
+            print("Hi");
+            canThrow = false;
+            SliderVisibility(throwStrength.gameObject, canThrow);
         }
         else if (camScript.currentState == CamController_v3.CamState.OVERSHOULDER)
         {
+            canThrow = true;
+            SliderVisibility(throwStrength.gameObject, canThrow);
             Throw();
         }
     }
@@ -98,16 +103,6 @@ public class PlayerController : MonoBehaviour
 
     void Throw()
     {
-        if (camScript.currentState == CamController_v3.CamState.THIRDPERSON)
-        {
-            canThrow = false;
-            SliderVisibility(throwStrength.gameObject, canThrow);
-        }
-        else if (camScript.currentState == CamController_v3.CamState.OVERSHOULDER)
-        {
-            canThrow = true;
-            SliderVisibility(throwStrength.gameObject,canThrow);
-        }
         if (canThrow && Input.GetMouseButton(0))
         {
             throwscript.force += addStrengthValue;

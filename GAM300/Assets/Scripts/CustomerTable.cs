@@ -4,4 +4,5 @@ using UnityEngine;
 
 public class CustomerTable : MonoBehaviour
 {
+    public bool CompletedMeal;
 }
