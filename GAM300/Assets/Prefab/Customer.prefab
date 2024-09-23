@@ -147,8 +147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentstate: 0
-  waypoints:
-  - {fileID: 0}
+  waypoints: []
+  chairs: []
+  CustomerID: 0
   OrderUI:
   - {fileID: 2620413275955628136, guid: 33448cd4fe1fed64384c904df4452a25, type: 3}
   OrderUI_ID: 0
@@ -156,8 +157,14 @@ MonoBehaviour:
   OrderList: []
   OrderWaitTime: 40
   currentTime: 0
-  DecreasingValue: 0.1
+  DecreasingValue: 0.5
   NearestTable: {fileID: 0}
+  CustomerMaterial: {fileID: 0}
+  AngeredColor: {r: 0.89433956, g: 0.34254885, b: 0.34254885, a: 1}
+  customerSpawn: {fileID: 0}
+  Food: {fileID: 0}
+  EatingSpeedMultiplier: 1
+  EatingDuration: 20
 --- !u!54 &8110020984582784449
 Rigidbody:
   m_ObjectHideFlags: 0

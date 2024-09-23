@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(TrajectoryPredictor))]
 public class ProjectileThrow : MonoBehaviour
 {
-    TrajectoryPredictor trajectoryPredictor;
+    public TrajectoryPredictor trajectoryPredictor;
 
     public Rigidbody objectToThrow;
 

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Customer
   - SpawnPoint
+  - Chair
+  - Food
   layers:
   - Default
   - TransparentFX

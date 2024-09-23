@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdca20f785e58544aa1239554e0ff0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trajectoryPredictor: {fileID: 0}
   objectToThrow: {fileID: 88756423889740132, guid: 65716b810f534e94cab6d12d2fd5e41f, type: 3}
   force: 36.7
   StartPosition: {fileID: 1925670353874672030}
@@ -526,7 +527,7 @@ Transform:
   m_GameObject: {fileID: 7788442666182456646}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.33, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

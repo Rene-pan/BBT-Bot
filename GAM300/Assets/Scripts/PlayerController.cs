@@ -32,11 +32,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Slider throwStrength;
     [SerializeField] int maxStrengthValue;
     [SerializeField] float addStrengthValue;
+    public float time;
 
 
     private void Start()
     {
         throwscript = FindAnyObjectByType<ProjectileThrow>();
+        throwscript.force = 0;
+        time = 0;
         SetSlider(throwStrength,maxStrengthValue,throwscript.force);
     }
     private void Update()
@@ -78,10 +81,8 @@ public class PlayerController : MonoBehaviour
             && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
         if (!canCollectIngredient && canCollectFood)
         {
-            holdFood = Instantiate(currentFoodThrowable, hand);
-            holdFood.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX|
-                RigidbodyConstraints.FreezePositionZ|RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
-            throwscript.objectToThrow = holdFood.GetComponent<Rigidbody>();
+            holdFood = Instantiate(currentFoodCollectable, hand);
+            throwscript.objectToThrow = currentKopiMaker.GetComponent<MergeIngredient>().SetThrowable().GetComponent<Rigidbody>();
             currentKopiMaker.GetComponent<MergeIngredient>().currentState = MergeIngredient.KopiMakerStates.READY;
             ThrowOnce = false;
         }
@@ -102,25 +103,23 @@ public class PlayerController : MonoBehaviour
     }
 
     void Throw()
-    {
+    { //press for a while, once bar reach max for 3 seconds, force minus
         if (canThrow && Input.GetMouseButton(0))
         {
             throwscript.force += addStrengthValue;
             UpdateSlider(throwStrength, throwscript.force);
+
         }
-        else if (canThrow && throwscript.force >= minThrowDistance)
-        {
-            print("Reduce boost");
-            throwscript.force -= 1;
-            UpdateSlider(throwStrength, throwscript.force);
-        }
-        if (canThrow && Input.GetMouseButtonDown(1) && !ThrowOnce)
+        if (canThrow && Input.GetMouseButtonUp(0) && !ThrowOnce)
         {
             throwscript.ThrowObject();
             throwscript.force = minThrowDistance;
             UpdateSlider(throwStrength, throwscript.force);
             ThrowOnce = true;
             Destroy(holdFood);
+            camScript.ChangeState(CamController_v3.CamState.THIRDPERSON);
+            throwscript.trajectoryPredictor.SetTrajectoryVisible(false);
+            throwscript.force = 0;
         }
     } 
     void SetSlider(Slider slider, float maxValue, float StartingValue)

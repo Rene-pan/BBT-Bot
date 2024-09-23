@@ -162,6 +162,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a476280109d588d478a9ecedfbecd432, type: 3}
   IngredientList: {fileID: 526481053295868958}
   IngredientImageSize: {x: 80, y: 80}
+  TimeSliderColors:
+  - {r: 0.6117647, g: 0.85882354, b: 0.6509804, a: 1}
+  - {r: 1, g: 0.63529414, b: 0.49803922, a: 1}
+  - {r: 0.78039217, g: 0.14509805, b: 0.24313726, a: 1}
 --- !u!1 &3915121837858403484
 GameObject:
   m_ObjectHideFlags: 0

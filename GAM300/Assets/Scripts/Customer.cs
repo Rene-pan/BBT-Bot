@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,10 +14,10 @@ public class Customer : MonoBehaviour
     [SerializeField] Customerstates currentstate = Customerstates.ORDER;
     [Header("Customer Movement")]
     NavMeshAgent agent;
-    public Transform[] waypoints;
+    public List<Transform> waypoints;
     int waypointIndex;
     Vector3 target;
-    public List<GameObject> chairs;
+    public GameObject[] chairs;
     public int CustomerID;
 
     [Header("Customer Orders")]
@@ -29,24 +30,24 @@ public class Customer : MonoBehaviour
     [SerializeField] float DecreasingValue;
     public GameObject NearestTable;
 
+    [Header("Customer Leaves")]
+    [SerializeField] Material CustomerMaterial;
+    [SerializeField] Color AngeredColor;
+    private float org_agentSpeed;
+    public GameObject customerSpawn;
 
-    private void OnEnable()
-    {
-        foreach (var chair in chairs)
-        {
-            if (chair.GetComponent<CustomerChair>().ChairID == CustomerID)
-            {
-                waypoints[0] = chair.transform;
-                break;
-            }
-        }
-        waypoints[1] = GameObject.FindWithTag("SpawnPoint").transform;
-        UpdateDestination();
-        OrderUIHolder = GameObject.Find("OrderList");
-    }
+    [Header("Customer Eats")]
+    public GameObject Food;
+    [SerializeField] float EatingSpeedMultiplier;
+    [SerializeField] float EatingDuration;
+    public float currentEatTime;
+    public GameObject OrderToDelete;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        org_agentSpeed = agent.speed;
+        currentEatTime = 0;
     }
     private void Update()
     {
@@ -65,13 +66,20 @@ public class Customer : MonoBehaviour
                     var orderTimer = order.GetComponent<Order>().DecreasingTimer;
                     StartTimer(orderTimer, DecreasingValue);
                 }
-
                 break;
             case Customerstates.EAT:
+                CustomerEats(EatingSpeedMultiplier, EatingDuration);
                 break; 
             case Customerstates.ANGRY:
+                CustomerAngry();
                 break;
             case Customerstates.LEAVE:
+                agent.speed = org_agentSpeed;
+                if (Vector3.Distance(transform.position, target) < 1f)
+                {
+                    UpdateDestination();
+                    CustomerLeaves();
+                }
                 break;
         }
     }
@@ -82,15 +90,15 @@ public class Customer : MonoBehaviour
             currentstate = newState;
         }
     }
-    void UpdateDestination()
+    public void UpdateDestination()
     {
-        target = waypoints[CustomerID].position;
+        target = waypoints[waypointIndex].position;
         agent.SetDestination(target);
     }
     public void IterateWayPointIndex()
     {
         waypointIndex++;
-        if (waypointIndex ==  waypoints.Length)
+        if (waypointIndex == waypoints.Count)
         {
             waypointIndex = 0;
         }
@@ -100,8 +108,13 @@ public class Customer : MonoBehaviour
         var CreateNewOrder = Instantiate(OrderUI[OrderUI_ID], OrderUIHolder.transform);
         //start timer for that specific order in customer side
         SetTimer(CreateNewOrder.GetComponent<Order>().DecreasingTimer, OrderWaitTime);
-        CreateNewOrder.GetComponent<Order>().addIngredientIcons();
-        CreateNewOrder.GetComponent<Order>().UpdateOrderName();
+        var OrderScript = CreateNewOrder.GetComponent<Order>();
+        OrderScript.addIngredientIcons();
+        OrderScript.UpdateOrderName();
+        //set order name to table
+        NearestTable.GetComponent<CustomerTable>().FoodName = OrderScript.OrderName;
+        NearestTable.GetComponent<CustomerTable>().customer = gameObject;
+        NearestTable.GetComponent<CustomerTable>().orders.Add(CreateNewOrder);
         return CreateNewOrder;
     }
     void StartTimer(Slider orderSlider, float DecreasingValue)
@@ -127,6 +140,70 @@ public class Customer : MonoBehaviour
     public void KeepTrackOfOrders()
     {
         OrderList.Add(CreateOrder());
+    }
+
+    public void UpdateChairLocation()
+    {
+        chairs = GameObject.FindGameObjectsWithTag("Chair");
+        foreach (var chair in chairs)
+        {
+            if (chair.GetComponent<CustomerChair>().ChairID == CustomerID)
+            {
+                waypoints.Add(chair.transform);
+                break;
+            }
+        }
+        waypoints.Add(GameObject.FindWithTag("SpawnPoint").transform);
+        OrderUIHolder = GameObject.Find("OrderList");
+    }
+    public void CustomerAngry()
+    {
+        //customer turns red
+        CustomerMaterial = gameObject.GetComponent<MeshRenderer>().material;
+        CustomerMaterial.SetColor("_Color", AngeredColor);
+        //customer deletes order, order flashes red
+        foreach (var order in OrderList)
+        {
+            Destroy(order.gameObject);
+        }
+        OrderList.Clear();
+        //change waypointIndex
+        IterateWayPointIndex();
+        agent.ResetPath();
+        UpdateDestination();
+        //movetowards the index
+        ChangeState(Customerstates.LEAVE);
+    }
+
+    public void CustomerEats(float EatingSpeedMultiplier, float eatduration)
+    {
+        if (OrderToDelete != null)
+        {
+            OrderToDelete.GetComponent<Image>().color = Color.green;
+            Destroy(OrderToDelete, 2);
+        }
+        currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
+        if (currentEatTime >= eatduration)
+        {
+            //delete food on table
+            Destroy(Food);
+            //add money
+            //change waypointIndex
+            IterateWayPointIndex();
+            agent.ResetPath();
+            UpdateDestination();
+            currentEatTime = 0;
+            //movetowards the index
+            ChangeState(Customerstates.LEAVE);
+        }
+    }
+
+    void CustomerLeaves()
+    {
+        //decrease current customer count by 1
+        customerSpawn.GetComponent<SpawnCustomer>().currentCustomerCount -= 1;
+        //destroys this customer
+        Destroy(gameObject);
     }
 
     //public static void ForceCleanupNavMesh()

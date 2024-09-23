@@ -41,9 +41,12 @@ public class CamController_v3 : MonoBehaviour
     public float closestDistanceToPlayer = 2;
     public float evenCloserDistanceToPlayer = 1;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     private void Update()
     {
-        ChangeCursorVisibility();
         switch (currentState)
         {
             case CamState.THIRDPERSON:
@@ -106,6 +109,7 @@ public class CamController_v3 : MonoBehaviour
     //3rd Person Cam Stuff
     void CamFunctions()
     {
+        Cursor.visible = false;
         RotateAxis.GetComponent<CamController_v2>().enabled = false;
         GetComponent<Camera>().enabled = true;
         target.GetComponent<Camera>().enabled = false;
@@ -134,6 +138,7 @@ public class CamController_v3 : MonoBehaviour
     }
     void OSCam()
     {
+        Cursor.visible = true;
         target.GetComponent<Camera>().enabled = true;
         RotateAxis.GetComponent<CamController_v2>().enabled = true;
         GetComponent<Camera>().enabled = false;

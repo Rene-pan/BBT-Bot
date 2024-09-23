@@ -25,6 +25,7 @@ public class CustomerChair : MonoBehaviour
                 customerScript.NearestTable = Tables[ChairID].gameObject;
                 customerScript.KeepTrackOfOrders();
                 OrderCounter += 1;
+                Parent(seatPivot, other.gameObject, 1);
                 break;
         
         }
