@@ -42,7 +42,6 @@ public class Order : MonoBehaviour
     {
         var sliderFillColour = slider.transform.GetChild(1).GetComponent<Image>();
         float percentage = (slider.value / slider.maxValue)*100;
-        print(percentage);
 
         if (percentage == 0)
         {

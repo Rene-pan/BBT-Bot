@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [Header("Throwing")]
     public bool canThrow;
     public bool ThrowOnce = true;
-    private ProjectileThrow throwscript;
+    private newThrow throwscript;
     public float minThrowDistance;
     [SerializeField] Slider throwStrength;
     [SerializeField] int maxStrengthValue;
@@ -37,10 +37,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        throwscript = FindAnyObjectByType<ProjectileThrow>();
-        throwscript.force = 0;
+        throwscript = FindAnyObjectByType<newThrow>();
+        throwscript.InitialAngle = 0;
         time = 0;
-        SetSlider(throwStrength,maxStrengthValue,throwscript.force);
+        SetSlider(throwStrength,maxStrengthValue,throwscript.InitialAngle);
         foreach (GameObject UI in GameObject.FindGameObjectsWithTag("PlayerUI"))
         {
             PlayerUI.Add(UI);
@@ -77,6 +77,10 @@ public class PlayerController : MonoBehaviour
     void CollectIngredient()
     {
         if (currentIngredient == null) return;
+        if (UIFinder("CollectACupFirst").activeSelf)
+        {
+            UIFinder("CollectACupFirst").SetActive(false);
+        }
         var canCollectIngredient = NearCollectionPoint && Input.GetKeyDown(KeyCode.E);
         var canCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
             && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
@@ -92,16 +96,23 @@ public class PlayerController : MonoBehaviour
         var canCollectIngredient = NearCollectionPoint && Input.GetKeyDown(KeyCode.E);
         var canCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
             && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
+        var cannotCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
+    && currentKopiMaker.GetComponent<MergeIngredient>().currentState != MergeIngredient.KopiMakerStates.COMPLETE;
         if (!canCollectIngredient && canCollectFood)
         {
             holdFood = Instantiate(currentFoodCollectable, hand);
-            throwscript.objectToThrow = currentKopiMaker.GetComponent<MergeIngredient>().SetThrowable().GetComponent<Rigidbody>();
+            throwscript.rb = currentKopiMaker.GetComponent<MergeIngredient>().SetThrowable().GetComponent<Rigidbody>();
             currentKopiMaker.GetComponent<MergeIngredient>().currentState = MergeIngredient.KopiMakerStates.READY;
             ThrowOnce = false;
             //activate throw mode prompt flashes
             UIFinder("ActivateThrowmode").SetActive(true);
             UIFinder("ActivateThrowmode").GetComponent<Animator>().Play("PulsingThrowPromptUI");
 
+        }
+        else if (cannotCollectFood)
+        {
+            UIFinder("CollectACupFirst").SetActive(true);
+            UIFinder("CollectACupFirst").GetComponent<Animator>().Play("PulsingThrowPromptUI");
         }
     }
 
@@ -123,20 +134,21 @@ public class PlayerController : MonoBehaviour
     { //press for a while, once bar reach max for 3 seconds, force minus
         if (canThrow && Input.GetMouseButton(0))
         {
-            throwscript.force += addStrengthValue;
-            UpdateSlider(throwStrength, throwscript.force);
-
+            var currentValue = throwscript.InitialAngle += addStrengthValue;
+            if (throwscript.InitialAngle == maxStrengthValue)
+            {
+                throwscript.InitialAngle -= addStrengthValue;
+            }
+            UpdateSlider(throwStrength, throwscript.InitialAngle);
         }
         if (canThrow && Input.GetMouseButtonUp(0) && !ThrowOnce)
         {
-            throwscript.ThrowObject();
-            throwscript.force = minThrowDistance;
-            UpdateSlider(throwStrength, throwscript.force);
+            throwscript.Throw();
             ThrowOnce = true;
             Destroy(holdFood);
+            throwscript.InitialAngle = 0;
+            UpdateSlider(throwStrength, throwscript.InitialAngle);
             camScript.ChangeState(CamController_v3.CamState.THIRDPERSON);
-            throwscript.trajectoryPredictor.SetTrajectoryVisible(false);
-            throwscript.force = 0;
         }
     } 
     void SetSlider(Slider slider, float maxValue, float StartingValue)

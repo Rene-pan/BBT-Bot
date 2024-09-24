@@ -11,6 +11,7 @@ public class CollideFloor : MonoBehaviour
         switch (tag)
         {
             case "Food":
+                print(other);
                 Destroy(other);
                 break;
         }

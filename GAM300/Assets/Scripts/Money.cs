@@ -22,7 +22,7 @@ public class Money : MonoBehaviour
     public void AddMoney(int amount)
     {
         var moneyPopup = Instantiate(AddMoneyPrefab, EarningHolder.transform);
-        moneyPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = amount.ToString();
+        moneyPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "+ $"+amount.ToString();
         moneyPopup.GetComponent<Animator>().Play(animationName);
         currentEarnings += amount;
         Goaltext.text = "$"+(currentEarnings).ToString() + "/" + TargetEarnings.ToString();

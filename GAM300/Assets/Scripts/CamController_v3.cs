@@ -54,7 +54,7 @@ public class CamController_v3 : MonoBehaviour
             case CamState.THIRDPERSON:
                 CamFunctions();
                 //if press B key, change state to over shoulder
-                if (Input.GetKeyDown(KeyCode.T))
+                if (Input.GetKeyDown(KeyCode.T) && !Player.GetComponent<PlayerController>().ThrowOnce)
                 {
                     PressedB = 0;
                     camStartPos = transform.position;
@@ -70,8 +70,6 @@ public class CamController_v3 : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.T))
                 {
                     PressedB = 1;
-                    //RotateAxis.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                    //RotateAxis.transform.rotation = Quaternion.Euler(0, 0, 0);
                     StartCoroutine(Transition(camEndPos, camStartPos, PressedB));
                 }
                 break;
