@@ -39,7 +39,11 @@ public class SpawnCustomer : MonoBehaviour
                 currentCustomerID+=1;
             }
         }
-        else if (totalCustomers == Customers.Count) return;
+        else if (totalCustomers == Customers.Count)
+        {
+            var Money = FindAnyObjectByType<Money>();
+            Money.CheckMoney();
+        }
 
     }
     private void Parent(Transform Parent, GameObject child, int state)

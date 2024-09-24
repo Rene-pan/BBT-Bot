@@ -47,16 +47,19 @@ public class CamController_v3 : MonoBehaviour
     }
     private void Update()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         switch (currentState)
         {
             case CamState.THIRDPERSON:
                 CamFunctions();
                 //if press B key, change state to over shoulder
-                if (Input.GetKeyDown(KeyCode.B))
+                if (Input.GetKeyDown(KeyCode.T))
                 {
                     PressedB = 0;
                     camStartPos = transform.position;
                     StartCoroutine(Transition(camStartPos, target.position, PressedB));
+                    Player.GetComponent<PlayerController>().UIFinder("ActivateThrowmode").SetActive(false);
                 }
                 break;
             case CamState.OVERSHOULDER:
@@ -64,7 +67,7 @@ public class CamController_v3 : MonoBehaviour
                 //this cam function, can look around but without the changing the transform?
                 camEndPos = transform.position;
                 //if press B key again, change state to Third person
-                if (Input.GetKeyDown(KeyCode.B))
+                if (Input.GetKeyDown(KeyCode.T))
                 {
                     PressedB = 1;
                     //RotateAxis.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -109,7 +112,6 @@ public class CamController_v3 : MonoBehaviour
     //3rd Person Cam Stuff
     void CamFunctions()
     {
-        Cursor.visible = false;
         RotateAxis.GetComponent<CamController_v2>().enabled = false;
         GetComponent<Camera>().enabled = true;
         target.GetComponent<Camera>().enabled = false;
@@ -138,7 +140,6 @@ public class CamController_v3 : MonoBehaviour
     }
     void OSCam()
     {
-        Cursor.visible = true;
         target.GetComponent<Camera>().enabled = true;
         RotateAxis.GetComponent<CamController_v2>().enabled = true;
         GetComponent<Camera>().enabled = false;

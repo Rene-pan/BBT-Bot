@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -42,12 +43,15 @@ public class Customer : MonoBehaviour
     [SerializeField] float EatingDuration;
     public float currentEatTime;
     public GameObject OrderToDelete;
+    public int CustomerMoney;
+    public Money MoneyScript; 
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         org_agentSpeed = agent.speed;
         currentEatTime = 0;
+        MoneyScript = FindFirstObjectByType<Money>();
     }
     private void Update()
     {
@@ -188,6 +192,7 @@ public class Customer : MonoBehaviour
             //delete food on table
             Destroy(Food);
             //add money
+            MoneyScript.AddMoney(CustomerMoney);
             //change waypointIndex
             IterateWayPointIndex();
             agent.ResetPath();

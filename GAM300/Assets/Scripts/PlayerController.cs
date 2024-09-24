@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int maxStrengthValue;
     [SerializeField] float addStrengthValue;
     public float time;
-
+    [SerializeField] List<GameObject> PlayerUI;
 
     private void Start()
     {
@@ -41,6 +41,19 @@ public class PlayerController : MonoBehaviour
         throwscript.force = 0;
         time = 0;
         SetSlider(throwStrength,maxStrengthValue,throwscript.force);
+        foreach (GameObject UI in GameObject.FindGameObjectsWithTag("PlayerUI"))
+        {
+            PlayerUI.Add(UI);
+            if (UI.name == "OrderList" || UI.name == "Earnings")
+            {
+                UI.SetActive(true);
+            }
+            else
+            {
+                UI.SetActive(false);
+            }
+            
+        }
     }
     private void Update()
     {
@@ -85,6 +98,10 @@ public class PlayerController : MonoBehaviour
             throwscript.objectToThrow = currentKopiMaker.GetComponent<MergeIngredient>().SetThrowable().GetComponent<Rigidbody>();
             currentKopiMaker.GetComponent<MergeIngredient>().currentState = MergeIngredient.KopiMakerStates.READY;
             ThrowOnce = false;
+            //activate throw mode prompt flashes
+            UIFinder("ActivateThrowmode").SetActive(true);
+            UIFinder("ActivateThrowmode").GetComponent<Animator>().Play("PulsingThrowPromptUI");
+
         }
     }
 
@@ -134,5 +151,17 @@ public class PlayerController : MonoBehaviour
     void UpdateSlider(Slider slider, float currentValue)
     {
         slider.value = currentValue;
+    }
+
+    public GameObject UIFinder(string UIName)
+    {
+        foreach (var UI in PlayerUI)
+        {
+            if (UI.name == UIName)
+            {
+                return UI;
+            }
+        }
+        return null;
     }
 }

@@ -164,7 +164,11 @@ MonoBehaviour:
   customerSpawn: {fileID: 0}
   Food: {fileID: 0}
   EatingSpeedMultiplier: 1
-  EatingDuration: 20
+  EatingDuration: 10
+  currentEatTime: 0
+  OrderToDelete: {fileID: 0}
+  CustomerMoney: 50
+  MoneyScript: {fileID: 0}
 --- !u!54 &8110020984582784449
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     public Transform cam;
     [SerializeField] CamController_v1 camScript;
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
     }
