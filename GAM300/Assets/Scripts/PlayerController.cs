@@ -132,22 +132,22 @@ public class PlayerController : MonoBehaviour
 
     void Throw()
     { //press for a while, once bar reach max for 3 seconds, force minus
-        if (canThrow && Input.GetMouseButton(0))
-        {
-            var currentValue = throwscript.InitialAngle += addStrengthValue;
-            if (throwscript.InitialAngle == maxStrengthValue)
-            {
-                throwscript.InitialAngle -= addStrengthValue;
-            }
-            UpdateSlider(throwStrength, throwscript.InitialAngle);
-        }
+        //if (canThrow && Input.GetMouseButton(0))
+        //{
+        //    throwscript.InitialAngle += addStrengthValue;
+        //    UpdateSlider(throwStrength, throwscript.InitialAngle);
+        //}
+        //else if (canThrow && Input.GetMouseButtonUp(0)) 
+        //{
+        //    throwscript.InitialAngle -= addStrengthValue;
+        //    UpdateSlider(throwStrength, throwscript.InitialAngle);
+        //}
         if (canThrow && Input.GetMouseButtonUp(0) && !ThrowOnce)
         {
             throwscript.Throw();
             ThrowOnce = true;
             Destroy(holdFood);
             throwscript.InitialAngle = 0;
-            UpdateSlider(throwStrength, throwscript.InitialAngle);
             camScript.ChangeState(CamController_v3.CamState.THIRDPERSON);
         }
     } 
