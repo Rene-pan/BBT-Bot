@@ -1,5 +1,8 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
+using System.Xml;
 
 public class Money : MonoBehaviour
 {
@@ -9,9 +12,14 @@ public class Money : MonoBehaviour
     [SerializeField] int TargetEarnings;
     public int currentEarnings = 0;
     [SerializeField] string animationName;
+    [SerializeField] PlayerController playerController;
+    [SerializeField] MainTimer timer;
+    public List<GameObject> UIs; // 0 is success, 1 is failure
     private void Start()
     {
         SetGoalAmount();
+        timer = FindAnyObjectByType<MainTimer>();
+
     }
     public void SetGoalAmount()
     {
@@ -29,13 +37,17 @@ public class Money : MonoBehaviour
     }
     public void CheckMoney()
     {
-        if (currentEarnings >= TargetEarnings)
+        if (currentEarnings >= TargetEarnings && timer.TimerIsRunning)
         {
             print("Game Win");
+            UIs[1].SetActive(true);
+            Time.timeScale = 0;
         }
-        else if (currentEarnings < TargetEarnings)
+        else if (currentEarnings < TargetEarnings && !timer.TimerIsRunning)
         {
             print("Game Lost");
+            UIs[0].SetActive(true);
+            Time.timeScale = 0;
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CustomerChair : MonoBehaviour
 {
@@ -18,14 +19,18 @@ public class CustomerChair : MonoBehaviour
                 if (OrderCounter >= OrderCount) return;
                 var customerScript = other.GetComponent<Customer>();
                 print("customer reached");
-                var seatPivot = gameObject.transform.GetChild(0).transform;
+                var seatPivot = gameObject.transform.GetChild(0).transform.GetChild(0).transform;
                 Parent(seatPivot, other.gameObject, 0);
                 other.gameObject.transform.localPosition = Vector3.zero;
+                other.gameObject.transform.localRotation = Quaternion.Euler(0, -90, 0);
+                print(other.transform.localPosition);
+
+                other.gameObject.GetComponent<NavMeshAgent>().isStopped = true;
                 customerScript.ChangeState(Customer.Customerstates.WAIT);
                 customerScript.NearestTable = Tables[ChairID].gameObject;
                 customerScript.KeepTrackOfOrders();
                 OrderCounter += 1;
-                Parent(seatPivot, other.gameObject, 1);
+                //Parent(seatPivot, other.gameObject, 1);
                 break;
         
         }

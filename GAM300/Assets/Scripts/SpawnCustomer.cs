@@ -16,6 +16,7 @@ public class SpawnCustomer : MonoBehaviour
     private void Start()
     {
         time = 0;
+        Time.timeScale = 1;
     }
     private void Update()
     {
@@ -33,6 +34,7 @@ public class SpawnCustomer : MonoBehaviour
                 totalCustomers+=1;
                 var customer = Instantiate(Customers[currentCustomerID], gameObject.transform, true);
                 Parent(gameObject.transform, customer, 1);
+                customer.transform.position = gameObject.transform.position;
                 customer.GetComponent<Customer>().UpdateChairLocation();
                 customer.GetComponent<Customer>().customerSpawn = gameObject;
                 StartCoroutine(SetandMoveToLocation(customer,1));

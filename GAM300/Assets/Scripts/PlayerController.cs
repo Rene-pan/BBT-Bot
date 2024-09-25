@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         throwscript = FindAnyObjectByType<newThrow>();
-        throwscript.InitialAngle = 0;
+        //throwscript.InitialAngle = 0;
         time = 0;
         SetSlider(throwStrength,maxStrengthValue,throwscript.InitialAngle);
         foreach (GameObject UI in GameObject.FindGameObjectsWithTag("PlayerUI"))
@@ -47,6 +47,12 @@ public class PlayerController : MonoBehaviour
             if (UI.name == "OrderList" || UI.name == "Earnings")
             {
                 UI.SetActive(true);
+            }
+            else if (UI.name == "Success" || UI.name == "GameOver")
+            {
+                var moneyScript = GameObject.FindFirstObjectByType<Money>();
+                moneyScript.UIs.Add(UI);
+                UI.SetActive(false);
             }
             else
             {
@@ -97,7 +103,7 @@ public class PlayerController : MonoBehaviour
         var canCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
             && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
         var cannotCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
-    && currentKopiMaker.GetComponent<MergeIngredient>().currentState != MergeIngredient.KopiMakerStates.COMPLETE;
+    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY;
         if (!canCollectIngredient && canCollectFood)
         {
             holdFood = Instantiate(currentFoodCollectable, hand);
@@ -109,7 +115,7 @@ public class PlayerController : MonoBehaviour
             UIFinder("ActivateThrowmode").GetComponent<Animator>().Play("PulsingThrowPromptUI");
 
         }
-        else if (cannotCollectFood)
+        else if (!canCollectIngredient && cannotCollectFood)
         {
             UIFinder("CollectACupFirst").SetActive(true);
             UIFinder("CollectACupFirst").GetComponent<Animator>().Play("PulsingThrowPromptUI");
@@ -147,7 +153,8 @@ public class PlayerController : MonoBehaviour
             throwscript.Throw();
             ThrowOnce = true;
             Destroy(holdFood);
-            throwscript.InitialAngle = 0;
+            //throwscript.InitialAngle = 0;
+            throwscript.GetComponent<LineRenderer>().enabled = false;
             camScript.ChangeState(CamController_v3.CamState.THIRDPERSON);
         }
     } 

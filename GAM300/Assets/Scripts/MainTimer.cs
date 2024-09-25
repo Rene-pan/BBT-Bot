@@ -8,7 +8,7 @@ public class MainTimer : MonoBehaviour
     public float mainDuration;
     float currentTime = 0;
     public TextMeshProUGUI timerText;
-    bool TimerIsRunning = false;
+    public bool TimerIsRunning = false;
     private void Start()
     {
         TimerIsRunning = true;
