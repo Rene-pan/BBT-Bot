@@ -99,7 +99,7 @@ MonoBehaviour:
   currentState: 0
   followTarget: {fileID: 0}
   mouseSensitivity: 10
-  distFromTarget: 10
+  distFromTarget: 3
   pitchMinMax: {x: 10, y: 45}
   collisionMask:
     serializedVersion: 2
