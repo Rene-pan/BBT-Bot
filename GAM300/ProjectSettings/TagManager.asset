@@ -9,6 +9,7 @@ TagManager:
   - Chair
   - Food
   - PlayerUI
+  - Table
   layers:
   - Default
   - TransparentFX
