@@ -135,8 +135,7 @@ public class SpawnCustomer : MonoBehaviour
             }
         }
     }
-<<<<<<< HEAD
-=======
+
 
     void CreateCustomer(GameObject Spawnedcustomer)
     {
@@ -144,6 +143,4 @@ public class SpawnCustomer : MonoBehaviour
         var customerScript = customer.GetComponent<Customer_v2>();
         Parent(gameObject.transform, customer, 1);
     }
-
->>>>>>> parent of 930e8ed (Merge branch 'leveldesign_joanne' into Customer_Rene)
 }
