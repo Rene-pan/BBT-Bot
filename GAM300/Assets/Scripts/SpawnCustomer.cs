@@ -9,7 +9,6 @@ public class SpawnCustomer : MonoBehaviour
 {
     public List<GameObject> Customers;
     public List<Transform> chairList = new List<Transform>();//chairs
-    public List<GameObject> tableList = new List<GameObject>(); //tables
     public int currentCustomerID = 0;
     public int currentCustomerCount = 0;
     public float currentCustomerSpawnDelay;
@@ -126,14 +125,6 @@ public class SpawnCustomer : MonoBehaviour
                 chairList.Add(chair.transform);
             }
         }
-        if (tableList != null)
-        {
-            var tables = GameObject.FindGameObjectsWithTag("Table");
-            foreach (var table in tables)
-            {
-                tableList.Add(table);
-            }
-        }
     }
     void CreateCustomer(GameObject Spawnedcustomer)
     {
@@ -147,7 +138,9 @@ public class SpawnCustomer : MonoBehaviour
         switch (tag)
         {
             case "Customer":
+                if (other.GetComponent<Customer_v2>().currentState != Customer_v2.CustomerStates.LEAVE) return;
                 Destroy(other.gameObject);
+                currentCustomerCount -= 1;
                 break;
         }
     }

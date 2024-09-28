@@ -594,7 +594,7 @@ PrefabInstance:
     - target: {fileID: 4258735635526258435, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
       propertyPath: Table
       value: 
-      objectReference: {fileID: 2042817342}
+      objectReference: {fileID: 1357234764}
     - target: {fileID: 4258735635526258435, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
       propertyPath: Tables.Array.size
       value: 0
@@ -1576,6 +1576,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair3
       objectReference: {fileID: 0}
+    - target: {fileID: 5174579341769252059, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7789152727276159340, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.136
@@ -2184,6 +2188,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair5
       objectReference: {fileID: 0}
+    - target: {fileID: 5174579341769252059, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7789152727276159340, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.994
@@ -2334,6 +2342,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
+--- !u!1 &1357234764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357234765}
+  - component: {fileID: 1357234767}
+  - component: {fileID: 1357234766}
+  m_Layer: 0
+  m_Name: tableScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357234765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357234764}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 906911493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1357234766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357234764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f5fe212eeb7294eb2f57f4cded9f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CompletedMeal: 0
+  FoodName: 
+  WrongFoodErrorColour: {r: 0.7433963, g: 0.2791242, b: 0.2791242, a: 1}
+  FlashTimeInterval: 1
+  customer: {fileID: 0}
+  foodPosition: {fileID: 0}
+  orders: []
+--- !u!65 &1357234767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357234764}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.37, y: 0.5, z: 1.17}
+  m_Center: {x: 0.02, y: 0.7, z: 0.1}
 --- !u!1001 &1438187362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2451,6 +2532,10 @@ PrefabInstance:
     - target: {fileID: 5174579341769252059, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
       propertyPath: m_Name
       value: Chair2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174579341769252059, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7789152727276159340, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2742,6 +2827,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1649563961}
   - component: {fileID: 1649563962}
+  - component: {fileID: 1649563963}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -2785,16 +2871,36 @@ MonoBehaviour:
   - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
   - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
   chairList: []
-  tableList: []
   currentCustomerID: 0
   currentCustomerCount: 0
   currentCustomerSpawnDelay: 0
   time: 0
-  maxShopCapacity: 3
+  maxShopCapacity: 1
   totalCustomers: 0
   canSpawn: 0
   currentChair: {fileID: 0}
   count: 0
+--- !u!65 &1649563963
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649563960}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.630785, y: 1.3259385, z: 1}
+  m_Center: {x: 0.1846075, y: 0.47500566, z: 0}
 --- !u!1 &1671046225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3516,6 +3622,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1954332529}
     m_Modifications:
+    - target: {fileID: 5589720164171634682, guid: 708db5c4ed18f254c898ea9d85cd6c53, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6965143678106405306, guid: 708db5c4ed18f254c898ea9d85cd6c53, type: 3}
       propertyPath: m_Name
       value: table1
@@ -3562,7 +3672,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7774050686683534080, guid: 708db5c4ed18f254c898ea9d85cd6c53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1357234765}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 708db5c4ed18f254c898ea9d85cd6c53, type: 3}
 --- !u!1660057539 &9223372036854775807

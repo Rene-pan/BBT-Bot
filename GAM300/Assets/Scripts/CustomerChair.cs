@@ -38,6 +38,21 @@ public class CustomerChair : MonoBehaviour
         }
 
     }
+    private void OnTriggerExit(Collider other)
+    {
+        var tag = other.tag;
+        switch (tag)
+        {
+            case "Customer":
+                var customerScript = other.GetComponent<Customer_v2>();
+                if (customerScript.currentState == Customer_v2.CustomerStates.LEAVE)
+                {
+                    print("bye");
+                    currentState = ChairState.AVAILABLE;
+                }
+                break;
+        }
+    }
     private void Parent(Transform Parent, GameObject child, int state)
     {
         switch (state)

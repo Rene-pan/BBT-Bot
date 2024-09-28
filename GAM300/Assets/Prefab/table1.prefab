@@ -63,9 +63,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da8919331676046a8ac954e08ea8ac7b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5723766078874348928}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da8919331676046a8ac954e08ea8ac7b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5589720164171634682}
   m_SourcePrefab: {fileID: 100100000, guid: da8919331676046a8ac954e08ea8ac7b, type: 3}
 --- !u!1 &6965143678106405306 stripped
 GameObject:
@@ -79,7 +76,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6965143678106405306}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41f5fe212eeb7294eb2f57f4cded9f39, type: 3}
   m_Name: 
@@ -91,24 +88,3 @@ MonoBehaviour:
   customer: {fileID: 0}
   foodPosition: {fileID: 0}
   orders: []
---- !u!65 &5589720164171634682
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6965143678106405306}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.37, y: 0.5, z: 1.17}
-  m_Center: {x: 0.02, y: 0.7, z: 0.1}

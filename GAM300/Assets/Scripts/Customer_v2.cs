@@ -61,7 +61,7 @@ public class Customer_v2 : MonoBehaviour
         {
             //print(currentDistance);
             if (currentDistance <= minDistance_back)
-            print(targetWaypoint_backIndex);
+            //print(targetWaypoint_backIndex);
             {
                 targetWaypoint_backIndex += 1;
                 if (targetWaypoint_backIndex == waypointsBack.Count)
@@ -221,7 +221,7 @@ public class Customer_v2 : MonoBehaviour
     {
         float movementStep = movementSpeed * Time.deltaTime;
         float rotationStep = rotationSpeed * Time.deltaTime;
-        print(targetwaypoint_back.name);
+        //print(targetwaypoint_back.name);
         Vector3 directionToTarget = targetwaypoint_back.position- transform.position;
         Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep);
@@ -229,7 +229,7 @@ public class Customer_v2 : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetwaypoint_back.position, movementStep);
         CheckDistanceToWPNMove(distance);
         //transform.LookAt(targetwaypoint_back);
-        print("help"+targetwaypoint_back.name);
+        //print("help"+targetwaypoint_back.name);
     }
 
     #endregion
