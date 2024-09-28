@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         throwscript = FindAnyObjectByType<newThrow>();
         //throwscript.InitialAngle = 0;
         time = 0;
-        SetSlider(throwStrength,maxStrengthValue,throwscript.InitialAngle);
+        //SetSlider(throwStrength,maxStrengthValue,throwscript.InitialAngle);
         foreach (GameObject UI in GameObject.FindGameObjectsWithTag("PlayerUI"))
         {
             PlayerUI.Add(UI);
@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour
             CollectIngredient();
             CollectFood();
             Merge();
-            print("Hi");
             canThrow = false;
             SliderVisibility(throwStrength.gameObject, canThrow);
         }

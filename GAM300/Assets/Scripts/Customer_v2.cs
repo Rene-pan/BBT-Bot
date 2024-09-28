@@ -17,6 +17,8 @@ public class Customer_v2 : MonoBehaviour
     private float minDistance = 0.1f;
     private float lastWaypointIndex;
     public float movementSpeed = 3f;
+    public float rotationSpeed = 2f;
+    public GameObject nearestTable;
     private void OnEnable()
     {
         targetwaypoint = waypoints[targetWaypointIndex];
@@ -31,8 +33,10 @@ public class Customer_v2 : MonoBehaviour
         {
         case CustomerStates.MOVE:
                 float movementStep = movementSpeed * Time.deltaTime;
+                transform.LookAt(targetwaypoint);
                 float distance = Vector3.Distance(transform.position, targetwaypoint.position);
                 CheckDistanceToWPNMove(distance);
+                print(distance);
                 transform.position = Vector3.MoveTowards(transform.position, targetwaypoint.position, movementStep);
                 break;
 
@@ -53,9 +57,10 @@ public class Customer_v2 : MonoBehaviour
     {
         if (currentDistance <= minDistance) 
         {
-            if (targetWaypointIndex != waypoints.Count -1)
+            targetWaypointIndex += 1;
+            if (targetWaypointIndex == waypoints.Count)
             {
-                targetWaypointIndex += 1;
+                targetWaypointIndex = 0;
             }
             targetwaypoint = waypoints[targetWaypointIndex];
         }

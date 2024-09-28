@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9142303594726544170}
   - component: {fileID: 1518344981096264080}
   - component: {fileID: 4397413352712879660}
+  - component: {fileID: 8126217349441331706}
   m_Layer: 0
   m_Name: Customer 1
   m_TagString: Untagged
@@ -54,9 +55,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1.43
+  m_Height: 1.3
   m_Direction: 1
-  m_Center: {x: 0.01, y: 0.54, z: 0}
+  m_Center: {x: 0.06, y: 0.65, z: 0}
 --- !u!114 &4397413352712879660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,8 +73,39 @@ MonoBehaviour:
   customerType: 0
   currentState: 0
   spawnTime: 2
-  waypoints: []
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
   movementSpeed: 3
+  rotationSpeed: 2
+  nearestTable: {fileID: 0}
+--- !u!54 &8126217349441331706
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2251596905678945102}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1001 &4141191535570410397
 PrefabInstance:
   m_ObjectHideFlags: 0

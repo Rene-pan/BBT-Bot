@@ -33,10 +33,9 @@ public class SpawnCustomer : MonoBehaviour
         if (currentCustomerCount < maxShopCapacity)
         {
             ChairAvailability();
-            if (canSpawn)
+            if (canSpawn && totalCustomers <= Customers.Count)
             {
                 CustomerSpawnTimes(Customers[currentCustomerID]);
-                print(Customers[currentCustomerID].name);
             }
         }
         else if (totalCustomers == Customers.Count)
@@ -73,9 +72,10 @@ public class SpawnCustomer : MonoBehaviour
     {
         var customerScript = customer.GetComponent<Customer_v2>();
         currentCustomerSpawnDelay = customerScript.spawnTime;
+        customerScript.nearestTable = currentChair.GetComponent<CustomerChair>().Table;
         CustomerSpawn(currentCustomerSpawnDelay, customer);
         //set the chair position(start) and end position in customer
-        
+
     }
     //take the specific spawn time for the specific type of customer
     void CustomerSpawn(float CustomerSpawnTime, GameObject customer)
@@ -139,7 +139,7 @@ public class SpawnCustomer : MonoBehaviour
 
     void CreateCustomer(GameObject Spawnedcustomer)
     {
-        var customer = Instantiate(Spawnedcustomer, gameObject.transform, true);
+        var customer = Instantiate(Spawnedcustomer, gameObject.transform);
         var customerScript = customer.GetComponent<Customer_v2>();
         Parent(gameObject.transform, customer, 1);
     }

@@ -9,7 +9,7 @@ public class CustomerChair : MonoBehaviour
     public enum ChairState {AVAILABLE, UNAVAILABLE}
     public ChairState currentState = ChairState.AVAILABLE;
     public int ChairID;
-    public GameObject[] Tables;
+    public GameObject Table;
     private int OrderCounter = 0;
     public int OrderCount = 1;
     public List<Transform> waypoints;
@@ -20,13 +20,13 @@ public class CustomerChair : MonoBehaviour
         {
             case "Customer":
                 if (OrderCounter >= OrderCount) return;
-                var customerScript = other.GetComponent<Customer>();
+                var customerScript = other.GetComponent<Customer_v2>();
                 print("customer reached");
-                //var seatPivot = gameObject.transform.GetChild(0).transform.GetChild(0).transform;
-                //Parent(seatPivot, other.gameObject, 0);
-                //other.gameObject.transform.localPosition = Vector3.zero;
-                //other.gameObject.transform.localRotation = Quaternion.Euler(0, -90, 0);
-                //print(other.transform.localPosition);
+                var seatPivot = gameObject.transform.GetChild(1).transform;
+                other.GetComponent<Rigidbody>().isKinematic = true;
+                Parent(seatPivot, other.gameObject, 0);
+                other.gameObject.transform.localPosition = Vector3.zero;
+                other.gameObject.transform.localRotation = Quaternion.Euler(0, -90, 0);
                 //customerScript.ChangeState(Customer.Customerstates.WAIT);
                 //customerScript.NearestTable = Tables[ChairID].gameObject;
                 //customerScript.KeepTrackOfOrders();

@@ -101,7 +101,7 @@ public class TrajectoryPredictor : MonoBehaviour
 
         public void SetTrajectoryVisible(bool visible)
         {
-        print("hide");
+        //print("hide");
             trajectoryLine.enabled = visible;
             //hitMarker.gameObject.SetActive(visible);
         }
