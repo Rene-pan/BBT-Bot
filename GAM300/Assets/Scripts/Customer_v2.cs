@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,12 +31,23 @@ public class Customer_v2 : MonoBehaviour
     [SerializeField] float DecreasingValue;
 
     [Header("Customer Angry")]
-    [SerializeField] Material CustomerMaterial;
-    [SerializeField] Color AngeredColor;
+    //[SerializeField] Material CustomerMaterial;
+    //[SerializeField] Color AngeredColor;
+    [SerializeField] List<Sprite> Espressions; //this variable is shared with Customer EAT state
+    [SerializeField] GameObject EmotionHolder; //this variable is shared with Customer EAT state
+
+    [Header("Customer Leave")]
+    [SerializeField] List<Transform> waypointsBack;
+    [SerializeField] Transform Exitdoor;
+    public Transform targetwaypoint_back;
+    public int targetWaypoint_backIndex = 0;
+    private int startIndex = 0;
+    private float minDistance_back = 0.01f;
     private void OnEnable()
     {
         targetwaypoint = waypoints[targetWaypointIndex];
         OrderUIHolder = GameObject.Find("OrderList");
+        Exitdoor = GameObject.Find("Spawner").transform;
     }
     private void Update()
     {
@@ -45,14 +57,34 @@ public class Customer_v2 : MonoBehaviour
     #region movement
     void CheckDistanceToWPNMove(float currentDistance)
     {
-        if (currentDistance <= minDistance) 
+        if (currentState == CustomerStates.LEAVE)
         {
-            targetWaypointIndex += 1;
-            if (targetWaypointIndex == waypoints.Count)
+            //print(currentDistance);
+            if (currentDistance <= minDistance_back)
+            print(targetWaypoint_backIndex);
             {
-                targetWaypointIndex = 0;
+                targetWaypoint_backIndex += 1;
+                if (targetWaypoint_backIndex == waypointsBack.Count)
+                {
+                    targetWaypoint_backIndex = waypointsBack.Count;
+                }
+                targetwaypoint_back = waypointsBack[targetWaypoint_backIndex];
+                print("help"+ targetWaypoint_backIndex);
             }
-            targetwaypoint = waypoints[targetWaypointIndex];
+        }
+        else
+        {
+            if (currentDistance <= minDistance)
+            {
+                targetWaypointIndex += 1;
+                if (targetWaypointIndex == waypoints.Count)
+                {
+                    print(targetWaypointIndex);
+                    targetWaypointIndex = 0;
+                }
+                targetwaypoint = waypoints[targetWaypointIndex];
+                print(targetWaypointIndex);
+            }
         }
     }
     #endregion movement
@@ -92,6 +124,7 @@ public class Customer_v2 : MonoBehaviour
                 CustomerAngry();
                 break;
             case CustomerStates.LEAVE:
+                CustomerLeave();
                 break;
         }
     }
@@ -117,7 +150,6 @@ public class Customer_v2 : MonoBehaviour
         nearestTable.GetComponent<CustomerTable>().FoodName = OrderScript.OrderName;
         nearestTable.GetComponent<CustomerTable>().customer = gameObject;
         nearestTable.GetComponent<CustomerTable>().orders.Add(CreateNewOrder);
-        OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders += 1;
         OrderUI_ID += 1;
         return CreateNewOrder;
     }
@@ -128,6 +160,7 @@ public class Customer_v2 : MonoBehaviour
         if (OrderUI_ID == OrderUI.Count)
         {
             OrderUI_ID = 0;
+            OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders += 1;
             ChangeState(CustomerStates.WAIT);
         }
         else
@@ -161,16 +194,44 @@ public class Customer_v2 : MonoBehaviour
     public void CustomerAngry()
     {
         //customer turns red
-
+        EmotionHolder.SetActive(true);
+        EmotionHolder.GetComponent<Image>().sprite = Espressions[0];
         //customer deletes order, order flashes red
         foreach (var order in OrderList)
         {
             Destroy(order.gameObject);
         }
         OrderList.Clear();
+        //add the waypoints to go back;
+        for (int i = waypoints.Count - 1; i >= 0; i--)
+        {
+            waypointsBack.Add(waypoints[i]);
+        }
+        waypointsBack.Add(Exitdoor);
+        targetwaypoint_back = waypointsBack[startIndex];
+        //GetComponent<Rigidbody>().isKinematic = false;
         //movetowards the index
         ChangeState(CustomerStates.LEAVE);
     }
+    #endregion
+    #region 
+    //customer moves back to spawn position
+    //add the waypoints from back to the front
+    public void CustomerLeave()
+    {
+        float movementStep = movementSpeed * Time.deltaTime;
+        float rotationStep = rotationSpeed * Time.deltaTime;
+        print(targetwaypoint_back.name);
+        Vector3 directionToTarget = targetwaypoint_back.position- transform.position;
+        Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep);
+        float distance = Vector3.Distance(transform.position, targetwaypoint_back.position);
+        transform.position = Vector3.MoveTowards(transform.position, targetwaypoint_back.position, movementStep);
+        CheckDistanceToWPNMove(distance);
+        //transform.LookAt(targetwaypoint_back);
+        print("help"+targetwaypoint_back.name);
+    }
+
     #endregion
 
 }

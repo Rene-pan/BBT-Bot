@@ -135,12 +135,20 @@ public class SpawnCustomer : MonoBehaviour
             }
         }
     }
-
-
     void CreateCustomer(GameObject Spawnedcustomer)
     {
         var customer = Instantiate(Spawnedcustomer, gameObject.transform);
         var customerScript = customer.GetComponent<Customer_v2>();
         Parent(gameObject.transform, customer, 1);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        var tag = other.tag;
+        switch (tag)
+        {
+            case "Customer":
+                Destroy(other.gameObject);
+                break;
+        }
     }
 }

@@ -254,7 +254,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1954332529}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1945305334125710474, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
       propertyPath: camScript
@@ -2503,7 +2503,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1954332529}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 79578024021920468, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2673,6 +2673,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8532385445833945209, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
+      propertyPath: maxOrders
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9081860536107310644, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2697,11 +2701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1473497274 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1936477738585796409, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
-  m_PrefabInstance: {fileID: 1473497272}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1602266374
 GameObject:
   m_ObjectHideFlags: 0
@@ -2759,7 +2758,7 @@ Transform:
   m_GameObject: {fileID: 1649563960}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.843, y: -0.63, z: 3.3004403}
+  m_LocalPosition: {x: 7.267, y: -0.63, z: 3.3004403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2780,13 +2779,18 @@ MonoBehaviour:
   Customers:
   - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
   - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
+  - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
+  - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
+  - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
+  - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
+  - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
   chairList: []
   tableList: []
   currentCustomerID: 0
   currentCustomerCount: 0
   currentCustomerSpawnDelay: 0
   time: 0
-  maxShopCapacity: 2
+  maxShopCapacity: 3
   totalCustomers: 0
   canSpawn: 0
   currentChair: {fileID: 0}
@@ -3215,7 +3219,7 @@ Transform:
   m_GameObject: {fileID: 1813341024}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.94, y: -0.63, z: 3.39}
+  m_LocalPosition: {x: 2.94, y: -0.63, z: 4.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3351,8 +3355,6 @@ Transform:
   - {fileID: 1749642452}
   - {fileID: 2742646}
   - {fileID: 999135757}
-  - {fileID: 108324029}
-  - {fileID: 1473497274}
   - {fileID: 1156721991}
   - {fileID: 1267939121}
   - {fileID: 502800537}
@@ -3568,6 +3570,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1793237147}
+  - {fileID: 108324028}
+  - {fileID: 1473497272}
   - {fileID: 1954332529}
   - {fileID: 1649563961}
   - {fileID: 339668009}

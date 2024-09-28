@@ -21,6 +21,7 @@ public class CustomerChair : MonoBehaviour
             case "Customer":
                 if (OrderCounter >= OrderCount) return;
                 var customerScript = other.GetComponent<Customer_v2>();
+                if (customerScript.currentState == Customer_v2.CustomerStates.LEAVE) return;
                 print("customer reached");
                 var seatPivot = gameObject.transform.GetChild(1).transform;
                 customerScript.ChangeState(Customer_v2.CustomerStates.ORDER);
