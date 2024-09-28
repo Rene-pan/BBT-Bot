@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class CustomerChair : MonoBehaviour
 {
     public int ChairID;
-    public GameObject[] Tables;
+    public GameObject Table;
     private int OrderCounter = 0;
     public int OrderCount = 1;
     private void OnTriggerEnter(Collider other)
@@ -16,9 +16,10 @@ public class CustomerChair : MonoBehaviour
         switch (tag) 
         {
             case "Customer":
-                if (OrderCounter >= OrderCount) return;
-                var customerScript = other.GetComponent<Customer>();
+                //if (OrderCounter >= OrderCount) return;
+                var customerScript = other.GetComponent<Customer_v2>();
                 print("customer reached");
+<<<<<<< Updated upstream
                 var seatPivot = gameObject.transform.GetChild(0).transform.GetChild(0).transform;
                 Parent(seatPivot, other.gameObject, 0);
                 other.gameObject.transform.localPosition = Vector3.zero;
@@ -31,6 +32,18 @@ public class CustomerChair : MonoBehaviour
                 customerScript.KeepTrackOfOrders();
                 OrderCounter += 1;
                 //Parent(seatPivot, other.gameObject, 1);
+=======
+                customerScript.ChangeState(Customer_v2.CustomerStates.WAIT);
+                other.GetComponent<Rigidbody>().isKinematic = true;
+                var seatPivot = gameObject.transform.GetChild(1).transform;
+                other.gameObject.transform.position = seatPivot.transform.position;
+                Parent(seatPivot, other.gameObject, 0);
+                other.gameObject.transform.localRotation = Quaternion.Euler(0, -90, 0);
+                customerScript.NearestTable = Table;
+                //customerScript.KeepTrackOfOrders()
+                //OrderCounter += 1;
+                Parent(seatPivot, other.gameObject, 1);
+>>>>>>> Stashed changes
                 break;
         
         }

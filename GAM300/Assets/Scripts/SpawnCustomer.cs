@@ -65,4 +65,16 @@ public class SpawnCustomer : MonoBehaviour
         yield return new WaitForSeconds(delay);
         customer.GetComponent<Customer>().UpdateDestination();
     }
+<<<<<<< Updated upstream
+=======
+
+    void CreateCustomer(GameObject Spawnedcustomer)
+    {
+        var customer = Instantiate(Spawnedcustomer, gameObject.transform);
+        var customerScript = customer.GetComponent<Customer_v2>();
+        Parent(gameObject.transform, customer, 1);
+        //rmb to set the set spawn position as the last waypoint position
+    }
+
+>>>>>>> Stashed changes
 }
