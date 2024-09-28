@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class newThrow : MonoBehaviour
 {
-    LineRenderer lr;
+    public LineRenderer lr;
     public Rigidbody rb; //need to assign throwable rigidbody
     public Transform Handarea;
     Vector3 startPosition;
@@ -30,8 +30,7 @@ public class newThrow : MonoBehaviour
     void Update()
     {
         rot = Quaternion.Euler(InitialAngle, 0, 0);
-        if (cam.currentState == CamController_v3.CamState.THIRDPERSON) return;
-        if (Input.GetMouseButton(0))
+        if (cam.currentState == CamController_v3.CamState.OVERSHOULDER)
         {
             drawline();
             lr.enabled = true;
@@ -40,14 +39,19 @@ public class newThrow : MonoBehaviour
         {
             lr.enabled = false;
         }
-        if (Input.GetMouseButtonUp(0))
-        {
-            lr.enabled=false;
-        }
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    drawline();
+        //    lr.enabled = true;
+        //}
+        //else 
+        //{
+        //    lr.enabled = false;
+        //}
 
     }
 
-    private void drawline()
+    public void drawline()
     {
         i = 0;
         lr.positionCount = NumberOfPoints;

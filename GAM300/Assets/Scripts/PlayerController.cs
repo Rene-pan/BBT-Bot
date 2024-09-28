@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         throwscript = FindAnyObjectByType<newThrow>();
+        throwscript.lr.enabled = false;
         //throwscript.InitialAngle = 0;
         time = 0;
         //SetSlider(throwStrength,maxStrengthValue,throwscript.InitialAngle);
@@ -69,12 +70,16 @@ public class PlayerController : MonoBehaviour
             CollectFood();
             Merge();
             canThrow = false;
-            SliderVisibility(throwStrength.gameObject, canThrow);
+            //throwscript.drawline();
+            //throwscript.lr.enabled = false;
+            //SliderVisibility(throwStrength.gameObject, canThrow);
         }
         else if (camScript.currentState == CamController_v3.CamState.OVERSHOULDER)
         {
             canThrow = true;
-            SliderVisibility(throwStrength.gameObject, canThrow);
+            //SliderVisibility(throwStrength.gameObject, canThrow);
+            //throwscript.drawline();
+            //throwscript.lr.enabled = true;
             Throw();
         }
     }
@@ -147,13 +152,12 @@ public class PlayerController : MonoBehaviour
         //    throwscript.InitialAngle -= addStrengthValue;
         //    UpdateSlider(throwStrength, throwscript.InitialAngle);
         //}
-        if (canThrow && Input.GetMouseButtonUp(0) && !ThrowOnce)
+        if (canThrow && Input.GetMouseButtonDown(0) && !ThrowOnce)
         {
             throwscript.Throw();
             ThrowOnce = true;
             Destroy(holdFood);
-            //throwscript.InitialAngle = 0;
-            throwscript.GetComponent<LineRenderer>().enabled = false;
+            //throwscript.lr.enabled = false;
             camScript.ChangeState(CamController_v3.CamState.THIRDPERSON);
         }
     } 
