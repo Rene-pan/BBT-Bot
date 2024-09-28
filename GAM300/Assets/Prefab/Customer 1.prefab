@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8126217349441331706}
   m_Layer: 0
   m_Name: Customer 1
-  m_TagString: Untagged
+  m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,10 +75,19 @@ MonoBehaviour:
   spawnTime: 2
   waypoints:
   - {fileID: 0}
-  - {fileID: 0}
   movementSpeed: 3
   rotationSpeed: 2
   nearestTable: {fileID: 0}
+  OrderUI:
+  - {fileID: 2620413275955628136, guid: 33448cd4fe1fed64384c904df4452a25, type: 3}
+  OrderList: []
+  OrderUI_ID: 0
+  OrderUIHolder: {fileID: 0}
+  OrderWaitTime: 40
+  currentTime: 0
+  DecreasingValue: 4
+  CustomerMaterial: {fileID: 0}
+  AngeredColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &8126217349441331706
 Rigidbody:
   m_ObjectHideFlags: 0

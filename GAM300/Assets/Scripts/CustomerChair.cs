@@ -23,15 +23,15 @@ public class CustomerChair : MonoBehaviour
                 var customerScript = other.GetComponent<Customer_v2>();
                 print("customer reached");
                 var seatPivot = gameObject.transform.GetChild(1).transform;
+                customerScript.ChangeState(Customer_v2.CustomerStates.ORDER);
                 other.GetComponent<Rigidbody>().isKinematic = true;
                 Parent(seatPivot, other.gameObject, 0);
                 other.gameObject.transform.localPosition = Vector3.zero;
                 other.gameObject.transform.localRotation = Quaternion.Euler(0, -90, 0);
-                //customerScript.ChangeState(Customer.Customerstates.WAIT);
+                Parent(seatPivot, other.gameObject, 1);
                 //customerScript.NearestTable = Tables[ChairID].gameObject;
                 //customerScript.KeepTrackOfOrders();
                 //OrderCounter += 1;
-                //Parent(seatPivot, other.gameObject, 1);
                 break;
         
         }

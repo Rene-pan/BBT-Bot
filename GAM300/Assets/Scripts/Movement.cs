@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
 
     [SerializeField] Rigidbody playerbody;
     public Transform cam;
-    [SerializeField] CamController_v1 camScript;
 
     private void FixedUpdate()
     {
