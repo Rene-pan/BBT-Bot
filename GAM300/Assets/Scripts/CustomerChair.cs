@@ -22,6 +22,19 @@ public class CustomerChair : MonoBehaviour
                 if (OrderCounter >= OrderCount) return;
                 var customerScript = other.GetComponent<Customer>();
                 print("customer reached");
+<<<<<<< HEAD
+                var seatPivot = gameObject.transform.GetChild(0).transform.GetChild(0).transform;
+                Parent(seatPivot, other.gameObject, 0);
+                other.gameObject.transform.localPosition = Vector3.zero;
+                other.gameObject.transform.localRotation = Quaternion.Euler(0, -90, 0);
+                print(other.transform.localPosition);
+
+                other.gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+                customerScript.ChangeState(Customer.Customerstates.WAIT);
+                customerScript.NearestTable = Tables[ChairID].gameObject;
+                customerScript.KeepTrackOfOrders();
+                OrderCounter += 1;
+=======
                 //var seatPivot = gameObject.transform.GetChild(0).transform.GetChild(0).transform;
                 //Parent(seatPivot, other.gameObject, 0);
                 //other.gameObject.transform.localPosition = Vector3.zero;
@@ -31,6 +44,7 @@ public class CustomerChair : MonoBehaviour
                 //customerScript.NearestTable = Tables[ChairID].gameObject;
                 //customerScript.KeepTrackOfOrders();
                 //OrderCounter += 1;
+>>>>>>> parent of 930e8ed (Merge branch 'leveldesign_joanne' into Customer_Rene)
                 //Parent(seatPivot, other.gameObject, 1);
                 break;
         

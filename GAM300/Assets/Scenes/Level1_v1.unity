@@ -124,6 +124,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5544158642546262634, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
   m_PrefabInstance: {fileID: 608803792}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
 --- !u!1001 &282882880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,6 +311,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> parent of 930e8ed (Merge branch 'leveldesign_joanne' into Customer_Rene)
 --- !u!114 &343653227 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4622398189917158034, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
@@ -490,6 +493,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+<<<<<<< HEAD
+=======
 --- !u!1 &720917750
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +526,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> parent of 930e8ed (Merge branch 'leveldesign_joanne' into Customer_Rene)
 --- !u!114 &728749217 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
@@ -693,6 +699,8 @@ Transform:
   - {fileID: 746480158}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
 --- !u!1 &839685021
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,11 +776,14 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3878846, y: 0.1885395, z: 0.3090248}
   m_Center: {x: -0.015968293, y: 0.60579956, z: 0.6846638}
+>>>>>>> parent of 930e8ed (Merge branch 'leveldesign_joanne' into Customer_Rene)
 --- !u!4 &886905125 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4202075346634974321, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
   m_PrefabInstance: {fileID: 608803792}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
 --- !u!1 &955378071
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +1010,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> parent of 930e8ed (Merge branch 'leveldesign_joanne' into Customer_Rene)
 --- !u!1 &1195270472 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8351680957005007081, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
@@ -1352,6 +1364,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
 --- !u!4 &1545590829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 301d49c4d11fb41b4bc54e1c9067080f, type: 3}
@@ -1556,6 +1570,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> parent of 930e8ed (Merge branch 'leveldesign_joanne' into Customer_Rene)
 --- !u!1 &1784315763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,6 +2172,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 815830435e423a54c80af10137a5e7b2, type: 3}
+<<<<<<< HEAD
+=======
 --- !u!4 &7789152728728561496
 Transform:
   m_ObjectHideFlags: 0
@@ -2384,6 +2401,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
+>>>>>>> parent of 930e8ed (Merge branch 'leveldesign_joanne' into Customer_Rene)
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2399,6 +2417,8 @@ SceneRoots:
   - {fileID: 1967319901}
   - {fileID: 2092798660}
   - {fileID: 608803792}
+<<<<<<< HEAD
+=======
   - {fileID: 286759730}
   - {fileID: 8667545839368170205}
   - {fileID: 1060798530}
@@ -2409,3 +2429,4 @@ SceneRoots:
   - {fileID: 1141474924}
   - {fileID: 1619881275}
   - {fileID: 720917751}
+>>>>>>> parent of 930e8ed (Merge branch 'leveldesign_joanne' into Customer_Rene)
