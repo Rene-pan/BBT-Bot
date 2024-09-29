@@ -164,7 +164,7 @@ MonoBehaviour:
   currentTime: 0
   DecreasingValue: 1
   Food: {fileID: 0}
-  EatingSpeedMultiplier: 0
+  EatingSpeedMultiplier: 1
   EatingDuration: 5
   currentEatTime: 0
   OrderToDelete: {fileID: 0}

@@ -38,7 +38,7 @@ public class newThrow : MonoBehaviour
         //lr.transform.rotation = Quaternion.Euler(0, cam.transform.rotation.y, 0);
         if (cam.currentState == CamController_v3.CamState.OVERSHOULDER)
         {
-            drawline(4.5f);
+            drawline(2f);
             lr.enabled = true;
         }
         else
@@ -71,7 +71,7 @@ public class newThrow : MonoBehaviour
             //i++;
             Vector3 linePosition = startPosition + (j * startVelocity);
             //linePosition.y = startPosition.y + (startVelocity.y * j + 0.5f * Physics.gravity.y * j * j);
-            linePosition.y = startPosition.y + (startVelocity.y * j + 0.5f * Physics.gravity.y * j * j * heightmultiplier);
+            linePosition.y = startPosition.y + (startVelocity.y * j + 0.5f * Physics.gravity.y * j * j) * heightmultiplier; 
             lr.SetPosition(i, linePosition);
         }
     }

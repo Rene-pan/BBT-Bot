@@ -30,10 +30,12 @@ public class CustomerTable : MonoBehaviour
                 if (orders == null) return;
                 foreach (var order in orders) //look through all the orders, if the thrown food name matches the current order name, I will delete that order
                 {
+                    if (order == null) { print("no food"); } 
                     if (FoodScript.Name == order.GetComponent<Order>().OrderName)
                     {
                         //print(other);
                         other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        other.gameObject.transform.position = foodPosition.transform.position;
                         Parent(foodPosition.transform, other.gameObject, 0);
                         other.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
                         other.gameObject.transform.localPosition = Vector3.zero;

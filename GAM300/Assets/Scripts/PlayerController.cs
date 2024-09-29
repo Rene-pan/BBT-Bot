@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float addStrengthValue;
     public float time;
     [SerializeField] List<GameObject> PlayerUI;
+    public Sprite[] ThrowPrompts; //org, new
 
     private void Start()
     {
@@ -90,7 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             UIFinder("CollectACupFirst").SetActive(false);
         }
-        var canCollectIngredient = NearCollectionPoint && Input.GetKeyDown(KeyCode.E);
+        var canCollectIngredient = NearCollectionPoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1;
         var canCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
             && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
         if (canCollectIngredient && hand_amount <1 && !canCollectFood)
@@ -107,6 +109,7 @@ public class PlayerController : MonoBehaviour
             && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
         var cannotCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
     && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY;
+        var OffActivateThrowmode = !canThrow && hand_amount < 1 && Input.GetMouseButtonDown(1);
         if (!canCollectIngredient && canCollectFood)
         {
             holdFood = Instantiate(currentFoodCollectable, hand);
@@ -115,6 +118,7 @@ public class PlayerController : MonoBehaviour
             ThrowOnce = false;
             //activate throw mode prompt flashes
             UIFinder("ActivateThrowmode").SetActive(true);
+            UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[0];
             UIFinder("ActivateThrowmode").GetComponent<Animator>().Play("PulsingThrowPromptUI");
 
         }
@@ -158,6 +162,8 @@ public class PlayerController : MonoBehaviour
             ThrowOnce = true;
             Destroy(holdFood);
             //throwscript.lr.enabled = false;
+            UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
+            UIFinder("ActivateThrowmode").SetActive(true);
             //camScript.ChangeState(CamController_v3.CamState.THIRDPERSON);
         }
     } 

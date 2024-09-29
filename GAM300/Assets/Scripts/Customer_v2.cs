@@ -57,6 +57,7 @@ public class Customer_v2 : MonoBehaviour
         targetwaypoint = waypoints[targetWaypointIndex];
         OrderUIHolder = GameObject.Find("OrderList");
         Exitdoor = GameObject.Find("Spawner").transform;
+        MoneyScript = FindFirstObjectByType<Money>();
     }
     private void Update()
     {
@@ -159,6 +160,7 @@ public class Customer_v2 : MonoBehaviour
         //set order name to table
         nearestTable.GetComponent<CustomerTable>().FoodName = OrderScript.OrderName;
         nearestTable.GetComponent<CustomerTable>().customer = gameObject;
+        nearestTable.GetComponent<CustomerTable>().orders.Clear();
         nearestTable.GetComponent<CustomerTable>().orders.Add(CreateNewOrder);
         nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(true);
         OrderUI_ID += 1;
@@ -209,12 +211,16 @@ public class Customer_v2 : MonoBehaviour
             Destroy(OrderToDelete, 2);
         }
         currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
+        Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
+        Food.GetComponent<Throwable>().eatCanvas.SetActive(true);
         if (currentEatTime >= eatduration)
         {
+            Food.GetComponent<Throwable>().eatCanvas.SetActive(false);
+            Food.transform.GetChild(0).GetComponent<Animator>().SetBool("CupStop", true);
             //delete food on table
             Destroy(Food);
             //add money
-            //MoneyScript.AddMoney(CustomerMoney);
+            MoneyScript.AddMoney(CustomerMoney);
             //change waypointIndex
             for (int i = waypoints.Count - 1; i >= 0; i--)
             {

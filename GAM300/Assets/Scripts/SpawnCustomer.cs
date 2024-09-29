@@ -40,8 +40,8 @@ public class SpawnCustomer : MonoBehaviour
         else if (totalCustomers == Customers.Count)
         {
             canSpawn = false;
-            //var Money = FindAnyObjectByType<Money>();
-            //Money.CheckMoney();
+            var Money = FindAnyObjectByType<Money>();
+            Money.CheckMoney();
         }
     }
 

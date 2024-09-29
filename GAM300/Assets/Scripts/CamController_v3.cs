@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static System.TimeZoneInfo;
+using UnityEngine.UI;
 
 public class CamController_v3 : MonoBehaviour
 {
@@ -58,7 +59,8 @@ public class CamController_v3 : MonoBehaviour
                     PressedB = 0;
                     camStartPos = transform.position;
                     StartCoroutine(Transition(camStartPos, target.position, PressedB));
-                    Player.GetComponent<PlayerController>().UIFinder("ActivateThrowmode").SetActive(false);
+
+                    //Player.GetComponent<PlayerController>().UIFinder("ActivateThrowmode").SetActive(false);
                 }
                 break;
             case CamState.OVERSHOULDER:
@@ -68,9 +70,10 @@ public class CamController_v3 : MonoBehaviour
                 if (Input.GetMouseButtonDown(1))
                 {
                     PressedB = 1;
-                    Player.GetComponent<PlayerController>().UIFinder("ActivateThrowmode").SetActive(true);
+                    //Player.GetComponent<PlayerController>().UIFinder("ActivateThrowmode").SetActive(true);
                     StartCoroutine(Transition(camEndPos, camStartPos, PressedB));
                 }
+
                 break;
         }
 
