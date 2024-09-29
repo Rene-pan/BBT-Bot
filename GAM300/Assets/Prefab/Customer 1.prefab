@@ -163,6 +163,13 @@ MonoBehaviour:
   OrderWaitTime: 40
   currentTime: 0
   DecreasingValue: 1
+  Food: {fileID: 0}
+  EatingSpeedMultiplier: 0
+  EatingDuration: 5
+  currentEatTime: 0
+  OrderToDelete: {fileID: 0}
+  CustomerMoney: 10
+  MoneyScript: {fileID: 0}
   Espressions:
   - {fileID: 21300000, guid: 861a941e307bfae4586ec109035d3eb8, type: 3}
   - {fileID: 21300000, guid: 0196f265540eae64e9d8426620d09cd1, type: 3}

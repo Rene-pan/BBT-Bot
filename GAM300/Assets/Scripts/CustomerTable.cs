@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class CustomerTable : MonoBehaviour
@@ -13,6 +14,11 @@ public class CustomerTable : MonoBehaviour
     public GameObject customer;
     public GameObject foodPosition;
     public List<GameObject> orders;
+    public GameObject eatArea;
+    private void Start()
+    {
+        eatArea.SetActive(false);
+    }
     private void OnTriggerEnter(Collider other)
     {
         var tag = other.tag;
@@ -35,11 +41,13 @@ public class CustomerTable : MonoBehaviour
                         print("FixPosition");
                         //get the food to remain on the table
                         if (customer == null) return;
-                        //change Customer state to eat
-                        var customerScript = customer.GetComponent<Customer>();
+                        //change Customer_v2 state to eat
+                        var customerScript = customer.GetComponent<Customer_v2>();
                         customerScript.Food = other.gameObject;
                         customerScript.OrderToDelete = order;
-                        customerScript.ChangeState(Customer.Customerstates.EAT);
+                        eatArea.SetActive(false);
+                        //FlashColour(FlashTimeInterval, eatArea.GetComponent<Material>(), eatArea.GetComponent<Material>().color, CorrectFoodColour);
+                        customerScript.ChangeState(Customer_v2.CustomerStates.EAT);
                     }
                     else if (FoodScript.Name != order.GetComponent<Order>().OrderName)
                     {
@@ -47,8 +55,8 @@ public class CustomerTable : MonoBehaviour
                         Parent(foodPosition.transform, other.gameObject, 0);
                         other.transform.localPosition = Vector3.zero;
                         other.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                        var tableMaterial = GetComponent<MeshRenderer>().material;
-                        StartCoroutine(FlashColour(FlashTimeInterval, tableMaterial, tableMaterial.color, WrongFoodErrorColour));
+                        //change EatAreaColour to red then back to green after a while
+                        FlashColour(FlashTimeInterval, eatArea.GetComponent<Material>(), eatArea.GetComponent<Material>().color, WrongFoodErrorColour);
                         //delete food
                         Destroy(other.gameObject, FlashTimeInterval);
                     }

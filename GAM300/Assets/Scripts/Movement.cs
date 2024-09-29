@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
         PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * moveSpeed;
         playerbody.velocity = new Vector3(MoveVector.x, playerbody.velocity.y, MoveVector.z);
-        if (PlayerMovementInput.magnitude >= 0.1f)
+        if (PlayerMovementInput.magnitude >= 0.1f )
         {
             float targetAngle = Mathf.Atan2(PlayerMovementInput.x, PlayerMovementInput.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);

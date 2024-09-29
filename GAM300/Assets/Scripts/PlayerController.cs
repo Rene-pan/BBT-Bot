@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     private GameObject holdIngredient;
     private GameObject holdFood;
 
-
     [Header("Throwing")]
     public bool canThrow;
     public bool ThrowOnce = true;
@@ -141,7 +140,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void Throw()
-    { //press for a while, once bar reach max for 3 seconds, force minus
+    { 
+        //press for a while, once bar reach max for 3 seconds, force minus
         //if (canThrow && Input.GetMouseButton(0))
         //{
         //    throwscript.InitialAngle += addStrengthValue;
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
             ThrowOnce = true;
             Destroy(holdFood);
             //throwscript.lr.enabled = false;
-            camScript.ChangeState(CamController_v3.CamState.THIRDPERSON);
+            //camScript.ChangeState(CamController_v3.CamState.THIRDPERSON);
         }
     } 
     void SetSlider(Slider slider, float maxValue, float StartingValue)

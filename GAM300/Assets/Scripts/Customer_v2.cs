@@ -30,6 +30,15 @@ public class Customer_v2 : MonoBehaviour
     [SerializeField] float currentTime;
     [SerializeField] float DecreasingValue;
 
+    [Header("Customer Eat")]
+    public GameObject Food;
+    [SerializeField] float EatingSpeedMultiplier;
+    [SerializeField] float EatingDuration;
+    public float currentEatTime;
+    public GameObject OrderToDelete;
+    public int CustomerMoney;
+    public Money MoneyScript;
+
     [Header("Customer Angry")]
     //[SerializeField] Material CustomerMaterial;
     //[SerializeField] Color AngeredColor;
@@ -119,6 +128,7 @@ public class Customer_v2 : MonoBehaviour
                 break;
 
             case CustomerStates.EAT:
+                CustomerEats(EatingSpeedMultiplier, EatingDuration);
                 break;
             case CustomerStates.ANGRY:
                 CustomerAngry();
@@ -150,6 +160,7 @@ public class Customer_v2 : MonoBehaviour
         nearestTable.GetComponent<CustomerTable>().FoodName = OrderScript.OrderName;
         nearestTable.GetComponent<CustomerTable>().customer = gameObject;
         nearestTable.GetComponent<CustomerTable>().orders.Add(CreateNewOrder);
+        nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(true);
         OrderUI_ID += 1;
         return CreateNewOrder;
     }
@@ -189,6 +200,34 @@ public class Customer_v2 : MonoBehaviour
         currentTime = orderWaitTime;
     }
     #endregion
+    #region CustomerEat
+    public void CustomerEats(float EatingSpeedMultiplier, float eatduration)
+    {
+        if (OrderToDelete != null)
+        {
+            OrderToDelete.GetComponent<Image>().color = Color.green;
+            Destroy(OrderToDelete, 2);
+        }
+        currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
+        if (currentEatTime >= eatduration)
+        {
+            //delete food on table
+            Destroy(Food);
+            //add money
+            //MoneyScript.AddMoney(CustomerMoney);
+            //change waypointIndex
+            for (int i = waypoints.Count - 1; i >= 0; i--)
+            {
+                waypointsBack.Add(waypoints[i]);
+            }
+            waypointsBack.Add(Exitdoor);
+            targetwaypoint_back = waypointsBack[startIndex];
+            currentEatTime = 0;
+            //movetowards the index
+            ChangeState(CustomerStates.LEAVE);
+        }
+    }
+    #endregion
 
     #region CustomerAngry
     public void CustomerAngry()
@@ -221,15 +260,12 @@ public class Customer_v2 : MonoBehaviour
     {
         float movementStep = movementSpeed * Time.deltaTime;
         float rotationStep = rotationSpeed * Time.deltaTime;
-        //print(targetwaypoint_back.name);
         Vector3 directionToTarget = targetwaypoint_back.position- transform.position;
         Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep);
         float distance = Vector3.Distance(transform.position, targetwaypoint_back.position);
         transform.position = Vector3.MoveTowards(transform.position, targetwaypoint_back.position, movementStep);
         CheckDistanceToWPNMove(distance);
-        //transform.LookAt(targetwaypoint_back);
-        //print("help"+targetwaypoint_back.name);
     }
 
     #endregion
