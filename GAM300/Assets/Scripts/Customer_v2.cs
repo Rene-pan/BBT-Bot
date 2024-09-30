@@ -164,8 +164,8 @@ public class Customer_v2 : MonoBehaviour
         OrderScript.addIngredientIcons();
         OrderScript.UpdateOrderName();
         //set order name to table
+        
         nearestTable.GetComponent<CustomerTable>().FoodName = OrderScript.OrderName;
-        nearestTable.GetComponent<CustomerTable>().customer = gameObject;
         nearestTable.GetComponent<CustomerTable>().orders.Clear();
         nearestTable.GetComponent<CustomerTable>().orders.Add(CreateNewOrder);
         nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(true);
@@ -178,12 +178,14 @@ public class Customer_v2 : MonoBehaviour
         if (OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders >= OrderUIHolder.GetComponent<OrderInfo>().maxOrders) return;
         if (OrderUI_ID == OrderUI.Count)
         {
+            print("help1");
             OrderUI_ID = 0;
             OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders += 1;
             ChangeState(CustomerStates.WAIT);
         }
         else
         {
+            print("help");
             OrderList.Add(CreateOrder());
         }
     }

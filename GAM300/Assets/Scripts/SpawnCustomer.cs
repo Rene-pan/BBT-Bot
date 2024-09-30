@@ -17,6 +17,7 @@ public class SpawnCustomer : MonoBehaviour
     [SerializeField] private int totalCustomers = 0;
     public bool canSpawn = false;
     public GameObject currentChair;
+    public OrderInfo orderInfo;
 
     private void Awake()
     {
@@ -29,6 +30,8 @@ public class SpawnCustomer : MonoBehaviour
     }
     private void Update()
     {
+        var Money = FindAnyObjectByType<Money>();
+        Money.CheckMoney();
         if (currentCustomerCount < maxShopCapacity)
         {
             ChairAvailability();
@@ -40,7 +43,6 @@ public class SpawnCustomer : MonoBehaviour
         else if (totalCustomers == Customers.Count)
         {
             canSpawn = false;
-            var Money = FindAnyObjectByType<Money>();
             Money.CheckMoney();
         }
     }
@@ -130,6 +132,7 @@ public class SpawnCustomer : MonoBehaviour
     {
         var customer = Instantiate(Spawnedcustomer, gameObject.transform);
         var customerScript = customer.GetComponent<Customer_v2>();
+        customerScript.nearestTable.GetComponent<CustomerTable>().customer = customer;
         Parent(gameObject.transform, customer, 1);
     }
     private void OnTriggerEnter(Collider other)
@@ -141,6 +144,7 @@ public class SpawnCustomer : MonoBehaviour
                 if (other.GetComponent<Customer_v2>().currentState != Customer_v2.CustomerStates.LEAVE) return;
                 Destroy(other.gameObject);
                 currentCustomerCount -= 1;
+                orderInfo.numberOfOrders -= 1;
                 break;
         }
     }
