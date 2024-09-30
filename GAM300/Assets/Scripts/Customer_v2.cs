@@ -20,6 +20,7 @@ public class Customer_v2 : MonoBehaviour
     public float movementSpeed = 3f;
     public float rotationSpeed = 2f;
     public GameObject nearestTable;
+    public GameObject nearestChair;//linked with WAIT state to determine which chair to go back to
 
     [Header("Customer Order")]
     [SerializeField] List<GameObject> OrderUI;//all the order UI that customer will generate
@@ -52,6 +53,10 @@ public class Customer_v2 : MonoBehaviour
     public int targetWaypoint_backIndex = 0;
     private int startIndex = 0;
     private float minDistance_back = 0.01f;
+
+    [Header("Annoying Customer")]
+    [SerializeField] float JumpingDuration;
+    [SerializeField] float JumpForce;
     private void OnEnable()
     {
         targetwaypoint = waypoints[targetWaypointIndex];
@@ -279,6 +284,10 @@ public class Customer_v2 : MonoBehaviour
 
     #region Customer Types
     private bool TransfromOnce = true;
+    public float time = 0;
+    private bool StartAnimation = false;
+    public float time1 = 0;
+    public GameObject AnimatorObj;
     void CustomerTypes()
     {
         switch (customerType) 
@@ -298,7 +307,29 @@ public class Customer_v2 : MonoBehaviour
                 }
             case CustomerType.ANNOYING:
                 {
-                    //after a period of time
+                    time += Time.deltaTime;
+                    if (time < JumpingDuration && !StartAnimation)
+                    {
+                        transform.position = nearestTable.GetComponent<CustomerTable>().foodPosition.transform.position;
+                        //play animation
+                        AnimatorObj.GetComponent<Animator>().SetBool("Jump", true);
+                        nearestTable.GetComponent<Collider>().enabled = false;
+                    }else if (time >= JumpingDuration)
+                    {
+                        time1 += Time.deltaTime;
+                        if (time1 < JumpingDuration){
+                            AnimatorObj.GetComponent<Animator>().SetBool("Jump", false);
+                            StartAnimation = true;
+                            nearestTable.GetComponent<Collider>().enabled = true;
+                            transform.position = nearestChair.GetComponent<CustomerChair>().seatPivot.transform.position;
+                        }
+                        else if (time1 >= JumpingDuration)
+                        {
+                            StartAnimation = false;
+                            time = 0;
+                            time1 = 0;
+                        }
+                    }
                     //jump on table
                     //after a period of time
                     //seat back down

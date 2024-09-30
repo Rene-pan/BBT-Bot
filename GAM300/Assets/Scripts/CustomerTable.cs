@@ -30,7 +30,9 @@ public class CustomerTable : MonoBehaviour
             case "Food":
                 //check the throwable food name with this table food name
                 var FoodScript = other.GetComponent<Throwable>();
-                var CustomerScript = other.GetComponent<Customer_v2>();
+                var CustomerScript = customer.GetComponent<Customer_v2>();
+                var FoodTransform = other.transform;
+                var CustomerTransform = customer.transform;
                 if (orders == null) return;
                 foreach (var order in orders) //look through all the orders, if the thrown food name matches the current order name, I will delete that order
                 {
@@ -39,33 +41,33 @@ public class CustomerTable : MonoBehaviour
                     {
                         //print(other);
                         other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                        other.gameObject.transform.position = foodPosition.transform.position;
+                        FoodTransform.position = foodPosition.transform.position;
                         Parent(foodPosition.transform, other.gameObject, 0);
-                        other.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                        other.gameObject.transform.localPosition = Vector3.zero;
+                        FoodTransform.localRotation = Quaternion.Euler(Vector3.zero);
+                        FoodTransform.localPosition = Vector3.zero;
                         print(other);
                         print("FixPosition");
                         //get the food to remain on the table
                         if (customer == null) return;
                         //change Customer_v2 state to eat
                         //if customer type is BIG, transform its positon back to the seat
-                        switch (other.gameObject.GetComponent<Customer_v2>().customerType) 
-                        {
-                            case Customer_v2.CustomerType.BIG:
-                                //return to chair pos
-
-                                break;
-                            case Customer_v2.CustomerType.ANNOYING:
-                                break;
-
-                        
-                        }
                         var customerScript = customer.GetComponent<Customer_v2>();
                         customerScript.Food = other.gameObject;
                         customerScript.OrderToDelete = order;
                         eatArea.SetActive(false);
                         //FlashColour(FlashTimeInterval, eatArea.GetComponent<Material>(), eatArea.GetComponent<Material>().color, CorrectFoodColour);
                         customerScript.ChangeState(Customer_v2.CustomerStates.EAT);
+                        switch (CustomerScript.customerType) 
+                        {
+                            case Customer_v2.CustomerType.BIG:
+                            case Customer_v2.CustomerType.ANNOYING:
+                                //return to chair pos
+                                CustomerTransform.position = CustomerScript.nearestChair.GetComponent<CustomerChair>().seatPivot.position;
+                                CustomerTransform.LookAt(gameObject.transform);
+                                break;
+
+                        
+                        }
                     }
                     else if (FoodScript.Name != order.GetComponent<Order>().OrderName)
                     {

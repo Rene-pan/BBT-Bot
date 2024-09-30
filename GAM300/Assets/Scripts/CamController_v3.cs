@@ -167,21 +167,5 @@ public class CamController_v3 : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, retPoint, returnSpeed * Time.deltaTime);
         pitchLock = false;
     }
-    //V Key to toggle Cursor visibility
-    void ChangeCursorVisibility()
-    {
-        if (Input.GetKeyDown(KeyCode.V) && PressedV == 0)
-        {
-            PressedV = 1;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else if (Input.GetKeyDown(KeyCode.V) && PressedV == 1)
-        {
-            PressedV = 0;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
 
 }

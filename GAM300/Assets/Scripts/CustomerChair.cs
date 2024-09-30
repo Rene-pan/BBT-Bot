@@ -13,6 +13,7 @@ public class CustomerChair : MonoBehaviour
     private int OrderCounter = 0;
     public int OrderCount = 1;
     public List<Transform> waypoints;
+    public Transform seatPivot;
     private void OnTriggerEnter(Collider other)
     {
         var tag = other.tag;
@@ -24,7 +25,8 @@ public class CustomerChair : MonoBehaviour
                 if (customerScript.currentState == Customer_v2.CustomerStates.LEAVE 
                     || customerScript.currentState == Customer_v2.CustomerStates.WAIT) return;
                 print("customer reached");
-                var seatPivot = gameObject.transform.GetChild(1).transform;
+                customerScript.nearestChair = gameObject;
+                seatPivot = gameObject.transform.GetChild(1).transform;
                 customerScript.ChangeState(Customer_v2.CustomerStates.ORDER);
                 other.GetComponent<Rigidbody>().isKinematic = true;
                 Parent(seatPivot, other.gameObject, 0);
