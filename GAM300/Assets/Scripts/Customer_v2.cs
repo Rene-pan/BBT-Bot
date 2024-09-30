@@ -126,6 +126,7 @@ public class Customer_v2 : MonoBehaviour
                     var orderTimer = order.GetComponent<Order>().DecreasingTimer;
                     StartTimer(orderTimer, DecreasingValue);
                 }
+                CustomerTypes();
                 break;
 
             case CustomerStates.EAT:
@@ -259,7 +260,7 @@ public class Customer_v2 : MonoBehaviour
         ChangeState(CustomerStates.LEAVE);
     }
     #endregion
-    #region 
+    #region CustomerLeave
     //customer moves back to spawn position
     //add the waypoints from back to the front
     public void CustomerLeave()
@@ -274,6 +275,39 @@ public class Customer_v2 : MonoBehaviour
         CheckDistanceToWPNMove(distance);
     }
 
+    #endregion
+
+    #region Customer Types
+    private bool TransfromOnce = true;
+    void CustomerTypes()
+    {
+        switch (customerType) 
+        { 
+            case CustomerType.BIG:
+                {
+                    if (TransfromOnce)
+                    {
+                        var tableScript = nearestTable.GetComponent<CustomerTable>();
+                        var randomPositionID = (int)Random.Range(0, (float)tableScript.StandPos.Length);
+                        print(randomPositionID);
+                        transform.position = tableScript.StandPos[randomPositionID].position;
+                        transform.LookAt(nearestTable.transform.position);
+                        TransfromOnce = false;
+                    }
+                    break;
+                }
+            case CustomerType.ANNOYING:
+                {
+                    //after a period of time
+                    //jump on table
+                    //after a period of time
+                    //seat back down
+                    break;
+                }
+        
+        }
+
+    }
     #endregion
 
 }

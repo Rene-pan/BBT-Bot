@@ -303,6 +303,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1156721992}
     - target: {fileID: 1945305334125710474, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945305334125710474, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
       propertyPath: throwStrength
       value: 
       objectReference: {fileID: 1473497273}
@@ -425,7 +429,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8351680957005007081, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 108324038}
   m_SourcePrefab: {fileID: 100100000, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
 --- !u!4 &108324029 stripped
 Transform:
@@ -447,6 +454,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6933572693198946752, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
   m_PrefabInstance: {fileID: 108324028}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &108324038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108324030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c14423bb2a02264a9e99cf84df0c880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camScript: {fileID: 1156721992}
+  currentState: 0
+  NearCollectionPoint: 0
+  NearMergePoint: 0
+  GotEmptyCup: 0
+  hand: {fileID: 758574602}
+  hand_amount: 0
+  currentIngredient: {fileID: 0}
+  currentFoodCollectable: {fileID: 0}
+  currentFoodThrowable: {fileID: 0}
+  currentKopiMaker: {fileID: 0}
+  canThrow: 0
+  ThrowOnce: 1
+  time: 0
+  PlayerUI: []
+  ThrowPrompts:
+  - {fileID: 21300000, guid: 651883eb6e21b944897590adcb478141, type: 3}
+  - {fileID: 21300000, guid: fb675dc8637c8364aaa6fdbf8ad953e1, type: 3}
+  PressCount: 0
 --- !u!1001 &153003526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1769,7 +1807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5174579341769252059, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7789152727276159340, guid: 4b8d4d1beea80884485bfacaadf599d5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1834,7 +1872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6965143678106405306, guid: 708db5c4ed18f254c898ea9d85cd6c53, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7774050686683534080, guid: 708db5c4ed18f254c898ea9d85cd6c53, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3058,7 +3096,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1954332529}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1649563962
 MonoBehaviour:
@@ -3074,7 +3112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Customers:
   - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
-  - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
+  - {fileID: 2251596905678945102, guid: bc7eb0c19e208864cab66d995051a556, type: 3}
   - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
   - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
   - {fileID: 2251596905678945102, guid: 99030686012939a48b86676e3ecb94ec, type: 3}
@@ -3719,7 +3757,6 @@ Transform:
   - {fileID: 1685867921}
   - {fileID: 759785894}
   - {fileID: 599612255}
-  - {fileID: 1649563961}
   - {fileID: 1249123592}
   - {fileID: 996909198}
   - {fileID: 423872722}
@@ -3937,4 +3974,5 @@ SceneRoots:
   - {fileID: 1156721990}
   - {fileID: 108324028}
   - {fileID: 1473497272}
+  - {fileID: 1649563961}
   - {fileID: 1954332529}

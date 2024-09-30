@@ -71,44 +71,43 @@ public class PlayerController : MonoBehaviour
             CollectFood();
             Merge();
             canThrow = false;
-            //throwscript.drawline();
-            //throwscript.lr.enabled = false;
-            //SliderVisibility(throwStrength.gameObject, canThrow);
         }
         else if (camScript.currentState == CamController_v3.CamState.OVERSHOULDER)
         {
             canThrow = true;
-            //SliderVisibility(throwStrength.gameObject, canThrow);
-            //throwscript.drawline();
-            //throwscript.lr.enabled = true;
             Throw();
         }
     }
+    //trying to fix, if collected food, cannot collect anything else
 
     void CollectIngredient()
     {
+        //if no current ingredient
         if (currentIngredient == null) return;
+        //trying to find if UI is active
         if (UIFinder("CollectACupFirst").activeSelf)
         {
+            //if UI is active, make it disappear
             UIFinder("CollectACupFirst").SetActive(false);
         }
-        var canCollectIngredient = NearCollectionPoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1;
+        //can collect ingredient when its near collection point & press down E key and currently not near merge point && handamount is <1 (so no food/ingredient on hand)
+        var canCollectIngredient = NearCollectionPoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1 && !NearMergePoint;
         var canCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
-            && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
-        if (canCollectIngredient && hand_amount <1 && !canCollectFood)
+            && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE && !NearCollectionPoint;
+        if (canCollectIngredient && !canCollectFood)
         {
             holdIngredient = Instantiate(currentIngredient, hand);
-            hand_amount += 1;
+            hand_amount = 1;
         }
         
     }
     void CollectFood()
     {
-        var canCollectIngredient = NearCollectionPoint && Input.GetKeyDown(KeyCode.E);
+        var canCollectIngredient = NearCollectionPoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1 && !NearMergePoint;
         var canCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
-            && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
+            && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE && !NearCollectionPoint;
         var cannotCollectFood = NearMergePoint && Input.GetKeyDown(KeyCode.E) && hand_amount < 1
-    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY;
+    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.PREP;
         var OffActivateThrowmode = !canThrow && hand_amount < 1 && Input.GetMouseButtonDown(1);
         if (!canCollectIngredient && canCollectFood)
         {
@@ -116,6 +115,7 @@ public class PlayerController : MonoBehaviour
             throwscript.rb = currentKopiMaker.GetComponent<MergeIngredient>().SetThrowable().GetComponent<Rigidbody>();
             currentKopiMaker.GetComponent<MergeIngredient>().currentState = MergeIngredient.KopiMakerStates.READY;
             ThrowOnce = false;
+            hand_amount = 1;
             //activate throw mode prompt flashes
             UIFinder("ActivateThrowmode").SetActive(true);
             UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[0];

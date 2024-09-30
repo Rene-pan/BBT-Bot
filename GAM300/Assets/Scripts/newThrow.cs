@@ -20,10 +20,6 @@ public class newThrow : MonoBehaviour
     public CamController_v3 cam;
     [SerializeField] GameObject player;
     [SerializeField] PlayerController playerScript;
-
-    //private Scene _simulationScene;
-    //private PhysicsScene _physicsScene;
-    //[SerializeField] private Transform _obstaclesParent;
     void Start()
     {
         //CreatePhysicsScene();
@@ -38,69 +34,62 @@ public class newThrow : MonoBehaviour
         //lr.transform.rotation = Quaternion.Euler(0, cam.transform.rotation.y, 0);
         if (cam.currentState == CamController_v3.CamState.OVERSHOULDER)
         {
-            drawline(2f);
+            DrawLine(4f);
             lr.enabled = true;
         }
         else
         {
             lr.enabled = false;
         }
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    drawline();
-        //    lr.enabled = true;
-        //}
-        //else 
-        //{
-        //    lr.enabled = false;
-        //}
-
     }
 
-    public void drawline(float heightmultiplier)
-    {
-        i = 0;
-        lr.positionCount = NumberOfPoints;
-        lr.enabled = true;
-        startPosition = Handarea.position;
-        //startVelocity = rot * (InitialForce * transform.forward) / rb.mass;
-        startVelocity = (InitialForce * -player.transform.forward);
-        lr.SetPosition(i, startPosition);
-        for (float j = 0; i < lr.positionCount - 1; j += timer, i++)
-        {
-            //i++;
-            Vector3 linePosition = startPosition + (j * startVelocity);
-            //linePosition.y = startPosition.y + (startVelocity.y * j + 0.5f * Physics.gravity.y * j * j);
-            linePosition.y = startPosition.y + (startVelocity.y * j + 0.5f * Physics.gravity.y * j * j) * heightmultiplier; 
-            lr.SetPosition(i, linePosition);
-        }
-    }
-
-    //void CreatePhysicsScene()
+    //public void drawline(float heightmultiplier)
     //{
-    //    _simulationScene = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics3D));
-    //    foreach (Transform obj in _obstaclesParent)
+    //    i = 0;
+    //    lr.positionCount = NumberOfPoints;
+    //    lr.enabled = true;
+    //    startPosition = Handarea.position;
+    //    //startVelocity = rot * (InitialForce * transform.forward) / rb.mass;
+    //    startVelocity = (InitialForce * -player.transform.forward);
+    //    lr.SetPosition(i, startPosition);
+    //    for (float j = 0; i < lr.positionCount - 1; j += timer, i++)
     //    {
-    //        var ghostObject = Instantiate(obj.gameObject, obj.position, obj.rotation);
-    //        if (ghostObject.GetComponent<Renderer>() != null)
-    //        {
-    //            ghostObject.GetComponent<Renderer>().enabled = false;
-    //        }
-    //        SceneManager.MoveGameObjectToScene(ghostObject, _simulationScene);
+    //        //i++;
+    //        Vector3 linePosition = startPosition + (j * startVelocity);
+    //        //linePosition.y = startPosition.y + (startVelocity.y * j + 0.5f * Physics.gravity.y * j * j);
+    //        linePosition.y = startPosition.y + (startVelocity.y * j + 0.5f * Physics.gravity.y * j * j) * heightmultiplier; 
+    //        lr.SetPosition(i, linePosition);
     //    }
     //}
-    //public void drawline(GameObject Throwable, Vector3 pos, Vector3 velocity)
-    //{
-    //    var ghostObj = Instantiate(Throwable, pos, Quaternion.identity);
-    //    ghostObj.GetComponent<Renderer>().enabled = false;
-    //    //ghostObj.
-    //}
 
+    public void DrawLine(float heightMultiplier)
+    {
+        lr.positionCount = NumberOfPoints; // Set number of points
+        lr.enabled = true; // Enable LineRenderer
+
+        Vector3 startPosition = Handarea.position; // Starting position of the throw
+        Vector3 startVelocity = InitialForce * -player.transform.forward; // Initial velocity
+
+        // Set the first point of the line
+        lr.SetPosition(0, startPosition);
+
+        // Calculate trajectory points
+        for (int i = 1; i < NumberOfPoints; i++)
+        {
+            float t = i * timer; // Time increment
+            Vector3 linePosition = startPosition + (startVelocity * t); // Horizontal motion
+
+            // Vertical motion with gravity
+            linePosition.y = startPosition.y + (startVelocity.y * t + 0.5f * Physics.gravity.y * t * t) * heightMultiplier;
+
+            lr.SetPosition(i, linePosition); // Set the calculated position in the LineRenderer
+        }
+    }
     public void Throw()
     {
         Rigidbody thrownObject = Instantiate(rb.gameObject, Handarea.position, Quaternion.identity).GetComponent<Rigidbody>();
         //thrownObject.AddForce(rot * (InitialForce * transform.forward), ForceMode.Impulse);
-        thrownObject.AddForce((InitialForce * -player.transform.forward), ForceMode.VelocityChange);
+        thrownObject.AddForce((InitialForce * -player.transform.forward), ForceMode.Impulse);
     }
 
    

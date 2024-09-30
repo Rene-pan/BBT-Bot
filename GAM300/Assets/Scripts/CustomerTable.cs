@@ -15,6 +15,9 @@ public class CustomerTable : MonoBehaviour
     public GameObject foodPosition;
     public List<GameObject> orders;
     public GameObject eatArea;
+
+    [Header("Customer Type Big")]
+    public Transform[] StandPos;
     private void Start()
     {
         eatArea.SetActive(false);
@@ -27,6 +30,7 @@ public class CustomerTable : MonoBehaviour
             case "Food":
                 //check the throwable food name with this table food name
                 var FoodScript = other.GetComponent<Throwable>();
+                var CustomerScript = other.GetComponent<Customer_v2>();
                 if (orders == null) return;
                 foreach (var order in orders) //look through all the orders, if the thrown food name matches the current order name, I will delete that order
                 {
@@ -44,6 +48,18 @@ public class CustomerTable : MonoBehaviour
                         //get the food to remain on the table
                         if (customer == null) return;
                         //change Customer_v2 state to eat
+                        //if customer type is BIG, transform its positon back to the seat
+                        switch (other.gameObject.GetComponent<Customer_v2>().customerType) 
+                        {
+                            case Customer_v2.CustomerType.BIG:
+                                //return to chair pos
+
+                                break;
+                            case Customer_v2.CustomerType.ANNOYING:
+                                break;
+
+                        
+                        }
                         var customerScript = customer.GetComponent<Customer_v2>();
                         customerScript.Food = other.gameObject;
                         customerScript.OrderToDelete = order;

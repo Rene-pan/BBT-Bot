@@ -30,7 +30,7 @@ public class MergeIngredient : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            var playerScript = other.GetComponent<PlayerController>();
+            var playerScript = other.GetComponent<PlayerController_v2>();
             print(other.name);
             print("You reached collection area!");
             playerScript.NearMergePoint = true;
@@ -45,7 +45,7 @@ public class MergeIngredient : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            var playerScript = other.GetComponent<PlayerController>();
+            var playerScript = other.GetComponent<PlayerController_v2>();
             print("You left collection area!");
             playerScript.NearMergePoint = false;
             playerScript.currentKopiMaker = null;

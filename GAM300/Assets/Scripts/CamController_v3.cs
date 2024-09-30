@@ -50,16 +50,17 @@ public class CamController_v3 : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        //if (Player.GetComponent<PlayerController_v2>().currentState == PlayerController_v2.PlayerCollection.COLLECT) return;
         switch (currentState)
         {
             case CamState.THIRDPERSON:
                 CamFunctions();
-                if (Input.GetMouseButtonDown(1) && !Player.GetComponent<PlayerController>().ThrowOnce)
+                if (Input.GetMouseButtonDown(1))
                 {
+                    if (Player.GetComponent<PlayerController_v2>().currentState == PlayerController_v2.PlayerCollection.COLLECT) return;
                     PressedB = 0;
                     camStartPos = transform.position;
                     StartCoroutine(Transition(camStartPos, target.position, PressedB));
-
                     //Player.GetComponent<PlayerController>().UIFinder("ActivateThrowmode").SetActive(false);
                 }
                 break;

@@ -10,7 +10,7 @@ public class CollectIngredient : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            var playerScript = other.GetComponent<PlayerController>();
+            var playerScript = other.GetComponent<PlayerController_v2>();
             print("You reached collection area!");
             print(other.name);
             playerScript.NearCollectionPoint = true;
@@ -21,7 +21,7 @@ public class CollectIngredient : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            var playerScript = other.GetComponent<PlayerController>();
+            var playerScript = other.GetComponent<PlayerController_v2>();
             print("You left collection area!");
             playerScript.NearCollectionPoint = false;
             playerScript.currentIngredient = null;

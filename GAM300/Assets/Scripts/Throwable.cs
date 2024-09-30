@@ -16,7 +16,7 @@ public class Throwable : MonoBehaviour
         if (tag == "Customer")
         {
             var customerScript = collision.gameObject.GetComponent<Customer_v2>();
-            if (customerScript.currentState != Customer_v2.CustomerStates.LEAVE || customerScript.currentState != Customer_v2.CustomerStates.ANGRY || customerScript.currentState != Customer_v2.CustomerStates.EAT)
+            if (customerScript.currentState != Customer_v2.CustomerStates.MOVE || customerScript.currentState != Customer_v2.CustomerStates.LEAVE || customerScript.currentState != Customer_v2.CustomerStates.ANGRY || customerScript.currentState != Customer_v2.CustomerStates.EAT)
             {
                 customerScript.ChangeState(Customer_v2.CustomerStates.ANGRY);
                 Destroy(gameObject);
