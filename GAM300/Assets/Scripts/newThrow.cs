@@ -14,7 +14,6 @@ public class newThrow : MonoBehaviour
     public float InitialForce = 15;
     public float InitialAngle = -45;
     Quaternion rot;
-    int i = 0;
     public int NumberOfPoints = 50;
     public float timer = 0.1f;
     public CamController_v3 cam;

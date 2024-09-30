@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static CamController_v3;
 
 public class PlayerController_v2 : MonoBehaviour
 {
     [SerializeField] CamController_v3 camScript;
-    public enum PlayerCollection {COLLECT, THROW}
-    public PlayerCollection currentState; 
+    public enum PlayerCollection { COLLECT, THROW }
+    public PlayerCollection currentState;
     [Header("Grab ingredient")]
     public bool NearCollectionPoint = false;
     public bool NearMergePoint = false;
@@ -75,6 +74,7 @@ public class PlayerController_v2 : MonoBehaviour
                     holdIngredient = Instantiate(currentIngredient, hand);
                     hand_amount = 1;
                     GotEmptyCup = true;
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.collect, this.transform.position);
                     UIFinder("CollectACupFirst").SetActive(false);
                 }
                 var canMergeFood = NearMergePoint && hand_amount == 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint 
