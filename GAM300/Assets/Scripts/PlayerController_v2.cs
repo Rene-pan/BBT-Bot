@@ -74,7 +74,7 @@ public class PlayerController_v2 : MonoBehaviour
                     holdIngredient = Instantiate(currentIngredient, hand);
                     hand_amount = 1;
                     GotEmptyCup = true;
-                    AudioManager.instance.PlayOneShot(FmodEvents.instance.collect, this.transform.position);
+                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
                     UIFinder("CollectACupFirst").SetActive(false);
                 }
                 var canMergeFood = NearMergePoint && hand_amount == 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint 
@@ -94,6 +94,7 @@ public class PlayerController_v2 : MonoBehaviour
                     holdFood = Instantiate(currentFoodCollectable, hand);
                     currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.READY);
                     GotEmptyCup = false;
+                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
                     //show throw UI
                     UIFinder("CollectACupFirst").SetActive(false);
                     UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
@@ -124,6 +125,7 @@ public class PlayerController_v2 : MonoBehaviour
                     PressCount = 2;
                     throwscript.Throw();
                     Destroy(holdFood);
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.throwing, this.transform.position);
                     UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[0];
                     UIFinder("ActivateThrowmode").SetActive(true);
                 }

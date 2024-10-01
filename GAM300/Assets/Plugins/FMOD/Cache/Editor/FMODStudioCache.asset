@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4095405522605794241
+--- !u!114 &-9017439315296001074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,14 +10,203 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Collected
+  m_Name: event:/Cooking Complete
   m_EditorClassIdentifier: 
-  Path: event:/Collected
+  Path: event:/Cooking Complete
   Guid:
-    Data1: 1666585528
-    Data2: 1200191700
-    Data3: -1665961541
-    Data4: -1278997176
+    Data1: 119473220
+    Data2: 1232033622
+    Data3: 1458663837
+    Data4: -514510033
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8738489984082770050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Food burning timer
+  m_EditorClassIdentifier: 
+  Path: event:/Food burning timer
+  Guid:
+    Data1: 469026454
+    Data2: 1106582050
+    Data3: 1741762218
+    Data4: 904052063
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6988649160353994629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Crash3
+  m_EditorClassIdentifier: 
+  Path: event:/Crash3
+  Guid:
+    Data1: 1862487366
+    Data2: 1230968710
+    Data3: 596384958
+    Data4: -1982799381
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6768373478887865290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PickUp4
+  m_EditorClassIdentifier: 
+  Path: event:/PickUp4
+  Guid:
+    Data1: -1332949160
+    Data2: 1137202644
+    Data3: -146709342
+    Data4: 1807439532
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5784729907537952386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Eat3
+  m_EditorClassIdentifier: 
+  Path: event:/Eat3
+  Guid:
+    Data1: -241514794
+    Data2: 1271258317
+    Data3: 665694633
+    Data4: 1633780467
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5600261724705919369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FoodLandSuccess
+  m_EditorClassIdentifier: 
+  Path: event:/FoodLandSuccess
+  Guid:
+    Data1: 2000816208
+    Data2: 1171620442
+    Data3: 831437972
+    Data4: 579351029
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4592782150081206470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameOver Fail
+  m_EditorClassIdentifier: 
+  Path: event:/GameOver Fail
+  Guid:
+    Data1: -1847700819
+    Data2: 1169954957
+    Data3: -2103612534
+    Data4: 606481680
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4246489819711575148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Drink Making
+  m_EditorClassIdentifier: 
+  Path: event:/Drink Making
+  Guid:
+    Data1: -829636218
+    Data2: 1337500653
+    Data3: -2145042554
+    Data4: 1176466925
   Banks:
   - {fileID: 4221626663779672176}
   IsStream: 0
@@ -42,11 +231,254 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638633323367854317
+  lastModified: 638633780637528414
   FileSizes:
   - Name: Desktop
-    Value: 804
+    Value: 1814
   Exists: 1
+--- !u!114 &-3876951206849970515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Eat6
+  m_EditorClassIdentifier: 
+  Path: event:/Eat6
+  Guid:
+    Data1: -1283797528
+    Data2: 1122643781
+    Data3: -1658862464
+    Data4: 1119023697
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3873928839523767538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Crash2
+  m_EditorClassIdentifier: 
+  Path: event:/Crash2
+  Guid:
+    Data1: 221091480
+    Data2: 1313270863
+    Data3: 1015275709
+    Data4: -31588619
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3835678766094190076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Eat2
+  m_EditorClassIdentifier: 
+  Path: event:/Eat2
+  Guid:
+    Data1: 254670640
+    Data2: 1285071159
+    Data3: 869543862
+    Data4: -365184373
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3585132561886422044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Food Cooking
+  m_EditorClassIdentifier: 
+  Path: event:/Food Cooking
+  Guid:
+    Data1: 951744352
+    Data2: 1292037431
+    Data3: -878148448
+    Data4: -764468
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2647242034476833449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Kopi Movement2
+  m_EditorClassIdentifier: 
+  Path: event:/Kopi Movement2
+  Guid:
+    Data1: 995497604
+    Data2: 1166721057
+    Data3: 1938583979
+    Data4: -102437236
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2263033585568045261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Crash4
+  m_EditorClassIdentifier: 
+  Path: event:/Crash4
+  Guid:
+    Data1: 441467499
+    Data2: 1076588948
+    Data3: -1927478343
+    Data4: 261526329
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1450957814393155535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Kopi Movement3
+  m_EditorClassIdentifier: 
+  Path: event:/Kopi Movement3
+  Guid:
+    Data1: -435090325
+    Data2: 1184575697
+    Data3: 191239090
+    Data4: -1585923582
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-607806759712224202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Eat4
+  m_EditorClassIdentifier: 
+  Path: event:/Eat4
+  Guid:
+    Data1: 1721000053
+    Data2: 1080803100
+    Data3: -1809538430
+    Data4: 1720922328
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-241055606857971307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameOver Success
+  m_EditorClassIdentifier: 
+  Path: event:/GameOver Success
+  Guid:
+    Data1: 2092210687
+    Data2: 1128065756
+    Data3: -1325071731
+    Data4: 1467733360
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,14 +496,147 @@ MonoBehaviour:
   - {fileID: 8676306263783425934}
   - {fileID: 4221626663779672176}
   EditorEvents:
-  - {fileID: -4095405522605794241}
+  - {fileID: 6424842427374760631}
+  - {fileID: -3835678766094190076}
+  - {fileID: 4613984016298536748}
+  - {fileID: 8950512440960628989}
+  - {fileID: -9017439315296001074}
+  - {fileID: -6988649160353994629}
+  - {fileID: -5600261724705919369}
+  - {fileID: -6768373478887865290}
+  - {fileID: -3585132561886422044}
+  - {fileID: 5557167373209392610}
+  - {fileID: -1450957814393155535}
+  - {fileID: -2263033585568045261}
+  - {fileID: -607806759712224202}
+  - {fileID: -2647242034476833449}
+  - {fileID: -4246489819711575148}
+  - {fileID: 7548989150523525070}
+  - {fileID: -8738489984082770050}
+  - {fileID: -3873928839523767538}
+  - {fileID: -4592782150081206470}
+  - {fileID: 2757756833662675762}
+  - {fileID: 2702628919488671918}
+  - {fileID: -5784729907537952386}
+  - {fileID: 2503684922310778754}
+  - {fileID: 4019683710136694520}
+  - {fileID: -3876951206849970515}
+  - {fileID: -241055606857971307}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8676306263783425934}
   StringsBanks:
   - {fileID: -4041246907502267445}
-  cacheTime: 638633323368345790
+  cacheTime: 638633780640180323
   cacheVersion: 131620
+--- !u!114 &2503684922310778754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Eat5
+  m_EditorClassIdentifier: 
+  Path: event:/Eat5
+  Guid:
+    Data1: -1182488105
+    Data2: 1281497961
+    Data3: -1902075499
+    Data4: 16948579
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2702628919488671918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Crash5
+  m_EditorClassIdentifier: 
+  Path: event:/Crash5
+  Guid:
+    Data1: -762294078
+    Data2: 1122307204
+    Data3: 1864106648
+    Data4: -2125485872
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2757756833662675762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PickUp1
+  m_EditorClassIdentifier: 
+  Path: event:/PickUp1
+  Guid:
+    Data1: 1666585528
+    Data2: 1200191700
+    Data3: -1665961541
+    Data4: -1278997176
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4019683710136694520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PickUp2
+  m_EditorClassIdentifier: 
+  Path: event:/PickUp2
+  Guid:
+    Data1: 145768670
+    Data2: 1172021473
+    Data3: -1342145611
+    Data4: 1526361142
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4221626663779672176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,11 +652,119 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638633323368345790
+  lastModified: 638633780640180323
   FileSizes:
   - Name: Desktop
-    Value: 4096
+    Value: 468352
   Exists: 1
+--- !u!114 &4613984016298536748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Crash1
+  m_EditorClassIdentifier: 
+  Path: event:/Crash1
+  Guid:
+    Data1: 202114875
+    Data2: 1207094078
+    Data3: -828986491
+    Data4: 1872024977
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5557167373209392610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Throwing
+  m_EditorClassIdentifier: 
+  Path: event:/Throwing
+  Guid:
+    Data1: 1073997157
+    Data2: 1253880650
+    Data3: 2045712273
+    Data4: -1774714471
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6424842427374760631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Eat1
+  m_EditorClassIdentifier: 
+  Path: event:/Eat1
+  Guid:
+    Data1: 564012584
+    Data2: 1121507753
+    Data3: -1142129000
+    Data4: -1844145476
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7548989150523525070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Kopi Movement1
+  m_EditorClassIdentifier: 
+  Path: event:/Kopi Movement1
+  Guid:
+    Data1: -1426406264
+    Data2: 1192803268
+    Data3: -2024731989
+    Data4: 1063040539
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8676306263783425934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,8 +780,35 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638633323367834954
+  lastModified: 638633780637513326
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &8950512440960628989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PickUp3
+  m_EditorClassIdentifier: 
+  Path: event:/PickUp3
+  Guid:
+    Data1: 2051065148
+    Data2: 1168835161
+    Data3: 1956193159
+    Data4: -1481663420
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0

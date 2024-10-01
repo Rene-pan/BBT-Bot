@@ -302,6 +302,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1925670353874672030, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.123
+      objectReference: {fileID: 0}
     - target: {fileID: 1945305334125710474, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
       propertyPath: camScript
       value: 
@@ -3513,12 +3517,173 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <collect>k__BackingField:
-    Guid:
+  - Guid:
       Data1: 1666585528
       Data2: 1200191700
       Data3: -1665961541
       Data4: -1278997176
-    Path: event:/Collected
+    Path: event:/PickUp1
+  - Guid:
+      Data1: 145768670
+      Data2: 1172021473
+      Data3: -1342145611
+      Data4: 1526361142
+    Path: event:/PickUp2
+  - Guid:
+      Data1: 2051065148
+      Data2: 1168835161
+      Data3: 1956193159
+      Data4: -1481663420
+    Path: event:/PickUp3
+  - Guid:
+      Data1: -1332949160
+      Data2: 1137202644
+      Data3: -146709342
+      Data4: 1807439532
+    Path: event:/PickUp4
+  <crash>k__BackingField:
+  - Guid:
+      Data1: 202114875
+      Data2: 1207094078
+      Data3: -828986491
+      Data4: 1872024977
+    Path: event:/Crash1
+  - Guid:
+      Data1: 221091480
+      Data2: 1313270863
+      Data3: 1015275709
+      Data4: -31588619
+    Path: event:/Crash2
+  - Guid:
+      Data1: 1862487366
+      Data2: 1230968710
+      Data3: 596384958
+      Data4: -1982799381
+    Path: event:/Crash3
+  - Guid:
+      Data1: 441467499
+      Data2: 1076588948
+      Data3: -1927478343
+      Data4: 261526329
+    Path: event:/Crash4
+  - Guid:
+      Data1: -762294078
+      Data2: 1122307204
+      Data3: 1864106648
+      Data4: -2125485872
+    Path: event:/Crash5
+  <kopiMovements>k__BackingField:
+  - Guid:
+      Data1: -1426406264
+      Data2: 1192803268
+      Data3: -2024731989
+      Data4: 1063040539
+    Path: event:/Kopi Movement1
+  - Guid:
+      Data1: 995497604
+      Data2: 1166721057
+      Data3: 1938583979
+      Data4: -102437236
+    Path: event:/Kopi Movement2
+  - Guid:
+      Data1: -435090325
+      Data2: 1184575697
+      Data3: 191239090
+      Data4: -1585923582
+    Path: event:/Kopi Movement3
+  <eats>k__BackingField:
+  - Guid:
+      Data1: 564012584
+      Data2: 1121507753
+      Data3: -1142129000
+      Data4: -1844145476
+    Path: event:/Eat1
+  - Guid:
+      Data1: 254670640
+      Data2: 1285071159
+      Data3: 869543862
+      Data4: -365184373
+    Path: event:/Eat2
+  - Guid:
+      Data1: -241514794
+      Data2: 1271258317
+      Data3: 665694633
+      Data4: 1633780467
+    Path: event:/Eat3
+  - Guid:
+      Data1: 1721000053
+      Data2: 1080803100
+      Data3: -1809538430
+      Data4: 1720922328
+    Path: event:/Eat4
+  - Guid:
+      Data1: -1182488105
+      Data2: 1281497961
+      Data3: -1902075499
+      Data4: 16948579
+    Path: event:/Eat5
+  - Guid:
+      Data1: -1283797528
+      Data2: 1122643781
+      Data3: -1658862464
+      Data4: 1119023697
+    Path: event:/Eat6
+  <cookingComplete>k__BackingField:
+    Guid:
+      Data1: 119473220
+      Data2: 1232033622
+      Data3: 1458663837
+      Data4: -514510033
+    Path: event:/Cooking Complete
+  <throwing>k__BackingField:
+    Guid:
+      Data1: 1073997157
+      Data2: 1253880650
+      Data3: 2045712273
+      Data4: -1774714471
+    Path: event:/Throwing
+  <drinkMaking>k__BackingField:
+    Guid:
+      Data1: -829636218
+      Data2: 1337500653
+      Data3: -2145042554
+      Data4: 1176466925
+    Path: event:/Drink Making
+  <foodBurn>k__BackingField:
+    Guid:
+      Data1: 469026454
+      Data2: 1106582050
+      Data3: 1741762218
+      Data4: 904052063
+    Path: event:/Food burning timer
+  <foodCooking>k__BackingField:
+  - Guid:
+      Data1: 951744352
+      Data2: 1292037431
+      Data3: -878148448
+      Data4: -764468
+    Path: event:/Food Cooking
+  <foodLandSuccess>k__BackingField:
+  - Guid:
+      Data1: 2000816208
+      Data2: 1171620442
+      Data3: 831437972
+      Data4: 579351029
+    Path: event:/FoodLandSuccess
+  <gameOver>k__BackingField:
+  - Guid:
+      Data1: -1847700819
+      Data2: 1169954957
+      Data3: -2103612534
+      Data4: 606481680
+    Path: event:/GameOver Fail
+  <gameSuccess>k__BackingField:
+  - Guid:
+      Data1: 2092210687
+      Data2: 1128065756
+      Data3: -1325071731
+      Data4: 1467733360
+    Path: event:/GameOver Success
 --- !u!114 &1841192889 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8532385445833945209, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
