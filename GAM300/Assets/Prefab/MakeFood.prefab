@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 3131096006320035416}
   m_Layer: 0
   m_Name: MakeFood
-  m_TagString: Untagged
+  m_TagString: kopiMakers
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

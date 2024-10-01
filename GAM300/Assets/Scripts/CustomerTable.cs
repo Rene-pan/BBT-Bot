@@ -30,15 +30,17 @@ public class CustomerTable : MonoBehaviour
             case "Food":
                 //check the throwable food name with this table food name
                 var FoodScript = other.GetComponent<Throwable>();
-                var CustomerScript = customer.GetComponent<Customer_v2>();
                 var FoodTransform = other.transform;
                 var CustomerTransform = customer.transform;
                 if (orders == null) return;
                 foreach (var order in orders) //look through all the orders, if the thrown food name matches the current order name, I will delete that order
                 {
-                    if (order == null) { print("no food"); } 
+                    if (order == null) { print("no food"); 
+                        AudioManager.instance.PlayRandom(FmodEvents.instance.crash, this.transform.position);
+                        Destroy(other.gameObject); } 
                     if (FoodScript.Name == order.GetComponent<Order>().OrderName)
                     {
+                        AudioManager.instance.PlayOneShot(FmodEvents.instance.foodLandSuccess, this.transform.position);
                         //print(other);
                         other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                         FoodTransform.position = foodPosition.transform.position;
@@ -57,12 +59,12 @@ public class CustomerTable : MonoBehaviour
                         eatArea.SetActive(false);
                         //FlashColour(FlashTimeInterval, eatArea.GetComponent<Material>(), eatArea.GetComponent<Material>().color, CorrectFoodColour);
                         customerScript.ChangeState(Customer_v2.CustomerStates.EAT);
-                        switch (CustomerScript.customerType) 
+                        switch (customerScript.customerType) 
                         {
                             case Customer_v2.CustomerType.BIG:
                             case Customer_v2.CustomerType.ANNOYING:
                                 //return to chair pos
-                                CustomerTransform.position = CustomerScript.nearestChair.GetComponent<CustomerChair>().seatPivot.position;
+                                CustomerTransform.position = customerScript.nearestChair.GetComponent<CustomerChair>().seatPivot.position;
                                 CustomerTransform.LookAt(gameObject.transform);
                                 break;
 

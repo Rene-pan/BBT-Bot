@@ -108,33 +108,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-5784729907537952386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Eat3
-  m_EditorClassIdentifier: 
-  Path: event:/Eat3
-  Guid:
-    Data1: -241514794
-    Data2: 1271258317
-    Data3: 665694633
-    Data4: 1633780467
-  Banks:
-  - {fileID: 4221626663779672176}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-5600261724705919369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,11 +184,11 @@ MonoBehaviour:
   - {fileID: 4221626663779672176}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 3500
 --- !u!114 &-4041246907502267445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,38 +204,11 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638633780637528414
+  lastModified: 638634269197033551
   FileSizes:
   - Name: Desktop
-    Value: 1814
+    Value: 1656
   Exists: 1
---- !u!114 &-3876951206849970515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Eat6
-  m_EditorClassIdentifier: 
-  Path: event:/Eat6
-  Guid:
-    Data1: -1283797528
-    Data2: 1122643781
-    Data3: -1658862464
-    Data4: 1119023697
-  Banks:
-  - {fileID: 4221626663779672176}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-3873928839523767538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,33 +227,6 @@ MonoBehaviour:
     Data2: 1313270863
     Data3: 1015275709
     Data4: -31588619
-  Banks:
-  - {fileID: 4221626663779672176}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-3835678766094190076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Eat2
-  m_EditorClassIdentifier: 
-  Path: event:/Eat2
-  Guid:
-    Data1: 254670640
-    Data2: 1285071159
-    Data3: 869543862
-    Data4: -365184373
   Banks:
   - {fileID: 4221626663779672176}
   IsStream: 0
@@ -344,33 +263,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-2647242034476833449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Kopi Movement2
-  m_EditorClassIdentifier: 
-  Path: event:/Kopi Movement2
-  Guid:
-    Data1: 995497604
-    Data2: 1166721057
-    Data3: 1938583979
-    Data4: -102437236
-  Banks:
-  - {fileID: 4221626663779672176}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-2263033585568045261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +290,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-1450957814393155535
+--- !u!114 &-1467140033199365665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -408,50 +300,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Kopi Movement3
+  m_Name: event:/GameBGM
   m_EditorClassIdentifier: 
-  Path: event:/Kopi Movement3
+  Path: event:/GameBGM
   Guid:
-    Data1: -435090325
-    Data2: 1184575697
-    Data3: 191239090
-    Data4: -1585923582
+    Data1: 1290559601
+    Data2: 1164137123
+    Data3: -1118835024
+    Data4: -2073670060
   Banks:
   - {fileID: 4221626663779672176}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &-607806759712224202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Eat4
-  m_EditorClassIdentifier: 
-  Path: event:/Eat4
-  Guid:
-    Data1: 1721000053
-    Data2: 1080803100
-    Data3: -1809538430
-    Data4: 1720922328
-  Banks:
-  - {fileID: 4221626663779672176}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  Length: 105732
 --- !u!114 &-241055606857971307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,7 +362,6 @@ MonoBehaviour:
   - {fileID: 4221626663779672176}
   EditorEvents:
   - {fileID: 6424842427374760631}
-  - {fileID: -3835678766094190076}
   - {fileID: 4613984016298536748}
   - {fileID: 8950512440960628989}
   - {fileID: -9017439315296001074}
@@ -506,30 +370,26 @@ MonoBehaviour:
   - {fileID: -6768373478887865290}
   - {fileID: -3585132561886422044}
   - {fileID: 5557167373209392610}
-  - {fileID: -1450957814393155535}
   - {fileID: -2263033585568045261}
-  - {fileID: -607806759712224202}
-  - {fileID: -2647242034476833449}
   - {fileID: -4246489819711575148}
-  - {fileID: 7548989150523525070}
   - {fileID: -8738489984082770050}
   - {fileID: -3873928839523767538}
   - {fileID: -4592782150081206470}
   - {fileID: 2757756833662675762}
   - {fileID: 2702628919488671918}
-  - {fileID: -5784729907537952386}
-  - {fileID: 2503684922310778754}
   - {fileID: 4019683710136694520}
-  - {fileID: -3876951206849970515}
   - {fileID: -241055606857971307}
+  - {fileID: 2690340965632031963}
+  - {fileID: -1467140033199365665}
+  - {fileID: 3158007466930573704}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8676306263783425934}
   StringsBanks:
   - {fileID: -4041246907502267445}
-  cacheTime: 638633780640180323
+  cacheTime: 638634276822072085
   cacheVersion: 131620
---- !u!114 &2503684922310778754
+--- !u!114 &2690340965632031963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -539,23 +399,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Eat5
+  m_Name: event:/Kopi Movement
   m_EditorClassIdentifier: 
-  Path: event:/Eat5
+  Path: event:/Kopi Movement
   Guid:
-    Data1: -1182488105
-    Data2: 1281497961
-    Data3: -1902075499
-    Data4: 16948579
+    Data1: -902867775
+    Data2: 1159782306
+    Data3: 1198137021
+    Data4: -1657096505
   Banks:
   - {fileID: 4221626663779672176}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 640
 --- !u!114 &2702628919488671918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,6 +470,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3158007466930573704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience - M1
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience - M1
+  Guid:
+    Data1: 1967492971
+    Data2: 1246319061
+    Data3: 566201991
+    Data4: 1054029893
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 180714
 --- !u!114 &4019683710136694520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,10 +539,10 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638633780640180323
+  lastModified: 638634276822072085
   FileSizes:
   - Name: Desktop
-    Value: 468352
+    Value: 4092192
   Exists: 1
 --- !u!114 &4613984016298536748
 MonoBehaviour:
@@ -733,38 +620,11 @@ MonoBehaviour:
   - {fileID: 4221626663779672176}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &7548989150523525070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Kopi Movement1
-  m_EditorClassIdentifier: 
-  Path: event:/Kopi Movement1
-  Guid:
-    Data1: -1426406264
-    Data2: 1192803268
-    Data3: -2024731989
-    Data4: 1063040539
-  Banks:
-  - {fileID: 4221626663779672176}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  Length: 2129
 --- !u!114 &8676306263783425934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,7 +640,7 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638633780637513326
+  lastModified: 638634269197013914
   FileSizes:
   - Name: Desktop
     Value: 1036

@@ -11,6 +11,7 @@ TagManager:
   - PlayerUI
   - Table
   - Obstacles
+  - kopiMakers
   layers:
   - Default
   - TransparentFX

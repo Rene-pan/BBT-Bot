@@ -12,9 +12,9 @@ public class FmodEvents : MonoBehaviour
     [field: SerializeField] public List<EventReference> crash { get; private set; }
 
     [field: Header("Kopi Movements SFX")]
-    [field: SerializeField] public List<EventReference> kopiMovements { get; private set; }
+    [field: SerializeField] public EventReference kopiMovements { get; private set; }
     [field: Header("Eat SFX")]
-    [field: SerializeField] public List<EventReference> eats { get; private set; }
+    [field: SerializeField] public EventReference eats { get; private set; }
     [field: Header("Cooking Complete SFX")]
     [field: SerializeField] public EventReference cookingComplete { get; private set; }
 
@@ -31,12 +31,19 @@ public class FmodEvents : MonoBehaviour
     [field: SerializeField] public List<EventReference> foodCooking { get; private set; }
 
     [field: Header("Food Land Success SFX")]
-    [field: SerializeField] public List<EventReference> foodLandSuccess { get; private set; }
+    [field: SerializeField] public EventReference foodLandSuccess { get; private set; }
     [field: Header("Game Over SFX")]
-    [field: SerializeField] public List<EventReference> gameOver { get; private set; }
+    [field: SerializeField] public EventReference gameOver { get; private set; }
 
     [field: Header("Success SFX")]
-    [field: SerializeField] public List<EventReference> gameSuccess { get; private set; }
+    [field: SerializeField] public EventReference gameSuccess { get; private set; }
+
+    [field: Header("BGM SFX")]
+    [field: SerializeField] public EventReference gameBGM { get; private set; }
+
+    
+    [field: Header("Ambience SFX")]
+    [field: SerializeField] public EventReference ambience { get; private set; }
 
 
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMOD.Studio;
 
 public class Movement : MonoBehaviour
 {
@@ -11,15 +12,25 @@ public class Movement : MonoBehaviour
 
     [SerializeField] Rigidbody playerbody;
     public Transform cam;
+    public Vector3 MoveVector;
 
+    //audio
+    private EventInstance playerMovement;
+
+    private void Start()
+    {
+        playerMovement = AudioManager.instance.CreateInstance(FmodEvents.instance.kopiMovements);
+        playerMovement.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+    }
     private void FixedUpdate()
     {
         Move();
+        UpdatePlayerMovementSFX();
     }
     void Move()
     {
         PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * moveSpeed;
+        MoveVector = transform.TransformDirection(PlayerMovementInput) * moveSpeed;
         playerbody.velocity = new Vector3(MoveVector.x, playerbody.velocity.y, MoveVector.z);
         if (PlayerMovementInput.magnitude >= 0.1f )
         {
@@ -29,4 +40,24 @@ public class Movement : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
         }
     }
+
+    private void UpdatePlayerMovementSFX()
+    {
+        if (MoveVector != Vector3.zero)
+        {
+            //Player has moved
+            PLAYBACK_STATE playbackState;
+            playerMovement.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED)) 
+            {
+                playerMovement.start();
+            }
+        }
+        else
+        {
+            //Player has not moved
+            playerMovement.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
 }

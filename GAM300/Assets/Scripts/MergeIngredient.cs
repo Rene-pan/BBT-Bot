@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,10 +17,13 @@ public class MergeIngredient : MonoBehaviour
     [SerializeField] GameObject PopUp;
     [SerializeField] GameObject CompletePopUp;
     public Color[] TimeSliderColors;
+    private EventInstance MergingSFX;
     private void Start()
     {
         SetSlider(slider, waitingTime, cookingTimer);
         PopUp.SetActive(false);
+        MergingSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.drinkMaking);
+        MergingSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.parent));
     }
 
     private void Update()
@@ -66,14 +70,22 @@ public class MergeIngredient : MonoBehaviour
                 PopUp.SetActive(true);
                 cookingTimer += Time.deltaTime;
                 UpdateSlider(slider, cookingTimer);
-                if (cookingTimer >= waitingTime)
+                PLAYBACK_STATE playbackState;
+                MergingSFX.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
                 {
+                    MergingSFX.start();
+                }if (cookingTimer >= waitingTime)
+                {
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.cookingComplete, this.transform.position);
                     ChangeState(KopiMakerStates.COMPLETE);
+                    MergingSFX.stop(STOP_MODE.IMMEDIATE);
                 }
                 break;
             case KopiMakerStates.COMPLETE:
                 //off UI
                 CompletePopUp.SetActive(true);
+                //MergingSFX.stop(STOP_MODE.IMMEDIATE);
                 ResetTimer();
                 print("YAY");
                 break;

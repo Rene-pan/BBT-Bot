@@ -12,6 +12,7 @@ public class CollideFloor : MonoBehaviour
         {
             case "Food":
                 print(other);
+                AudioManager.instance.PlayRandom(FmodEvents.instance.crash, this.transform.position);
                 Destroy(other.gameObject);
                 break;
         }

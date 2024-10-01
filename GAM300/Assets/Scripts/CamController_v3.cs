@@ -44,12 +44,11 @@ public class CamController_v3 : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
     private void Update()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         //if (Player.GetComponent<PlayerController_v2>().currentState == PlayerController_v2.PlayerCollection.COLLECT) return;
         switch (currentState)
         {
@@ -141,11 +140,26 @@ public class CamController_v3 : MonoBehaviour
     }
     void OSCam()
     {
-        target.GetComponent<Camera>().enabled = true;
-        RotateAxis.GetComponent<CamController_v2>().enabled = true;
-        GetComponent<Camera>().enabled = false;
-        followTarget.GetComponent<Movement>().cam = target;
-        Player.transform.localEulerAngles = new Vector3(0, 0, 0);
+        CollisionCheck(followTarget.position - target.transform.forward * distFromTarget);
+        if (!pitchLock)
+        {
+            target.GetComponent<Camera>().enabled = true;
+            RotateAxis.GetComponent<CamController_v2>().enabled = true;
+            GetComponent<Camera>().enabled = false;
+            followTarget.GetComponent<Movement>().cam = target;
+            Player.transform.localEulerAngles = new Vector3(0, 0, 0);
+            target.GetComponent<Camera>().fieldOfView = 30;
+        }
+        else
+        {
+            target.GetComponent<Camera>().enabled = true;
+            RotateAxis.GetComponent<CamController_v2>().enabled = true;
+            GetComponent<Camera>().enabled = false;
+            followTarget.GetComponent<Movement>().cam = target;
+            Player.transform.localEulerAngles = new Vector3(0, 0, 0);
+            target.GetComponent<Camera>().fieldOfView = 10;
+        }
+
     }
     private void CollisionCheck(Vector3 retPoint)
     {

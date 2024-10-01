@@ -20,6 +20,7 @@ public class PlayerController_v2 : MonoBehaviour
     public GameObject currentKopiMaker;
     private GameObject holdIngredient;
     private GameObject holdFood;
+    public SpawnCustomer spawner;
 
     [Header("Throwing")]
     public bool canThrow;
@@ -75,7 +76,14 @@ public class PlayerController_v2 : MonoBehaviour
                     hand_amount = 1;
                     GotEmptyCup = true;
                     AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
-                    UIFinder("CollectACupFirst").SetActive(false);
+                    if (UIFinder("CollectACupFirst").activeSelf)
+                    {
+                        UIFinder("CollectACupFirst").SetActive(false);
+                    }
+                    if (UIFinder("BusyKopiMaker").activeSelf)
+                    {
+                        UIFinder("BusyKopiMaker").SetActive(false);
+                    }
                 }
                 var canMergeFood = NearMergePoint && hand_amount == 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint 
                     && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY;
@@ -99,6 +107,10 @@ public class PlayerController_v2 : MonoBehaviour
                     UIFinder("CollectACupFirst").SetActive(false);
                     UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
                     UIFinder("ActivateThrowmode").SetActive(true);
+                    if (UIFinder("BusyKopiMaker").activeSelf)
+                    {
+                        UIFinder("BusyKopiMaker").SetActive(false);
+                    }
                 }
                 //you are going to merge food but hand amount = 0;
                 var showGetCupWarning = !GotEmptyCup && Input.GetKeyDown(KeyCode.E) && hand_amount == 0 && NearMergePoint
@@ -114,6 +126,15 @@ public class PlayerController_v2 : MonoBehaviour
                     ChangeState(PlayerCollection.THROW);
                     PressCount = 1;
                     UIFinder("ActivateThrowmode").SetActive(false);
+                }
+                //if both of the kopimaker is not ready, and player try to get cup by pressing E and its near collection point cannot collect, have error message pop up
+                var CannotCollectIngre = spawner.NoOfKopiMakerBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint;
+                if (CannotCollectIngre)
+                {
+                    Destroy(holdIngredient);
+                    hand_amount = 0;
+                    UIFinder("BusyKopiMaker").SetActive(true);
+                    UIFinder("BusyKopiMaker").GetComponent<Animator>().Play("PulsingThrowPromptUI");
                 }
 
                 break;

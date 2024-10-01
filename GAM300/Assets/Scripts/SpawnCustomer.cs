@@ -18,10 +18,12 @@ public class SpawnCustomer : MonoBehaviour
     public bool canSpawn = false;
     public GameObject currentChair;
     public OrderInfo orderInfo;
+    public List<GameObject> kopiMakers;
 
     private void Awake()
     {
         PopulateChairwayPoints();
+        Addlist(kopiMakers, "kopiMakers");
     }
     private void Start()
     {
@@ -32,6 +34,7 @@ public class SpawnCustomer : MonoBehaviour
     {
         var Money = FindAnyObjectByType<Money>();
         Money.CheckMoney();
+        CheckKopiMachine();
         if (currentCustomerCount < maxShopCapacity)
         {
             ChairAvailability();
@@ -146,6 +149,32 @@ public class SpawnCustomer : MonoBehaviour
                 currentCustomerCount -= 1;
                 orderInfo.numberOfOrders -= 1;
                 break;
+        }
+    }
+    void Addlist(List<GameObject> gameObjects, string tag)
+    {
+        if (gameObjects != null)
+        {
+            var gameobj = GameObject.FindGameObjectsWithTag(tag);
+            foreach (var gameObj in gameobj)
+            {
+                gameObjects.Add(gameObj);
+            }
+        }
+    }
+    public bool NoOfKopiMakerBusy = true;
+    //as long as either one of the kopi maker is ready, it will be not busy
+    void CheckKopiMachine()
+    {
+        NoOfKopiMakerBusy = true;
+        foreach (var kopimaker in kopiMakers)
+        {
+            if (kopimaker.transform.GetChild(0).GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY)
+            {
+                //if any maker is free
+                NoOfKopiMakerBusy= false;
+                print("help");
+            }
         }
     }
 }

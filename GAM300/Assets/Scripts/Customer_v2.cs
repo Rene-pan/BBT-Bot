@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -63,6 +64,8 @@ public class Customer_v2 : MonoBehaviour
         OrderUIHolder = GameObject.Find("OrderList");
         Exitdoor = GameObject.Find("Spawner").transform;
         MoneyScript = FindFirstObjectByType<Money>();
+        EatSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.eats);
+        EatSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
     }
     private void Update()
     {
@@ -211,6 +214,7 @@ public class Customer_v2 : MonoBehaviour
     }
     #endregion
     #region CustomerEat
+    private EventInstance EatSFX;
     public void CustomerEats(float EatingSpeedMultiplier, float eatduration)
     {
         if (OrderToDelete != null)
@@ -221,8 +225,16 @@ public class Customer_v2 : MonoBehaviour
         currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
         Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
         Food.GetComponent<Throwable>().eatCanvas.SetActive(true);
+        PLAYBACK_STATE playbackState;
+        EatSFX.getPlaybackState(out playbackState);
+        if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+        {
+            print("eating");
+            EatSFX.start();
+        }
         if (currentEatTime >= eatduration)
         {
+            EatSFX.stop(STOP_MODE.ALLOWFADEOUT);
             Food.GetComponent<Throwable>().eatCanvas.SetActive(false);
             Food.transform.GetChild(0).GetComponent<Animator>().SetBool("CupStop", true);
             //delete food on table
