@@ -58,6 +58,9 @@ public class Customer_v2 : MonoBehaviour
     [Header("Annoying Customer")]
     [SerializeField] float JumpingDuration;
     [SerializeField] float JumpForce;
+
+    //audio stuff
+    public FmodEvents fmod;
     private void OnEnable()
     {
         targetwaypoint = waypoints[targetWaypointIndex];
@@ -181,14 +184,14 @@ public class Customer_v2 : MonoBehaviour
         if (OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders >= OrderUIHolder.GetComponent<OrderInfo>().maxOrders) return;
         if (OrderUI_ID == OrderUI.Count)
         {
-            print("help1");
+            //print("help1");
             OrderUI_ID = 0;
             OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders += 1;
             ChangeState(CustomerStates.WAIT);
         }
         else
         {
-            print("help");
+            //print("help");
             OrderList.Add(CreateOrder());
         }
     }

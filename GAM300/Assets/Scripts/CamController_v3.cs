@@ -22,8 +22,6 @@ public class CamController_v3 : MonoBehaviour
     Vector3 currentRotation;
     [SerializeField] float rotationSmoothTime;
 
-    [Header("Change Cursor visibility")]
-    int PressedV;
 
     [Header("Change Camera View")]
     int PressedB;

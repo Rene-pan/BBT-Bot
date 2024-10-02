@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using Unity.VisualScripting;
+using FMOD.Studio;
 
 public class FmodEvents : MonoBehaviour
 {
-    [field:Header("Collect SFX")]
+    public List<EventInstance> events;
     [field: SerializeField] public List<EventReference> collect { get; private set; }
 
     [field: Header("Crash SFX")]
@@ -45,6 +47,12 @@ public class FmodEvents : MonoBehaviour
     [field: Header("Ambience SFX")]
     [field: SerializeField] public EventReference ambience { get; private set; }
 
+    [field: Header("UI SFX")]
+    [field: SerializeField] public EventReference UI_Interact { get; private set; }
+
+    [field: Header("Earn Money SFX")]
+    [field: SerializeField] public EventReference EarnMoney { get; private set; }
+
 
 
     public static FmodEvents instance {  get; private set; }
@@ -55,5 +63,7 @@ public class FmodEvents : MonoBehaviour
             Debug.LogError("more than 1 Fmod");
         }
         instance = this;
+       
     }
+    
 }

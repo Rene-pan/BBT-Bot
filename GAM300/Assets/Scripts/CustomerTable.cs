@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class CustomerTable : MonoBehaviour
@@ -31,7 +29,7 @@ public class CustomerTable : MonoBehaviour
                 //check the throwable food name with this table food name
                 var FoodScript = other.GetComponent<Throwable>();
                 var FoodTransform = other.transform;
-                var CustomerTransform = customer.transform;
+                //var CustomerTransform = customer.transform;
                 if (orders == null) return;
                 foreach (var order in orders) //look through all the orders, if the thrown food name matches the current order name, I will delete that order
                 {
@@ -64,8 +62,8 @@ public class CustomerTable : MonoBehaviour
                             case Customer_v2.CustomerType.BIG:
                             case Customer_v2.CustomerType.ANNOYING:
                                 //return to chair pos
-                                CustomerTransform.position = customerScript.nearestChair.GetComponent<CustomerChair>().seatPivot.position;
-                                CustomerTransform.LookAt(gameObject.transform);
+                                customer.transform.position = customerScript.nearestChair.GetComponent<CustomerChair>().seatPivot.position;
+                                customer.transform.LookAt(gameObject.transform);
                                 break;
 
                         

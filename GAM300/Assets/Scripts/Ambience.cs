@@ -1,4 +1,5 @@
 using FMOD.Studio;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,10 @@ public class Ambience : MonoBehaviour
     private EventInstance PlayAmbience;
     void Start()
     {
+        AmbiencePlay();
+    }
+   public void AmbiencePlay()
+        {
         PlayAmbience = AudioManager.instance.CreateInstance(FmodEvents.instance.ambience);
         PlayAmbience.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
         PLAYBACK_STATE playbackState;

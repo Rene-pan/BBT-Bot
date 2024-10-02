@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad376878421a504795efa0a28b16880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObject: {fileID: 3070508496205843368}
 --- !u!1 &9060877737393641730
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,3 +243,17 @@ MonoBehaviour:
       Data3: 566201991
       Data4: 1054029893
     Path: event:/Ambience - M1
+  <UI_Interact>k__BackingField:
+    Guid:
+      Data1: -1521287498
+      Data2: 1255816200
+      Data3: -1901562208
+      Data4: 1611446982
+    Path: event:/UI_Select
+  <EarnMoney>k__BackingField:
+    Guid:
+      Data1: 35644395
+      Data2: 1093115333
+      Data3: -2147278403
+      Data4: 967632187
+    Path: event:/CollectMoney

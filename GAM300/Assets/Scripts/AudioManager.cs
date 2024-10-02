@@ -8,20 +8,21 @@ using FMOD.Studio;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    public static List<EventInstance> eventInstances = new List<EventInstance>();
+
     //private string BankName;
     private void Awake()
     {
         if (instance != null)
         {
             print("Found more than one Audio Manager in the scene.");
-            return;
         }
         instance = this;
-        //FMODUnity.RuntimeManager.StudioSystem.getBank();
     }
     private void OnDestroy()
     {
         DontDestroyOnLoad(instance);
+        print("HELP");
     }
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
@@ -35,11 +36,20 @@ public class AudioManager : MonoBehaviour
     public EventInstance CreateInstance(EventReference eventReference)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+        eventInstances.Add(eventInstance);
         return eventInstance;
     }
-    public void StopSounds()
+    //public void StopSounds()
+    //{
+    //    foreach (var sound in eventInstances)
+    //    {
+    //        sound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    //    }
+
+    //}
+    public void StopAllSounds()
     {
-        RuntimeManager.GetBus("Bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
     
 
