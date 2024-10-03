@@ -20,7 +20,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         playerMovement = AudioManager.instance.CreateInstance(FmodEvents.instance.kopiMovements);
-        playerMovement.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        playerMovement.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(playerbody.gameObject.transform));
     }
     private void FixedUpdate()
     {

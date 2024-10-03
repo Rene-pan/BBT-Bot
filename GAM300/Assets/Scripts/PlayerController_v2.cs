@@ -111,6 +111,7 @@ public class PlayerController_v2 : MonoBehaviour
                     {
                         UIFinder("BusyKopiMaker").SetActive(false);
                     }
+                    canThrow = true;
                 }
                 //you are going to merge food but hand amount = 0;
                 var showGetCupWarning = !GotEmptyCup && Input.GetKeyDown(KeyCode.E) && hand_amount == 0 && NearMergePoint
@@ -121,10 +122,10 @@ public class PlayerController_v2 : MonoBehaviour
                     UIFinder("CollectACupFirst").GetComponent<Animator>().Play("PulsingThrowPromptUI");
                 }
                //if I interact with the merge point without touching canCollectIngredient
-               if (Input.GetMouseButtonDown(1) && PressCount == 0)
+               if (Input.GetMouseButtonDown(1) && PressCount == 0 && canThrow)
                 {
-                    ChangeState(PlayerCollection.THROW);
                     PressCount = 1;
+                    ChangeState(PlayerCollection.THROW);
                     UIFinder("ActivateThrowmode").SetActive(false);
                 }
                 //if both of the kopimaker is not ready, and player try to get cup by pressing E and its near collection point cannot collect, have error message pop up
@@ -149,6 +150,7 @@ public class PlayerController_v2 : MonoBehaviour
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.throwing, this.transform.position);
                     UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[0];
                     UIFinder("ActivateThrowmode").SetActive(true);
+                    canThrow = false;
                 }
                 else if (Input.GetMouseButtonDown(1) && PressCount == 2)
                 {

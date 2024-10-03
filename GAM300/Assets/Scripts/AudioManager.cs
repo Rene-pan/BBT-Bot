@@ -13,17 +13,22 @@ public class AudioManager : MonoBehaviour
     //private string BankName;
     private void Awake()
     {
-        if (instance != null)
+        // If there is not already an instance of SoundManager, set it to this.
+        if (instance == null)
         {
-            print("Found more than one Audio Manager in the scene.");
+            instance = this;
         }
-        instance = this;
+        //If an instance already exists, destroy whatever this object is to enforce the singleton.
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        //Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
+        DontDestroyOnLoad(gameObject);
+        StopAllSounds();
     }
-    private void OnDestroy()
-    {
-        DontDestroyOnLoad(instance);
-        print("HELP");
-    }
+  
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
         RuntimeManager.PlayOneShot(sound, worldPos);
@@ -39,14 +44,6 @@ public class AudioManager : MonoBehaviour
         eventInstances.Add(eventInstance);
         return eventInstance;
     }
-    //public void StopSounds()
-    //{
-    //    foreach (var sound in eventInstances)
-    //    {
-    //        sound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-    //    }
-
-    //}
     public void StopAllSounds()
     {
         RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);

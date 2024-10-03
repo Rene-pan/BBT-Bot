@@ -9,16 +9,18 @@ public class MainMenu : MonoBehaviour
     public bool PressOnce = false;
     public bool PressReplay = false;
     public bool MainMenuPress = false;
+    public Transform PlayUIPosition;
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
     public void ButtonPress(string sceneName)
     {
+            PlayUISFX();
         if (!PressOnce)
         {
-            AudioManager.instance.StopAllSounds();
-            AudioManager.instance.PlayOneShot(FmodEvents.instance.UI_Interact, transform.position);
+            //AudioManager.instance.StopAllSounds();
+            Destroy(AudioManager.instance.gameObject);
             SceneManager.LoadScene(sceneName);
             Time.timeScale = 1;
             PressOnce = true;
@@ -26,10 +28,11 @@ public class MainMenu : MonoBehaviour
     }
     public void Replay()
     {
+        PlayUISFX();
         if (!PressReplay)
         {
-            AudioManager.instance.StopAllSounds();
-            AudioManager.instance.PlayOneShot(FmodEvents.instance.UI_Interact, transform.position);
+            //AudioManager.instance.StopAllSounds();
+            PlayUISFX();
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
             Time.timeScale = 1;
@@ -39,12 +42,24 @@ public class MainMenu : MonoBehaviour
 
     public void MMPress(string sceneName)
     {
+        PlayUISFX();
         if (!MainMenuPress)
         {
-            AudioManager.instance.PlayOneShot(FmodEvents.instance.UI_Interact, transform.position);
             SceneManager.LoadScene(sceneName);
             Time.timeScale = 1;
             MainMenuPress = true;
         }
     }
+
+    public void Exit()
+    {
+        PlayUISFX();
+        Application.Quit();
+        print("exit");
+    }
+    void PlayUISFX()
+    {
+        AudioManager.instance.PlayOneShot(FmodEvents.instance.UI_Interact, PlayUIPosition.position);
+    }
+    
 }

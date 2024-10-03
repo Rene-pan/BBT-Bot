@@ -1629,6 +1629,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5489678266645053893, guid: 0c5a098682a11334894b9ae86ef677ae, type: 3}
   m_PrefabInstance: {fileID: 814310909}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &826967983 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1936477738585796409, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
+  m_PrefabInstance: {fileID: 1473497272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &838126872 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5005234459437642405, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
@@ -3771,7 +3776,7 @@ PrefabInstance:
     - target: {fileID: 8301243008850668696, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 108324030}
+      objectReference: {fileID: 1473497276}
     - target: {fileID: 8301243008850668696, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
       propertyPath: mainMenu
       value: 
@@ -3855,8 +3860,7 @@ MonoBehaviour:
   PressOnce: 0
   PressReplay: 0
   MainMenuPress: 0
-  music: {fileID: 0}
-  mmbience: {fileID: 0}
+  PlayUIPosition: {fileID: 826967983}
 --- !u!1 &1475184313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 312684956759020315, guid: 708db5c4ed18f254c898ea9d85cd6c53, type: 3}

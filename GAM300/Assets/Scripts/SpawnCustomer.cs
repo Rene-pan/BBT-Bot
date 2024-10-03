@@ -28,7 +28,9 @@ public class SpawnCustomer : MonoBehaviour
     private void Start()
     {
         time = 0;
-        Time.timeScale = 1;
+        //reset the stopOnce for the audio
+        var Money = FindAnyObjectByType<Money>();
+        Money.StopOnce = true;
     }
     private void Update()
     {
@@ -173,7 +175,6 @@ public class SpawnCustomer : MonoBehaviour
             {
                 //if any maker is free
                 NoOfKopiMakerBusy= false;
-                print("help");
             }
         }
     }

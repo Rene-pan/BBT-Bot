@@ -54,7 +54,7 @@ public class CamController_v3 : MonoBehaviour
                 CamFunctions();
                 if (Input.GetMouseButtonDown(1))
                 {
-                    if (Player.GetComponent<PlayerController_v2>().currentState == PlayerController_v2.PlayerCollection.COLLECT) return;
+                    if (!Player.GetComponent<PlayerController_v2>().canThrow) return;
                     PressedB = 0;
                     camStartPos = transform.position;
                     StartCoroutine(Transition(camStartPos, target.position, PressedB));

@@ -20,7 +20,7 @@ public class BGM : MonoBehaviour
     private void Start()
     {
         PlayBGM = AudioManager.instance.CreateInstance(FmodEvents.instance.gameBGM);
-        PlayBGM.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        PlayBGM.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(Vector3.zero));
         PlayMusic();
     }
     public void PlayMusic()

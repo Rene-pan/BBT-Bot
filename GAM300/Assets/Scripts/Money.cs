@@ -17,14 +17,15 @@ public class Money : MonoBehaviour
     [SerializeField] PlayerController playerController;
     [SerializeField] MainTimer timer;
     public List<GameObject> UIs; // 0 is success, 1 is failure
-    private EventInstance success;
-    private EventInstance failure;
     public GameObject player;
 
     //audio & ui
     private bool GameOverPlayOnce;
     private bool GameSuccessPlayOnce;
+    public bool StopOnce = true;
     public MainMenu mainMenu;
+    private EventInstance success;
+    private EventInstance failure;
     private void Start()
     {
         SetGoalAmount();
@@ -57,21 +58,30 @@ public class Money : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             currentEarnings = TargetEarnings;
+            GameSuccessPlayOnce = true;
         }
     }
     public void CheckMoney()
     {
         if (currentEarnings >= TargetEarnings && timer.TimerIsRunning)
         {
+            if (StopOnce)
+            {
+                StopSounds();
+                StopOnce = false;
+                print("why");
+            }
             UnlockCursor();
-            StopSounds();
+
             mainMenu.PressOnce = false;
             if (GameSuccessPlayOnce)
             {
-                AudioManager.instance.PlayOneShot(FmodEvents.instance.gameSuccess, player.transform.position);
-            //Invoke("PlayMusic", 0.5f);
-                print("help");
+                AudioManager.instance.PlayOneShot(FmodEvents.instance.gameSuccess, Vector3.zero);
+                //success = AudioManager.instance.CreateInstance(FmodEvents.instance.gameSuccess);
                 GameSuccessPlayOnce = false;
+                //success.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(Vector3.zero));
+                //success.start();
+                //success.release();
             }
             print("Game Win");
             UIs[1].SetActive(true);
@@ -79,14 +89,20 @@ public class Money : MonoBehaviour
         }
         else if (currentEarnings < TargetEarnings && !timer.TimerIsRunning)
         {
+            if (StopOnce)
+            {
+                StopSounds();
+                StopOnce = false;
+                print("why");
+            }
             UnlockCursor();
             StopSounds();
             mainMenu.PressOnce = false;
             mainMenu.PressReplay = false;
             if (GameOverPlayOnce)
             {
-                AudioManager.instance.PlayOneShot(FmodEvents.instance.gameOver, player.transform.position);
-
+                AudioManager.instance.PlayOneShot(FmodEvents.instance.gameOver, Vector3.zero);
+                //music.StopMusic();
                 GameOverPlayOnce = false;
             }
             print("Game Lost");
@@ -101,11 +117,15 @@ public class Money : MonoBehaviour
     }
     void StopSounds()
     {
-        print("why");
         AudioManager.instance.StopAllSounds();
+        //success.stop(STOP_MODE.IMMEDIATE);
+
     }
     void PlayMusic()
     {
-        AudioManager.instance.PlayOneShot(FmodEvents.instance.gameSuccess, transform.position);
+        success = AudioManager.instance.CreateInstance(FmodEvents.instance.gameSuccess);
+        success.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(Vector3.zero));
+        success.start();
+        success.release();
     }
 }
