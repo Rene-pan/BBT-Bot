@@ -235,6 +235,10 @@ public class Customer_v2 : MonoBehaviour
             print("eating");
             EatSFX.start();
         }
+        else if ( Time.timeScale == 0)
+        {
+            EatSFX.stop(STOP_MODE.IMMEDIATE);
+        }
         if (currentEatTime >= eatduration)
         {
             EatSFX.stop(STOP_MODE.ALLOWFADEOUT);

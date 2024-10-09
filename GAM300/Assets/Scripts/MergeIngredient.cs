@@ -75,7 +75,12 @@ public class MergeIngredient : MonoBehaviour
                 if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
                 {
                     MergingSFX.start();
-                }if (cookingTimer >= waitingTime)
+                }
+                else if (Time.timeScale == 0)
+                {
+                    MergingSFX.stop(STOP_MODE.IMMEDIATE);
+                }
+                if (cookingTimer >= waitingTime)
                 {
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.cookingComplete, this.transform.position);
                     ChangeState(KopiMakerStates.COMPLETE);

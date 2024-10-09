@@ -7,16 +7,7 @@ using UnityEngine;
 public class BGM : MonoBehaviour
 {
     //audio
-    private bool endScreenAppear=false;
-    private static EventInstance PlayBGM;
-
-    private void Update()
-    {
-       if (endScreenAppear)
-        {
-            StopMusic();
-        }
-    }
+    public EventInstance PlayBGM;
     private void Start()
     {
         PlayBGM = AudioManager.instance.CreateInstance(FmodEvents.instance.gameBGM);

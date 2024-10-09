@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2404527558946032738}
   - component: {fileID: 8419203728493323862}
-  - component: {fileID: 8639566869208344331}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -46,19 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2098eefb72a11439877150e4dd3795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8639566869208344331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3070508496205843368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ad376878421a504795efa0a28b16880, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObject: {fileID: 3070508496205843368}
 --- !u!1 &9060877737393641730
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,11 +210,11 @@ MonoBehaviour:
     Path: event:/GameOver Fail
   <gameSuccess>k__BackingField:
     Guid:
-      Data1: 2092210687
-      Data2: 1128065756
-      Data3: -1325071731
-      Data4: 1467733360
-    Path: event:/GameOver Success
+      Data1: -1985001969
+      Data2: 1074206758
+      Data3: 1859353014
+      Data4: -368248701
+    Path: event:/GameOver Success 2
   <gameBGM>k__BackingField:
     Guid:
       Data1: 1290559601

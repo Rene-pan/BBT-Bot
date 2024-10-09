@@ -24,13 +24,20 @@ public class SpawnCustomer : MonoBehaviour
     {
         PopulateChairwayPoints();
         Addlist(kopiMakers, "kopiMakers");
+
+        //AudioManager.instance.StopAllSounds();
+    }
+    private void OnEnable()
+    {
     }
     private void Start()
     {
         time = 0;
+        Time.timeScale = 1;
         //reset the stopOnce for the audio
         var Money = FindAnyObjectByType<Money>();
         Money.StopOnce = true;
+        Money.StopSuccessMusic();
     }
     private void Update()
     {

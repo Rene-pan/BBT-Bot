@@ -10,44 +10,49 @@ public class MainMenu : MonoBehaviour
     public bool PressReplay = false;
     public bool MainMenuPress = false;
     public Transform PlayUIPosition;
-    public void LoadScene(string sceneName)
+    public IEnumerator LoadScene(string sceneName)
     {
+        yield return new WaitForSeconds(0.1f);
         SceneManager.LoadScene(sceneName);
     }
     public void ButtonPress(string sceneName)
     {
-            PlayUISFX();
         if (!PressOnce)
         {
-            //AudioManager.instance.StopAllSounds();
-            Destroy(AudioManager.instance.gameObject);
             SceneManager.LoadScene(sceneName);
             Time.timeScale = 1;
             PressOnce = true;
+            var Money = FindAnyObjectByType<Money>();
+            Money.StopSuccessMusic();
+            Money.StopFailureMusic();
+            //AudioManager.instance.StopAllSounds();
+            //Destroy(AudioManager.instance.gameObject);
         }
     }
     public void Replay()
     {
-        PlayUISFX();
         if (!PressReplay)
         {
-            //AudioManager.instance.StopAllSounds();
-            PlayUISFX();
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
             Time.timeScale = 1;
             PressReplay = true;
+            var Money = FindAnyObjectByType<Money>();
+            Money.StopFailureMusic();
+            //AudioManager.instance.StopAllSounds();
+            //Invoke("OffSounds", 0.02f);
         }
     }
 
     public void MMPress(string sceneName)
     {
-        PlayUISFX();
         if (!MainMenuPress)
         {
             SceneManager.LoadScene(sceneName);
             Time.timeScale = 1;
             MainMenuPress = true;
+            var BGM = FindAnyObjectByType<BGM>();
+            BGM.StopMusic();
         }
     }
 
@@ -57,9 +62,14 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
         print("exit");
     }
-    void PlayUISFX()
+    public void PlayUISFX()
     {
-        AudioManager.instance.PlayOneShot(FmodEvents.instance.UI_Interact, PlayUIPosition.position);
+        AudioManager.instance.PlayOneShot2D(FmodEvents.instance.UI_Interact);
+    }
+    
+    void OffSounds()
+    {
+        AudioManager.instance.StopAllSounds();
     }
     
 }

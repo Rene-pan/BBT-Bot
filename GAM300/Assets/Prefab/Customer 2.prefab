@@ -181,6 +181,7 @@ MonoBehaviour:
   targetWaypoint_backIndex: 0
   JumpingDuration: 0
   JumpForce: 0
+  fmod: {fileID: 0}
   time: 0
   time1: 0
   AnimatorObj: {fileID: 0}

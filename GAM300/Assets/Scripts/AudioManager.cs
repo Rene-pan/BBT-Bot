@@ -26,12 +26,17 @@ public class AudioManager : MonoBehaviour
 
         //Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
         DontDestroyOnLoad(gameObject);
-        StopAllSounds();
+        //StopAllSounds();
     }
   
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
         RuntimeManager.PlayOneShot(sound, worldPos);
+    }
+
+    public void PlayOneShot2D(EventReference sound)
+    {
+        RuntimeManager.PlayOneShot(sound);
     }
     public void PlayRandom(List<EventReference> sounds, Vector3 worldPos)
     {
@@ -47,6 +52,7 @@ public class AudioManager : MonoBehaviour
     public void StopAllSounds()
     {
         RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        //foreach (var sound in eventInstances) { }
     }
     
 
