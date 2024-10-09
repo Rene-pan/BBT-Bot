@@ -423,6 +423,18 @@ PrefabInstance:
       value: 3rdPersonTopViewCam
       objectReference: {fileID: 0}
     - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 333869756}
+    - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 333869758}
+    - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
+      propertyPath: RotateAxis
+      value: 
+      objectReference: {fileID: 333869757}
+    - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
       propertyPath: followTarget
       value: 
       objectReference: {fileID: 1834467917}
@@ -492,6 +504,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+--- !u!1 &333869756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8351680957005007081, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+  m_PrefabInstance: {fileID: 333869755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &333869757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5544158642546262634, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+  m_PrefabInstance: {fileID: 333869755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &333869758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6933572693198946752, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+  m_PrefabInstance: {fileID: 333869755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &337743435
 PrefabInstance:
   m_ObjectHideFlags: 0
