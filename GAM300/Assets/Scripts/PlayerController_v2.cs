@@ -25,7 +25,8 @@ public class PlayerController_v2 : MonoBehaviour
     [Header("Throwing")]
     public bool canThrow;
     public bool ThrowOnce = true;
-    private newThrow throwscript;
+    public ProjectileThrow throwscript;
+    public LineRenderer lr;
     public float time;
     [SerializeField] List<GameObject> PlayerUI;
     public Sprite[] ThrowPrompts; //org, new
@@ -33,9 +34,7 @@ public class PlayerController_v2 : MonoBehaviour
 
     private void Start()
     {
-        //find throw script
-        throwscript = FindAnyObjectByType<newThrow>();
-        throwscript.lr.enabled = false;
+        lr.enabled = false;
         time = 0;
         foreach (GameObject UI in GameObject.FindGameObjectsWithTag("PlayerUI"))
         {
@@ -111,6 +110,7 @@ public class PlayerController_v2 : MonoBehaviour
                     {
                         UIFinder("BusyKopiMaker").SetActive(false);
                     }
+                    throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
                     canThrow = true;
                 }
                 //you are going to merge food but hand amount = 0;
@@ -127,6 +127,7 @@ public class PlayerController_v2 : MonoBehaviour
                     PressCount = 1;
                     ChangeState(PlayerCollection.THROW);
                     UIFinder("ActivateThrowmode").SetActive(false);
+                    lr.enabled = true;
                 }
                 //if both of the kopimaker is not ready, and player try to get cup by pressing E and its near collection point cannot collect, have error message pop up
                 var CannotCollectIngre = spawner.NoOfKopiMakerBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint;
@@ -145,7 +146,7 @@ public class PlayerController_v2 : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && PressCount ==1)
                 {
                     PressCount = 2;
-                    throwscript.Throw();
+                    throwscript.ThrowObject();
                     Destroy(holdFood);
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.throwing, this.transform.position);
                     UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[0];

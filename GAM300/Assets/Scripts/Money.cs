@@ -14,7 +14,7 @@ public class Money : MonoBehaviour
     [SerializeField] int TargetEarnings;
     public int currentEarnings = 0;
     [SerializeField] string animationName;
-    [SerializeField] PlayerController playerController;
+    [SerializeField] PlayerController_v2 playerController;
     [SerializeField] MainTimer timer;
     public List<GameObject> UIs; // 0 is success, 1 is failure
     public GameObject player;

@@ -3,16 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(TrajectoryPredictor))]
 public class ProjectileThrow : MonoBehaviour
 {
-    public TrajectoryPredictor trajectoryPredictor;
-
+    TrajectoryPredictor trajectoryPredictor;
     public Rigidbody objectToThrow;
-
-    [Range(0.0f, 50.0f)]
-    public float force;
-
+    [SerializeField, Range(0.0f, 50.0f)]
+    float force;
     [SerializeField]
     Transform StartPosition;
-
 
     void OnEnable()
     {
@@ -26,10 +22,8 @@ public class ProjectileThrow : MonoBehaviour
     {
         Predict();
     }
-
     void Predict()
     {
-        if (objectToThrow == null) return;
         trajectoryPredictor.PredictTrajectory(ProjectileData());
     }
 
@@ -49,9 +43,8 @@ public class ProjectileThrow : MonoBehaviour
 
     public void ThrowObject()
     {
-        if (objectToThrow == null) return;
         Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
-        thrownObject.constraints = RigidbodyConstraints.None;
         thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);
+        trajectoryPredictor.SetTrajectoryVisible(false);
     }
 }

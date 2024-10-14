@@ -32,6 +32,7 @@ public class CamController_v3 : MonoBehaviour
     [SerializeField] float transitionDuration;
     [SerializeField] GameObject RotateAxis;
     [SerializeField] GameObject Player;
+    [SerializeField] LineRenderer lr;
 
     [Header("CollisionCheck")]
     public float collideSpeed = 5;
@@ -58,6 +59,7 @@ public class CamController_v3 : MonoBehaviour
                     PressedB = 0;
                     camStartPos = transform.position;
                     StartCoroutine(Transition(camStartPos, target.position, PressedB));
+                    lr.enabled = true;
                     //Player.GetComponent<PlayerController>().UIFinder("ActivateThrowmode").SetActive(false);
                 }
                 break;
@@ -70,6 +72,7 @@ public class CamController_v3 : MonoBehaviour
                     PressedB = 1;
                     //Player.GetComponent<PlayerController>().UIFinder("ActivateThrowmode").SetActive(true);
                     StartCoroutine(Transition(camEndPos, camStartPos, PressedB));
+                    lr.enabled = false;
                 }
 
                 break;
