@@ -226,7 +226,7 @@ public class Customer_v2 : MonoBehaviour
             Destroy(OrderToDelete, 2);
         }
         currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
-        Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
+        //Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
         Food.GetComponent<Throwable>().eatCanvas.SetActive(true);
         PLAYBACK_STATE playbackState;
         EatSFX.getPlaybackState(out playbackState);

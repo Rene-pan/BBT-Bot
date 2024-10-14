@@ -2312,6 +2312,9 @@ MonoBehaviour:
   UIs:
   - {fileID: 6714224173369369059}
   - {fileID: 3325840256019124891}
+  player: {fileID: 4838037596771870077}
+  StopOnce: 1
+  mainMenu: {fileID: 0}
 --- !u!1 &8576948713759905486
 GameObject:
   m_ObjectHideFlags: 0
