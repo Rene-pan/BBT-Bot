@@ -83,6 +83,7 @@ MonoBehaviour:
   Table: {fileID: 0}
   OrderCount: 1
   waypoints: []
+  seatPivot: {fileID: 0}
 --- !u!65 &211566805432780595
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -102,8 +103,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0, y: 0, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.22529942, z: 0.8684726}
+  m_Center: {x: 0, y: 0.15186146, z: 0.0070444345}
 --- !u!1001 &8634421201059353724
 PrefabInstance:
   m_ObjectHideFlags: 0

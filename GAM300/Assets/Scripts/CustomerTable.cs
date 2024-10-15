@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CustomerTable : MonoBehaviour
 {
+    public int TableID;
     public bool CompletedMeal;
     public string FoodName;
     public Color WrongFoodErrorColour;
@@ -36,7 +37,7 @@ public class CustomerTable : MonoBehaviour
                     if (order == null) { print("no food"); 
                         AudioManager.instance.PlayRandom(FmodEvents.instance.crash, this.transform.position);
                         Destroy(other.gameObject); } 
-                    if (FoodScript.Name == order.GetComponent<Order>().OrderName)
+                    else if (FoodScript.Name == order.GetComponent<Order>().OrderName)
                     {
                         AudioManager.instance.PlayOneShot(FmodEvents.instance.foodLandSuccess, this.transform.position);
                         //print(other);

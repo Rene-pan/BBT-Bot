@@ -114,7 +114,7 @@ public class Customer : MonoBehaviour
         SetTimer(CreateNewOrder.GetComponent<Order>().DecreasingTimer, OrderWaitTime);
         var OrderScript = CreateNewOrder.GetComponent<Order>();
         OrderScript.addIngredientIcons();
-        OrderScript.UpdateOrderName();
+        //OrderScript.UpdateOrderName();
         //set order name to table
         NearestTable.GetComponent<CustomerTable>().FoodName = OrderScript.OrderName;
         NearestTable.GetComponent<CustomerTable>().customer = gameObject;

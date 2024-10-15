@@ -11,6 +11,7 @@ public class Order : MonoBehaviour
     public float DecreasingDuration;
     public string OrderName;
     public TextMeshProUGUI OrderNameHolder;
+    public TextMeshProUGUI TableIDHolder;
     public Sprite[] OrderIngredients;
     public GameObject IngredientList;
     public Vector2 IngredientImageSize;
@@ -28,9 +29,10 @@ public class Order : MonoBehaviour
             Parent(IngredientList.transform, Ingredient, 0);
         }
     }
-    public void UpdateOrderName()
+    public void UpdateOrderUI(int TableID)
     {
         OrderNameHolder.text = OrderName;
+        TableIDHolder.text = "Table #" + TableID;
     }
 
     private void Update()

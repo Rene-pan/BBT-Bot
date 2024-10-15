@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class MergeIngredient : MonoBehaviour
 {
+    public enum MakerTypes {TOAST, DRINK}
+    public MakerTypes makerType;
     public enum KopiMakerStates {READY, PREP, COMPLETE}
     public KopiMakerStates currentState = KopiMakerStates.READY;
     public GameObject[] foods;
+    public int CollectfoodID = 0;
     public int CurrentCollectfoodID = 0;
     public int CurrentThrowfoodID = 1;
     public float waitingTime = 5f;  
@@ -35,14 +38,7 @@ public class MergeIngredient : MonoBehaviour
         if (other.tag == "Player")
         {
             var playerScript = other.GetComponent<PlayerController_v2>();
-            print(other.name);
-            print("You reached collection area!");
-            playerScript.NearMergePoint = true;
-            //playerScript.foodNo = 0;
-            playerScript.currentKopiMaker = this.gameObject;
-            playerScript.currentFoodCollectable = foods[CurrentCollectfoodID];
-            playerScript.currentFoodThrowable = foods[CurrentThrowfoodID];
-            
+            FoodMakerTypeTriggerStay(playerScript);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -50,14 +46,83 @@ public class MergeIngredient : MonoBehaviour
         if (other.tag == "Player")
         {
             var playerScript = other.GetComponent<PlayerController_v2>();
-            print("You left collection area!");
-            playerScript.NearMergePoint = false;
-            playerScript.currentKopiMaker = null;
-            playerScript.currentFoodCollectable = null;
-            playerScript.currentFoodThrowable = null;
+            FoodMakerTypeTriggerLeave(playerScript);
         }
     }
 
+    void FoodMakerTypeTriggerStay(PlayerController_v2 playerScript)
+    {
+        switch (makerType)
+        {
+            case MakerTypes.TOAST:
+                    playerScript.NearMergePoint = true;
+                    playerScript.currentKopiMaker = this.gameObject;
+                    playerScript.currentFoodCollectable = foods[CurrentCollectfoodID];
+                    if (playerScript.holdIngredient == null) return;
+                    var currentToastScript = playerScript.holdIngredient.GetComponent<CollectableFood>();
+                    //print(currentFoodScript.CollectableFoodID);
+                    //print(CollectfoodID);
+                    //print("You reached collection area!");
+                    if (currentToastScript.CollectableFoodID == CollectfoodID)
+                    {
+                        playerScript.Mergeable = true;
+                    }
+                    else
+                    {
+                        playerScript.Mergeable = false;
+                    }
+                    break;
+
+            case MakerTypes.DRINK:
+                    playerScript.NearMergePoint = true;
+                    playerScript.currentKopiMaker = this.gameObject;
+                    playerScript.currentFoodCollectable = foods[CurrentCollectfoodID];
+                    playerScript.currentFoodThrowable = foods[CurrentThrowfoodID];
+                    var currentDrinkScript = playerScript.holdIngredient.GetComponent<CollectableFood>();
+                    //print(currentFoodScript.CollectableFoodID);
+                    //print(CollectfoodID);
+                    //print("You reached collection area!");
+                    if (currentDrinkScript.CollectableFoodID == CollectfoodID)
+                    {
+                        playerScript.Mergeable = true;
+                    }
+                    else
+                    {
+                        playerScript.Mergeable = false;
+                    }
+                    break;
+        }
+    }
+    void FoodMakerTypeTriggerLeave(PlayerController_v2 playerScript)
+    {
+        switch (makerType)
+        {
+            case MakerTypes.TOAST:
+                {
+                    playerScript.NearMergePoint = false;
+                    playerScript.currentKopiMaker = null;
+                    playerScript.currentFoodCollectable = null;
+                    if (playerScript.UIFinder("WrongIngredient").activeSelf)
+                    {
+                        playerScript.UIFinder("WrongIngredient").SetActive(false);
+                    }
+                    break;
+                }
+            case MakerTypes.DRINK:
+                {
+                    print("You left collection area!");
+                    playerScript.NearMergePoint = false;
+                    playerScript.currentKopiMaker = null;
+                    playerScript.currentFoodCollectable = null;
+                    playerScript.currentFoodThrowable = null;
+                    if (playerScript.UIFinder("WrongIngredient").activeSelf)
+                    {
+                        playerScript.UIFinder("WrongIngredient").SetActive(false);
+                    }
+                    break;
+                }
+        }
+    }
     void KopiMachineAI()
     {
         switch (currentState)

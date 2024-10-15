@@ -166,15 +166,15 @@ public class Customer_v2 : MonoBehaviour
         var CreateNewOrder = Instantiate(OrderUI[OrderUI_ID], OrderUIHolder.transform);
         //start timer for that specific order in customer side
         var OrderScript = CreateNewOrder.GetComponent<Order>();
+        var TableScript = nearestTable.GetComponent<CustomerTable>();
         SetTimer(OrderScript.DecreasingTimer, OrderWaitTime);
         OrderScript.addIngredientIcons();
-        OrderScript.UpdateOrderName();
+        OrderScript.UpdateOrderUI(TableScript.TableID);
         //set order name to table
-        
-        nearestTable.GetComponent<CustomerTable>().FoodName = OrderScript.OrderName;
-        nearestTable.GetComponent<CustomerTable>().orders.Clear();
-        nearestTable.GetComponent<CustomerTable>().orders.Add(CreateNewOrder);
-        nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(true);
+        TableScript.FoodName = OrderScript.OrderName;
+        TableScript.orders.Clear();
+        TableScript.orders.Add(CreateNewOrder);
+        TableScript.eatArea.SetActive(true);
         OrderUI_ID += 1;
         return CreateNewOrder;
     }

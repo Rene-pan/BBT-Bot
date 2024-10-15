@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f5fe212eeb7294eb2f57f4cded9f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TableID: 0
   CompletedMeal: 0
   FoodName: 
   WrongFoodErrorColour: {r: 0.7433963, g: 0.2791242, b: 0.2791242, a: 1}

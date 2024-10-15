@@ -169,7 +169,6 @@ MonoBehaviour:
   rayOverlap: 1.1
   cam: {fileID: 0}
   player: {fileID: 0}
-  playerScript: {fileID: 0}
 --- !u!1 &4797927818915823373
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,29 +496,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 8351680957005007081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf9891492a87004cb4f6c2a3cd41f39, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c14423bb2a02264a9e99cf84df0c880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   camScript: {fileID: 0}
+  currentState: 0
   NearCollectionPoint: 0
   NearMergePoint: 0
-  hand: {fileID: 1925670353874672030}
+  GotEmptyCup: 0
+  hand: {fileID: 0}
   hand_amount: 0
   currentIngredient: {fileID: 0}
   currentFoodCollectable: {fileID: 0}
   currentFoodThrowable: {fileID: 0}
   currentKopiMaker: {fileID: 0}
+  spawner: {fileID: 0}
   canThrow: 0
   ThrowOnce: 1
-  minThrowDistance: 30
-  throwStrength: {fileID: 0}
-  maxStrengthValue: 30
-  addStrengthValue: 0.5
+  throwscript: {fileID: 0}
+  lr: {fileID: 0}
   time: 0
   PlayerUI: []
-  ThrowPrompts:
-  - {fileID: 21300000, guid: fb675dc8637c8364aaa6fdbf8ad953e1, type: 3}
-  - {fileID: 21300000, guid: 651883eb6e21b944897590adcb478141, type: 3}
+  ThrowPrompts: []
+  PressCount: 0
 --- !u!1 &8692150145211175808
 GameObject:
   m_ObjectHideFlags: 0
