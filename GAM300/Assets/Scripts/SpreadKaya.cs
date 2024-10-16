@@ -5,13 +5,14 @@ public class SpreadKaya : MonoBehaviour
     public enum KayaMakerStates { READY, PREP, COMPLETE }
     public KayaMakerStates currentState;
     public Transform breadLocation;
+    public GameObject[] foods;//0 is collectable, 1 is throwable
 
     [Header("Spreading Bar")]
     public Slider spreadBreadProgressBar;
     public Color[] TimeSliderColors;
     public float spreadBreadMaxValue;
     public float spreadBreadIncreasingValue;
-    private float currentSpreadValue;
+    public float currentSpreadValue;
     private PlayerController_v2 playerScript;
     public GameObject completeUI;
     //when player reaches here, player will be required to press e to increase the spreading kaya bar
@@ -35,6 +36,8 @@ public class SpreadKaya : MonoBehaviour
             playerScript = other.GetComponent<PlayerController_v2>();
             playerScript.NearSpreadKayaPoint = true;
             playerScript.currentKayaMachine = gameObject.GetComponent<SpreadKaya>();
+            playerScript.currentFoodCollectable = foods[0];
+            playerScript.currentFoodThrowable = foods[1];
         }
     }
     private void OnTriggerExit(Collider other)
@@ -44,6 +47,8 @@ public class SpreadKaya : MonoBehaviour
             playerScript = other.GetComponent<PlayerController_v2>();
             playerScript.NearSpreadKayaPoint = false;
             playerScript.currentKayaMachine = null;
+            playerScript.currentFoodCollectable = null;
+            playerScript.currentFoodThrowable = null;
         }
     }
     void KayaMaker(PlayerController_v2 player)
@@ -67,8 +72,9 @@ public class SpreadKaya : MonoBehaviour
                 break;
             case SpreadKaya.KayaMakerStates.COMPLETE:
                 completeUI.SetActive(true);
-                SetSlider(spreadBreadProgressBar, spreadBreadMaxValue, 0);
                 SliderVisibility(spreadBreadProgressBar, false);
+                SetSlider(spreadBreadProgressBar, spreadBreadMaxValue, 0);
+                currentSpreadValue = 0;
                 break;
         }
     }
@@ -97,7 +103,7 @@ public class SpreadKaya : MonoBehaviour
     void ChangeSliderColor(Slider slider)
     {
         if (currentState != KayaMakerStates.PREP) return;
-        var sliderFillColour = slider.transform.GetChild(1).GetComponent<Image>();
+        var sliderFillColour = slider.transform.GetChild(2).GetComponent<Image>();
         float percentage = (slider.value / slider.maxValue) * 100;
         //light to dark
         if (percentage <= 25)

@@ -147,8 +147,9 @@ public class PlayerController_v2 : MonoBehaviour
                 {
                     hand_amount = 2;
                     currentKayaMachine.ChangeState(SpreadKaya.KayaMakerStates.READY);
-                    //kaya machine should store the collectable & throwable (have not done)
                     //instantiate kaya machine collectable to holdfood (have not done)
+                    holdFood = Instantiate(currentFoodCollectable, hand);
+                    throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
                     print("Throw toast now");
                     UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
                     UIFinder("ActivateThrowmode").SetActive(true);
@@ -158,6 +159,9 @@ public class PlayerController_v2 : MonoBehaviour
                     }
                     throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
                     canThrow = true;
+                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
+                    //destroy the food on the bench
+                    Destroy(ToastedBread);
                 }
                 //you are going to merge an empty cup into a coffee but hand amount = 0 and not holding any empty cup ingredient
                 var showGetCupWarning = CurrentHoldIngredientID == 0 && Input.GetKeyDown(KeyCode.E) && hand_amount == 0 && NearMergePoint

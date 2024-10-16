@@ -1060,6 +1060,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   breadLocation: {fileID: 1243199118}
+  foods:
+  - {fileID: 2312658757736624863, guid: 4da84da378e34674687923d304ef05a3, type: 3}
+  - {fileID: 2312658757736624863, guid: 9bc421ab29c309a4098d12f5487dc33f, type: 3}
   spreadBreadProgressBar: {fileID: 372199741}
   TimeSliderColors:
   - {r: 0.87058824, g: 0.9764706, b: 0.76862746, a: 1}
