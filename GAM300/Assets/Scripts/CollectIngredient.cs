@@ -25,6 +25,10 @@ public class CollectIngredient : MonoBehaviour
             print("You left collection area!");
             playerScript.NearCollectionPoint = false;
             playerScript.currentIngredient = null;
+            if (playerScript.UIFinder("BusyKopiMaker").activeSelf)
+            {
+                playerScript.UIFinder("BusyKopiMaker").SetActive(false);
+            }
         }
     }
 }

@@ -19,16 +19,17 @@ public class SpawnCustomer : MonoBehaviour
     public GameObject currentChair;
     public OrderInfo orderInfo;
     public List<GameObject> kopiMakers;
+    public List<GameObject> toasters;
+    public List<GameObject> kayaStations;
 
     private void Awake()
     {
         PopulateChairwayPoints();
         Addlist(kopiMakers, "kopiMakers");
+        Addlist(toasters, "toastMakers");
+        Addlist(kayaStations, "kayaStations");
 
         //AudioManager.instance.StopAllSounds();
-    }
-    private void OnEnable()
-    {
     }
     private void Start()
     {
@@ -49,7 +50,11 @@ public class SpawnCustomer : MonoBehaviour
             ChairAvailability();
             if (canSpawn && totalCustomers <= Customers.Count)
             {
+                print(totalCustomers);
+                print (Customers.Count);
+                print(Customers[currentCustomerID].name);
                 CustomerSpawnTimes(Customers[currentCustomerID]);
+                //print(Customers[currentCustomerID].name);
             }
         }
         else if (totalCustomers == Customers.Count)
@@ -96,6 +101,8 @@ public class SpawnCustomer : MonoBehaviour
         time += Time.deltaTime;
         if (time >= CustomerSpawnTime)
         {
+            totalCustomers += 1;
+            currentCustomerCount += 1;
             var customerScript = customer.GetComponent<Customer_v2>();
             if (customerScript.waypoints != null)
             {
@@ -109,8 +116,6 @@ public class SpawnCustomer : MonoBehaviour
             //customer.transform.position = gameObject.transform.position;
             //customer.GetComponent<Customer>().UpdateChairLocation();
             //customer.GetComponent<Customer>().customerSpawn = gameObject;
-            currentCustomerCount += 1;
-            totalCustomers += 1;
             time = 0;
             currentCustomerID += 1;
             count = 0;
@@ -173,15 +178,35 @@ public class SpawnCustomer : MonoBehaviour
     }
     public bool NoOfKopiMakerBusy = true;
     //as long as either one of the kopi maker is ready, it will be not busy
+    public bool ToastersBusy = true;
+    public bool KayaStationsBusy = true;
     void CheckKopiMachine()
     {
         NoOfKopiMakerBusy = true;
+        ToastersBusy = true;
+        KayaStationsBusy = true;
         foreach (var kopimaker in kopiMakers)
         {
             if (kopimaker.transform.GetChild(0).GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY)
             {
                 //if any maker is free
                 NoOfKopiMakerBusy= false;
+            }
+        }
+        foreach (var toaster in toasters)
+        {
+            if (toaster.transform.GetChild(0).GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY)
+            {
+                //if any maker is free
+                ToastersBusy = false;
+            }
+        }
+        foreach (var kayaStation in kayaStations)
+        {
+            if (kayaStation.transform.GetChild(0).GetComponent<SpreadKaya>().currentState == SpreadKaya.KayaMakerStates.READY)
+            {
+                //if any maker is free
+                KayaStationsBusy = false;
             }
         }
     }

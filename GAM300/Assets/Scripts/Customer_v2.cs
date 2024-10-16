@@ -100,11 +100,11 @@ public class Customer_v2 : MonoBehaviour
                 targetWaypointIndex += 1;
                 if (targetWaypointIndex == waypoints.Count)
                 {
-                    print(targetWaypointIndex);
+                    //print(targetWaypointIndex);
                     targetWaypointIndex = 0;
                 }
                 targetwaypoint = waypoints[targetWaypointIndex];
-                print(targetWaypointIndex);
+                //print(targetWaypointIndex);
             }
         }
     }

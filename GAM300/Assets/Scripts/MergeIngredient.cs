@@ -21,12 +21,14 @@ public class MergeIngredient : MonoBehaviour
     [SerializeField] GameObject CompletePopUp;
     public Color[] TimeSliderColors;
     private EventInstance MergingSFX;
+    public MergeIngredient mergeScript;
     private void Start()
     {
         SetSlider(slider, waitingTime, cookingTimer);
         PopUp.SetActive(false);
         MergingSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.drinkMaking);
         MergingSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.parent));
+        mergeScript = GetComponent<MergeIngredient>();
     }
 
     private void Update()
@@ -78,6 +80,7 @@ public class MergeIngredient : MonoBehaviour
                     playerScript.currentKopiMaker = this.gameObject;
                     playerScript.currentFoodCollectable = foods[CurrentCollectfoodID];
                     playerScript.currentFoodThrowable = foods[CurrentThrowfoodID];
+                if (playerScript.holdIngredient == null) return;
                     var currentDrinkScript = playerScript.holdIngredient.GetComponent<CollectableFood>();
                     //print(currentFoodScript.CollectableFoodID);
                     //print(CollectfoodID);
@@ -121,6 +124,10 @@ public class MergeIngredient : MonoBehaviour
                     }
                     break;
                 }
+        }
+        if (playerScript.UIFinder("BusyKopiMaker").activeSelf)
+        {
+            playerScript.UIFinder("BusyKopiMaker").SetActive(false);
         }
     }
     void KopiMachineAI()

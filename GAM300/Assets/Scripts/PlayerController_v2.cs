@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,6 +39,9 @@ public class PlayerController_v2 : MonoBehaviour
     [Header("Spreading Kaya")]
     public SpreadKaya currentKayaMachine;
     private GameObject ToastedBread;
+
+    [Header("UI")]
+    public TextMeshProUGUI MakerBusyText;
 
     private void Start()
     {
@@ -120,7 +124,7 @@ public class PlayerController_v2 : MonoBehaviour
                     throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
                     canThrow = true;
                 }
-                var canCollectMidToast = NearMergePoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint 
+                var canCollectMidToast = !spawner.KayaStationsBusy&& NearMergePoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint 
                     && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE
                     && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST;
                 if (canCollectMidToast)
@@ -192,9 +196,34 @@ public class PlayerController_v2 : MonoBehaviour
                     Destroy(holdIngredient);
                     hand_amount = 0;
                     UIFinder("BusyKopiMaker").SetActive(true);
+                    //update words
+                    MakerBusyText.text = "";
+                    MakerBusyText.text = "All KopiMakers are busy!";
                     UIFinder("BusyKopiMaker").GetComponent<Animator>().Play("PulsingThrowPromptUI");
                 }
-
+                var cannotCollectToast = spawner.ToastersBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint;
+                if (cannotCollectToast)
+                {
+                    Destroy(holdIngredient);
+                    hand_amount = 0;
+                    UIFinder("BusyKopiMaker").SetActive(true);
+                    //update words
+                    MakerBusyText.text = "";
+                    MakerBusyText.text = "All Toasters are busy!";
+                    UIFinder("BusyKopiMaker").GetComponent<Animator>().Play("PulsingThrowPromptUI");
+                }
+                var cannotCollectMidToast = spawner.KayaStationsBusy && Input.GetKeyDown(KeyCode.E) && NearMergePoint 
+                    && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST
+                    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
+               if (cannotCollectMidToast)
+                {
+                    hand_amount = 0;
+                    UIFinder("BusyKopiMaker").SetActive(true);
+                    //update words
+                    MakerBusyText.text = "";
+                    MakerBusyText.text = "All Kaya Stations are busy!";
+                    UIFinder("BusyKopiMaker").GetComponent<Animator>().Play("PulsingThrowPromptUI");
+                }
                 break;
 
             case PlayerCollection.THROW:

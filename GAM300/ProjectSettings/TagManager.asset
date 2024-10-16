@@ -12,6 +12,8 @@ TagManager:
   - Table
   - Obstacles
   - kopiMakers
+  - toastMakers
+  - kayaStations
   layers:
   - Default
   - TransparentFX
