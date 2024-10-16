@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CollectIngredient : MonoBehaviour
 {
+    public enum CollectTypes { TOAST, DRINK }
+    public CollectTypes currentType;
     public GameObject[] ingredients;
     public int CurrentingredientID = 0;
     private void OnTriggerStay(Collider other)
@@ -15,6 +17,7 @@ public class CollectIngredient : MonoBehaviour
             print(other.name);
             playerScript.NearCollectionPoint = true;
             playerScript.currentIngredient = ingredients[CurrentingredientID];
+            playerScript.currentCollectionArea = gameObject;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -25,6 +28,7 @@ public class CollectIngredient : MonoBehaviour
             print("You left collection area!");
             playerScript.NearCollectionPoint = false;
             playerScript.currentIngredient = null;
+            playerScript.currentCollectionArea = null;
             if (playerScript.UIFinder("BusyKopiMaker").activeSelf)
             {
                 playerScript.UIFinder("BusyKopiMaker").SetActive(false);

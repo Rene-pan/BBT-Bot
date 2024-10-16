@@ -21,6 +21,7 @@ public class PlayerController_v2 : MonoBehaviour
     public GameObject currentFoodCollectable;
     public GameObject currentFoodThrowable;
     public GameObject currentKopiMaker;
+    public GameObject currentCollectionArea;
     public GameObject holdIngredient;
     public GameObject holdFood;
     public SpawnCustomer spawner;
@@ -78,8 +79,8 @@ public class PlayerController_v2 : MonoBehaviour
                 //player can only collect within this mode
                 //player cannot collect when they have food on their hand
                 //if player collect ingredient, cannot collect anything else and must be near collectionpoint
-                var canCollectIngredient = NearCollectionPoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E);
-                if (canCollectIngredient)
+                var canCollectCup = NearCollectionPoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E);
+                if (canCollectCup)
                 {
                     holdIngredient = Instantiate(currentIngredient, hand);
                     CurrentHoldIngredientID = holdIngredient.GetComponent<CollectableFood>().CollectableFoodID;
@@ -89,6 +90,24 @@ public class PlayerController_v2 : MonoBehaviour
                     if (UIFinder("WrongIngredient").activeSelf)
                     {
                         //var IngredientWarn = UIFinder("WrongIngredient").GetComponent<IngredientIndicator>();
+                        UIFinder("WrongIngredient").SetActive(false);
+                    }
+                    if (UIFinder("BusyKopiMaker").activeSelf)
+                    {
+                        UIFinder("BusyKopiMaker").SetActive(false);
+                    }
+                }
+                //if holding food and trying to collect, can delete the food and replace the food the new food 
+                var canReCollectDiffFood = NearCollectionPoint && holdIngredient != null && hand_amount == 1 && Input.GetKeyDown(KeyCode.E);
+                if (canReCollectDiffFood)
+                {
+                    Destroy(holdIngredient);
+                    holdIngredient = Instantiate(currentIngredient, hand);
+                    CurrentHoldIngredientID = holdIngredient.GetComponent<CollectableFood>().CollectableFoodID;
+                    hand_amount = 1;
+                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
+                    if (UIFinder("WrongIngredient").activeSelf)
+                    {
                         UIFinder("WrongIngredient").SetActive(false);
                     }
                     if (UIFinder("BusyKopiMaker").activeSelf)
@@ -190,7 +209,8 @@ public class PlayerController_v2 : MonoBehaviour
                     lr.enabled = true;
                 }
                 //if both of the kopimaker is not ready, and player try to get cup by pressing E and its near collection point cannot collect, have error message pop up
-                var CannotCollectIngre = spawner.NoOfKopiMakerBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint;
+                var CannotCollectIngre = spawner.NoOfKopiMakerBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint 
+                    && currentCollectionArea.GetComponent<CollectIngredient>().currentType == CollectIngredient.CollectTypes.DRINK;
                 if (CannotCollectIngre)
                 {
                     Destroy(holdIngredient);
@@ -201,7 +221,8 @@ public class PlayerController_v2 : MonoBehaviour
                     MakerBusyText.text = "All KopiMakers are busy!";
                     UIFinder("BusyKopiMaker").GetComponent<Animator>().Play("PulsingThrowPromptUI");
                 }
-                var cannotCollectToast = spawner.ToastersBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint;
+                var cannotCollectToast = spawner.ToastersBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint 
+                    && currentCollectionArea.GetComponent<CollectIngredient>().currentType == CollectIngredient.CollectTypes.TOAST;
                 if (cannotCollectToast)
                 {
                     Destroy(holdIngredient);
