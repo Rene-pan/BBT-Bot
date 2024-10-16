@@ -302,6 +302,7 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   playerbody: {fileID: 2775360039266524877}
   cam: {fileID: 0}
+  Newcam: {fileID: 0}
   MoveVector: {x: 0, y: 0, z: 0}
 --- !u!54 &2775360039266524877
 Rigidbody:
@@ -439,7 +440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3780258111521385509}
   - component: {fileID: 7278863748688526883}
-  - component: {fileID: 1945305334125710474}
+  - component: {fileID: 3939823687156312311}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -487,7 +488,7 @@ CapsuleCollider:
   m_Height: 1.065731
   m_Direction: 1
   m_Center: {x: 0, y: -0.5536554, z: 0.032865524}
---- !u!114 &1945305334125710474
+--- !u!114 &3939823687156312311
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -503,22 +504,31 @@ MonoBehaviour:
   currentState: 0
   NearCollectionPoint: 0
   NearMergePoint: 0
-  GotEmptyCup: 0
-  hand: {fileID: 0}
+  NearSpreadKayaPoint: 0
+  Mergeable: 0
+  hand: {fileID: 7304582214259301719}
   hand_amount: 0
   currentIngredient: {fileID: 0}
   currentFoodCollectable: {fileID: 0}
   currentFoodThrowable: {fileID: 0}
   currentKopiMaker: {fileID: 0}
+  currentCollectionArea: {fileID: 0}
+  holdIngredient: {fileID: 0}
+  holdFood: {fileID: 0}
   spawner: {fileID: 0}
+  CurrentHoldIngredientID: 0
   canThrow: 0
   ThrowOnce: 1
   throwscript: {fileID: 0}
   lr: {fileID: 0}
   time: 0
   PlayerUI: []
-  ThrowPrompts: []
+  ThrowPrompts:
+  - {fileID: 21300000, guid: 651883eb6e21b944897590adcb478141, type: 3}
+  - {fileID: 21300000, guid: fb675dc8637c8364aaa6fdbf8ad953e1, type: 3}
   PressCount: 0
+  currentKayaMachine: {fileID: 0}
+  MakerBusyText: {fileID: 0}
 --- !u!1 &8692150145211175808
 GameObject:
   m_ObjectHideFlags: 0

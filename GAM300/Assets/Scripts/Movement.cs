@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
 
     [SerializeField] Rigidbody playerbody;
     public Transform cam;
+    public Transform Newcam;
     public Vector3 MoveVector;
 
     //audio
@@ -29,15 +30,23 @@ public class Movement : MonoBehaviour
     }
     void Move()
     {
-        PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
-        MoveVector = transform.TransformDirection(PlayerMovementInput) * moveSpeed;
-        playerbody.velocity = new Vector3(MoveVector.x, playerbody.velocity.y, MoveVector.z);
-        if (PlayerMovementInput.magnitude >= 0.1f )
+            PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
+            MoveVector = transform.TransformDirection(PlayerMovementInput) * moveSpeed;
+            playerbody.velocity = new Vector3(MoveVector.x, playerbody.velocity.y, MoveVector.z);
+
+        if (PlayerMovementInput.magnitude >= 0.1f && cam.gameObject.GetComponent<CamController_v3>().currentState == CamController_v3.CamState.THIRDPERSON)
         {
-            float targetAngle = Mathf.Atan2(PlayerMovementInput.x, PlayerMovementInput.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(PlayerMovementInput.x, 0) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0, angle, 0);
             Vector3 moveDir = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
+        }
+        if (PlayerMovementInput.magnitude >= 0.1f && cam.gameObject.GetComponent<CamController_v3>().currentState == CamController_v3.CamState.OVERSHOULDER)
+        {
+            float targetAngle = Mathf.Atan2(PlayerMovementInput.x,0) * Mathf.Rad2Deg + Newcam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+            Vector3 moveDir = Quaternion.Euler(0, 0, 0) * Vector3.back;
         }
     }
 

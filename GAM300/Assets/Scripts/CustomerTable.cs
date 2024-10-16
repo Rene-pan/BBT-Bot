@@ -14,6 +14,7 @@ public class CustomerTable : MonoBehaviour
     public GameObject foodPosition;
     public List<GameObject> orders;
     public GameObject eatArea;
+    public Collider destroyCollider;
 
     [Header("Customer Type Big")]
     public Transform[] StandPos;
@@ -39,6 +40,8 @@ public class CustomerTable : MonoBehaviour
                         Destroy(other.gameObject); } 
                     else if (FoodScript.Name == order.GetComponent<Order>().OrderName)
                     {
+                        //off destroy collider
+                        destroyCollider.enabled = false;
                         AudioManager.instance.PlayOneShot(FmodEvents.instance.foodLandSuccess, this.transform.position);
                         //print(other);
                         other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;

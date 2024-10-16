@@ -116,7 +116,7 @@ public class CamController_v3 : MonoBehaviour
         RotateAxis.GetComponent<CamController_v2>().enabled = false;
         GetComponent<Camera>().enabled = true;
         target.GetComponent<Camera>().enabled = false;
-        followTarget.GetComponent<Movement>().cam = this.gameObject.transform;
+        //followTarget.GetComponent<Movement>().cam = this.gameObject.transform;
         Player.transform.localEulerAngles = new Vector3(0, 180, 0);
         RotateAxis.transform.localEulerAngles = new Vector3(0, 0, 0);
         if (followTarget != null && !transitionTrue)
@@ -147,7 +147,7 @@ public class CamController_v3 : MonoBehaviour
             target.GetComponent<Camera>().enabled = true;
             RotateAxis.GetComponent<CamController_v2>().enabled = true;
             GetComponent<Camera>().enabled = false;
-            followTarget.GetComponent<Movement>().cam = target;
+            //followTarget.GetComponent<Movement>().cam = target;
             Player.transform.localEulerAngles = new Vector3(0, 0, 0);
             target.GetComponent<Camera>().fieldOfView = 30;
         }
@@ -156,7 +156,7 @@ public class CamController_v3 : MonoBehaviour
             target.GetComponent<Camera>().enabled = true;
             RotateAxis.GetComponent<CamController_v2>().enabled = true;
             GetComponent<Camera>().enabled = false;
-            followTarget.GetComponent<Movement>().cam = target;
+            //followTarget.GetComponent<Movement>().cam = target;
             Player.transform.localEulerAngles = new Vector3(0, 0, 0);
             target.GetComponent<Camera>().fieldOfView = 10;
         }

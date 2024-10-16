@@ -152,6 +152,7 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   movementSpeed: 1.5
   rotationSpeed: 2
   nearestTable: {fileID: 0}
@@ -161,7 +162,7 @@ MonoBehaviour:
   OrderList: []
   OrderUI_ID: 0
   OrderUIHolder: {fileID: 0}
-  OrderWaitTime: 40
+  OrderWaitTime: 100
   currentTime: 0
   DecreasingValue: 1
   Food: {fileID: 0}

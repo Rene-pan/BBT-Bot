@@ -256,6 +256,7 @@ public class Customer_v2 : MonoBehaviour
             waypointsBack.Add(Exitdoor);
             targetwaypoint_back = waypointsBack[startIndex];
             currentEatTime = 0;
+            nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;
             //movetowards the index
             ChangeState(CustomerStates.LEAVE);
         }
@@ -282,6 +283,7 @@ public class Customer_v2 : MonoBehaviour
         waypointsBack.Add(Exitdoor);
         targetwaypoint_back = waypointsBack[startIndex];
         //GetComponent<Rigidbody>().isKinematic = false;
+        nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;
         //movetowards the index
         ChangeState(CustomerStates.LEAVE);
     }
