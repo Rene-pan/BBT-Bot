@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Customer_v2 : MonoBehaviour
 {
-    public enum CustomerType { NORMAL, BIG, ANNOYING }
+    public enum CustomerType { NORMAL, BIG, ANNOYING, KAREN }
     public enum CustomerStates { MOVE, ORDER, WAIT, EAT, ANGRY, LEAVE }
     public CustomerType customerType;
     public CustomerStates currentState;
@@ -358,6 +358,8 @@ public class Customer_v2 : MonoBehaviour
                     //seat back down
                     break;
                 }
+            case CustomerType.KAREN:
+                break;
         
         }
 

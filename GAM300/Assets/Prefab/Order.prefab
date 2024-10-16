@@ -160,8 +160,8 @@ MonoBehaviour:
   OrderNameHolder: {fileID: 1344381128041749995}
   TableIDHolder: {fileID: 7525867415377244443}
   OrderIngredients:
-  - {fileID: 21300000, guid: 57b9dbd21aedd9143aad12ee7e284db6, type: 3}
-  - {fileID: 21300000, guid: a476280109d588d478a9ecedfbecd432, type: 3}
+  - {fileID: 21300000, guid: 04898b3632e05fe49a6f29d223089c22, type: 3}
+  - {fileID: 21300000, guid: b8a4ed63ef967014491f7ca62bffc0ca, type: 3}
   IngredientList: {fileID: 526481053295868958}
   IngredientImageSize: {x: 80, y: 80}
   TimeSliderColors:
@@ -202,7 +202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -21.3}
+  m_AnchoredPosition: {x: 0, y: -21.300003}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7983350055616286594
@@ -242,8 +242,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280820839
+  m_fontColor: {r: 0.4039216, g: 0.14117648, b: 0.15686275, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -378,8 +378,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281428367
-  m_fontColor: {r: 0.56078434, g: 0.41176474, b: 0.19215688, a: 1}
+    rgba: 4280820839
+  m_fontColor: {r: 0.4039216, g: 0.14117648, b: 0.15686275, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -467,7 +467,7 @@ RectTransform:
   m_GameObject: {fileID: 4982154923946848443}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1485, y: 1.1485, z: 1.1485}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1040996422689047157}
@@ -475,7 +475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.22740936, y: 13.400002}
+  m_AnchoredPosition: {x: 0.22740936, y: 13.6}
   m_SizeDelta: {x: 125, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4348952105746411198
