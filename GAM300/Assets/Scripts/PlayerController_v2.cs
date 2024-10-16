@@ -190,7 +190,7 @@ public class PlayerController_v2 : MonoBehaviour
                 var showGetCupWarning = CurrentHoldIngredientID == 0 && Input.GetKeyDown(KeyCode.E) && hand_amount == 0 && NearMergePoint
                     && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY 
                     && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK 
-                    || CurrentHoldIngredientID == 2 && Input.GetKeyDown(KeyCode.E) && hand_amount == 1 && NearMergePoint
+                    || CurrentHoldIngredientID == 2 && Input.GetKeyDown(KeyCode.E) && hand_amount >= 1 && NearMergePoint
                     && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY 
                     && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK;
                 if (showGetCupWarning) {
@@ -199,6 +199,20 @@ public class PlayerController_v2 : MonoBehaviour
                     UIFinder("WrongIngredient").GetComponent<Animator>().Play("PulsingThrowPromptUI");
                     var IngredientWarn = UIFinder("WrongIngredient").GetComponent<IngredientIndicator>();
                     IngredientWarn.UpdateIngredient(2);
+                }
+                var showGetToastWarning = CurrentHoldIngredientID == 0 && Input.GetKeyDown(KeyCode.E) && hand_amount == 0 && NearMergePoint
+                    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY
+                    && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST
+                    || CurrentHoldIngredientID == 1 && Input.GetKeyDown(KeyCode.E) && hand_amount >= 1 && NearMergePoint
+                    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY
+                    && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST;
+                if (showGetToastWarning)
+                {
+                    //show warning UI
+                    UIFinder("WrongIngredient").SetActive(true);
+                    UIFinder("WrongIngredient").GetComponent<Animator>().Play("PulsingThrowPromptUI");
+                    var IngredientWarn = UIFinder("WrongIngredient").GetComponent<IngredientIndicator>();
+                    IngredientWarn.UpdateIngredient(0);
                 }
                 //if I interact with the merge point without touching canCollectIngredient
                 if (Input.GetMouseButtonDown(1) && PressCount == 0 && canThrow)
