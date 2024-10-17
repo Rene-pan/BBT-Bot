@@ -159,6 +159,7 @@ MonoBehaviour:
   nearestChair: {fileID: 0}
   OrderUI:
   - {fileID: 2620413275955628136, guid: 33448cd4fe1fed64384c904df4452a25, type: 3}
+  - {fileID: 2620413275955628136, guid: 33448cd4fe1fed64384c904df4452a25, type: 3}
   OrderList: []
   OrderUI_ID: 0
   OrderUIHolder: {fileID: 0}

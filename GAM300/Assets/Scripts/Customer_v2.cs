@@ -185,17 +185,17 @@ public class Customer_v2 : MonoBehaviour
 
     public void KeepTrackOfOrders()
     {
-        if (OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders >= OrderUIHolder.GetComponent<OrderInfo>().maxOrders) return;
+        //if (OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders >= OrderUIHolder.GetComponent<OrderInfo>().maxOrders) return;
         if (OrderUI_ID == OrderUI.Count)
         {
             OrderUI_ID = 0;
-            OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders += 1;
             CreatedOrder = true;
             ChangeState(CustomerStates.WAIT);
         }
         else
         {
             OrderList.Add(CreateOrder());
+            OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders += 1;
         }
     }
 
@@ -278,6 +278,7 @@ public class Customer_v2 : MonoBehaviour
                 nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
                 ChangeState(CustomerStates.WAIT);
             }
+            OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders -= 1;
         }
     }
     #endregion
@@ -289,6 +290,7 @@ public class Customer_v2 : MonoBehaviour
         EmotionHolder.SetActive(true);
         EmotionHolder.GetComponent<Image>().sprite = Espressions[0];
         //customer deletes order, order flashes red
+        OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders -= OrderList.Count;
         foreach (var order in OrderList)
         {
             Destroy(order.gameObject);

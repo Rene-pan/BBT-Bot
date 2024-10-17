@@ -161,7 +161,7 @@ public class SpawnCustomer : MonoBehaviour
                 if (other.GetComponent<Customer_v2>().currentState != Customer_v2.CustomerStates.LEAVE) return;
                 Destroy(other.gameObject);
                 currentCustomerCount -= 1;
-                orderInfo.numberOfOrders -= 1;
+                //orderInfo.numberOfOrders -= 1;
                 break;
         }
     }
