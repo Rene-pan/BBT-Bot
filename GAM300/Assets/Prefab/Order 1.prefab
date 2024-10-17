@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 1877787993371154190}
   - component: {fileID: 6888567423303243638}
   m_Layer: 5
-  m_Name: Order
+  m_Name: Order 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,12 +156,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecreasingTimer: {fileID: 1119467268232254669}
   DecreasingDuration: 0.01
-  OrderName: KOPI-O
+  OrderName: TOAST
   OrderNameHolder: {fileID: 1344381128041749995}
   TableIDHolder: {fileID: 7525867415377244443}
   OrderIngredients:
-  - {fileID: 21300000, guid: 04898b3632e05fe49a6f29d223089c22, type: 3}
-  - {fileID: 21300000, guid: b8a4ed63ef967014491f7ca62bffc0ca, type: 3}
+  - {fileID: 21300000, guid: 1d97b815795d37c41a53fdc7e2ca7a38, type: 3}
+  - {fileID: 21300000, guid: 0eccbebcf68d7d24c918219e0a56c0cd, type: 3}
+  - {fileID: 21300000, guid: db6a25c793246894ca36ed535e673664, type: 3}
   IngredientList: {fileID: 526481053295868958}
   IngredientImageSize: {x: 60, y: 60}
   TimeSliderColors:

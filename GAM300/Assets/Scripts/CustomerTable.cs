@@ -7,7 +7,8 @@ public class CustomerTable : MonoBehaviour
 {
     public int TableID;
     public bool CompletedMeal;
-    public string FoodName;
+    //public string FoodName;
+    //public List<string> FoodNames;
     public Color WrongFoodErrorColour;
     public float FlashTimeInterval;
     public GameObject customer;
@@ -15,6 +16,8 @@ public class CustomerTable : MonoBehaviour
     public List<GameObject> orders;
     public GameObject eatArea;
     public Collider destroyCollider;
+    public int succeedCount = 0;
+    public int TotalOrderCount = 0;
 
     [Header("Customer Type Big")]
     public Transform[] StandPos;
@@ -38,9 +41,12 @@ public class CustomerTable : MonoBehaviour
                     if (order == null) { print("no food"); 
                         AudioManager.instance.PlayRandom(FmodEvents.instance.crash, this.transform.position);
                         Destroy(other.gameObject); } 
+                    //if customer still has orders, customer will remain on seat
                     else if (FoodScript.Name == order.GetComponent<Order>().OrderName)
                     {
                         //off destroy collider
+                        succeedCount += 1;
+                        print(succeedCount);
                         destroyCollider.enabled = false;
                         AudioManager.instance.PlayOneShot(FmodEvents.instance.foodLandSuccess, this.transform.position);
                         //print(other);
@@ -58,7 +64,6 @@ public class CustomerTable : MonoBehaviour
                         var customerScript = customer.GetComponent<Customer_v2>();
                         customerScript.Food = other.gameObject;
                         customerScript.OrderToDelete = order;
-                        eatArea.SetActive(false);
                         //FlashColour(FlashTimeInterval, eatArea.GetComponent<Material>(), eatArea.GetComponent<Material>().color, CorrectFoodColour);
                         customerScript.ChangeState(Customer_v2.CustomerStates.EAT);
                         switch (customerScript.customerType) 

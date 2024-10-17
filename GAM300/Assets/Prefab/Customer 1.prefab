@@ -162,7 +162,7 @@ MonoBehaviour:
   OrderList: []
   OrderUI_ID: 0
   OrderUIHolder: {fileID: 0}
-  OrderWaitTime: 100
+  OrderWaitTime: 40
   currentTime: 0
   DecreasingValue: 1
   Food: {fileID: 0}
@@ -180,6 +180,7 @@ MonoBehaviour:
   Exitdoor: {fileID: 0}
   targetwaypoint_back: {fileID: 0}
   targetWaypoint_backIndex: 0
+  CreatedOrder: 0
   JumpingDuration: 0
   JumpForce: 0
   fmod: {fileID: 0}

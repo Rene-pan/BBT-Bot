@@ -116,7 +116,7 @@ public class Customer : MonoBehaviour
         OrderScript.addIngredientIcons();
         //OrderScript.UpdateOrderName();
         //set order name to table
-        NearestTable.GetComponent<CustomerTable>().FoodName = OrderScript.OrderName;
+        //NearestTable.GetComponent<CustomerTable>().FoodName = OrderScript.OrderName;
         NearestTable.GetComponent<CustomerTable>().customer = gameObject;
         NearestTable.GetComponent<CustomerTable>().orders.Add(CreateNewOrder);
         return CreateNewOrder;

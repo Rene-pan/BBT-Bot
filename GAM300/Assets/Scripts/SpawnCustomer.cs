@@ -50,9 +50,9 @@ public class SpawnCustomer : MonoBehaviour
             ChairAvailability();
             if (canSpawn && totalCustomers <= Customers.Count)
             {
-                print(totalCustomers);
-                print (Customers.Count);
-                print(Customers[currentCustomerID].name);
+                //print(totalCustomers);
+                //print (Customers.Count);
+                //print(Customers[currentCustomerID].name);
                 CustomerSpawnTimes(Customers[currentCustomerID]);
                 //print(Customers[currentCustomerID].name);
             }

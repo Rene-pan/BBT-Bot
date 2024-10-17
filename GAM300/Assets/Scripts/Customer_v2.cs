@@ -1,6 +1,7 @@
 using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,6 +55,7 @@ public class Customer_v2 : MonoBehaviour
     public int targetWaypoint_backIndex = 0;
     private int startIndex = 0;
     private float minDistance_back = 0.01f;
+    public bool CreatedOrder = false;
 
     [Header("Annoying Customer")]
     [SerializeField] float JumpingDuration;
@@ -69,6 +71,7 @@ public class Customer_v2 : MonoBehaviour
         MoneyScript = FindFirstObjectByType<Money>();
         EatSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.eats);
         EatSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        CreatedOrder = false;
     }
     private void Update()
     {
@@ -171,11 +174,12 @@ public class Customer_v2 : MonoBehaviour
         OrderScript.addIngredientIcons();
         OrderScript.UpdateOrderUI(TableScript.TableID);
         //set order name to table
-        TableScript.FoodName = OrderScript.OrderName;
-        TableScript.orders.Clear();
+        //TableScript.FoodNames.Add(OrderScript.OrderName);
+        //TableScript.orders.Clear();
         TableScript.orders.Add(CreateNewOrder);
         TableScript.eatArea.SetActive(true);
         OrderUI_ID += 1;
+        TableScript.TotalOrderCount += 1;
         return CreateNewOrder;
     }
 
@@ -184,14 +188,13 @@ public class Customer_v2 : MonoBehaviour
         if (OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders >= OrderUIHolder.GetComponent<OrderInfo>().maxOrders) return;
         if (OrderUI_ID == OrderUI.Count)
         {
-            //print("help1");
             OrderUI_ID = 0;
             OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders += 1;
+            CreatedOrder = true;
             ChangeState(CustomerStates.WAIT);
         }
         else
         {
-            //print("help");
             OrderList.Add(CreateOrder());
         }
     }
@@ -223,10 +226,11 @@ public class Customer_v2 : MonoBehaviour
         if (OrderToDelete != null)
         {
             OrderToDelete.GetComponent<Image>().color = Color.green;
+            OrderList.Remove(OrderToDelete);
             Destroy(OrderToDelete, 2);
         }
         currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
-        //Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
+        Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
         Food.GetComponent<Throwable>().eatCanvas.SetActive(true);
         PLAYBACK_STATE playbackState;
         EatSFX.getPlaybackState(out playbackState);
@@ -235,7 +239,7 @@ public class Customer_v2 : MonoBehaviour
             print("eating");
             EatSFX.start();
         }
-        else if ( Time.timeScale == 0)
+        else if (Time.timeScale == 0)
         {
             EatSFX.stop(STOP_MODE.IMMEDIATE);
         }
@@ -258,7 +262,22 @@ public class Customer_v2 : MonoBehaviour
             currentEatTime = 0;
             nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;
             //movetowards the index
-            ChangeState(CustomerStates.LEAVE);
+            if (nearestTable.GetComponent<CustomerTable>().succeedCount == nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
+            {
+                print(nearestTable.GetComponent<CustomerTable>().succeedCount);
+                print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
+                nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(false);
+                nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
+                ChangeState(CustomerStates.LEAVE);
+            }
+            else if (nearestTable.GetComponent<CustomerTable>().succeedCount < nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
+            {
+                print(nearestTable.GetComponent<CustomerTable>().succeedCount);
+                print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
+                nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(true);
+                nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
+                ChangeState(CustomerStates.WAIT);
+            }
         }
     }
     #endregion
@@ -301,6 +320,8 @@ public class Customer_v2 : MonoBehaviour
         float distance = Vector3.Distance(transform.position, targetwaypoint_back.position);
         transform.position = Vector3.MoveTowards(transform.position, targetwaypoint_back.position, movementStep);
         CheckDistanceToWPNMove(distance);
+        var TableScript = nearestTable.GetComponent<CustomerTable>();
+        TableScript.orders.Clear();
     }
 
     #endregion
