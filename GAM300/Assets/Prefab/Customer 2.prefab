@@ -131,9 +131,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.6065068
-  m_Height: 1.5431515
+  m_Height: 1.6
   m_Direction: 1
-  m_Center: {x: 0.014246702, y: 0.8751901, z: 0.05965656}
+  m_Center: {x: 0.014246702, y: 0.73, z: 0.05965656}
 --- !u!114 &4397413352712879660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,16 +152,17 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   movementSpeed: 2
   rotationSpeed: 2
   nearestTable: {fileID: 0}
   nearestChair: {fileID: 0}
   OrderUI:
-  - {fileID: 2620413275955628136, guid: 33448cd4fe1fed64384c904df4452a25, type: 3}
+  - {fileID: 2620413275955628136, guid: 395c789a7cb523b47a4eb6ae5990e4fa, type: 3}
   OrderList: []
   OrderUI_ID: 0
   OrderUIHolder: {fileID: 0}
-  OrderWaitTime: 40
+  OrderWaitTime: 70
   currentTime: 0
   DecreasingValue: 1
   Food: {fileID: 0}
@@ -179,6 +180,7 @@ MonoBehaviour:
   Exitdoor: {fileID: 0}
   targetwaypoint_back: {fileID: 0}
   targetWaypoint_backIndex: 0
+  CreatedOrder: 0
   JumpingDuration: 0
   JumpForce: 0
   fmod: {fileID: 0}
@@ -205,8 +207,8 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -323,7 +325,7 @@ Transform:
   m_GameObject: {fileID: 8972157197812582204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.06, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

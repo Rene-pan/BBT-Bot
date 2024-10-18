@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4028447182009739167}
   - component: {fileID: 3123691518781551515}
   m_Layer: 0
-  m_Name: TOAST
+  m_Name: KAYA TOAST
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

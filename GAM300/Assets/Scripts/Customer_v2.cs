@@ -93,7 +93,7 @@ public class Customer_v2 : MonoBehaviour
                     targetWaypoint_backIndex = waypointsBack.Count;
                 }
                 targetwaypoint_back = waypointsBack[targetWaypoint_backIndex];
-                print("help"+ targetWaypoint_backIndex);
+                //print("help"+ targetWaypoint_backIndex);
             }
         }
         else
@@ -236,7 +236,7 @@ public class Customer_v2 : MonoBehaviour
         EatSFX.getPlaybackState(out playbackState);
         if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
         {
-            print("eating");
+            //print("eating");
             EatSFX.start();
         }
         else if (Time.timeScale == 0)
@@ -264,16 +264,16 @@ public class Customer_v2 : MonoBehaviour
             //movetowards the index
             if (nearestTable.GetComponent<CustomerTable>().succeedCount == nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
             {
-                print(nearestTable.GetComponent<CustomerTable>().succeedCount);
-                print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
+                //print(nearestTable.GetComponent<CustomerTable>().succeedCount);
+                //print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
                 nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(false);
                 nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
                 ChangeState(CustomerStates.LEAVE);
             }
             else if (nearestTable.GetComponent<CustomerTable>().succeedCount < nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
             {
-                print(nearestTable.GetComponent<CustomerTable>().succeedCount);
-                print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
+                //print(nearestTable.GetComponent<CustomerTable>().succeedCount);
+                //print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
                 nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(true);
                 nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
                 ChangeState(CustomerStates.WAIT);

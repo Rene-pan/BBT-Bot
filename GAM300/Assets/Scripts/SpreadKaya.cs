@@ -15,6 +15,8 @@ public class SpreadKaya : MonoBehaviour
     public float currentSpreadValue;
     private PlayerController_v2 playerScript;
     public GameObject completeUI;
+    public GameObject KayaIcon;
+    public Image Fill;
     //when player reaches here, player will be required to press e to increase the spreading kaya bar
     //when spreading kaya bar reaches the max amount, the status of the bread completion changes to fulfilled
     //player can collect the fulfilled bread and throw
@@ -57,8 +59,10 @@ public class SpreadKaya : MonoBehaviour
         {
             case SpreadKaya.KayaMakerStates.READY:
                 completeUI.SetActive(false);
+                KayaIcon.SetActive(true);
                 break;
             case SpreadKaya.KayaMakerStates.PREP:
+                KayaIcon.SetActive(false);
                 var canSpread = player.NearSpreadKayaPoint && Input.GetKey(KeyCode.E);
                 if (canSpread)
                 {
@@ -67,6 +71,7 @@ public class SpreadKaya : MonoBehaviour
                 }
                 if (currentSpreadValue >= spreadBreadProgressBar.maxValue)
                 {
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.cookingComplete, this.transform.position);
                     ChangeState(KayaMakerStates.COMPLETE);
                 }
                 break;
@@ -103,7 +108,7 @@ public class SpreadKaya : MonoBehaviour
     void ChangeSliderColor(Slider slider)
     {
         if (currentState != KayaMakerStates.PREP) return;
-        var sliderFillColour = slider.transform.GetChild(2).GetComponent<Image>();
+        var sliderFillColour = Fill.GetComponent<Image>();
         float percentage = (slider.value / slider.maxValue) * 100;
         //light to dark
         if (percentage <= 25)

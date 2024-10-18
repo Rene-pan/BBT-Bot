@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 7448840310513613801}
   - component: {fileID: 7328363169674202035}
   - component: {fileID: 2503958954542713877}
+  - component: {fileID: 6878172469135047759}
   m_Layer: 0
   m_Name: woman_combined
   m_TagString: Untagged
@@ -164,6 +165,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &6878172469135047759
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373253049429301307}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a9a5f47972c4994eab6e27db10f0adc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2251596905678945102
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,16 +265,16 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
-  movementSpeed: 3
+  movementSpeed: 2.5
   rotationSpeed: 2
   nearestTable: {fileID: 0}
   nearestChair: {fileID: 0}
   OrderUI:
-  - {fileID: 2620413275955628136, guid: 33448cd4fe1fed64384c904df4452a25, type: 3}
+  - {fileID: 2620413275955628136, guid: 395c789a7cb523b47a4eb6ae5990e4fa, type: 3}
   OrderList: []
   OrderUI_ID: 0
   OrderUIHolder: {fileID: 0}
-  OrderWaitTime: 40
+  OrderWaitTime: 60
   currentTime: 0
   DecreasingValue: 1
   Food: {fileID: 0}
@@ -269,12 +292,13 @@ MonoBehaviour:
   Exitdoor: {fileID: 0}
   targetwaypoint_back: {fileID: 0}
   targetWaypoint_backIndex: 0
-  JumpingDuration: 3
+  CreatedOrder: 0
+  JumpingDuration: 5
   JumpForce: 3
   fmod: {fileID: 0}
   time: 0
   time1: 0
-  AnimatorObj: {fileID: 0}
+  AnimatorObj: {fileID: 1373253049429301307}
 --- !u!54 &8126217349441331706
 Rigidbody:
   m_ObjectHideFlags: 0

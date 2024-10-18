@@ -69,21 +69,33 @@ public class SpawnCustomer : MonoBehaviour
     //check if the customer timer has reached its own spawn delay time
     //if yes spawn the customer at the spawnpoint position
     //set its waypoints to the chair waypoints then make the customer move only once they have the waypoints in their script
-    //
     public float count = 0;
+    //I randomise a chair integer
+    // I check if this chair that I picked is available or not
+    // if it is available I pick this and add the count
+    //if it is not available, I repick
     void ChairAvailability()
     {
         if (count > 0) return;
-        foreach (var chair in chairList)
+        //foreach (var chair in chairList)
+        //{
+        //    if (chair.GetComponent<CustomerChair>().currentState == CustomerChair.ChairState.AVAILABLE)
+        //    {
+        //        currentChair = chair.gameObject;
+        //        count += 1;
+        //        chair.GetComponent<CustomerChair>().currentState = CustomerChair.ChairState.UNAVAILABLE;
+        //        canSpawn = true;
+        //        break;
+        //    }
+        //}
+        int randomID = Random.Range(0, chairList.Count);
+        print(randomID);
+        if (chairList[randomID].GetComponent<CustomerChair>().currentState == CustomerChair.ChairState.AVAILABLE)
         {
-            if (chair.GetComponent<CustomerChair>().currentState == CustomerChair.ChairState.AVAILABLE)
-            {
-                currentChair = chair.gameObject;
-                count += 1;
-                chair.GetComponent<CustomerChair>().currentState = CustomerChair.ChairState.UNAVAILABLE;
-                canSpawn = true;
-                break;
-            }
+            currentChair = chairList[randomID].gameObject;
+            count += 1;
+            chairList[randomID].GetComponent<CustomerChair>().currentState = CustomerChair.ChairState.UNAVAILABLE;
+            canSpawn = true;
         }
     }
     void CustomerSpawnTimes(GameObject customer)
