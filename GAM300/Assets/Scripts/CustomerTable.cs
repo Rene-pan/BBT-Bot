@@ -15,7 +15,6 @@ public class CustomerTable : MonoBehaviour
     public GameObject foodPosition;
     public List<GameObject> orders;
     public GameObject eatArea;
-    public Material eatAreaMaterial;
     public Collider destroyCollider;
     public int succeedCount = 0;
     public int TotalOrderCount = 0;
