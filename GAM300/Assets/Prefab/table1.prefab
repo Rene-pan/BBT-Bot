@@ -69,14 +69,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TableID: 0
   CompletedMeal: 0
-  FoodName: 
   WrongFoodErrorColour: {r: 0.7433963, g: 0.2791242, b: 0.2791242, a: 1}
   FlashTimeInterval: 1
   customer: {fileID: 0}
   foodPosition: {fileID: 1686579611821173106}
   orders: []
   eatArea: {fileID: 6226491444895034059}
+  eatAreaMaterial: {fileID: 2100000, guid: 02213cf9bb901554d9af4a988042b0e7, type: 2}
   destroyCollider: {fileID: 6168996142135170505}
+  succeedCount: 0
+  TotalOrderCount: 0
   StandPos:
   - {fileID: 6812991285495964749}
   - {fileID: 5833931257892452639}

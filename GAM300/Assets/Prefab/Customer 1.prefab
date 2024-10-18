@@ -159,11 +159,11 @@ MonoBehaviour:
   nearestChair: {fileID: 0}
   OrderUI:
   - {fileID: 2620413275955628136, guid: 33448cd4fe1fed64384c904df4452a25, type: 3}
-  - {fileID: 2620413275955628136, guid: 33448cd4fe1fed64384c904df4452a25, type: 3}
+  - {fileID: 2620413275955628136, guid: ae7b0dafb400a7744ae10009f937a375, type: 3}
   OrderList: []
   OrderUI_ID: 0
   OrderUIHolder: {fileID: 0}
-  OrderWaitTime: 40
+  OrderWaitTime: 120
   currentTime: 0
   DecreasingValue: 1
   Food: {fileID: 0}

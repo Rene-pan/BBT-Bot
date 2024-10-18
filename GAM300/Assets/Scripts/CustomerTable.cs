@@ -15,6 +15,7 @@ public class CustomerTable : MonoBehaviour
     public GameObject foodPosition;
     public List<GameObject> orders;
     public GameObject eatArea;
+    public Material eatAreaMaterial;
     public Collider destroyCollider;
     public int succeedCount = 0;
     public int TotalOrderCount = 0;
@@ -38,9 +39,11 @@ public class CustomerTable : MonoBehaviour
                 if (orders == null) return;
                 foreach (var order in orders) //look through all the orders, if the thrown food name matches the current order name, I will delete that order
                 {
+                    print(FoodScript.Name);
+                    print(order.GetComponent<Order>().OrderName);
                     if (order == null) { print("no food"); 
                         AudioManager.instance.PlayRandom(FmodEvents.instance.crash, this.transform.position);
-                        Destroy(other.gameObject); } 
+                        Destroy(other.gameObject); }
                     //if customer still has orders, customer will remain on seat
                     else if (FoodScript.Name == order.GetComponent<Order>().OrderName)
                     {
@@ -78,18 +81,29 @@ public class CustomerTable : MonoBehaviour
                         
                         }
                     }
-                    else if (FoodScript.Name != order.GetComponent<Order>().OrderName)
+                    else if (FoodScript.Name != order.GetComponent<Order>().OrderName && orders.Count > 1)
                     {
                         other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                         Parent(foodPosition.transform, other.gameObject, 0);
                         other.transform.localPosition = Vector3.zero;
                         other.transform.localRotation = Quaternion.Euler(Vector3.zero);
                         //change EatAreaColour to red then back to green after a while
-                        FlashColour(FlashTimeInterval, eatArea.GetComponent<Material>(), eatArea.GetComponent<Material>().color, WrongFoodErrorColour);
+                        //FlashColour(FlashTimeInterval,eatArea.GetComponent<Renderer>().material, eatArea.GetComponent<Renderer>().material.color, WrongFoodErrorColour);
+                        //delete food
+                        //Destroy(other.gameObject, FlashTimeInterval);
+                        continue;
+                    }
+                    else if (FoodScript.Name != order.GetComponent<Order>().OrderName && orders.Count == 1)
+                    {
+                        other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        Parent(foodPosition.transform, other.gameObject, 0);
+                        other.transform.localPosition = Vector3.zero;
+                        other.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                        //change EatAreaColour to red then back to green after a while
+                        FlashColour(FlashTimeInterval,eatArea.GetComponent<Renderer>().material, eatArea.GetComponent<Renderer>().material.color, WrongFoodErrorColour);
                         //delete food
                         Destroy(other.gameObject, FlashTimeInterval);
                     }
-                    break;
                 }
                 break;
         }
