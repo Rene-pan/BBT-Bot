@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class MainTimer : MonoBehaviour
@@ -9,10 +8,14 @@ public class MainTimer : MonoBehaviour
     float currentTime = 0;
     public TextMeshProUGUI timerText;
     public bool TimerIsRunning = false;
+    public Slider TimerSlider;
+
     private void Start()
     {
         TimerIsRunning = true;
         currentTime = mainDuration;
+        TimerSlider.maxValue = mainDuration;
+        TimerSlider.value = mainDuration;
     }
     private void Update()
     {
@@ -31,7 +34,6 @@ public class MainTimer : MonoBehaviour
             print("time gone");
             currentTime = 0;
             TimerIsRunning = false;
-
         }
     }
     void DisplayTime(float timeToDisplay)
@@ -42,6 +44,9 @@ public class MainTimer : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        //slider display
+        TimerSlider.value = timeToDisplay;
     }
 
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4966798781207181066}
   - component: {fileID: 5886250390711418750}
   - component: {fileID: 393866014691845774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7328363169674202035}
   - component: {fileID: 2503958954542713877}
   - component: {fileID: 6878172469135047759}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: woman_combined
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 4397413352712879660}
   - component: {fileID: 8126217349441331706}
   - component: {fileID: 8215288686729462471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Customer 3
   m_TagString: Customer
   m_Icon: {fileID: 0}
@@ -265,6 +265,9 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   movementSpeed: 2.5
   rotationSpeed: 2
   nearestTable: {fileID: 0}
@@ -295,9 +298,7 @@ MonoBehaviour:
   CreatedOrder: 0
   JumpingDuration: 5
   JumpForce: 3
-  fmod: {fileID: 0}
-  time: 0
-  time1: 0
+  DecreaseMoneyAmount: 0
   AnimatorObj: {fileID: 1373253049429301307}
 --- !u!54 &8126217349441331706
 Rigidbody:
@@ -359,7 +360,7 @@ GameObject:
   - component: {fileID: 5798889599468535207}
   - component: {fileID: 1200665626250756886}
   - component: {fileID: 905172115881357133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CustomerEmote
   m_TagString: Untagged
   m_Icon: {fileID: 0}

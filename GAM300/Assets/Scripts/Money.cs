@@ -1,10 +1,9 @@
 using UnityEngine;
 using TMPro;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
-using System.Linq.Expressions;
 using FMOD.Studio;
+using UnityEngine.UI;
+using System.Collections;
 
 public class Money : MonoBehaviour
 {
@@ -13,11 +12,12 @@ public class Money : MonoBehaviour
     [SerializeField] GameObject AddMoneyPrefab;
     [SerializeField] GameObject DecreaseMoneyPrefab;
     [SerializeField] GameObject EarningHolder;
+    [SerializeField] Slider CurrentMoneyFillAmount;
     [SerializeField] int TargetEarnings;
     public int currentEarnings = 0;
     [SerializeField] string AddMoneyAnimation;
     [SerializeField] PlayerController_v2 playerController;
-    [SerializeField] MainTimer timer;
+    private MainTimer timer;
     public List<GameObject> UIs; // 0 is success, 1 is failure
     public GameObject player;
 
@@ -42,11 +42,15 @@ public class Money : MonoBehaviour
     }
     public void SetGoalAmount()
     {
+        //set current earning amounts
         currentEarnings = 0;
         Goaltext.text = "";
         Currenttext.text = "";
         Goaltext.text = "/" + TargetEarnings.ToString();
         Currenttext.text = currentEarnings.ToString();
+        //set slider settings
+        CurrentMoneyFillAmount.maxValue = TargetEarnings;
+        CurrentMoneyFillAmount.value = currentEarnings;
     }
     public void AddMoney(int amount)
     {
@@ -56,6 +60,7 @@ public class Money : MonoBehaviour
         moneyPopup.GetComponent<Animator>().Play(AddMoneyAnimation);
         currentEarnings += amount;
         Currenttext.text = currentEarnings.ToString();
+        CurrentMoneyFillAmount.value = currentEarnings;
         Destroy(moneyPopup, 2);
         //Goaltext.text = "$"+(currentEarnings).ToString() + "/" + TargetEarnings.ToString();
     }
@@ -66,6 +71,7 @@ public class Money : MonoBehaviour
         moneyPopup.GetComponent<Animator>().Play(AddMoneyAnimation);
         currentEarnings -= amount;
         Currenttext.text = currentEarnings.ToString();
+        CurrentMoneyFillAmount.value = currentEarnings;
         Destroy(moneyPopup, 2);
     }
     void Cheat()
@@ -95,7 +101,7 @@ public class Money : MonoBehaviour
             {
                 StopSounds();
                 StopOnce = false;
-                print("why");
+                //print("why");
             }
             UnlockCursor();
 
@@ -120,7 +126,7 @@ public class Money : MonoBehaviour
             {
                 StopSounds();
                 StopOnce = false;
-                print("why");
+                //print("why");
             }
             UnlockCursor();
             mainMenu.PressOnce = false;

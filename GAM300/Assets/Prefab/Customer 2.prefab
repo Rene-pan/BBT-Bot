@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4966798781207181066}
   - component: {fileID: 5886250390711418750}
   - component: {fileID: 393866014691845774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1518344981096264080}
   - component: {fileID: 4397413352712879660}
   - component: {fileID: 8126217349441331706}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Customer 2
   m_TagString: Customer
   m_Icon: {fileID: 0}
@@ -183,9 +183,7 @@ MonoBehaviour:
   CreatedOrder: 0
   JumpingDuration: 0
   JumpForce: 0
-  fmod: {fileID: 0}
-  time: 0
-  time1: 0
+  DecreaseMoneyAmount: 0
   AnimatorObj: {fileID: 0}
 --- !u!54 &8126217349441331706
 Rigidbody:
@@ -225,7 +223,7 @@ GameObject:
   - component: {fileID: 5798889599468535207}
   - component: {fileID: 1200665626250756886}
   - component: {fileID: 905172115881357133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CustomerEmote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +307,7 @@ GameObject:
   - component: {fileID: 8662178422641741290}
   - component: {fileID: 4236750189824088162}
   - component: {fileID: 6158745718763550231}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: chonky_guy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

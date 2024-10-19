@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6173449879310077908}
   - component: {fileID: 4627973792912015872}
   - component: {fileID: 3653279811145284876}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 6915384512367477029}
   - component: {fileID: 2995969146327578943}
   - component: {fileID: 2885297498659991812}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CustomerEmote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 4397413352712879660}
   - component: {fileID: 8126217349441331706}
   - component: {fileID: 8215288686729462471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Customer 4
   m_TagString: Customer
   m_Icon: {fileID: 0}
@@ -271,9 +271,6 @@ MonoBehaviour:
   JumpingDuration: 3
   JumpForce: 3
   DecreaseMoneyAmount: 10
-  fmod: {fileID: 0}
-  time: 0
-  time1: 0
   AnimatorObj: {fileID: 0}
 --- !u!54 &8126217349441331706
 Rigidbody:
@@ -335,7 +332,7 @@ GameObject:
   - component: {fileID: 1214603686447500354}
   - component: {fileID: 3732786627764361724}
   - component: {fileID: 7712832259055661207}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: uncle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
