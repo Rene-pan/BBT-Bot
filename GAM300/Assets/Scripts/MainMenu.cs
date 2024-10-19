@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
     public bool PressReplay = false;
     public bool MainMenuPress = false;
     public Transform PlayUIPosition;
+    public GameObject LevelSelect;
+    public GameObject StartScreen;
     public IEnumerator LoadScene(string sceneName)
     {
         yield return new WaitForSeconds(0.1f);
@@ -55,7 +57,21 @@ public class MainMenu : MonoBehaviour
             BGM.StopMusic();
         }
     }
+    public void OpenLevelSelect()
+    {
+        LevelSelect.SetActive(true);
+        StartScreen.SetActive(false);
+    }
+    public void CloseLevelSelect()
+    {
+        LevelSelect.SetActive(false);
+        StartScreen.SetActive(true);
+    }
 
+    public void UnPausePress()
+    {
+        Time.timeScale = 1;
+    }
     public void Exit()
     {
         PlayUISFX();

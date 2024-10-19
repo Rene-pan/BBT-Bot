@@ -722,14 +722,19 @@ MonoBehaviour:
   currentState: 0
   NearCollectionPoint: 0
   NearMergePoint: 0
-  GotEmptyCup: 0
+  NearSpreadKayaPoint: 0
+  Mergeable: 0
   hand: {fileID: 1012028814}
   hand_amount: 0
   currentIngredient: {fileID: 0}
   currentFoodCollectable: {fileID: 0}
   currentFoodThrowable: {fileID: 0}
   currentKopiMaker: {fileID: 0}
+  currentCollectionArea: {fileID: 0}
+  holdIngredient: {fileID: 0}
+  holdFood: {fileID: 0}
   spawner: {fileID: 1649563962}
+  CurrentHoldIngredientID: 0
   canThrow: 0
   ThrowOnce: 1
   throwscript: {fileID: 108547654}
@@ -740,6 +745,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 651883eb6e21b944897590adcb478141, type: 3}
   - {fileID: 21300000, guid: fb675dc8637c8364aaa6fdbf8ad953e1, type: 3}
   PressCount: 0
+  currentKayaMachine: {fileID: 0}
+  MakerBusyText: {fileID: 0}
 --- !u!1001 &108547653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3916,43 +3923,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3325840256019124891, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3384706415643336676, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3979253822043282404, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3979253822043282404, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3979253822043282404, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3979253822043282404, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3979253822043282404, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3979253822043282404, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3979253822043282404, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3979253822043282404, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4115218913426615257, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
       propertyPath: m_Maskable
@@ -3966,9 +3941,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 6509774766384724941, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6714224173369369059, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7630973426178774782, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4236,8 +4215,12 @@ MonoBehaviour:
   currentChair: {fileID: 0}
   orderInfo: {fileID: 1841192889}
   kopiMakers: []
+  toasters: []
+  kayaStations: []
   count: 0
   NoOfKopiMakerBusy: 0
+  ToastersBusy: 1
+  KayaStationsBusy: 1
 --- !u!65 &1649563963
 BoxCollider:
   m_ObjectHideFlags: 0

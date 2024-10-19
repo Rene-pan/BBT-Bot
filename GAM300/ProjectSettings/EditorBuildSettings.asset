@@ -9,10 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 913ce2ce8e6a4a7468d70501d1299d8e
   - enabled: 1
-    path: Assets/Scenes/joannetest.unity
+    path: Assets/Scenes/Level1.unity
     guid: 9d076724fd7cb4ba0b416f867509febe
   - enabled: 0
     path: Assets/Scenes/Whitebox.unity
     guid: 33b29cb4ae8ef427b91c572adf5cfdd2
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 1e9bbebc9d5c8fd4986fcba4452b8c26
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
