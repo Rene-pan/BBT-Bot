@@ -9,11 +9,13 @@ using FMOD.Studio;
 public class Money : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI Goaltext;
+    [SerializeField] TextMeshProUGUI Currenttext;
     [SerializeField] GameObject AddMoneyPrefab;
+    [SerializeField] GameObject DecreaseMoneyPrefab;
     [SerializeField] GameObject EarningHolder;
     [SerializeField] int TargetEarnings;
     public int currentEarnings = 0;
-    [SerializeField] string animationName;
+    [SerializeField] string AddMoneyAnimation;
     [SerializeField] PlayerController_v2 playerController;
     [SerializeField] MainTimer timer;
     public List<GameObject> UIs; // 0 is success, 1 is failure
@@ -42,16 +44,29 @@ public class Money : MonoBehaviour
     {
         currentEarnings = 0;
         Goaltext.text = "";
-        Goaltext.text = "$" + (currentEarnings).ToString() + "/" + TargetEarnings.ToString(); ;
+        Currenttext.text = "";
+        Goaltext.text = "/" + TargetEarnings.ToString();
+        Currenttext.text = currentEarnings.ToString();
     }
     public void AddMoney(int amount)
     {
         var moneyPopup = Instantiate(AddMoneyPrefab, EarningHolder.transform);
         AudioManager.instance.PlayOneShot(FmodEvents.instance.EarnMoney, playerController.gameObject.transform.position);
-        moneyPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "+ $"+amount.ToString();
-        moneyPopup.GetComponent<Animator>().Play(animationName);
+        moneyPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "+ $" + amount.ToString();
+        moneyPopup.GetComponent<Animator>().Play(AddMoneyAnimation);
         currentEarnings += amount;
-        Goaltext.text = "$"+(currentEarnings).ToString() + "/" + TargetEarnings.ToString();
+        Currenttext.text = currentEarnings.ToString();
+        Destroy(moneyPopup, 2);
+        //Goaltext.text = "$"+(currentEarnings).ToString() + "/" + TargetEarnings.ToString();
+    }
+    public void DecreaseMoney(int amount)
+    {
+        var moneyPopup = Instantiate(DecreaseMoneyPrefab, EarningHolder.transform);
+        moneyPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "- $" + amount.ToString();
+        moneyPopup.GetComponent<Animator>().Play(AddMoneyAnimation);
+        currentEarnings -= amount;
+        Currenttext.text = currentEarnings.ToString();
+        Destroy(moneyPopup, 2);
     }
     void Cheat()
     {

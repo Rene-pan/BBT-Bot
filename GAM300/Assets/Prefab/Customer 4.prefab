@@ -270,6 +270,7 @@ MonoBehaviour:
   CreatedOrder: 0
   JumpingDuration: 3
   JumpForce: 3
+  DecreaseMoneyAmount: 10
   fmod: {fileID: 0}
   time: 0
   time1: 0
