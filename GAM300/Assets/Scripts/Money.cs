@@ -1,21 +1,23 @@
 using UnityEngine;
 using TMPro;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
-using System.Linq.Expressions;
 using FMOD.Studio;
+using UnityEngine.UI;
+using System.Collections;
 
 public class Money : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI Goaltext;
+    [SerializeField] TextMeshProUGUI Currenttext;
     [SerializeField] GameObject AddMoneyPrefab;
+    [SerializeField] GameObject DecreaseMoneyPrefab;
     [SerializeField] GameObject EarningHolder;
+    [SerializeField] Slider CurrentMoneyFillAmount;
     [SerializeField] int TargetEarnings;
     public int currentEarnings = 0;
-    [SerializeField] string animationName;
+    [SerializeField] string AddMoneyAnimation;
     [SerializeField] PlayerController_v2 playerController;
-    [SerializeField] MainTimer timer;
+    private MainTimer timer;
     public List<GameObject> UIs; // 0 is success, 1 is failure
     public GameObject player;
 
@@ -40,18 +42,37 @@ public class Money : MonoBehaviour
     }
     public void SetGoalAmount()
     {
+        //set current earning amounts
         currentEarnings = 0;
         Goaltext.text = "";
-        Goaltext.text = "$" + (currentEarnings).ToString() + "/" + TargetEarnings.ToString(); ;
+        Currenttext.text = "";
+        Goaltext.text = "/" + TargetEarnings.ToString();
+        Currenttext.text = currentEarnings.ToString();
+        //set slider settings
+        CurrentMoneyFillAmount.maxValue = TargetEarnings;
+        CurrentMoneyFillAmount.value = currentEarnings;
     }
     public void AddMoney(int amount)
     {
         var moneyPopup = Instantiate(AddMoneyPrefab, EarningHolder.transform);
         AudioManager.instance.PlayOneShot(FmodEvents.instance.EarnMoney, playerController.gameObject.transform.position);
-        moneyPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "+ $"+amount.ToString();
-        moneyPopup.GetComponent<Animator>().Play(animationName);
+        moneyPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "+ $" + amount.ToString();
+        moneyPopup.GetComponent<Animator>().Play(AddMoneyAnimation);
         currentEarnings += amount;
-        Goaltext.text = "$"+(currentEarnings).ToString() + "/" + TargetEarnings.ToString();
+        Currenttext.text = currentEarnings.ToString();
+        CurrentMoneyFillAmount.value = currentEarnings;
+        Destroy(moneyPopup, 2);
+        //Goaltext.text = "$"+(currentEarnings).ToString() + "/" + TargetEarnings.ToString();
+    }
+    public void DecreaseMoney(int amount)
+    {
+        var moneyPopup = Instantiate(DecreaseMoneyPrefab, EarningHolder.transform);
+        moneyPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "- $" + amount.ToString();
+        moneyPopup.GetComponent<Animator>().Play(AddMoneyAnimation);
+        currentEarnings -= amount;
+        Currenttext.text = currentEarnings.ToString();
+        CurrentMoneyFillAmount.value = currentEarnings;
+        Destroy(moneyPopup, 2);
     }
     void Cheat()
     {
@@ -65,7 +86,7 @@ public class Money : MonoBehaviour
             timer.TimerIsRunning = false;
             GameOverPlayOnce = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             print("Quit");
             Application.Quit();
@@ -80,7 +101,7 @@ public class Money : MonoBehaviour
             {
                 StopSounds();
                 StopOnce = false;
-                print("why");
+                //print("why");
             }
             UnlockCursor();
 
@@ -105,7 +126,7 @@ public class Money : MonoBehaviour
             {
                 StopSounds();
                 StopOnce = false;
-                print("why");
+                //print("why");
             }
             UnlockCursor();
             mainMenu.PressOnce = false;
@@ -123,10 +144,15 @@ public class Money : MonoBehaviour
             UIs[0].SetActive(true);
         }
     }
-    void UnlockCursor()
+    public void UnlockCursor()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+    public void lockCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void StopSounds()
     {

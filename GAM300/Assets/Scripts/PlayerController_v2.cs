@@ -115,105 +115,110 @@ public class PlayerController_v2 : MonoBehaviour
                         UIFinder("BusyKopiMaker").SetActive(false);
                     }
                 }
-                var canMergeFood = NearMergePoint && Mergeable && hand_amount == 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint 
-                    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY;
-                if (canMergeFood)
+                if (currentKopiMaker != null && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK)
                 {
-                    hand_amount = 0;
-                    Destroy(holdIngredient);
-                    currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.PREP);
-                }
-                var canCollectKopi = NearMergePoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint
-                    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE 
-                    && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK;
-                if (canCollectKopi) 
-                {
-                    hand_amount = 2;
-                    holdFood = Instantiate(currentFoodCollectable, hand);
-                    currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.READY);
-                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
-                    //show throw UI
-                    UIFinder("WrongIngredient").SetActive(false);
-                    UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
-                    UIFinder("ActivateThrowmode").SetActive(true);
-                    if (UIFinder("BusyKopiMaker").activeSelf)
+                    var canMergeFood = NearMergePoint && Mergeable && hand_amount == 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint
+                        && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY;
+                    if (canMergeFood)
                     {
-                        UIFinder("BusyKopiMaker").SetActive(false);
+                        hand_amount = 0;
+                        Destroy(holdIngredient);
+                        currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.PREP);
                     }
-                    throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
-                    canThrow = true;
+                    var canCollectKopi = NearMergePoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint
+                        && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE
+                        && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK;
+                    if (canCollectKopi)
+                    {
+                        hand_amount = 2;
+                        holdFood = Instantiate(currentFoodCollectable, hand);
+                        currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.READY);
+                        AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
+                        //show throw UI
+                        UIFinder("WrongIngredient").SetActive(false);
+                        UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
+                        UIFinder("ActivateThrowmode").SetActive(true);
+                        if (UIFinder("BusyKopiMaker").activeSelf)
+                        {
+                            UIFinder("BusyKopiMaker").SetActive(false);
+                        }
+                        throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
+                        canThrow = true;
+                    }
+                    //you are going to merge an empty cup into a coffee but hand amount = 0 and not holding any empty cup ingredient
+                    var showGetCupWarning = CurrentHoldIngredientID == 0 && Input.GetKeyDown(KeyCode.E) && hand_amount == 0 && NearMergePoint
+                        && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY
+                        && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK
+                        || CurrentHoldIngredientID == 2 && Input.GetKeyDown(KeyCode.E) && hand_amount >= 1 && NearMergePoint
+                        && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY
+                        && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK;
+                    if (showGetCupWarning)
+                    {
+                        //show warning UI
+                        UIFinder("WrongIngredient").SetActive(true);
+                        UIFinder("WrongIngredient").GetComponent<Animator>().Play("PulsingThrowPromptUI");
+                        var IngredientWarn = UIFinder("WrongIngredient").GetComponent<IngredientIndicator>();
+                        IngredientWarn.UpdateIngredient(2);
+                    }
                 }
-                var canCollectMidToast = !spawner.KayaStationsBusy&& NearMergePoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint 
+                if (currentKopiMaker != null && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST) {
+                    var canCollectMidToast = !spawner.KayaStationsBusy && NearMergePoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint
                     && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE
                     && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST;
-                if (canCollectMidToast)
-                {
-                    hand_amount = 3;
-                    holdFood = Instantiate(currentFoodCollectable, hand);
-                    currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.READY);
-                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
-                }
-                //if you are trying to merge a mid toast to full toast when you are near the kaya spreading spot, press E key,
-                var canSpreadToast = NearSpreadKayaPoint && hand_amount == 3 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint && !NearMergePoint;
-                if (canSpreadToast)
-                {
-                    hand_amount = 0;
-                    ToastedBread = Instantiate(holdFood, currentKayaMachine.breadLocation);
-                    Destroy(holdFood);
-                    currentKayaMachine.SliderVisibility(currentKayaMachine.spreadBreadProgressBar, true);
-                    currentKayaMachine.ChangeState(SpreadKaya.KayaMakerStates.PREP);
-                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
-                }
-                //if player press e at this state and is near kaya station and hand amount == 0 then change to ready state (this one must put on player controller side)
-                var canCollectFullToast = NearSpreadKayaPoint && hand_amount == 0 && Input.GetKeyDown(KeyCode.E) && currentKayaMachine.currentState == SpreadKaya.KayaMakerStates.COMPLETE;
-                if (canCollectFullToast)
-                {
-                    hand_amount = 2;
-                    currentKayaMachine.ChangeState(SpreadKaya.KayaMakerStates.READY);
-                    //instantiate kaya machine collectable to holdfood (have not done)
-                    holdFood = Instantiate(currentFoodCollectable, hand);
-                    throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
-                    print("Throw toast now");
-                    UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
-                    UIFinder("ActivateThrowmode").SetActive(true);
-                    if (UIFinder("BusyKopiMaker").activeSelf)
+                    if (canCollectMidToast)
                     {
-                        UIFinder("BusyKopiMaker").SetActive(false);
+                        hand_amount = 3;
+                        holdFood = Instantiate(currentFoodCollectable, hand);
+                        currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.READY);
+                        AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
                     }
-                    throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
-                    canThrow = true;
-                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
-                    //destroy the food on the bench
-                    Destroy(ToastedBread);
-                }
-                //you are going to merge an empty cup into a coffee but hand amount = 0 and not holding any empty cup ingredient
-                var showGetCupWarning = CurrentHoldIngredientID == 0 && Input.GetKeyDown(KeyCode.E) && hand_amount == 0 && NearMergePoint
-                    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY 
-                    && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK 
-                    || CurrentHoldIngredientID == 2 && Input.GetKeyDown(KeyCode.E) && hand_amount >= 1 && NearMergePoint
-                    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY 
-                    && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK;
-                if (showGetCupWarning) {
-                    //show warning UI
-                    UIFinder("WrongIngredient").SetActive(true);
-                    UIFinder("WrongIngredient").GetComponent<Animator>().Play("PulsingThrowPromptUI");
-                    var IngredientWarn = UIFinder("WrongIngredient").GetComponent<IngredientIndicator>();
-                    IngredientWarn.UpdateIngredient(2);
-                }
-                var showGetToastWarning = CurrentHoldIngredientID == 0 && Input.GetKeyDown(KeyCode.E) && hand_amount == 0 && NearMergePoint
-                    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY
-                    && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST
-                    || CurrentHoldIngredientID == 1 && Input.GetKeyDown(KeyCode.E) && hand_amount >= 1 && NearMergePoint
-                    && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY
-                    && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST;
-                if (showGetToastWarning)
-                {
-                    //show warning UI
-                    UIFinder("WrongIngredient").SetActive(true);
-                    UIFinder("WrongIngredient").GetComponent<Animator>().Play("PulsingThrowPromptUI");
-                    var IngredientWarn = UIFinder("WrongIngredient").GetComponent<IngredientIndicator>();
-                    IngredientWarn.UpdateIngredient(0);
-                }
+                    //if you are trying to merge a mid toast to full toast when you are near the kaya spreading spot, press E key,
+                    var canSpreadToast = NearSpreadKayaPoint && hand_amount == 3 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint && !NearMergePoint;
+                    if (canSpreadToast)
+                    {
+                        hand_amount = 0;
+                        ToastedBread = Instantiate(holdFood, currentKayaMachine.breadLocation);
+                        Destroy(holdFood);
+                        currentKayaMachine.SliderVisibility(currentKayaMachine.spreadBreadProgressBar, true);
+                        currentKayaMachine.ChangeState(SpreadKaya.KayaMakerStates.PREP);
+                        AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
+                    }
+                    //if player press e at this state and is near kaya station and hand amount == 0 then change to ready state (this one must put on player controller side)
+                    var canCollectFullToast = NearSpreadKayaPoint && hand_amount == 0 && Input.GetKeyDown(KeyCode.E) && currentKayaMachine.currentState == SpreadKaya.KayaMakerStates.COMPLETE;
+                    if (canCollectFullToast)
+                    {
+                        hand_amount = 2;
+                        currentKayaMachine.ChangeState(SpreadKaya.KayaMakerStates.READY);
+                        //instantiate kaya machine collectable to holdfood (have not done)
+                        holdFood = Instantiate(currentFoodCollectable, hand);
+                        throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
+                        print("Throw toast now");
+                        UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
+                        UIFinder("ActivateThrowmode").SetActive(true);
+                        if (UIFinder("BusyKopiMaker").activeSelf)
+                        {
+                            UIFinder("BusyKopiMaker").SetActive(false);
+                        }
+                        throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
+                        canThrow = true;
+                        AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
+                        //destroy the food on the bench
+                        Destroy(ToastedBread);
+                    }
+                    var showGetToastWarning = CurrentHoldIngredientID == 0 && Input.GetKeyDown(KeyCode.E) && hand_amount == 0 && NearMergePoint
+                        && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY
+                        && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST
+                        || CurrentHoldIngredientID == 1 && Input.GetKeyDown(KeyCode.E) && hand_amount >= 1 && NearMergePoint
+                        && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY
+                        && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST;
+                    if (showGetToastWarning)
+                    {
+                        //show warning UI
+                        UIFinder("WrongIngredient").SetActive(true);
+                        UIFinder("WrongIngredient").GetComponent<Animator>().Play("PulsingThrowPromptUI");
+                        var IngredientWarn = UIFinder("WrongIngredient").GetComponent<IngredientIndicator>();
+                        IngredientWarn.UpdateIngredient(0);
+                    } }
                 //if I interact with the merge point without touching canCollectIngredient
                 if (Input.GetMouseButtonDown(1) && PressCount == 0 && canThrow)
                 {

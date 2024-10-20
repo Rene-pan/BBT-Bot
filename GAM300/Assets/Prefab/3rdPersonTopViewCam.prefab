@@ -98,17 +98,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   followTarget: {fileID: 0}
-  mouseSensitivity: 10
-  distFromTarget: 3
+  mouseSensitivity: 5
+  distFromTarget: 2
   pitchMinMax: {x: 10, y: 45}
   collisionMask:
     serializedVersion: 2
     m_Bits: 55
-  rotationSmoothTime: 5
+  rotationSmoothTime: 4
   target: {fileID: 0}
   transitionDuration: 0.004
   RotateAxis: {fileID: 0}
   Player: {fileID: 0}
+  lr: {fileID: 0}
   collideSpeed: 5
   returnSpeed: 9
   wallPush: 0.7

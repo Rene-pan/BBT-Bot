@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Schema;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -61,8 +62,9 @@ public class Customer_v2 : MonoBehaviour
     [SerializeField] float JumpingDuration;
     [SerializeField] float JumpForce;
 
-    //audio stuff
-    public FmodEvents fmod;
+    [Header("Karen Customer")]
+    [SerializeField] int DecreaseMoneyAmount;
+
     private void OnEnable()
     {
         targetwaypoint = waypoints[targetWaypointIndex];
@@ -305,6 +307,12 @@ public class Customer_v2 : MonoBehaviour
         targetwaypoint_back = waypointsBack[startIndex];
         //GetComponent<Rigidbody>().isKinematic = false;
         nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;
+
+        //check if the Customer Type is KAREN
+        if (customerType == CustomerType.KAREN)
+        {
+            MoneyScript.DecreaseMoney(DecreaseMoneyAmount);
+        }
         //movetowards the index
         ChangeState(CustomerStates.LEAVE);
     }
@@ -330,9 +338,9 @@ public class Customer_v2 : MonoBehaviour
 
     #region Customer Types
     private bool TransfromOnce = true;
-    public float time = 0;
+    private float time = 0;
     private bool StartAnimation = false;
-    public float time1 = 0;
+    private float time1 = 0;
     public GameObject AnimatorObj;
     void CustomerTypes()
     {

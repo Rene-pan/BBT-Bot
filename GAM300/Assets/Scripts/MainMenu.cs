@@ -10,6 +10,47 @@ public class MainMenu : MonoBehaviour
     public bool PressReplay = false;
     public bool MainMenuPress = false;
     public Transform PlayUIPosition;
+    public GameObject LevelSelect;
+    public GameObject StartScreen;
+    public GameObject PauseScreen;
+
+    [Header("Press Esc to Pause")]
+    public int PressEcount = 0;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            var Money = FindAnyObjectByType<Money>();
+            Money.UnlockCursor();
+            switch (PressEcount)
+            {
+                case 0:
+                    //pressed first time from gameplay
+                    //open pause menu
+                    PauseScreen.SetActive(true);
+                    //stop time
+                    Time.timeScale = 0;
+                    //pause all sounds
+                    AudioManager.instance.PauseSounds(true);
+                    //indicate that player has been pressed
+                    PressEcount = 1;
+                    break;
+                case 1:
+                    //pressed second time from pause menu
+                    //close pause menu
+                    PauseScreen.SetActive(false);
+                    //unstop time
+                    Time.timeScale = 1;
+                    //unpause all sounds
+                    AudioManager.instance.PauseSounds(false);
+                    //indicate that player has not been pressed
+                    PressEcount = 0;
+                    Money.lockCursor();
+                    break;
+            }
+        }
+    }
     public IEnumerator LoadScene(string sceneName)
     {
         yield return new WaitForSeconds(0.1f);
@@ -55,10 +96,29 @@ public class MainMenu : MonoBehaviour
             BGM.StopMusic();
         }
     }
+    public void OpenLevelSelect()
+    {
+        LevelSelect.SetActive(true);
+        StartScreen.SetActive(false);
+    }
+    public void CloseLevelSelect()
+    {
+        LevelSelect.SetActive(false);
+        StartScreen.SetActive(true);
+    }
 
+    public void UnPausePress()
+    {
+        AudioManager.instance.PauseSounds(false);
+        PressEcount = 0;
+        Time.timeScale = 1;
+        PauseScreen.SetActive(false);
+        var Money = FindAnyObjectByType<Money>();
+        Money.lockCursor();
+    }
     public void Exit()
     {
-        PlayUISFX();
+        //PlayUISFX();
         Application.Quit();
         print("exit");
     }

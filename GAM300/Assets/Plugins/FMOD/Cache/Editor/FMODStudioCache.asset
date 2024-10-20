@@ -231,10 +231,10 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638645151315035474
+  lastModified: 638650575931141127
   FileSizes:
   - Name: Desktop
-    Value: 1792
+    Value: 1914
   Exists: 1
 --- !u!114 &-3873928839523767538
 MonoBehaviour:
@@ -387,6 +387,7 @@ MonoBehaviour:
   - {fileID: -4041246907502267445}
   - {fileID: 8676306263783425934}
   - {fileID: 4221626663779672176}
+  - {fileID: 7487178722679307587}
   EditorEvents:
   - {fileID: 6424842427374760631}
   - {fileID: 4613984016298536748}
@@ -417,7 +418,7 @@ MonoBehaviour:
   - {fileID: 8676306263783425934}
   StringsBanks:
   - {fileID: -4041246907502267445}
-  cacheTime: 638645151450858231
+  cacheTime: 638650575932032507
   cacheVersion: 131620
 --- !u!114 &142818956379983475
 MonoBehaviour:
@@ -596,10 +597,10 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638645151450858231
+  lastModified: 638650575931824407
   FileSizes:
   - Name: Desktop
-    Value: 4158720
+    Value: 4153600
   Exists: 1
 --- !u!114 &4613984016298536748
 MonoBehaviour:
@@ -674,7 +675,7 @@ MonoBehaviour:
     Data3: -1901562208
     Data4: 1611446982
   Banks:
-  - {fileID: 4221626663779672176}
+  - {fileID: 7487178722679307587}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -709,6 +710,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2129
+--- !u!114 &7487178722679307587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/UI_SFX.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/UI_SFX.bank
+  Name: UI_SFX
+  StudioPath: bank:/UI_SFX
+  lastModified: 638650575932032507
+  FileSizes:
+  - Name: Desktop
+    Value: 5856
+  Exists: 1
 --- !u!114 &8676306263783425934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,10 +745,10 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638645151315035474
+  lastModified: 638650575931115958
   FileSizes:
   - Name: Desktop
-    Value: 1036
+    Value: 1340
   Exists: 1
 --- !u!114 &8950512440960628989
 MonoBehaviour:

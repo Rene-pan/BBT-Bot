@@ -51,9 +51,12 @@ public class AudioManager : MonoBehaviour
     }
     public void StopAllSounds()
     {
-        RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        RuntimeManager.GetBus("bus:/Music_SFX").stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
         //foreach (var sound in eventInstances) { }
     }
-    
 
+    public void PauseSounds(bool i)
+    {
+        RuntimeManager.GetBus("bus:/Music_SFX").setPaused(i);
+    }
 }
