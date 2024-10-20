@@ -699,6 +699,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6933572693198946752, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
   m_PrefabInstance: {fileID: 108324028}
   m_PrefabAsset: {fileID: 0}
+--- !u!120 &108324033 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 4188879525244009523, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+  m_PrefabInstance: {fileID: 108324028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &153003526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2516,7 +2521,7 @@ PrefabInstance:
     - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
       propertyPath: lr
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 108324033}
     - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
       propertyPath: Player
       value: 
@@ -2533,14 +2538,6 @@ PrefabInstance:
       propertyPath: followTarget
       value: 
       objectReference: {fileID: 108324029}
-    - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
-      propertyPath: mouseSensitivity
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
-      propertyPath: rotationSmoothTime
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

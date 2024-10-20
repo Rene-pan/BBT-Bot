@@ -466,18 +466,6 @@ PrefabInstance:
       propertyPath: followTarget
       value: 
       objectReference: {fileID: 1779032706}
-    - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
-      propertyPath: distFromTarget
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
-      propertyPath: mouseSensitivity
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
-      propertyPath: rotationSmoothTime
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5402,14 +5390,6 @@ PrefabInstance:
     - target: {fileID: 3780258111521385509, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906966357170971261, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
-      propertyPath: ShapeModule.m_Rotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906966357170971261, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
-      propertyPath: ShapeModule.alignToDirection
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3939823687156312311, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
       propertyPath: spawner
