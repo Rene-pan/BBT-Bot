@@ -86,7 +86,7 @@ public class Money : MonoBehaviour
             timer.TimerIsRunning = false;
             GameOverPlayOnce = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             print("Quit");
             Application.Quit();
@@ -144,10 +144,15 @@ public class Money : MonoBehaviour
             UIs[0].SetActive(true);
         }
     }
-    void UnlockCursor()
+    public void UnlockCursor()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+    public void lockCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void StopSounds()
     {

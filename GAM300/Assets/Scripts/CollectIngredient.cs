@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class CollectIngredient : MonoBehaviour
@@ -18,6 +19,15 @@ public class CollectIngredient : MonoBehaviour
             playerScript.NearCollectionPoint = true;
             playerScript.currentIngredient = ingredients[CurrentingredientID];
             playerScript.currentCollectionArea = gameObject;
+            if (currentType == CollectTypes.DRINK)
+            {
+                playerScript.UIFinder("PressEToCollect").GetComponent<IngredientIndicator>().UpdateIngredient(2);
+            }
+            else if (currentType == CollectTypes.TOAST)
+            {
+                playerScript.UIFinder("PressEToCollect").GetComponent<IngredientIndicator>().UpdateIngredient(0);
+            }
+            playerScript.UIFinder("PressEToCollect").SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -32,6 +42,10 @@ public class CollectIngredient : MonoBehaviour
             if (playerScript.UIFinder("BusyKopiMaker").activeSelf)
             {
                 playerScript.UIFinder("BusyKopiMaker").SetActive(false);
+            }
+            if (playerScript.UIFinder("PressEToCollect").activeSelf)
+            {
+                playerScript.UIFinder("PressEToCollect").SetActive(false);
             }
         }
     }
