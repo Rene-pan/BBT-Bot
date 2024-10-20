@@ -776,8 +776,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: bread station
       objectReference: {fileID: 0}
+    - target: {fileID: 2085660960252523491, guid: 72b97c67c3990b349b3a599a25a9a35e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6618128200071642861, guid: 72b97c67c3990b349b3a599a25a9a35e, type: 3}
+    - {fileID: -8513424388201257645, guid: 72b97c67c3990b349b3a599a25a9a35e, type: 3}
+    - {fileID: -3113717163435550277, guid: 72b97c67c3990b349b3a599a25a9a35e, type: 3}
+    - {fileID: 7785260235571299931, guid: 72b97c67c3990b349b3a599a25a9a35e, type: 3}
+    - {fileID: 2085660960252523491, guid: 72b97c67c3990b349b3a599a25a9a35e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72b97c67c3990b349b3a599a25a9a35e, type: 3}

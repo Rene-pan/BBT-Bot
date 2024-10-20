@@ -66,6 +66,7 @@ public class MainMenu : MonoBehaviour
             var Money = FindAnyObjectByType<Money>();
             Money.StopSuccessMusic();
             Money.StopFailureMusic();
+            AudioManager.instance.PauseSounds(false);
             //AudioManager.instance.StopAllSounds();
             //Destroy(AudioManager.instance.gameObject);
         }
@@ -80,7 +81,8 @@ public class MainMenu : MonoBehaviour
             PressReplay = true;
             var Money = FindAnyObjectByType<Money>();
             Money.StopFailureMusic();
-            //AudioManager.instance.StopAllSounds();
+            AudioManager.instance.PauseSounds(false);
+            AudioManager.instance.StopAllSounds();
             //Invoke("OffSounds", 0.02f);
         }
     }

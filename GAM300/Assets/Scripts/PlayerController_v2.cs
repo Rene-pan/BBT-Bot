@@ -115,8 +115,8 @@ public class PlayerController_v2 : MonoBehaviour
                         UIFinder("BusyKopiMaker").SetActive(false);
                     }
                 }
-                if (currentKopiMaker != null && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK)
-                {
+                //if (currentKopiMaker != null && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK)
+                //{
                     var canMergeFood = NearMergePoint && Mergeable && hand_amount == 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint
                         && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY;
                     if (canMergeFood)
@@ -160,8 +160,8 @@ public class PlayerController_v2 : MonoBehaviour
                         var IngredientWarn = UIFinder("WrongIngredient").GetComponent<IngredientIndicator>();
                         IngredientWarn.UpdateIngredient(2);
                     }
-                }
-                if (currentKopiMaker != null && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST) {
+                //}
+                //if (currentKopiMaker != null && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST) {
                     var canCollectMidToast = !spawner.KayaStationsBusy && NearMergePoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint
                     && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE
                     && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST;
@@ -218,7 +218,7 @@ public class PlayerController_v2 : MonoBehaviour
                         UIFinder("WrongIngredient").GetComponent<Animator>().Play("PulsingThrowPromptUI");
                         var IngredientWarn = UIFinder("WrongIngredient").GetComponent<IngredientIndicator>();
                         IngredientWarn.UpdateIngredient(0);
-                    } }
+                    } //}
                 //if I interact with the merge point without touching canCollectIngredient
                 if (Input.GetMouseButtonDown(1) && PressCount == 0 && canThrow)
                 {
