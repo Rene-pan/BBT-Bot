@@ -67,7 +67,7 @@ public class MainMenu : MonoBehaviour
             Money.StopSuccessMusic();
             Money.StopFailureMusic();
             AudioManager.instance.PauseSounds(false);
-            //AudioManager.instance.StopAllSounds();
+            AudioManager.instance.StopAllSounds();
             //Destroy(AudioManager.instance.gameObject);
         }
     }
