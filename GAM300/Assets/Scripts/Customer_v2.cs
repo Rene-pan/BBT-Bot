@@ -229,7 +229,7 @@ public class Customer_v2 : MonoBehaviour
         {
             OrderToDelete.GetComponent<Image>().color = Color.green;
             OrderList.Remove(OrderToDelete);
-            Destroy(OrderToDelete, 2);
+            Destroy(OrderToDelete, 4);
         }
         currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
         Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");

@@ -18,6 +18,7 @@ public class CustomerTable : MonoBehaviour
     public Collider destroyCollider;
     public int succeedCount = 0;
     public int TotalOrderCount = 0;
+    public GameObject StarBurst;
 
     [Header("Customer Type Big")]
     public Transform[] StandPos;
@@ -46,6 +47,9 @@ public class CustomerTable : MonoBehaviour
                     //if customer still has orders, customer will remain on seat
                     else if (FoodScript.Name == order.GetComponent<Order>().OrderName)
                     {
+                        //Create star burst prefab
+                        var suddenBurst = Instantiate(StarBurst, FoodTransform);
+                        Destroy(suddenBurst,2);
                         //off destroy collider
                         succeedCount += 1;
                         print(succeedCount);

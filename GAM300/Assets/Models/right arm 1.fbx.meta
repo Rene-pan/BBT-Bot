@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 32c8a3137c6a4124a9dc6c12a935ced3
+guid: aeb69f9f29e965841bf10645f7c17886
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: metalic_
-    second: {fileID: 2100000, guid: e2792c723d202624baa21b09a5cdc023, type: 2}
+      name: aiStandardSurface1
+    second: {fileID: 2100000, guid: cb59f97684569b946adca9f94de7bc70, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
