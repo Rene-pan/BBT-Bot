@@ -11,7 +11,7 @@ public class CollideFloor : MonoBehaviour
         switch (tag)
         {
             case "Food":
-                print(other);
+                print(other.gameObject.name + "hi");
                 AudioManager.instance.PlayRandom(FmodEvents.instance.crash, this.transform.position);
                 Destroy(other.gameObject);
                 break;

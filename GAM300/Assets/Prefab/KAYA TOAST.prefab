@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 2714917531047990626}
   - component: {fileID: 4028447182009739167}
   - component: {fileID: 3123691518781551515}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KAYA TOAST
   m_TagString: Food
   m_Icon: {fileID: 0}
@@ -103,12 +103,12 @@ Transform:
   m_GameObject: {fileID: 2312658757736624863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4867617, y: -0.11, z: 4.49}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 80213645005424182}
   - {fileID: 9097856077903401796}
+  - {fileID: 80213645005424182}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2714917531047990626
@@ -130,8 +130,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.61418045, y: 0.22035271, z: 0.6125264}
-  m_Center: {x: -0.005804956, y: 0.12836587, z: 0.0005185157}
+  m_Size: {x: 0.42861104, y: 0.19688341, z: 0.3952422}
+  m_Center: {x: -0.014365435, y: 0.14006065, z: -0.020549156}
 --- !u!54 &4028447182009739167
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &3123691518781551515
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f20fdf3f65cb164398dfa08e02e83c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: TOAST
+  Name: KAYA TOAST
   eatCanvas: {fileID: 2326221137596159556}
 --- !u!1 &2326221137596159556
 GameObject:
@@ -192,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9097856077903401796
 RectTransform:
   m_ObjectHideFlags: 0
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 80213645005424182}
   - component: {fileID: 7651550430942920953}
   - component: {fileID: 3414330879059366324}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: kaya_toast2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,10 +400,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4091877118824082093}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3675024120737709597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

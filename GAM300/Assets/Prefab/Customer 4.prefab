@@ -239,6 +239,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   movementSpeed: 1.5
   rotationSpeed: 2
   nearestTable: {fileID: 0}
@@ -249,7 +250,7 @@ MonoBehaviour:
   OrderList: []
   OrderUI_ID: 0
   OrderUIHolder: {fileID: 0}
-  OrderWaitTime: 50
+  OrderWaitTime: 90
   currentTime: 0
   DecreasingValue: 1
   Food: {fileID: 0}

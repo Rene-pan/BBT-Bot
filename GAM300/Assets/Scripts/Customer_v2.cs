@@ -225,62 +225,78 @@ public class Customer_v2 : MonoBehaviour
     private EventInstance EatSFX;
     public void CustomerEats(float EatingSpeedMultiplier, float eatduration)
     {
-        if (OrderToDelete != null)
+
+        if (Food == null)
         {
-            OrderToDelete.GetComponent<Image>().color = Color.green;
-            OrderList.Remove(OrderToDelete);
-            Destroy(OrderToDelete, 4);
-        }
-        currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
-        Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
-        Food.GetComponent<Throwable>().eatCanvas.SetActive(true);
-        PLAYBACK_STATE playbackState;
-        EatSFX.getPlaybackState(out playbackState);
-        if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-        {
-            //print("eating");
-            EatSFX.start();
-        }
-        else if (Time.timeScale == 0)
-        {
-            EatSFX.stop(STOP_MODE.IMMEDIATE);
-        }
-        if (currentEatTime >= eatduration)
-        {
-            EatSFX.stop(STOP_MODE.ALLOWFADEOUT);
-            Food.GetComponent<Throwable>().eatCanvas.SetActive(false);
-            Food.transform.GetChild(0).GetComponent<Animator>().SetBool("CupStop", true);
-            //delete food on table
-            Destroy(Food);
-            //add money
-            MoneyScript.AddMoney(CustomerMoney);
-            //change waypointIndex
-            for (int i = waypoints.Count - 1; i >= 0; i--)
+            ChangeState(CustomerStates.WAIT);
+            if (customerType == CustomerType.BIG)
             {
-                waypointsBack.Add(waypoints[i]);
+                TransfromOnce = true;
             }
-            waypointsBack.Add(Exitdoor);
-            targetwaypoint_back = waypointsBack[startIndex];
-            currentEatTime = 0;
-            nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;
-            //movetowards the index
-            if (nearestTable.GetComponent<CustomerTable>().succeedCount == nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
+            else if (customerType == CustomerType.ANNOYING)
             {
-                //print(nearestTable.GetComponent<CustomerTable>().succeedCount);
-                //print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
-                nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(false);
-                nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
-                ChangeState(CustomerStates.LEAVE);
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            else if (nearestTable.GetComponent<CustomerTable>().succeedCount < nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
+        }
+        else if (Food != null)
+        {
+            if (OrderToDelete != null && Food != null)
             {
-                //print(nearestTable.GetComponent<CustomerTable>().succeedCount);
-                //print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
-                nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(true);
-                nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
-                ChangeState(CustomerStates.WAIT);
+                OrderToDelete.GetComponent<Image>().color = Color.green;
+                OrderList.Remove(OrderToDelete);
+                Destroy(OrderToDelete, 4);
             }
-            OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders -= 1;
+            currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
+            Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
+            Food.GetComponent<Throwable>().eatCanvas.SetActive(true);
+            PLAYBACK_STATE playbackState;
+            EatSFX.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                //print("eating");
+                EatSFX.start();
+            }
+            if (Time.timeScale == 0)
+            {
+                EatSFX.stop(STOP_MODE.IMMEDIATE);
+            }
+            if (currentEatTime >= eatduration)
+            {
+                EatSFX.stop(STOP_MODE.ALLOWFADEOUT);
+                Food.GetComponent<Throwable>().eatCanvas.SetActive(false);
+                Food.transform.GetChild(0).GetComponent<Animator>().SetBool("CupStop", true);
+                //delete food on table
+                Destroy(Food);
+                //add money
+                MoneyScript.AddMoney(CustomerMoney);
+                //change waypointIndex
+                for (int i = waypoints.Count - 1; i >= 0; i--)
+                {
+                    waypointsBack.Add(waypoints[i]);
+                }
+                waypointsBack.Add(Exitdoor);
+                targetwaypoint_back = waypointsBack[startIndex];
+                currentEatTime = 0;
+                nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;
+                //movetowards the index
+                if (nearestTable.GetComponent<CustomerTable>().succeedCount == nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
+                {
+                    //print(nearestTable.GetComponent<CustomerTable>().succeedCount);
+                    //print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
+                    nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(false);
+                    nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
+                    ChangeState(CustomerStates.LEAVE);
+                }
+                else if (nearestTable.GetComponent<CustomerTable>().succeedCount < nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
+                {
+                    //print(nearestTable.GetComponent<CustomerTable>().succeedCount);
+                    //print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
+                    nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(true);
+                    nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
+                    ChangeState(CustomerStates.WAIT);
+                }
+                OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders -= 1;
+            }
         }
     }
     #endregion

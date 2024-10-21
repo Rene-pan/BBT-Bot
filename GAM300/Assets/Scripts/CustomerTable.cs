@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
+using TMPro;
 
 public class CustomerTable : MonoBehaviour
 {
@@ -20,11 +20,18 @@ public class CustomerTable : MonoBehaviour
     public int TotalOrderCount = 0;
     public GameObject StarBurst;
 
+    [Header("Table Stand Display")]
+    public List<TextMeshProUGUI> TableStandNumberText;
+
     [Header("Customer Type Big")]
     public Transform[] StandPos;
     private void Start()
     {
         eatArea.SetActive(false);
+        foreach (var text in TableStandNumberText)
+        {
+            text.text = TableID.ToString();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -37,13 +44,16 @@ public class CustomerTable : MonoBehaviour
                 var FoodTransform = other.transform;
                 //var CustomerTransform = customer.transform;
                 if (orders == null) return;
+                if (other == null) return;
                 foreach (var order in orders) //look through all the orders, if the thrown food name matches the current order name, I will delete that order
                 {
                     print(FoodScript.Name);
                     print(order.GetComponent<Order>().OrderName);
                     if (order == null) { print("no food"); 
                         AudioManager.instance.PlayRandom(FmodEvents.instance.crash, this.transform.position);
-                        Destroy(other.gameObject); }
+                        Destroy(other.gameObject);
+                        break;
+                    }
                     //if customer still has orders, customer will remain on seat
                     else if (FoodScript.Name == order.GetComponent<Order>().OrderName)
                     {
@@ -94,6 +104,7 @@ public class CustomerTable : MonoBehaviour
                         //FlashColour(FlashTimeInterval,eatArea.GetComponent<Renderer>().material, eatArea.GetComponent<Renderer>().material.color, WrongFoodErrorColour);
                         //delete food
                         //Destroy(other.gameObject, FlashTimeInterval);
+                        print(other);
                         continue;
                     }
                     else if (FoodScript.Name != order.GetComponent<Order>().OrderName && orders.Count == 1)
@@ -106,6 +117,7 @@ public class CustomerTable : MonoBehaviour
                         FlashColour(FlashTimeInterval,eatArea.GetComponent<Renderer>().material, eatArea.GetComponent<Renderer>().material.color, WrongFoodErrorColour);
                         //delete food
                         Destroy(other.gameObject, FlashTimeInterval);
+                        break;
                     }
                 }
                 break;
