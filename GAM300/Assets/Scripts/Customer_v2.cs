@@ -277,6 +277,10 @@ public class Customer_v2 : MonoBehaviour
                 waypointsBack.Add(Exitdoor);
                 targetwaypoint_back = waypointsBack[startIndex];
                 currentEatTime = 0;
+                if (!nearestTable.GetComponent<CustomerTable>().tableStand.activeSelf)
+                {
+                    nearestTable.GetComponent<CustomerTable>().tableStand.SetActive(true);
+                }
                 nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;
                 //movetowards the index
                 if (nearestTable.GetComponent<CustomerTable>().succeedCount == nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
@@ -384,13 +388,24 @@ public class Customer_v2 : MonoBehaviour
                         //play animation
                         AnimatorObj.GetComponent<Animator>().SetBool("Jump", true);
                         nearestTable.GetComponent<Collider>().enabled = false;
-                    }else if (time >= JumpingDuration)
+                        //off table stand
+                        if (nearestTable.GetComponent<CustomerTable>().tableStand.activeSelf)
+                        {
+                            nearestTable.GetComponent<CustomerTable>().tableStand.SetActive(false);
+                        }
+                    }
+                    else if (time >= JumpingDuration)
                     {
                         time1 += Time.deltaTime;
                         if (time1 < JumpingDuration){
                             AnimatorObj.GetComponent<Animator>().SetBool("Jump", false);
                             StartAnimation = true;
                             nearestTable.GetComponent<Collider>().enabled = true;
+                            //on table stand
+                            if (!nearestTable.GetComponent<CustomerTable>().tableStand.activeSelf)
+                            {
+                                nearestTable.GetComponent<CustomerTable>().tableStand.SetActive(true);
+                            }
                             transform.position = nearestChair.GetComponent<CustomerChair>().seatPivot.transform.position;
                         }
                         else if (time1 >= JumpingDuration)

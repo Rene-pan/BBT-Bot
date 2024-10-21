@@ -218,6 +218,7 @@ MonoBehaviour:
   TableStandNumberText:
   - {fileID: 2275262707138982473}
   - {fileID: 6530056690595043668}
+  tableStand: {fileID: 6253881823026004881}
   StandPos:
   - {fileID: 6812991285495964749}
   - {fileID: 5833931257892452639}
@@ -926,6 +927,11 @@ PrefabInstance:
       addedObject: {fileID: 4328412871114886107}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f4a1f70bcbecaa43a64a493ecce9ab3, type: 3}
+--- !u!1 &6253881823026004881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f4a1f70bcbecaa43a64a493ecce9ab3, type: 3}
+  m_PrefabInstance: {fileID: 6488325540501651136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6737825734813587755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f4a1f70bcbecaa43a64a493ecce9ab3, type: 3}

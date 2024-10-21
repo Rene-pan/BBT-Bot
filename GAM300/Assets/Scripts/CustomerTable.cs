@@ -22,6 +22,7 @@ public class CustomerTable : MonoBehaviour
 
     [Header("Table Stand Display")]
     public List<TextMeshProUGUI> TableStandNumberText;
+    public GameObject tableStand;
 
     [Header("Customer Type Big")]
     public Transform[] StandPos;
@@ -57,6 +58,11 @@ public class CustomerTable : MonoBehaviour
                     //if customer still has orders, customer will remain on seat
                     else if (FoodScript.Name == order.GetComponent<Order>().OrderName)
                     {
+                        //Off TableStand
+                        if (tableStand.activeSelf)
+                        {
+                            tableStand.SetActive(false);
+                        }
                         //Create star burst prefab
                         var suddenBurst = Instantiate(StarBurst, FoodTransform);
                         Destroy(suddenBurst,2);
