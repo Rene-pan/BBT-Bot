@@ -1,34 +1,9 @@
 fileFormatVersion: 2
-guid: 4719cf1510d36f443b58a770c2dbea58
+guid: 45eb6b8f218d53944890097fda606543
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bread_ALB
-    second: {fileID: 2800000, guid: 74389c8ca4ec5cb49a2040afac17f86b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: cabinet_ALB
-    second: {fileID: 2800000, guid: 8cc8c329202fde3409887a2b0262f712, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: counter_top_ALB
-    second: {fileID: 2800000, guid: c53644c4f6215bd448b0278992fdf639, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: crust_ALB
-    second: {fileID: 2800000, guid: 9cc1dc872ee2b1f4e83b30e214d76975, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: handles1_ALB
-    second: {fileID: 2800000, guid: aaba8b66a12a9d14080d3b433c2c8e63, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

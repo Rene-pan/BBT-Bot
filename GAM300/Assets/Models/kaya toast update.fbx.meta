@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4719cf1510d36f443b58a770c2dbea58
+guid: 802daabab3ddb524b9fafaaa7da29f1e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,28 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: bread_ALB
-    second: {fileID: 2800000, guid: 74389c8ca4ec5cb49a2040afac17f86b, type: 3}
+      name: aiStandardSurface6_ALB
+    second: {fileID: 2800000, guid: 9f2d5287e30aeee4c84f2d9cafb0e37e, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: cabinet_ALB
-    second: {fileID: 2800000, guid: 8cc8c329202fde3409887a2b0262f712, type: 3}
+      name: butter1_ALB
+    second: {fileID: 2800000, guid: bae3feb74cf9ef24f99122c9c3615b30, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: counter_top_ALB
-    second: {fileID: 2800000, guid: c53644c4f6215bd448b0278992fdf639, type: 3}
+      name: kaya1_ALB
+    second: {fileID: 2800000, guid: 90c9691c4cb67e14ca246f3092eca1bc, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: crust_ALB
-    second: {fileID: 2800000, guid: 9cc1dc872ee2b1f4e83b30e214d76975, type: 3}
+      name: slightly_toasted_ALB
+    second: {fileID: 2800000, guid: e8ac695df4cb3b14388b8fc22082b763, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: handles1_ALB
-    second: {fileID: 2800000, guid: aaba8b66a12a9d14080d3b433c2c8e63, type: 3}
+      name: toast_base_colour_ALB
+    second: {fileID: 2800000, guid: a711bd26a4bd1d84b8a7ab2c4b10244d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: toast_rim_ALB
+    second: {fileID: 2800000, guid: 8dd6f8fef21bb1a43b4eb68b40bc47e4, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
