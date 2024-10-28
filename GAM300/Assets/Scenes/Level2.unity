@@ -5416,10 +5416,6 @@ PrefabInstance:
       propertyPath: force
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 3906966357170971261, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3939823687156312311, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
       propertyPath: spawner
       value: 
@@ -5432,10 +5428,6 @@ PrefabInstance:
       propertyPath: MakerBusyText
       value: 
       objectReference: {fileID: 1993408433}
-    - target: {fileID: 4023775090896792081, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.073
-      objectReference: {fileID: 0}
     - target: {fileID: 4202075346634974321, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.77

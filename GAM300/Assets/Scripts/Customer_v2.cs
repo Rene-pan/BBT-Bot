@@ -225,10 +225,7 @@ public class Customer_v2 : MonoBehaviour
     private EventInstance EatSFX;
     public void CustomerEats(float EatingSpeedMultiplier, float eatduration)
     {
-
-        if (Food == null)
-        {
-            ChangeState(CustomerStates.WAIT);
+            //ChangeState(CustomerStates.WAIT);
             if (customerType == CustomerType.BIG)
             {
                 TransfromOnce = true;
@@ -237,9 +234,7 @@ public class Customer_v2 : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-        }
-        else if (Food != null)
-        {
+        
             if (OrderToDelete != null && Food != null)
             {
                 OrderToDelete.GetComponent<Image>().color = Color.green;
@@ -301,7 +296,7 @@ public class Customer_v2 : MonoBehaviour
                 }
                 OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders -= 1;
             }
-        }
+        
     }
     #endregion
 
