@@ -2,6 +2,7 @@ using FMOD.Studio;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Ambience : MonoBehaviour
@@ -9,6 +10,8 @@ public class Ambience : MonoBehaviour
     //audio
     private EventInstance PlayAmbience;
     public EventInstance PlayBGM;
+    //track current time
+    public Timer timer;
   
     void Start()
     {

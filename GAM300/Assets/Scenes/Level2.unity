@@ -1689,6 +1689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403a66153ba038c4093007d3d1fba0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ErrorVFX: {fileID: 5336683179396345532, guid: c05956b004e82ed448f454398b287114, type: 3}
 --- !u!1 &549335257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2695,6 +2696,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 972388765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1017693684 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2377978429245704225, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+  m_PrefabInstance: {fileID: 1779032695}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1044165862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2985,7 +2991,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.8e-43, y: 1.8e-43, z: 1.1e-44, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5416,6 +5422,10 @@ PrefabInstance:
       propertyPath: force
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3939823687156312311, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
+      propertyPath: ArmAnim
+      value: 
+      objectReference: {fileID: 1017693684}
     - target: {fileID: 3939823687156312311, guid: 45bd3eac2c32568428a2758da3dd5aef, type: 3}
       propertyPath: spawner
       value: 

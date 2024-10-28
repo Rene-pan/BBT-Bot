@@ -19,10 +19,12 @@ public class CustomerTable : MonoBehaviour
     public int succeedCount = 0;
     public int TotalOrderCount = 0;
     public GameObject StarBurst;
+    public GameObject StarBurstv2;
 
     [Header("Table Stand Display")]
     public List<TextMeshProUGUI> TableStandNumberText;
     public GameObject tableStand;
+    public Animator tableStandAnim;
 
     [Header("Customer Type Big")]
     public Transform[] StandPos;
@@ -61,11 +63,14 @@ public class CustomerTable : MonoBehaviour
                         //Off TableStand
                         if (tableStand.activeSelf)
                         {
+                            tableStandAnim.Play("TableStandShake");
                             tableStand.SetActive(false);
                         }
                         //Create star burst prefab
                         var suddenBurst = Instantiate(StarBurst, FoodTransform);
-                        Destroy(suddenBurst,2);
+                        Destroy(suddenBurst,3);
+                        var MoreSuddenBurst = Instantiate(StarBurstv2, FoodTransform);
+                        Destroy(MoreSuddenBurst,3);
                         //off destroy collider
                         succeedCount += 1;
                         print(succeedCount);
@@ -96,8 +101,6 @@ public class CustomerTable : MonoBehaviour
                                 customer.transform.position = customerScript.nearestChair.GetComponent<CustomerChair>().seatPivot.position;
                                 customer.transform.LookAt(gameObject.transform);
                                 break;
-
-                        
                         }
                     }
                     else if (FoodScript.Name != order.GetComponent<Order>().OrderName && orders.Count > 1)

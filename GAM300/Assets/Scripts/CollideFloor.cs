@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CollideFloor : MonoBehaviour
 {
+    [Header("Error VFX")]
+    public GameObject ErrorVFX;
     private void OnCollisionEnter(Collision other)
     {
         var tag = other.gameObject.tag;
@@ -12,8 +12,10 @@ public class CollideFloor : MonoBehaviour
         {
             case "Food":
                 print("Broke something");
+                var MoreSuddenBurst = Instantiate(ErrorVFX, other.transform);
+                Destroy(MoreSuddenBurst, 3);
                 AudioManager.instance.PlayRandom(FmodEvents.instance.crash, other.transform.position);
-                Destroy(other.gameObject);
+                Destroy(other.gameObject, 2);
                 break;
         }
     }

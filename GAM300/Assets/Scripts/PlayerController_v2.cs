@@ -44,6 +44,9 @@ public class PlayerController_v2 : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI MakerBusyText;
 
+    [Header("Animations")]
+    public Animator ArmAnim;
+
     private void Start()
     {
         lr.enabled = false;
@@ -82,6 +85,9 @@ public class PlayerController_v2 : MonoBehaviour
                 var canCollectCup = NearCollectionPoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E);
                 if (canCollectCup)
                 {
+                    //play collect Arm animation
+                    ArmAnim.ResetTrigger("StartCollect");
+                    ArmAnim.SetTrigger("StartCollect");
                     holdIngredient = Instantiate(currentIngredient, hand);
                     CurrentHoldIngredientID = holdIngredient.GetComponent<CollectableFood>().CollectableFoodID;
                     hand_amount = 1;
@@ -102,6 +108,9 @@ public class PlayerController_v2 : MonoBehaviour
                 if (canReCollectDiffFood)
                 {
                     Destroy(holdIngredient);
+                    //play collect Arm Animation
+                    ArmAnim.ResetTrigger("StartCollect");
+                    ArmAnim.SetTrigger("StartCollect");
                     holdIngredient = Instantiate(currentIngredient, hand);
                     CurrentHoldIngredientID = holdIngredient.GetComponent<CollectableFood>().CollectableFoodID;
                     hand_amount = 1;
@@ -121,7 +130,10 @@ public class PlayerController_v2 : MonoBehaviour
                         && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY;
                     if (canMergeFood)
                     {
-                        hand_amount = 0;
+                    //play put down arm animation
+                    ArmAnim.ResetTrigger("StopCollect");
+                    ArmAnim.SetTrigger("StopCollect");
+                    hand_amount = 0;
                         Destroy(holdIngredient);
                         currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.PREP);
                     }
@@ -130,21 +142,24 @@ public class PlayerController_v2 : MonoBehaviour
                         && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK;
                     if (canCollectKopi)
                     {
-                        hand_amount = 2;
-                        holdFood = Instantiate(currentFoodCollectable, hand);
-                        currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.READY);
-                        AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
-                        //show throw UI
-                        UIFinder("WrongIngredient").SetActive(false);
-                        UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
-                        UIFinder("ActivateThrowmode").SetActive(true);
-                        if (UIFinder("BusyKopiMaker").activeSelf)
-                        {
-                            UIFinder("BusyKopiMaker").SetActive(false);
-                        }
-                        throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
-                        canThrow = true;
+                    //play collect Arm Animation
+                    ArmAnim.ResetTrigger("StartCollect");
+                    ArmAnim.SetTrigger("StartCollect");
+                    hand_amount = 2;
+                    holdFood = Instantiate(currentFoodCollectable, hand);
+                    currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.READY);
+                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
+                    //show throw UI
+                    UIFinder("WrongIngredient").SetActive(false);
+                    UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
+                    UIFinder("ActivateThrowmode").SetActive(true);
+                    if (UIFinder("BusyKopiMaker").activeSelf)
+                    {
+                        UIFinder("BusyKopiMaker").SetActive(false);
                     }
+                    throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
+                    canThrow = true;
+                }
                     //you are going to merge an empty cup into a coffee but hand amount = 0 and not holding any empty cup ingredient
                     var showGetCupWarning = CurrentHoldIngredientID == 0 && Input.GetKeyDown(KeyCode.E) && hand_amount == 0 && NearMergePoint
                         && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY
@@ -167,7 +182,10 @@ public class PlayerController_v2 : MonoBehaviour
                     && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST;
                     if (canCollectMidToast)
                     {
-                        hand_amount = 3;
+                    //play collect arm animation
+                    ArmAnim.ResetTrigger("StartCollect");
+                    ArmAnim.SetTrigger("StartCollect");
+                    hand_amount = 3;
                         holdFood = Instantiate(currentFoodCollectable, hand);
                         currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.READY);
                         AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
@@ -176,7 +194,10 @@ public class PlayerController_v2 : MonoBehaviour
                     var canSpreadToast = NearSpreadKayaPoint && hand_amount == 3 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint && !NearMergePoint;
                     if (canSpreadToast)
                     {
-                        hand_amount = 0;
+                    //play put down arm animation
+                    ArmAnim.ResetTrigger("StopCollect");
+                    ArmAnim.SetTrigger("StopCollect");
+                    hand_amount = 0;
                         ToastedBread = Instantiate(holdFood, currentKayaMachine.breadLocation);
                         Destroy(holdFood);
                         currentKayaMachine.SliderVisibility(currentKayaMachine.spreadBreadProgressBar, true);
@@ -187,7 +208,10 @@ public class PlayerController_v2 : MonoBehaviour
                     var canCollectFullToast = NearSpreadKayaPoint && hand_amount == 0 && Input.GetKeyDown(KeyCode.E) && currentKayaMachine.currentState == SpreadKaya.KayaMakerStates.COMPLETE;
                     if (canCollectFullToast)
                     {
-                        hand_amount = 2;
+                    //play collect arm animation
+                    ArmAnim.ResetTrigger("StartCollect");
+                    ArmAnim.SetTrigger("StartCollect");
+                    hand_amount = 2;
                         currentKayaMachine.ChangeState(SpreadKaya.KayaMakerStates.READY);
                         //instantiate kaya machine collectable to holdfood (have not done)
                         holdFood = Instantiate(currentFoodCollectable, hand);
@@ -270,6 +294,8 @@ public class PlayerController_v2 : MonoBehaviour
                 //player can only throw after collecting
                 if (Input.GetMouseButtonDown(0) && PressCount == 1)
                 {
+                    //playThrow Animation 
+                    ArmAnim.Play("ThrowAnimation");
                     PressCount = 2;
                     throwscript.ThrowObject();
                     Destroy(holdFood);
