@@ -15,7 +15,7 @@ public class CollideFloor : MonoBehaviour
                 var MoreSuddenBurst = Instantiate(ErrorVFX, other.transform);
                 Destroy(MoreSuddenBurst, 3);
                 AudioManager.instance.PlayRandom(FmodEvents.instance.crash, other.transform.position);
-                Destroy(other.gameObject, 2);
+                Destroy(other.gameObject, 1.5f);
                 break;
         }
     }

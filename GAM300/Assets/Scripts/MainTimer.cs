@@ -5,7 +5,7 @@ using TMPro;
 public class MainTimer : MonoBehaviour
 {
     public float mainDuration;
-    float currentTime = 0;
+    public float currentTime = 0;
     public TextMeshProUGUI timerText;
     public bool TimerIsRunning = false;
     public Slider TimerSlider;

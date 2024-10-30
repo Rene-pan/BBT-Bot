@@ -26,12 +26,6 @@ public class FmodEvents : MonoBehaviour
     [field: Header("Drink Making SFX")]
     [field: SerializeField] public EventReference drinkMaking { get; private set; }
 
-    [field: Header("Food Burning Timer SFX")]
-    [field: SerializeField] public EventReference foodBurn { get; private set; }
-
-    [field: Header("Food Cooking SFX")]
-    [field: SerializeField] public List<EventReference> foodCooking { get; private set; }
-
     [field: Header("Food Land Success SFX")]
     [field: SerializeField] public EventReference foodLandSuccess { get; private set; }
     [field: Header("Game Over SFX")]
@@ -52,6 +46,12 @@ public class FmodEvents : MonoBehaviour
 
     [field: Header("Earn Money SFX")]
     [field: SerializeField] public EventReference EarnMoney { get; private set; }
+
+    [field: Header("Place Food SFX")]
+    [field: SerializeField] public EventReference PlaceFood { get; private set; }
+
+    [field: Header("Toast Bread SFX")]
+    [field: SerializeField] public EventReference ToastBread { get; private set; }
 
 
 

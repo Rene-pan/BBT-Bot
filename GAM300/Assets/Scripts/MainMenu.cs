@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public GameObject LevelSelect;
     public GameObject StartScreen;
     public GameObject PauseScreen;
+    public Ambience MusicScript;
 
     [Header("Press Esc to Pause")]
     public int PressEcount = 0;
@@ -68,6 +69,7 @@ public class MainMenu : MonoBehaviour
             Money.StopFailureMusic();
             AudioManager.instance.PauseSounds(false);
             AudioManager.instance.StopAllSounds();
+            MusicScript.ResetMusic();
             //Destroy(AudioManager.instance.gameObject);
         }
     }

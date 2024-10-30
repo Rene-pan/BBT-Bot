@@ -3549,6 +3549,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
+--- !u!114 &1473497273 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7171560211307716741, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
+  m_PrefabInstance: {fileID: 1473497272}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3334b0ecaaa66274ba4aaa3be854228f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1473497277 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8948735544462946596, guid: 35039e86fbd7d3a44b2e58579e150bba, type: 3}
@@ -4563,6 +4574,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8bfe96371d898d488ab08bf0254b10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 1473497273}
+  StartFastBGMTime: 60
+  currentState: 0
+  count: 0
 --- !u!1001 &1961243161
 PrefabInstance:
   m_ObjectHideFlags: 0

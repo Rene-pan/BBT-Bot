@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.VFX;
+using System.Xml.Linq;
 
 public class CustomerTable : MonoBehaviour
 {
@@ -18,8 +20,12 @@ public class CustomerTable : MonoBehaviour
     public Collider destroyCollider;
     public int succeedCount = 0;
     public int TotalOrderCount = 0;
-    public GameObject StarBurst;
-    public GameObject StarBurstv2;
+    //public GameObject StarBurst;
+    //public GameObject StarBurstv2;
+
+    [Header("VFXs")]
+    public VFX vfxScript;
+    public GameObject ErrorVFX;
 
     [Header("Table Stand Display")]
     public List<TextMeshProUGUI> TableStandNumberText;
@@ -30,6 +36,8 @@ public class CustomerTable : MonoBehaviour
     public Transform[] StandPos;
     private void Start()
     {
+        //find vfx list
+        vfxScript = FindFirstObjectByType<VFX>();
         eatArea.SetActive(false);
         foreach (var text in TableStandNumberText)
         {
@@ -66,11 +74,17 @@ public class CustomerTable : MonoBehaviour
                             tableStandAnim.Play("TableStandShake");
                             tableStand.SetActive(false);
                         }
-                        //Create star burst prefab
-                        var suddenBurst = Instantiate(StarBurst, FoodTransform);
-                        Destroy(suddenBurst,3);
-                        var MoreSuddenBurst = Instantiate(StarBurstv2, FoodTransform);
-                        Destroy(MoreSuddenBurst,3);
+                        //Find star burst prefab
+                        var starBurst1 = vfxScript.FindVFX("StarBurst_1");
+                        //Create and play star burst prefab at Food current position
+                        vfxScript.PlayVFX(starBurst1, FoodTransform, 3);
+                        var starBurst2 = vfxScript.FindVFX("StarBurst_2");
+                        vfxScript.PlayVFX(starBurst2, FoodTransform, 3);
+                        //var suddenBurst = Instantiate(StarBurst, FoodTransform);
+                        //Destroy(suddenBurst,3);
+                        //var MoreSuddenBurst = Instantiate(StarBurstv2, FoodTransform);
+                        //Destroy(MoreSuddenBurst,3);
+
                         //off destroy collider
                         succeedCount += 1;
                         print(succeedCount);
@@ -109,6 +123,8 @@ public class CustomerTable : MonoBehaviour
                         Parent(foodPosition.transform, other.gameObject, 0);
                         other.transform.localPosition = Vector3.zero;
                         other.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                        var MoreSuddenBurst = Instantiate(ErrorVFX, other.transform);
+                        Destroy(MoreSuddenBurst, 3);
                         //change EatAreaColour to red then back to green after a while
                         //FlashColour(FlashTimeInterval,eatArea.GetComponent<Renderer>().material, eatArea.GetComponent<Renderer>().material.color, WrongFoodErrorColour);
                         //delete food

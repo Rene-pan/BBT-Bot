@@ -1,8 +1,10 @@
 using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static MergeIngredient;
 
 public class MergeIngredient : MonoBehaviour
 {
@@ -21,14 +23,17 @@ public class MergeIngredient : MonoBehaviour
     [SerializeField] GameObject CompletePopUp;
     public Color[] TimeSliderColors;
     private EventInstance MergingSFX;
-    public MergeIngredient mergeScript;
+    private EventInstance ToastSFX;
     private void Start()
     {
         SetSlider(slider, waitingTime, cookingTimer);
         PopUp.SetActive(false);
+        //create drink Sfx
         MergingSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.drinkMaking);
         MergingSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.parent));
-        mergeScript = GetComponent<MergeIngredient>();
+        //create toast Sfx
+        ToastSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.ToastBread);
+        ToastSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.parent));
     }
 
     private void Update()
@@ -142,21 +147,39 @@ public class MergeIngredient : MonoBehaviour
                 PopUp.SetActive(true);
                 cookingTimer += Time.deltaTime;
                 UpdateSlider(slider, cookingTimer);
-                PLAYBACK_STATE playbackState;
-                MergingSFX.getPlaybackState(out playbackState);
-                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                PLAYBACK_STATE DrinkplaybackState;
+                PLAYBACK_STATE ToastplaybackState;
+                switch (makerType)
                 {
-                    MergingSFX.start();
-                }
-                else if (Time.timeScale == 0)
-                {
-                    MergingSFX.stop(STOP_MODE.IMMEDIATE);
+                    case MakerTypes.TOAST:
+                        ToastSFX.getPlaybackState(out ToastplaybackState);
+                        if (ToastplaybackState.Equals(PLAYBACK_STATE.STOPPED))
+                        {
+                            ToastSFX.start();
+                        }
+                        else if (Time.timeScale == 0)
+                        {
+                            ToastSFX.stop(STOP_MODE.IMMEDIATE);
+                        }
+                        break;
+                    case MakerTypes.DRINK:
+                        MergingSFX.getPlaybackState(out DrinkplaybackState);
+                        if (DrinkplaybackState.Equals(PLAYBACK_STATE.STOPPED))
+                        {
+                            MergingSFX.start();
+                        }
+                        else if (Time.timeScale == 0)
+                        {
+                            MergingSFX.stop(STOP_MODE.IMMEDIATE);
+                        }
+                        break;
                 }
                 if (cookingTimer >= waitingTime)
                 {
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.cookingComplete, this.transform.position);
                     ChangeState(KopiMakerStates.COMPLETE);
                     MergingSFX.stop(STOP_MODE.IMMEDIATE);
+                    ToastSFX.stop(STOP_MODE.IMMEDIATE);
                 }
                 break;
             case KopiMakerStates.COMPLETE:

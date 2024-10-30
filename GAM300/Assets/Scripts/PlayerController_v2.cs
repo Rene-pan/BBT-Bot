@@ -130,18 +130,22 @@ public class PlayerController_v2 : MonoBehaviour
                         && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.READY;
                     if (canMergeFood)
                     {
+                    //play placing SFX
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.PlaceFood, this.transform.position);
                     //play put down arm animation
                     ArmAnim.ResetTrigger("StopCollect");
                     ArmAnim.SetTrigger("StopCollect");
                     hand_amount = 0;
-                        Destroy(holdIngredient);
-                        currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.PREP);
+                    Destroy(holdIngredient);
+                    currentKopiMaker.GetComponent<MergeIngredient>().ChangeState(MergeIngredient.KopiMakerStates.PREP);
                     }
                     var canCollectKopi = NearMergePoint && hand_amount < 1 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint
                         && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE
                         && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.DRINK;
                     if (canCollectKopi)
                     {
+                    //play placing SFX
+                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
                     //play collect Arm Animation
                     ArmAnim.ResetTrigger("StartCollect");
                     ArmAnim.SetTrigger("StartCollect");
@@ -182,6 +186,8 @@ public class PlayerController_v2 : MonoBehaviour
                     && currentKopiMaker.GetComponent<MergeIngredient>().makerType == MergeIngredient.MakerTypes.TOAST;
                     if (canCollectMidToast)
                     {
+                    //play placing SFX
+                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
                     //play collect arm animation
                     ArmAnim.ResetTrigger("StartCollect");
                     ArmAnim.SetTrigger("StartCollect");
@@ -194,6 +200,8 @@ public class PlayerController_v2 : MonoBehaviour
                     var canSpreadToast = NearSpreadKayaPoint && hand_amount == 3 && Input.GetKeyDown(KeyCode.E) && !NearCollectionPoint && !NearMergePoint;
                     if (canSpreadToast)
                     {
+                    //play placing SFX
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.PlaceFood, this.transform.position);
                     //play put down arm animation
                     ArmAnim.ResetTrigger("StopCollect");
                     ArmAnim.SetTrigger("StopCollect");
@@ -202,12 +210,13 @@ public class PlayerController_v2 : MonoBehaviour
                         Destroy(holdFood);
                         currentKayaMachine.SliderVisibility(currentKayaMachine.spreadBreadProgressBar, true);
                         currentKayaMachine.ChangeState(SpreadKaya.KayaMakerStates.PREP);
-                        AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
                     }
                     //if player press e at this state and is near kaya station and hand amount == 0 then change to ready state (this one must put on player controller side)
                     var canCollectFullToast = NearSpreadKayaPoint && hand_amount == 0 && Input.GetKeyDown(KeyCode.E) && currentKayaMachine.currentState == SpreadKaya.KayaMakerStates.COMPLETE;
                     if (canCollectFullToast)
                     {
+                    //play placing SFX
+                    AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
                     //play collect arm animation
                     ArmAnim.ResetTrigger("StartCollect");
                     ArmAnim.SetTrigger("StartCollect");
@@ -225,7 +234,6 @@ public class PlayerController_v2 : MonoBehaviour
                         }
                         throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
                         canThrow = true;
-                        AudioManager.instance.PlayRandom(FmodEvents.instance.collect, this.transform.position);
                         //destroy the food on the bench
                         Destroy(ToastedBread);
                     }
@@ -242,8 +250,8 @@ public class PlayerController_v2 : MonoBehaviour
                         UIFinder("WrongIngredient").GetComponent<Animator>().Play("PulsingThrowPromptUI");
                         var IngredientWarn = UIFinder("WrongIngredient").GetComponent<IngredientIndicator>();
                         IngredientWarn.UpdateIngredient(0);
-                    } //}
-                //if I interact with the merge point without touching canCollectIngredient
+                    } 
+                //Activation of throw mode
                 if (Input.GetMouseButtonDown(1) && PressCount == 0 && canThrow)
                 {
                     PressCount = 1;

@@ -59,4 +59,10 @@ public class AudioManager : MonoBehaviour
     {
         RuntimeManager.GetBus("bus:/Music_SFX").setPaused(i);
     }
+
+    //change audio
+    public void SwitchTrack(int trackIDToChangeTo, EventInstance eventInstance)
+    {
+        eventInstance.setParameterByName("SwitchAudioTrack", trackIDToChangeTo);
+    }
 }

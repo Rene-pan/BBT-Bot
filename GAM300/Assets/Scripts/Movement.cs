@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     public Transform cam;
     public Transform Newcam;
     public Vector3 MoveVector;
+    bool MovingNow;
 
     //audio
     private EventInstance playerMovement;
@@ -54,6 +55,7 @@ public class Movement : MonoBehaviour
         // Check if there is any movement input
         if (PlayerMovementInput.magnitude >= 0.1f)
         {
+            MovingNow = true;
             float targetAngle = 0.0f;
             // Calculate movement direction relative to the camera
             if (cam.gameObject.GetComponent<CamController_v3>().currentState == CamController_v3.CamState.THIRDPERSON)
@@ -77,13 +79,14 @@ public class Movement : MonoBehaviour
         else
         {
             // If no input, maintain player's vertical velocity and stop horizontal movement
+            MovingNow = false;
             playerbody.velocity = new Vector3(0, playerbody.velocity.y, 0);
         }
     }
 
     private void UpdatePlayerMovementSFX()
     {
-        if (MoveVector != Vector3.zero)
+        if (MovingNow)
         {
             //Player has moved
             PLAYBACK_STATE playbackState;
@@ -93,7 +96,7 @@ public class Movement : MonoBehaviour
                 playerMovement.start();
             }
         }
-        else
+        else if (!MovingNow)
         {
             //Player has not moved
             playerMovement.stop(STOP_MODE.ALLOWFADEOUT);

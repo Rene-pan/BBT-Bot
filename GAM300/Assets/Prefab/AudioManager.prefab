@@ -180,20 +180,6 @@ MonoBehaviour:
       Data3: -2145042554
       Data4: 1176466925
     Path: event:/Drink Making
-  <foodBurn>k__BackingField:
-    Guid:
-      Data1: 469026454
-      Data2: 1106582050
-      Data3: 1741762218
-      Data4: 904052063
-    Path: event:/Food burning timer
-  <foodCooking>k__BackingField:
-  - Guid:
-      Data1: 951744352
-      Data2: 1292037431
-      Data3: -878148448
-      Data4: -764468
-    Path: event:/Food Cooking
   <foodLandSuccess>k__BackingField:
     Guid:
       Data1: 2000816208
@@ -217,11 +203,11 @@ MonoBehaviour:
     Path: event:/GameOver Success 2
   <gameBGM>k__BackingField:
     Guid:
-      Data1: 1290559601
-      Data2: 1164137123
-      Data3: -1118835024
-      Data4: -2073670060
-    Path: event:/GameBGM
+      Data1: 419296882
+      Data2: 1114851405
+      Data3: 1030795172
+      Data4: 1033099671
+    Path: event:/BGMs
   <ambience>k__BackingField:
     Guid:
       Data1: 1967492971
@@ -243,3 +229,17 @@ MonoBehaviour:
       Data3: -2147278403
       Data4: 967632187
     Path: event:/CollectMoney
+  <PlaceFood>k__BackingField:
+    Guid:
+      Data1: -359847758
+      Data2: 1117669331
+      Data3: -1818783315
+      Data4: -745995107
+    Path: event:/PlaceFood
+  <ToastBread>k__BackingField:
+    Guid:
+      Data1: 310389626
+      Data2: 1290352235
+      Data3: 1216629382
+      Data4: 1759414414
+    Path: event:/ToastBread
