@@ -16,7 +16,7 @@ public class FmodEvents : MonoBehaviour
     [field: Header("Kopi Movements SFX")]
     [field: SerializeField] public EventReference kopiMovements { get; private set; }
     [field: Header("Eat SFX")]
-    [field: SerializeField] public EventReference eats { get; private set; }
+    [field: SerializeField] public List<EventReference> eats { get; private set; }
     [field: Header("Cooking Complete SFX")]
     [field: SerializeField] public EventReference cookingComplete { get; private set; }
 
@@ -53,7 +53,32 @@ public class FmodEvents : MonoBehaviour
     [field: Header("Toast Bread SFX")]
     [field: SerializeField] public EventReference ToastBread { get; private set; }
 
+    [field: Header("Toast Bread Complete SFX")]
+    [field: SerializeField] public EventReference ToastBreadComplete { get; private set; }
 
+    [field: Header("Customer Movement SFX")]
+    [field: SerializeField] public EventReference CustomerMovement { get; private set; }
+
+    [field: Header("Lose Money SFX")]
+    [field: SerializeField] public EventReference LoseMoney { get; private set; }
+
+    [field: Header("Time Ring SFX")]
+    [field: SerializeField] public EventReference TimeRing { get; private set; }
+
+    [field: Header("Kaya Spread SFX")]
+    [field: SerializeField] public EventReference KayaSpread { get; private set; }
+
+    [field: Header("Hit Table SFX")]
+    [field: SerializeField] public EventReference HitTable { get; private set; }
+
+    [field: Header("Hit Other Areas SFX")]
+    [field: SerializeField] public EventReference HitOtherAreas { get; private set; }
+
+    [field: Header("Drinking SFX")]
+    [field: SerializeField] public EventReference Drinking { get; private set; }
+
+    [field: Header("Tear Order SFX")]
+    [field: SerializeField] public EventReference OrderFail { get; private set; }
 
     public static FmodEvents instance {  get; private set; }
     private void Awake()

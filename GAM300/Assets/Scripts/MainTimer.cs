@@ -31,7 +31,7 @@ public class MainTimer : MonoBehaviour
         }
         else
         {
-            print("time gone");
+            //print("time gone");
             currentTime = 0;
             TimerIsRunning = false;
         }

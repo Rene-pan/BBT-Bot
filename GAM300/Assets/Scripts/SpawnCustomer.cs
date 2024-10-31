@@ -89,7 +89,7 @@ public class SpawnCustomer : MonoBehaviour
         //    }
         //}
         int randomID = Random.Range(0, chairList.Count);
-        print(randomID);
+        //print(randomID);
         if (chairList[randomID].GetComponent<CustomerChair>().currentState == CustomerChair.ChairState.AVAILABLE)
         {
             currentChair = chairList[randomID].gameObject;

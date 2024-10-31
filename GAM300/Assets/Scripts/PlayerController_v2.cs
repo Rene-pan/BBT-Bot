@@ -225,7 +225,7 @@ public class PlayerController_v2 : MonoBehaviour
                         //instantiate kaya machine collectable to holdfood (have not done)
                         holdFood = Instantiate(currentFoodCollectable, hand);
                         throwscript.objectToThrow = currentFoodThrowable.GetComponent<Rigidbody>();
-                        print("Throw toast now");
+                        //print("Throw toast now");
                         UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[1];
                         UIFinder("ActivateThrowmode").SetActive(true);
                         if (UIFinder("BusyKopiMaker").activeSelf)

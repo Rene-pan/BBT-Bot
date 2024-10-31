@@ -176,7 +176,14 @@ public class MergeIngredient : MonoBehaviour
                 }
                 if (cookingTimer >= waitingTime)
                 {
-                    AudioManager.instance.PlayOneShot(FmodEvents.instance.cookingComplete, this.transform.position);
+                    if (makerType == MakerTypes.DRINK)
+                    {
+                        AudioManager.instance.PlayOneShot(FmodEvents.instance.cookingComplete, this.transform.position);
+                    }
+                    else if (makerType == MakerTypes.TOAST)
+                    {
+                        AudioManager.instance.PlayOneShot(FmodEvents.instance.ToastBreadComplete, this.transform.position);
+                    }
                     ChangeState(KopiMakerStates.COMPLETE);
                     MergingSFX.stop(STOP_MODE.IMMEDIATE);
                     ToastSFX.stop(STOP_MODE.IMMEDIATE);

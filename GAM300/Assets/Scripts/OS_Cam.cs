@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OS_Cam : MonoBehaviour
 {
-    float idealDistance;
+     float idealDistance;
     void Start()
     {
         idealDistance = Vector3.Distance(transform.parent.position, transform.position);
@@ -18,7 +18,7 @@ public class OS_Cam : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, target + (transform.position - target).normalized * idealDistance, 20 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target + (transform.position - target).normalized * idealDistance, 8 * Time.deltaTime);
         }
     }
 

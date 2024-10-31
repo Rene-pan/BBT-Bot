@@ -24,6 +24,8 @@ public class Customer_v2 : MonoBehaviour
     public float rotationSpeed = 2f;
     public GameObject nearestTable;
     public GameObject nearestChair;//linked with WAIT state to determine which chair to go back to
+    //music
+    public EventInstance moveSFX;
 
     [Header("Customer Order")]
     [SerializeField] List<GameObject> OrderUI;//all the order UI that customer will generate
@@ -71,9 +73,11 @@ public class Customer_v2 : MonoBehaviour
         OrderUIHolder = GameObject.Find("OrderList");
         Exitdoor = GameObject.Find("Spawner").transform;
         MoneyScript = FindFirstObjectByType<Money>();
-        EatSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.eats);
-        EatSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
         CreatedOrder = false;
+
+        //get move music
+        moveSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.CustomerMovement);
+        moveSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.transform));
     }
     private void Update()
     {
@@ -130,6 +134,18 @@ public class Customer_v2 : MonoBehaviour
                 float distance = Vector3.Distance(transform.position, targetwaypoint.position);
                 CheckDistanceToWPNMove(distance);
                 transform.position = Vector3.MoveTowards(transform.position, targetwaypoint.position, movementStep);
+
+                //Movement SFX
+                PLAYBACK_STATE playbackState;
+                moveSFX.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    moveSFX.start();
+                }
+                if (Time.timeScale == 0)
+                {
+                    moveSFX.stop(STOP_MODE.IMMEDIATE);
+                }
                 break;
 
             case CustomerStates.ORDER:
@@ -179,6 +195,7 @@ public class Customer_v2 : MonoBehaviour
         //TableScript.FoodNames.Add(OrderScript.OrderName);
         //TableScript.orders.Clear();
         TableScript.orders.Add(CreateNewOrder);
+        TableScript.gameObject.GetComponent<Collider>().enabled = true;
         TableScript.eatArea.SetActive(true);
         OrderUI_ID += 1;
         TableScript.TotalOrderCount += 1;
@@ -223,6 +240,7 @@ public class Customer_v2 : MonoBehaviour
     #endregion
     #region CustomerEat
     private EventInstance EatSFX;
+    bool GetRandomSfx = false;
     public void CustomerEats(float EatingSpeedMultiplier, float eatduration)
     {
         //ChangeState(CustomerStates.WAIT);
@@ -240,9 +258,26 @@ public class Customer_v2 : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-
-            if (OrderToDelete != null && Food != null)
+            //if (!GetRandomSfx)
+            //{
+            //    EatSFX = AudioManager.instance.CreateRandomInstance(FmodEvents.instance.eats);
+            //    EatSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+            //    GetRandomSfx = true;
+            //}
+            if (!GetRandomSfx&& OrderToDelete != null && Food != null)
             {
+            if (OrderToDelete.GetComponent<Order>().OrderName == "KOPI-O")
+            {
+                EatSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.Drinking);
+                EatSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+                GetRandomSfx = true;
+            }
+            else if (OrderToDelete.GetComponent<Order>().OrderName == "KAYA TOAST")
+            {
+                EatSFX = AudioManager.instance.CreateRandomInstance(FmodEvents.instance.eats);
+                EatSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+                GetRandomSfx = true;
+            }
                 OrderToDelete.GetComponent<Image>().color = Color.green;
                 OrderList.Remove(OrderToDelete);
                 Destroy(OrderToDelete, 4);
@@ -250,11 +285,11 @@ public class Customer_v2 : MonoBehaviour
             currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
             Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
             Food.GetComponent<Throwable>().eatCanvas.SetActive(true);
+            //get the random sound once
             PLAYBACK_STATE playbackState;
             EatSFX.getPlaybackState(out playbackState);
             if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
             {
-                //print("eating");
                 EatSFX.start();
             }
             if (Time.timeScale == 0)
@@ -290,6 +325,10 @@ public class Customer_v2 : MonoBehaviour
                     //print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
                     nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(false);
                     nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
+                    if (customerType == CustomerType.ANNOYING)
+                    {
+                        transform.GetChild(0).localEulerAngles = Vector3.zero;
+                    }
                     ChangeState(CustomerStates.LEAVE);
                 }
                 else if (nearestTable.GetComponent<CustomerTable>().succeedCount < nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
@@ -298,6 +337,7 @@ public class Customer_v2 : MonoBehaviour
                     //print(nearestTable.GetComponent<CustomerTable>().TotalOrderCount);
                     nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(true);
                     nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
+                    GetRandomSfx = false;
                     ChangeState(CustomerStates.WAIT);
                 }
                 OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders -= 1;
@@ -310,6 +350,9 @@ public class Customer_v2 : MonoBehaviour
     #region CustomerAngry
     public void CustomerAngry()
     {
+        nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(false);
+        //nearestTable.GetComponent<CustomerTable>().gameObject.GetComponent<Collider>().enabled = false;
+        nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;
         //customer turns red
         EmotionHolder.SetActive(true);
         EmotionHolder.GetComponent<Image>().sprite = Espressions[0];
@@ -318,6 +361,7 @@ public class Customer_v2 : MonoBehaviour
         foreach (var order in OrderList)
         {
             Destroy(order.gameObject);
+            AudioManager.instance.PlayOneShot2D(FmodEvents.instance.OrderFail);   
         }
         OrderList.Clear();
         //add the waypoints to go back;
@@ -328,7 +372,6 @@ public class Customer_v2 : MonoBehaviour
         waypointsBack.Add(Exitdoor);
         targetwaypoint_back = waypointsBack[startIndex];
         //GetComponent<Rigidbody>().isKinematic = false;
-        nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;
 
         //check if the Customer Type is KAREN
         if (customerType == CustomerType.KAREN)
@@ -344,6 +387,7 @@ public class Customer_v2 : MonoBehaviour
     //add the waypoints from back to the front
     public void CustomerLeave()
     {
+        //transform.GetChild(0).transform.rotation = Quaternion.Euler(Vector3.zero);
         float movementStep = movementSpeed * Time.deltaTime;
         float rotationStep = rotationSpeed * Time.deltaTime;
         Vector3 directionToTarget = targetwaypoint_back.position- transform.position;
@@ -374,7 +418,7 @@ public class Customer_v2 : MonoBehaviour
                     {
                         var tableScript = nearestTable.GetComponent<CustomerTable>();
                         var randomPositionID = (int)Random.Range(0, (float)tableScript.StandPos.Length);
-                        print(randomPositionID);
+                        //print(randomPositionID);
                         transform.position = tableScript.StandPos[randomPositionID].position;
                         transform.LookAt(nearestTable.transform.position);
                         TransfromOnce = false;

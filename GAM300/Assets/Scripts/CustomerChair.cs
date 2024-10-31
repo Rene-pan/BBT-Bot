@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using FMOD.Studio;
 
 public class CustomerChair : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class CustomerChair : MonoBehaviour
                 if (customerScript.currentState == Customer_v2.CustomerStates.LEAVE 
                     || customerScript.currentState == Customer_v2.CustomerStates.WAIT) return;
                 print("customer reached");
+                PLAYBACK_STATE playbackState;
+                customerScript.moveSFX.getPlaybackState(out playbackState);
+                customerScript.moveSFX.stop(STOP_MODE.IMMEDIATE);
                 customerScript.nearestChair = gameObject;
                 seatPivot = gameObject.transform.GetChild(1).transform;
                 customerScript.ChangeState(Customer_v2.CustomerStates.ORDER);

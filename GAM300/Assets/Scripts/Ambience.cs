@@ -46,11 +46,14 @@ public class Ambience : MonoBehaviour
         //    AudioManager.instance.SwitchTrack(0, PlayBGM);
         //    count--;
         //}
-        //if (Input.GetKeyDown(KeyCode.B)){
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
         //    timer.currentTime = 65;
         //}
         if (timer.currentTime <= StartFastBGMTime && !SwitchOnce) 
         {
+            //place time start sfx
+            AudioManager.instance.PlayOneShot2D(FmodEvents.instance.TimeRing);
             AudioManager.instance.SwitchTrack(1, PlayBGM);
             SwitchOnce = true;
         }

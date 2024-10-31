@@ -124,7 +124,7 @@ public class MainMenu : MonoBehaviour
     {
         //PlayUISFX();
         Application.Quit();
-        print("exit");
+        //print("exit");
     }
     public void PlayUISFX()
     {

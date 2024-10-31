@@ -4,7 +4,7 @@ using UnityEngine;
 public class CollideFloor : MonoBehaviour
 {
     [Header("Error VFX")]
-    public GameObject ErrorVFX;
+    public VFX vfxScript;
     private void OnCollisionEnter(Collision other)
     {
         var tag = other.gameObject.tag;
@@ -12,11 +12,15 @@ public class CollideFloor : MonoBehaviour
         {
             case "Food":
                 print("Broke something");
-                var MoreSuddenBurst = Instantiate(ErrorVFX, other.transform);
-                Destroy(MoreSuddenBurst, 3);
-                AudioManager.instance.PlayRandom(FmodEvents.instance.crash, other.transform.position);
+                vfxScript.PlayVFX(vfxScript.FindVFX("ErrorBurst"), other.transform, 1.5f);
+                AudioManager.instance.PlayOneShot(FmodEvents.instance.HitOtherAreas, other.transform.position);
                 Destroy(other.gameObject, 1.5f);
                 break;
         }
     }
+    //IEnumerator DelayCrashSFX(float delay, Transform here)
+    //{
+    //    yield return new WaitForSeconds(delay);
+    //    AudioManager.instance.PlayRandom(FmodEvents.instance.crash, here.position);
+    //}
 }

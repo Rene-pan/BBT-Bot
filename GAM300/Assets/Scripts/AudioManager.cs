@@ -43,6 +43,15 @@ public class AudioManager : MonoBehaviour
         var soundID = Random.Range(0, sounds.Count);
         RuntimeManager.PlayOneShot(sounds[soundID], worldPos);
     }
+    //look through a list of event references, choose a random one and create an instance of it
+    public EventInstance CreateRandomInstance(List<EventReference> sounds)
+    {
+        var soundID = Random.Range(0, sounds.Count);
+        print(soundID);
+        EventInstance eventInstance = RuntimeManager.CreateInstance(sounds[soundID]);
+        return eventInstance;
+
+    }
     public EventInstance CreateInstance(EventReference eventReference)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);

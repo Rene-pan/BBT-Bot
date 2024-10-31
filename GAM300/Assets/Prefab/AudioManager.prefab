@@ -153,12 +153,36 @@ MonoBehaviour:
       Data4: -1657096505
     Path: event:/Kopi Movement
   <eats>k__BackingField:
-    Guid:
+  - Guid:
       Data1: 564012584
       Data2: 1121507753
       Data3: -1142129000
       Data4: -1844145476
-    Path: event:/Eat1
+    Path: event:/Customers/Eat1
+  - Guid:
+      Data1: -800354215
+      Data2: 1201102863
+      Data3: 2052578715
+      Data4: -379125952
+    Path: event:/Customers/Eat2
+  - Guid:
+      Data1: -1630197241
+      Data2: 1291178673
+      Data3: -1209936710
+      Data4: 1413714670
+    Path: event:/Customers/Eat3
+  - Guid:
+      Data1: 936534293
+      Data2: 1202686831
+      Data3: 1963985297
+      Data4: 1208880133
+    Path: event:/Customers/Eat4
+  - Guid:
+      Data1: -29828879
+      Data2: 1177567916
+      Data3: 1158905263
+      Data4: 866156522
+    Path: event:/Customers/Eat5
   <cookingComplete>k__BackingField:
     Guid:
       Data1: 119473220
@@ -243,3 +267,66 @@ MonoBehaviour:
       Data3: 1216629382
       Data4: 1759414414
     Path: event:/ToastBread
+  <ToastBreadComplete>k__BackingField:
+    Guid:
+      Data1: -1992058034
+      Data2: 1111569212
+      Data3: 1413047968
+      Data4: -1526881949
+    Path: event:/ToastBreadComplete
+  <CustomerMovement>k__BackingField:
+    Guid:
+      Data1: -1642784530
+      Data2: 1131557857
+      Data3: 70953647
+      Data4: 1456851824
+    Path: event:/CustomerMovement
+  <LoseMoney>k__BackingField:
+    Guid:
+      Data1: -1831712766
+      Data2: 1206491648
+      Data3: -1687508855
+      Data4: 915339324
+    Path: event:/LoseMoney
+  <TimeRing>k__BackingField:
+    Guid:
+      Data1: 333269254
+      Data2: 1325305377
+      Data3: -1749401465
+      Data4: 2125974553
+    Path: event:/TimeRing
+  <KayaSpread>k__BackingField:
+    Guid:
+      Data1: -1619618362
+      Data2: 1234592130
+      Data3: 1833437083
+      Data4: 1346934625
+    Path: event:/KayaSpread
+  <HitTable>k__BackingField:
+    Guid:
+      Data1: -1699735128
+      Data2: 1106590966
+      Data3: 467250827
+      Data4: -1591863069
+    Path: event:/HitTable
+  <HitOtherAreas>k__BackingField:
+    Guid:
+      Data1: 151818266
+      Data2: 1330656322
+      Data3: 1474977441
+      Data4: 1543668858
+    Path: event:/HitOtherAreas
+  <Drinking>k__BackingField:
+    Guid:
+      Data1: 2123676892
+      Data2: 1268878157
+      Data3: -1224575360
+      Data4: -1667810030
+    Path: event:/Drinking
+  <OrderFail>k__BackingField:
+    Guid:
+      Data1: 1785665740
+      Data2: 1316414622
+      Data3: 904026283
+      Data4: -1917503773
+    Path: event:/OrderFail

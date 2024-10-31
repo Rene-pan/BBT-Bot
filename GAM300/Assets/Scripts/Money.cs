@@ -55,7 +55,7 @@ public class Money : MonoBehaviour
     public void AddMoney(int amount)
     {
         var moneyPopup = Instantiate(AddMoneyPrefab, EarningHolder.transform);
-        AudioManager.instance.PlayOneShot(FmodEvents.instance.EarnMoney, playerController.gameObject.transform.position);
+        AudioManager.instance.PlayOneShot2D(FmodEvents.instance.EarnMoney);
         moneyPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "+ $" + amount.ToString();
         moneyPopup.GetComponent<Animator>().Play(AddMoneyAnimation);
         currentEarnings += amount;
@@ -67,6 +67,7 @@ public class Money : MonoBehaviour
     public void DecreaseMoney(int amount)
     {
         var moneyPopup = Instantiate(DecreaseMoneyPrefab, EarningHolder.transform);
+        AudioManager.instance.PlayOneShot2D(FmodEvents.instance.LoseMoney);
         moneyPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "- $" + amount.ToString();
         moneyPopup.GetComponent<Animator>().Play(AddMoneyAnimation);
         currentEarnings -= amount;

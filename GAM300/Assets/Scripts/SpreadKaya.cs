@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using FMOD.Studio;
 public class SpreadKaya : MonoBehaviour
 {
     public enum KayaMakerStates { READY, PREP, COMPLETE }
@@ -20,10 +21,16 @@ public class SpreadKaya : MonoBehaviour
     //when player reaches here, player will be required to press e to increase the spreading kaya bar
     //when spreading kaya bar reaches the max amount, the status of the bread completion changes to fulfilled
     //player can collect the fulfilled bread and throw
+
+    [Header("Music")]
+    private EventInstance KayaSfx;
     private void Start()
     {
         SetSlider(spreadBreadProgressBar, spreadBreadMaxValue, 0);
         SliderVisibility(spreadBreadProgressBar, false);
+        //get move music
+        KayaSfx = AudioManager.instance.CreateInstance(FmodEvents.instance.KayaSpread);
+        KayaSfx.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.transform));
     }
     private void Update()
     {
@@ -63,15 +70,29 @@ public class SpreadKaya : MonoBehaviour
                 break;
             case SpreadKaya.KayaMakerStates.PREP:
                 KayaIcon.SetActive(false);
+                PLAYBACK_STATE playbackState;
+                KayaSfx.getPlaybackState(out playbackState);
                 var canSpread = player.NearSpreadKayaPoint && Input.GetKey(KeyCode.E);
                 if (canSpread)
                 {
                     currentSpreadValue += spreadBreadIncreasingValue;
                     UpdateSlider(spreadBreadProgressBar, currentSpreadValue);
+                    if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                    {
+                        KayaSfx.start();
+                    }
+                    if (Time.timeScale == 0)
+                    {
+                        KayaSfx.stop(STOP_MODE.IMMEDIATE);
+                    }
+                }else
+                {
+                    KayaSfx.stop(STOP_MODE.IMMEDIATE);
                 }
                 if (currentSpreadValue >= spreadBreadProgressBar.maxValue)
                 {
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.cookingComplete, this.transform.position);
+                    KayaSfx.stop(STOP_MODE.IMMEDIATE);
                     ChangeState(KayaMakerStates.COMPLETE);
                 }
                 break;

@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 2854008570436278440}
   - component: {fileID: 7820472389480844860}
   - component: {fileID: 8268029694319686089}
+  - component: {fileID: 1750011480681639706}
   m_Layer: 0
   m_Name: polySurface1
   m_TagString: Untagged
@@ -248,3 +249,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.13469696, y: 0.87878156, z: 0.45999998}
   m_Center: {x: 0.15633774, y: 0, z: 0}
+--- !u!114 &1750011480681639706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8580264056221473815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403a66153ba038c4093007d3d1fba0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxScript: {fileID: 0}
