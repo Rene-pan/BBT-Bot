@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 01f82a2f567a063468364fc680f36bef
+guid: 44552d221d1802247bde669bf28795ab
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,22 +8,27 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: cup_ALB
-    second: {fileID: 2800000, guid: 4d665e5d7ca0f5e429567a672e8a4e52, type: 3}
+    second: {fileID: 2800000, guid: f649ddb08056f494aa17e9eee0f5c5aa, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: cupbase_ALB
-    second: {fileID: 2800000, guid: 7144911cc7ab12346828381e99ea9dd3, type: 3}
+    second: {fileID: 2800000, guid: 087531df465a07742a07c3abc60e3b6c, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: fanny_pack_ALB
-    second: {fileID: 2800000, guid: 1ae361dcd4369fb4d88edcea05f9413c, type: 3}
+    second: {fileID: 2800000, guid: 6c59bdbaeb281f142af0db7820bba0e3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: strap_ALB
+    second: {fileID: 2800000, guid: 9a6db337816bf0c4880ddcd2535f9a24, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: zipper_ALB
-    second: {fileID: 2800000, guid: 3371fc8e8bcf8f64ea4636e10ab1c233, type: 3}
+    second: {fileID: 2800000, guid: c2ad46599e0ec4742aca93063df4942e, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
