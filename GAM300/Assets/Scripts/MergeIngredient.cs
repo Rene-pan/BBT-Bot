@@ -141,7 +141,6 @@ public class MergeIngredient : MonoBehaviour
         {
             case KopiMakerStates.READY:
                 CompletePopUp.SetActive(false);
-                PopUp.SetActive(false);
                 break;
             case KopiMakerStates.PREP:
                 PopUp.SetActive(true);
@@ -191,6 +190,7 @@ public class MergeIngredient : MonoBehaviour
                 break;
             case KopiMakerStates.COMPLETE:
                 //off UI
+                PopUp.SetActive(false);
                 CompletePopUp.SetActive(true);
                 //MergingSFX.stop(STOP_MODE.IMMEDIATE);
                 ResetTimer();
