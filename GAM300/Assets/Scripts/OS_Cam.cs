@@ -18,7 +18,7 @@ public class OS_Cam : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, target + (transform.position - target).normalized * idealDistance, 8 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target + (transform.position - target).normalized * idealDistance, 20 * Time.deltaTime);
         }
     }
 

@@ -264,6 +264,7 @@ public class PlayerController_v2 : MonoBehaviour
                     && currentCollectionArea.GetComponent<CollectIngredient>().currentType == CollectIngredient.CollectTypes.DRINK;
                 if (CannotCollectIngre)
                 {
+                    ArmAnim.ResetTrigger("StartCollect");
                     Destroy(holdIngredient);
                     hand_amount = 0;
                     UIFinder("BusyKopiMaker").SetActive(true);
@@ -276,6 +277,7 @@ public class PlayerController_v2 : MonoBehaviour
                     && currentCollectionArea.GetComponent<CollectIngredient>().currentType == CollectIngredient.CollectTypes.TOAST;
                 if (cannotCollectToast)
                 {
+                    ArmAnim.ResetTrigger("StartCollect");
                     Destroy(holdIngredient);
                     hand_amount = 0;
                     UIFinder("BusyKopiMaker").SetActive(true);
@@ -289,6 +291,7 @@ public class PlayerController_v2 : MonoBehaviour
                     && currentKopiMaker.GetComponent<MergeIngredient>().currentState == MergeIngredient.KopiMakerStates.COMPLETE;
                if (cannotCollectMidToast)
                 {
+                    ArmAnim.ResetTrigger("StartCollect");
                     hand_amount = 0;
                     UIFinder("BusyKopiMaker").SetActive(true);
                     //update words

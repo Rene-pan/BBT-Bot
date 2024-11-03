@@ -16,6 +16,9 @@ public class Movement : MonoBehaviour
     public Vector3 MoveVector;
     bool MovingNow;
 
+    [Header("Player Animations")]
+    public Animator PlayerAnim;
+
     //audio
     private EventInstance playerMovement;
 
@@ -81,6 +84,14 @@ public class Movement : MonoBehaviour
             // If no input, maintain player's vertical velocity and stop horizontal movement
             MovingNow = false;
             playerbody.velocity = new Vector3(0, playerbody.velocity.y, 0);
+        }
+
+        if (MovingNow)
+        {
+            PlayerAnim.SetBool("MoveTrue", true);
+        }else
+        {
+            PlayerAnim.SetBool("MoveTrue", false);
         }
     }
 
