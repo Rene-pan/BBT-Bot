@@ -14,9 +14,11 @@ public class CollideTable : MonoBehaviour
         {
             case "Food":
                 {
-                    vfxScript.PlayVFX(vfxScript.FindVFX("ErrorBurst"), other.transform, 1.5f);
-                    AudioManager.instance.PlayOneShot(FmodEvents.instance.HitOtherAreas, other.transform.position);
-                    Destroy(other.gameObject, 1f);
+                    var vfx  = vfxScript.CreateVFX(vfxScript.FindVFX("ErrorBurst"), other.transform);
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.HitOtherAreas, vfx.transform.position);
+                    vfx.transform.parent = null;
+                    Destroy(vfx, 3f);
+                    Destroy(other.gameObject);
                     Fail= true;
                     break;
                 }

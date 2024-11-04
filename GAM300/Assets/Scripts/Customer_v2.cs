@@ -270,6 +270,7 @@ public class Customer_v2 : MonoBehaviour
             //}
             if (!GetRandomSfx&& OrderToDelete != null && Food != null)
             {
+                OrderToDelete.GetComponent<Image>().color = Color.green;
             if (OrderToDelete.GetComponent<Order>().OrderName == "KOPI-O")
             {
                 EatSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.Drinking);
@@ -282,7 +283,6 @@ public class Customer_v2 : MonoBehaviour
                 EatSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
                 GetRandomSfx = true;
             }
-                OrderToDelete.GetComponent<Image>().color = Color.green;
                 OrderList.Remove(OrderToDelete);
                 Destroy(OrderToDelete, 4);
             }

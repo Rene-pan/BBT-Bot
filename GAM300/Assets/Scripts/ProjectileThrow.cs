@@ -24,7 +24,10 @@ public class ProjectileThrow : MonoBehaviour
     }
     void Predict()
     {
-        trajectoryPredictor.PredictTrajectory(ProjectileData());
+        var run = Input.mouseScrollDelta.y;
+        print(run);
+        force += run;
+            trajectoryPredictor.PredictTrajectory(ProjectileData());
     }
 
     ProjectileProperties ProjectileData()

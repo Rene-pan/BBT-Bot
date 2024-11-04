@@ -23,4 +23,9 @@ public class VFX : MonoBehaviour
         var currentVFX = Instantiate(VFX, PlayPosition);
         Destroy(currentVFX, DestroyDelay);
     }
+    public GameObject CreateVFX (GameObject VFX, Transform PlayPosition)
+    {
+        var currentVFX = Instantiate(VFX, PlayPosition);
+        return currentVFX;
+    }
 }

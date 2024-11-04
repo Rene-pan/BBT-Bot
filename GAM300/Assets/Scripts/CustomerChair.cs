@@ -30,7 +30,7 @@ public class CustomerChair : MonoBehaviour
                 customerScript.moveSFX.getPlaybackState(out playbackState);
                 customerScript.moveSFX.stop(STOP_MODE.IMMEDIATE);
                 customerScript.nearestChair = gameObject;
-                seatPivot = gameObject.transform.GetChild(1).transform;
+                seatPivot = gameObject.transform.GetChild(0).transform;
                 customerScript.ChangeState(Customer_v2.CustomerStates.ORDER);
                 other.GetComponent<Rigidbody>().isKinematic = true;
                 Parent(seatPivot, other.gameObject, 0);

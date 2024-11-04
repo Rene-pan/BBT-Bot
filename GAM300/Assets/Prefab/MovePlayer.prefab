@@ -5012,7 +5012,7 @@ GameObject:
   - component: {fileID: 7777998777778927073}
   - component: {fileID: 6934393142126362599}
   - component: {fileID: 4778098245713789660}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: KopiModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5368,7 +5368,7 @@ GameObject:
   - component: {fileID: 1688690383162248685}
   - component: {fileID: 1352384582938584002}
   - component: {fileID: 409872372616541182}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5453,7 +5453,7 @@ GameObject:
   - component: {fileID: 6457660182430779114}
   - component: {fileID: 5119830404154898518}
   - component: {fileID: 5579503253577556020}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5664,6 +5664,7 @@ MonoBehaviour:
   holdFood: {fileID: 0}
   spawner: {fileID: 0}
   CurrentHoldIngredientID: 0
+  PlayerObject: {fileID: 0}
   canThrow: 0
   ThrowOnce: 1
   throwscript: {fileID: 3801273640419899296}
@@ -5708,7 +5709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7304582214259301719}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IngredientHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5741,7 +5742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4319762421648462044}
   - component: {fileID: 2377978429245704225}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ArmAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5798,6 +5799,10 @@ PrefabInstance:
     - target: {fileID: 143849536374187203, guid: 62d318ee30808404bafb77e449c21cd2, type: 3}
       propertyPath: m_Name
       value: Cannon (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 143849536374187203, guid: 62d318ee30808404bafb77e449c21cd2, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1527533161606386067, guid: 62d318ee30808404bafb77e449c21cd2, type: 3}
       propertyPath: hitMarker

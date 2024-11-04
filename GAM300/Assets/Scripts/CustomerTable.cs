@@ -142,7 +142,7 @@ public class CustomerTable : MonoBehaviour
                             //delete food
                             //Destroy(other.gameObject, FlashTimeInterval);
                             print(other);
-                            StartCoroutine(ReActivateStand(1.5f));
+                            StartCoroutine(ReActivateStand(4f));
                             continue;
                         }
                         else if (FoodScript.Name != order.GetComponent<Order>().OrderName && orders.Count == 1)
@@ -157,7 +157,7 @@ public class CustomerTable : MonoBehaviour
                             //FlashColour(FlashTimeInterval, eatArea.GetComponent<Renderer>().material, eatArea.GetComponent<Renderer>().material.color, WrongFoodErrorColour);
                             //delete food
                             Destroy(other.gameObject, 1.5f);
-                            StartCoroutine(ReActivateStand(1.5f));
+                            StartCoroutine(ReActivateStand(4f));
                             break;
                         }
                     }
