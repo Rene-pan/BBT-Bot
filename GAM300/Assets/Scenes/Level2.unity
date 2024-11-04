@@ -2104,6 +2104,16 @@ Transform:
   - {fileID: 1507833167}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &568097273 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5849652331791740112, guid: 37f1d3632886ebf449d393e4002462f7, type: 3}
+  m_PrefabInstance: {fileID: 4809550998074210579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &574832183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2237682718101420334, guid: 0c5a098682a11334894b9ae86ef677ae, type: 3}
+  m_PrefabInstance: {fileID: 656705052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &575126396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,6 +2417,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6474102446547781345, guid: 0c5a098682a11334894b9ae86ef677ae, type: 3}
+      propertyPath: StationIcon
+      value: 
+      objectReference: {fileID: 574832183}
     - target: {fileID: 7939255540270696429, guid: 0c5a098682a11334894b9ae86ef677ae, type: 3}
       propertyPath: m_Name
       value: DrinksStation
@@ -2585,6 +2599,11 @@ Transform:
   - {fileID: 27353256}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &684134411 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2237682718101420334, guid: 0c5a098682a11334894b9ae86ef677ae, type: 3}
+  m_PrefabInstance: {fileID: 1559759858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &749216972
 GameObject:
   m_ObjectHideFlags: 0
@@ -5702,6 +5721,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6474102446547781345, guid: 0c5a098682a11334894b9ae86ef677ae, type: 3}
+      propertyPath: StationIcon
+      value: 
+      objectReference: {fileID: 684134411}
     - target: {fileID: 7939255540270696429, guid: 0c5a098682a11334894b9ae86ef677ae, type: 3}
       propertyPath: m_Name
       value: DrinksStation (1)
@@ -9169,6 +9192,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.8130001
       objectReference: {fileID: 0}
+    - target: {fileID: 1632665653831325621, guid: e43222ba2be8209489dccb8808758350, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632665653831325621, guid: e43222ba2be8209489dccb8808758350, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422251894818431148, guid: e43222ba2be8209489dccb8808758350, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2422251894818431148, guid: e43222ba2be8209489dccb8808758350, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9180,6 +9215,10 @@ PrefabInstance:
     - target: {fileID: 3127014087051380335, guid: e43222ba2be8209489dccb8808758350, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.808
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036621593139886228, guid: e43222ba2be8209489dccb8808758350, type: 3}
+      propertyPath: m_Name
+      value: SpreadKayaAnim
       objectReference: {fileID: 0}
     - target: {fileID: 4574681208211462572, guid: e43222ba2be8209489dccb8808758350, type: 3}
       propertyPath: m_Name
@@ -9358,6 +9397,10 @@ PrefabInstance:
       propertyPath: PopUp
       value: 
       objectReference: {fileID: 1261358247}
+    - target: {fileID: 8719013523505409534, guid: 37f1d3632886ebf449d393e4002462f7, type: 3}
+      propertyPath: StationIcon
+      value: 
+      objectReference: {fileID: 568097273}
     - target: {fileID: 8719013523505409534, guid: 37f1d3632886ebf449d393e4002462f7, type: 3}
       propertyPath: mergeScript
       value: 

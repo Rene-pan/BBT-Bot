@@ -21,6 +21,7 @@ public class MergeIngredient : MonoBehaviour
     [SerializeField] Slider slider;
     [SerializeField] GameObject PopUp;
     [SerializeField] GameObject CompletePopUp;
+    [SerializeField] GameObject StationIcon;
     public Color[] TimeSliderColors;
     private EventInstance MergingSFX;
     private EventInstance ToastSFX;
@@ -141,9 +142,11 @@ public class MergeIngredient : MonoBehaviour
         {
             case KopiMakerStates.READY:
                 CompletePopUp.SetActive(false);
+                StationIcon.SetActive(true);
                 break;
             case KopiMakerStates.PREP:
                 PopUp.SetActive(true);
+                StationIcon.SetActive(false);
                 cookingTimer += Time.deltaTime;
                 UpdateSlider(slider, cookingTimer);
                 PLAYBACK_STATE DrinkplaybackState;

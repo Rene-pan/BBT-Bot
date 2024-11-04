@@ -16,11 +16,15 @@ public class SpreadKaya : MonoBehaviour
     public float currentSpreadValue;
     private PlayerController_v2 playerScript;
     public GameObject completeUI;
+    public GameObject prepUI;
     public GameObject KayaIcon;
     public Image Fill;
     //when player reaches here, player will be required to press e to increase the spreading kaya bar
     //when spreading kaya bar reaches the max amount, the status of the bread completion changes to fulfilled
     //player can collect the fulfilled bread and throw
+
+    [Header("Spread Kaya Animation")]
+    public Animator KayaAnim;
 
     [Header("Music")]
     private EventInstance KayaSfx;
@@ -66,17 +70,25 @@ public class SpreadKaya : MonoBehaviour
         {
             case SpreadKaya.KayaMakerStates.READY:
                 completeUI.SetActive(false);
+                prepUI.SetActive(false);
                 KayaIcon.SetActive(true);
+                SetSlider(spreadBreadProgressBar, spreadBreadMaxValue, 0);
+                currentSpreadValue = 0;
                 break;
             case SpreadKaya.KayaMakerStates.PREP:
+                prepUI.SetActive(true);
                 KayaIcon.SetActive(false);
                 PLAYBACK_STATE playbackState;
                 KayaSfx.getPlaybackState(out playbackState);
+                KayaAnim.SetBool("Start", true);
+                KayaAnim.speed = 0;
                 var canSpread = player.NearSpreadKayaPoint && Input.GetKey(KeyCode.E);
                 if (canSpread)
                 {
                     currentSpreadValue += spreadBreadIncreasingValue;
                     UpdateSlider(spreadBreadProgressBar, currentSpreadValue);
+                    KayaAnim.speed = 1;
+
                     if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
                     {
                         KayaSfx.start();
@@ -87,6 +99,7 @@ public class SpreadKaya : MonoBehaviour
                     }
                 }else
                 {
+                    KayaAnim.speed = 0;
                     KayaSfx.stop(STOP_MODE.IMMEDIATE);
                 }
                 if (currentSpreadValue >= spreadBreadProgressBar.maxValue)
@@ -98,9 +111,7 @@ public class SpreadKaya : MonoBehaviour
                 break;
             case SpreadKaya.KayaMakerStates.COMPLETE:
                 completeUI.SetActive(true);
-                SliderVisibility(spreadBreadProgressBar, false);
-                SetSlider(spreadBreadProgressBar, spreadBreadMaxValue, 0);
-                currentSpreadValue = 0;
+                //SliderVisibility(spreadBreadProgressBar, false);
                 break;
         }
     }
