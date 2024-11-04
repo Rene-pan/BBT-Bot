@@ -67,6 +67,9 @@ public class Customer_v2 : MonoBehaviour
     [Header("Karen Customer")]
     [SerializeField] int DecreaseMoneyAmount;
 
+    [Header("Animator")]
+    public Animator CustomerEat;
+
     private void OnEnable()
     {
         targetwaypoint = waypoints[targetWaypointIndex];
@@ -257,6 +260,7 @@ public class Customer_v2 : MonoBehaviour
             else if (customerType == CustomerType.ANNOYING)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
+                CustomerEat.SetBool("Jump", false);
             }
             //if (!GetRandomSfx)
             //{
@@ -282,9 +286,10 @@ public class Customer_v2 : MonoBehaviour
                 OrderList.Remove(OrderToDelete);
                 Destroy(OrderToDelete, 4);
             }
+            CustomerEat.SetBool("Start", true);
             currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
             Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
-            Food.GetComponent<Throwable>().eatCanvas.SetActive(true);
+            //Food.GetComponent<Throwable>().eatCanvas.SetActive(true);
             //get the random sound once
             PLAYBACK_STATE playbackState;
             EatSFX.getPlaybackState(out playbackState);
@@ -298,8 +303,9 @@ public class Customer_v2 : MonoBehaviour
             }
             if (currentEatTime >= eatduration)
             {
+                CustomerEat.SetBool("Start", false);
                 EatSFX.stop(STOP_MODE.ALLOWFADEOUT);
-                Food.GetComponent<Throwable>().eatCanvas.SetActive(false);
+                //Food.GetComponent<Throwable>().eatCanvas.SetActive(false);
                 Food.transform.GetChild(0).GetComponent<Animator>().SetBool("CupStop", true);
                 //delete food on table
                 Destroy(Food);
@@ -407,7 +413,7 @@ public class Customer_v2 : MonoBehaviour
     private float time = 0;
     private bool StartAnimation = false;
     private float time1 = 0;
-    public GameObject AnimatorObj;
+    //public GameObject AnimatorObj;
     void CustomerTypes()
     {
         switch (customerType) 
@@ -432,7 +438,7 @@ public class Customer_v2 : MonoBehaviour
                     {
                         transform.position = nearestTable.GetComponent<CustomerTable>().foodPosition.transform.position;
                         //play animation
-                        AnimatorObj.GetComponent<Animator>().SetBool("Jump", true);
+                        CustomerEat.SetBool("Jump", true);
                         nearestTable.GetComponent<Collider>().enabled = false;
                         //off table stand
                         if (nearestTable.GetComponent<CustomerTable>().tableStand.activeSelf)
@@ -444,7 +450,7 @@ public class Customer_v2 : MonoBehaviour
                     {
                         time1 += Time.deltaTime;
                         if (time1 < JumpingDuration){
-                            AnimatorObj.GetComponent<Animator>().SetBool("Jump", false);
+                            CustomerEat.SetBool("Jump", false);
                             StartAnimation = true;
                             nearestTable.GetComponent<Collider>().enabled = true;
                             //on table stand

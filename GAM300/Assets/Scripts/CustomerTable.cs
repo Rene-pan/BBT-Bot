@@ -123,10 +123,12 @@ public class CustomerTable : MonoBehaviour
                                     //customer.transform.rotation = Quaternion.Euler(RotateVector);
                                     break;
                                 case Customer_v2.CustomerType.ANNOYING:
-                                    customerScript.AnimatorObj.GetComponent<Animator>().SetBool("Jump", false);
+                                    customerScript.CustomerEat.SetBool("Jump", false);
                                     //return to chair pos
                                     customer.transform.position = customerScript.nearestChair.GetComponent<CustomerChair>().seatPivot.position;
                                     customer.transform.GetChild(0).localEulerAngles = RotateVector;
+                                    //customer.transform.GetChild(0).rotation = Quaternion.Euler(RotateVector);
+                                    //customer.transform.LookAt(gameObject.transform);
                                     break;
                             }
                         }

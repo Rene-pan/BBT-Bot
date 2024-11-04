@@ -16,7 +16,7 @@ public class CollideTable : MonoBehaviour
                 {
                     vfxScript.PlayVFX(vfxScript.FindVFX("ErrorBurst"), other.transform, 1.5f);
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.HitOtherAreas, other.transform.position);
-                    Destroy(other.gameObject, 1.5f);
+                    Destroy(other.gameObject);
                     Fail= true;
                     break;
                 }

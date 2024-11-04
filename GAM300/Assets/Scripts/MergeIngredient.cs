@@ -25,6 +25,9 @@ public class MergeIngredient : MonoBehaviour
     public Color[] TimeSliderColors;
     private EventInstance MergingSFX;
     private EventInstance ToastSFX;
+
+    [Header("Animator")]
+    public Animator Anim;
     private void Start()
     {
         SetSlider(slider, waitingTime, cookingTimer);
@@ -154,6 +157,7 @@ public class MergeIngredient : MonoBehaviour
                 switch (makerType)
                 {
                     case MakerTypes.TOAST:
+                        Anim.Play("ToastingBread");
                         ToastSFX.getPlaybackState(out ToastplaybackState);
                         if (ToastplaybackState.Equals(PLAYBACK_STATE.STOPPED))
                         {
@@ -165,6 +169,7 @@ public class MergeIngredient : MonoBehaviour
                         }
                         break;
                     case MakerTypes.DRINK:
+                        Anim.Play("PourCoffee");
                         MergingSFX.getPlaybackState(out DrinkplaybackState);
                         if (DrinkplaybackState.Equals(PLAYBACK_STATE.STOPPED))
                         {
