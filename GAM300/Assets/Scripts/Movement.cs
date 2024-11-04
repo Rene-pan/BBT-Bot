@@ -84,6 +84,7 @@ public class Movement : MonoBehaviour
             // If no input, maintain player's vertical velocity and stop horizontal movement
             MovingNow = false;
             playerbody.velocity = new Vector3(0, playerbody.velocity.y, 0);
+            //transform.rotation = Quaternion.Euler(0f, 0, 0f);
         }
 
         if (MovingNow)

@@ -26,6 +26,7 @@ public class PlayerController_v2 : MonoBehaviour
     public GameObject holdFood;
     public SpawnCustomer spawner;
     public int CurrentHoldIngredientID = 0; //0 means empty, 
+    public GameObject PlayerObject;
 
     [Header("Throwing")]
     public bool canThrow;
@@ -258,6 +259,7 @@ public class PlayerController_v2 : MonoBehaviour
                     ChangeState(PlayerCollection.THROW);
                     UIFinder("ActivateThrowmode").SetActive(false);
                     lr.enabled = true;
+                    PlayerObject.transform.localEulerAngles = new Vector3(0, 180, 0);
                 }
                 //if both of the kopimaker is not ready, and player try to get cup by pressing E and its near collection point cannot collect, have error message pop up
                 var CannotCollectIngre = spawner.NoOfKopiMakerBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint 
@@ -302,6 +304,7 @@ public class PlayerController_v2 : MonoBehaviour
                 break;
 
             case PlayerCollection.THROW:
+                //transform.localEulerAngles = new Vector3(0, 360, 0);
                 //player can only throw after collecting
                 if (Input.GetMouseButtonDown(0) && PressCount == 1)
                 {
@@ -320,6 +323,7 @@ public class PlayerController_v2 : MonoBehaviour
                     PressCount = 0;
                     hand_amount = 0;
                     UIFinder("ActivateThrowmode").SetActive(false);
+                    PlayerObject.transform.localEulerAngles = new Vector3(0, 0, 0);
                     ChangeState(PlayerCollection.COLLECT);
                 }
                 break;
