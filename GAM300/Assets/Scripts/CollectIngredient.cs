@@ -27,8 +27,11 @@ public class CollectIngredient : MonoBehaviour
             {
                 playerScript.UIFinder("PressEToCollect").GetComponent<IngredientIndicator>().UpdateIngredient(0);
             }
-            playerScript.UIFinder("PressEToCollect").SetActive(true);
-            playerScript.UIFinder("PressEToCollect").GetComponent<Animator>().Play("PulseUI");
+            if (playerScript.hand_amount == 0 && !playerScript.spawner.NoOfKopiMakerBusy)
+            {
+                playerScript.UIFinder("PressEToCollect").SetActive(true);
+                playerScript.UIFinder("PressEToCollect").GetComponent<Animator>().Play("PulseUI");
+            }
         }
     }
     private void OnTriggerExit(Collider other)

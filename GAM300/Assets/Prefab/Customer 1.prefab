@@ -318,12 +318,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  movementSpeed: 1.5
+  movementSpeed: 6
+  leaveSpeed: 5
   rotationSpeed: 2
   nearestTable: {fileID: 0}
   nearestChair: {fileID: 0}
   OrderUI:
-  - {fileID: 2620413275955628136, guid: 395c789a7cb523b47a4eb6ae5990e4fa, type: 3}
+  - {fileID: 2620413275955628136, guid: ae7b0dafb400a7744ae10009f937a375, type: 3}
   OrderList: []
   OrderUI_ID: 0
   OrderUIHolder: {fileID: 0}
@@ -350,7 +351,6 @@ MonoBehaviour:
   JumpForce: 0
   DecreaseMoneyAmount: 0
   CustomerEat: {fileID: 1888687391323059220}
-  AnimatorObj: {fileID: 0}
 --- !u!54 &8126217349441331706
 Rigidbody:
   m_ObjectHideFlags: 0

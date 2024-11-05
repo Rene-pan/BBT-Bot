@@ -21,6 +21,7 @@ public class Customer_v2 : MonoBehaviour
     private int targetWaypointIndex;
     private float minDistance = 0.1f;
     public float movementSpeed = 3f;
+    public float leaveSpeed = 5f;
     public float rotationSpeed = 2f;
     public GameObject nearestTable;
     public GameObject nearestChair;//linked with WAIT state to determine which chair to go back to
@@ -34,7 +35,7 @@ public class Customer_v2 : MonoBehaviour
     [SerializeField] GameObject OrderUIHolder; //contains all orders
     [SerializeField] float OrderWaitTime;
     [SerializeField] float currentTime;
-    [SerializeField] float DecreasingValue;
+    public float DecreasingValue;
 
     [Header("Customer Eat")]
     public GameObject Food;
@@ -44,6 +45,7 @@ public class Customer_v2 : MonoBehaviour
     public GameObject OrderToDelete;
     public int CustomerMoney;
     public Money MoneyScript;
+    string OrderName;
 
     [Header("Customer Angry")]
     //[SerializeField] Material CustomerMaterial;
@@ -283,12 +285,19 @@ public class Customer_v2 : MonoBehaviour
                 EatSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
                 GetRandomSfx = true;
             }
+                OrderName = OrderToDelete.GetComponent<Order>().OrderName;
                 OrderList.Remove(OrderToDelete);
                 Destroy(OrderToDelete, 4);
             }
             CustomerEat.SetBool("Start", true);
             currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
-            Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
+            if (OrderName == "KOPI-O")
+            {
+                Food.transform.GetChild(0).GetComponent<Animator>().Play("CupFadeOut");
+            }else if (OrderName == "KAYA TOAST")
+            {
+                Food.transform.GetChild(0).GetComponent<Animator>().Play("ToastFadeOut");
+            }
             //Food.GetComponent<Throwable>().eatCanvas.SetActive(true);
             //get the random sound once
             PLAYBACK_STATE playbackState;
@@ -306,7 +315,14 @@ public class Customer_v2 : MonoBehaviour
                 CustomerEat.SetBool("Start", false);
                 EatSFX.stop(STOP_MODE.ALLOWFADEOUT);
                 //Food.GetComponent<Throwable>().eatCanvas.SetActive(false);
-                Food.transform.GetChild(0).GetComponent<Animator>().SetBool("CupStop", true);
+                if (OrderName == "KOPI-O")
+                {
+                    Food.transform.GetChild(0).GetComponent<Animator>().SetBool("CupStop", true);
+                }
+                else if (OrderName == "KAYA TOAST")
+                {
+                    Food.transform.GetChild(0).GetComponent<Animator>().SetBool("ToastStop", true);
+                }
                 //delete food on table
                 Destroy(Food);
                 //add money
@@ -394,7 +410,7 @@ public class Customer_v2 : MonoBehaviour
     public void CustomerLeave()
     {
         //transform.GetChild(0).transform.rotation = Quaternion.Euler(Vector3.zero);
-        float movementStep = movementSpeed * Time.deltaTime;
+        float movementStep = leaveSpeed * Time.deltaTime;
         float rotationStep = rotationSpeed * Time.deltaTime;
         Vector3 directionToTarget = targetwaypoint_back.position- transform.position;
         Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);

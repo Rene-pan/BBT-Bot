@@ -238,7 +238,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  movementSpeed: 1.5
+  movementSpeed: 6
+  leaveSpeed: 5
   rotationSpeed: 2
   nearestTable: {fileID: 0}
   nearestChair: {fileID: 0}

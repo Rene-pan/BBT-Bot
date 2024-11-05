@@ -22,6 +22,11 @@ public class SpawnCustomer : MonoBehaviour
     public List<GameObject> toasters;
     public List<GameObject> kayaStations;
 
+    [Header("Faster Customers")]
+    public MainTimer mainTimer;
+    public float TriggerFastCustomerTime;
+    public float FastCustomerMoveSpeed;
+    public float FastCustomerOrderDecreasingValue;
     private void Awake()
     {
         PopulateChairwayPoints();
@@ -45,6 +50,10 @@ public class SpawnCustomer : MonoBehaviour
         var Money = FindAnyObjectByType<Money>();
         Money.CheckMoney();
         CheckKopiMachine();
+        if (mainTimer.currentTime <= TriggerFastCustomerTime)
+        {
+            maxShopCapacity = 5;
+        }
         if (currentCustomerCount < maxShopCapacity)
         {
             ChairAvailability();
