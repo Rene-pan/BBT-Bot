@@ -5,6 +5,7 @@ using UnityEngine;
 public class OS_Cam : MonoBehaviour
 {
      float idealDistance;
+    public float zoomInSpeed;
     void Start()
     {
         idealDistance = Vector3.Distance(transform.parent.position, transform.position);
@@ -18,7 +19,7 @@ public class OS_Cam : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, target + (transform.position - target).normalized * idealDistance, 20 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target + (transform.position - target).normalized * idealDistance, zoomInSpeed * Time.deltaTime);
         }
     }
 

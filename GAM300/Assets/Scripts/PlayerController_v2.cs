@@ -37,6 +37,7 @@ public class PlayerController_v2 : MonoBehaviour
     [SerializeField] List<GameObject> PlayerUI;
     public Sprite[] ThrowPrompts; //org, new
     public int PressCount = 0;
+    int RightClickTimes = 0;
 
     [Header("Spreading Kaya")]
     public SpreadKaya currentKayaMachine;
@@ -308,6 +309,7 @@ public class PlayerController_v2 : MonoBehaviour
                 //player can only throw after collecting
                 if (Input.GetMouseButtonDown(0) && PressCount == 1)
                 {
+                    PlayerObject.transform.localEulerAngles = new Vector3(0, 180, 0);
                     //playThrow Animation 
                     ArmAnim.Play("ThrowAnimation");
                     PressCount = 2;
@@ -325,6 +327,17 @@ public class PlayerController_v2 : MonoBehaviour
                     UIFinder("ActivateThrowmode").SetActive(false);
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 0, 0);
                     ChangeState(PlayerCollection.COLLECT);
+                }
+                else if (Input.GetMouseButtonDown(1) && RightClickTimes == 0)
+                {
+                    PlayerObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+                    RightClickTimes = 1;
+                }
+                else if (Input.GetMouseButtonDown(1) && RightClickTimes == 1)
+                {
+                    PlayerObject.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    RightClickTimes = 0;
+
                 }
                 break;
         }
