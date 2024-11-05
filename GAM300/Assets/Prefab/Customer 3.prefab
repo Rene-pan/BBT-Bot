@@ -318,7 +318,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   movementSpeed: 2.5
   rotationSpeed: 2
   nearestTable: {fileID: 0}
@@ -349,9 +348,8 @@ MonoBehaviour:
   CreatedOrder: 0
   JumpingDuration: 5
   JumpForce: 3
-  DecreaseMoneyAmount: 0
+  DecreaseMoneyAmount: 5
   CustomerEat: {fileID: 6878172469135047759}
-  AnimatorObj: {fileID: 1373253049429301307}
 --- !u!54 &8126217349441331706
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -380,7 +380,7 @@ public class Customer_v2 : MonoBehaviour
         //GetComponent<Rigidbody>().isKinematic = false;
 
         //check if the Customer Type is KAREN
-        if (customerType == CustomerType.KAREN)
+        if (customerType == CustomerType.KAREN || customerType == CustomerType.ANNOYING)
         {
             MoneyScript.DecreaseMoney(DecreaseMoneyAmount);
         }
