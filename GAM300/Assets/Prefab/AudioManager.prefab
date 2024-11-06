@@ -346,22 +346,36 @@ MonoBehaviour:
     Path: 
   <CustomerEnter>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <Jump>k__BackingField:
+      Data1: -1823938565
+      Data2: 1160611894
+      Data3: 863492997
+      Data4: 407612968
+    Path: event:/CustomerEnter
+  <M_CustomerAngry>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1341031341
+      Data2: 1204897295
+      Data3: 1901417893
+      Data4: -1492218717
+    Path: event:/CustomerAngry_Male
+  <F_CustomerAngry>k__BackingField:
+    Guid:
+      Data1: -443239726
+      Data2: 1302856452
+      Data3: -1870543173
+      Data4: -1842241934
+    Path: event:/CustomerAngry_Female
   <Float>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1263117197
+      Data2: 1206694823
+      Data3: -611505024
+      Data4: 343035719
+    Path: event:/CharacterFloat
+  <MovingEnter>k__BackingField:
+    Guid:
+      Data1: 1585802677
+      Data2: 1316379227
+      Data3: -1676540272
+      Data4: -1562941399
+    Path: event:/MovingWall

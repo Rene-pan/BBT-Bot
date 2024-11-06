@@ -21,11 +21,14 @@ public class Movement : MonoBehaviour
 
     //audio
     private EventInstance playerMovement;
+    private EventInstance playerIdleRotate;
 
     private void Start()
     {
         playerMovement = AudioManager.instance.CreateInstance(FmodEvents.instance.kopiMovements);
         playerMovement.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(playerbody.gameObject.transform));
+        //playerIdleRotate = AudioManager.instance.CreateInstance(FmodEvents.instance.Float);
+        //playerIdleRotate.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(playerbody.gameObject.transform));
     }
     private void FixedUpdate()
     {
@@ -100,6 +103,7 @@ public class Movement : MonoBehaviour
     {
         if (MovingNow)
         {
+            //playerIdleRotate.stop(STOP_MODE.ALLOWFADEOUT);
             //Player has moved
             PLAYBACK_STATE playbackState;
             playerMovement.getPlaybackState(out playbackState);
@@ -112,6 +116,14 @@ public class Movement : MonoBehaviour
         {
             //Player has not moved
             playerMovement.stop(STOP_MODE.ALLOWFADEOUT);
+
+            //Player has moved
+            //PLAYBACK_STATE playbackState;
+            //playerIdleRotate.getPlaybackState(out playbackState);
+            //if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            //{
+            //    playerIdleRotate.start();
+            //}
         }
     }
 

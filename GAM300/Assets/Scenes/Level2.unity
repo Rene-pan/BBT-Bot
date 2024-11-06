@@ -1711,6 +1711,10 @@ PrefabInstance:
       propertyPath: pitchMinMax.x
       value: -27
       objectReference: {fileID: 0}
+    - target: {fileID: 8924362693239905431, guid: 78f72e816c9765d4ab3a9d1e12b360dd, type: 3}
+      propertyPath: mouseSensitivity
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19549,66 +19553,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <CustomerEnter>k__BackingField.Path
-      value: event:/CustomerEnter
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <F_CustomerAngry>k__BackingField.Path
-      value: event:/CustomerAngry_Female
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <M_CustomerAngry>k__BackingField.Path
-      value: event:/CustomerAngry_Male
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <CustomerEnter>k__BackingField.Guid.Data1
-      value: -1823938565
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <CustomerEnter>k__BackingField.Guid.Data2
-      value: 1160611894
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <CustomerEnter>k__BackingField.Guid.Data3
-      value: 863492997
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <CustomerEnter>k__BackingField.Guid.Data4
-      value: 407612968
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <F_CustomerAngry>k__BackingField.Guid.Data1
-      value: -443239726
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <F_CustomerAngry>k__BackingField.Guid.Data2
-      value: 1302856452
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <F_CustomerAngry>k__BackingField.Guid.Data3
-      value: -1870543173
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <F_CustomerAngry>k__BackingField.Guid.Data4
-      value: -1842241934
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <M_CustomerAngry>k__BackingField.Guid.Data1
-      value: -1341031341
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <M_CustomerAngry>k__BackingField.Guid.Data2
-      value: 1204897295
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <M_CustomerAngry>k__BackingField.Guid.Data3
-      value: 1901417893
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
-      propertyPath: <M_CustomerAngry>k__BackingField.Guid.Data4
-      value: -1492218717
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26068,6 +26012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911914818}
   - component: {fileID: 1911914819}
+  - component: {fileID: 1911914820}
   m_Layer: 0
   m_Name: MovingWall
   m_TagString: Untagged
@@ -26109,6 +26054,27 @@ MonoBehaviour:
   PlatformTYPE: 2
   amp: 5
   freq: 1.7
+--- !u!65 &1911914820
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911914817}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2586746, y: 1.7311476, z: 1.9104719}
+  m_Center: {x: -0.5739517, y: -0.36557382, z: 0.2767663}
 --- !u!1 &1915229752
 GameObject:
   m_ObjectHideFlags: 0

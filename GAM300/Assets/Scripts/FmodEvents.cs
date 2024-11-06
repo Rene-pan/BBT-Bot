@@ -100,6 +100,9 @@ public class FmodEvents : MonoBehaviour
 
     [field: SerializeField] public EventReference Float { get; private set; }
 
+    [field: Header("Moving Wall SFX")]
+    [field: SerializeField] public EventReference MovingEnter { get; private set; }
+
 
 
     public static FmodEvents instance {  get; private set; }
