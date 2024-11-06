@@ -19,6 +19,14 @@ public class Throwable : MonoBehaviour
             var customerScript = collision.gameObject.GetComponent<Customer_v2>();
             if (customerScript.currentState == Customer_v2.CustomerStates.WAIT)
             {
+                if (customerScript.customerType == Customer_v2.CustomerType.BIG || customerScript.customerType == Customer_v2.CustomerType.KAREN)
+                {
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.M_CustomerAngry, collision.gameObject.transform.position);
+                }
+                else if (customerScript.customerType == Customer_v2.CustomerType.NORMAL || customerScript.customerType == Customer_v2.CustomerType.ANNOYING)
+                {
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.F_CustomerAngry, collision.gameObject.transform.position);
+                }
                 AudioManager.instance.PlayOneShot(FmodEvents.instance.HitOtherAreas, this.transform.position);
                 customerScript.ChangeState(Customer_v2.CustomerStates.ANGRY);
                 Destroy(gameObject);

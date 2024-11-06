@@ -168,6 +168,7 @@ public class SpawnCustomer : MonoBehaviour
     }
     void CreateCustomer(GameObject Spawnedcustomer)
     {
+        AudioManager.instance.PlayOneShot2D(FmodEvents.instance.CustomerEnter);
         var customer = Instantiate(Spawnedcustomer, gameObject.transform);
         var customerScript = customer.GetComponent<Customer_v2>();
         customerScript.nearestTable.GetComponent<CustomerTable>().customer = customer;

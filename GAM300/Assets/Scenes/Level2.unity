@@ -19549,6 +19549,66 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <CustomerEnter>k__BackingField.Path
+      value: event:/CustomerEnter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <F_CustomerAngry>k__BackingField.Path
+      value: event:/CustomerAngry_Female
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <M_CustomerAngry>k__BackingField.Path
+      value: event:/CustomerAngry_Male
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <CustomerEnter>k__BackingField.Guid.Data1
+      value: -1823938565
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <CustomerEnter>k__BackingField.Guid.Data2
+      value: 1160611894
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <CustomerEnter>k__BackingField.Guid.Data3
+      value: 863492997
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <CustomerEnter>k__BackingField.Guid.Data4
+      value: 407612968
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <F_CustomerAngry>k__BackingField.Guid.Data1
+      value: -443239726
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <F_CustomerAngry>k__BackingField.Guid.Data2
+      value: 1302856452
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <F_CustomerAngry>k__BackingField.Guid.Data3
+      value: -1870543173
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <F_CustomerAngry>k__BackingField.Guid.Data4
+      value: -1842241934
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <M_CustomerAngry>k__BackingField.Guid.Data1
+      value: -1341031341
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <M_CustomerAngry>k__BackingField.Guid.Data2
+      value: 1204897295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <M_CustomerAngry>k__BackingField.Guid.Data3
+      value: 1901417893
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404578745702743416, guid: 6aa1319171387b84a84e1ec4c1a0ae24, type: 3}
+      propertyPath: <M_CustomerAngry>k__BackingField.Guid.Data4
+      value: -1492218717
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
