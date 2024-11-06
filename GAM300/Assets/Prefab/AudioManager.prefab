@@ -330,3 +330,38 @@ MonoBehaviour:
       Data3: 904026283
       Data4: -1917503773
     Path: event:/OrderFail
+  <ActivateThrow>k__BackingField:
+    Guid:
+      Data1: 37580734
+      Data2: 1081292796
+      Data3: -273483607
+      Data4: -970333294
+    Path: event:/ActivateThrowmode
+  <CustomerJump>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <CustomerEnter>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <Jump>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <Float>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

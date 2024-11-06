@@ -80,7 +80,31 @@ public class FmodEvents : MonoBehaviour
     [field: Header("Tear Order SFX")]
     [field: SerializeField] public EventReference OrderFail { get; private set; }
 
+    [field: Header("Activate Throwmode SFX")]
+    [field: SerializeField] public EventReference ActivateThrow { get; private set; }
+
+    [field: Header("Customer Jump SFX")]
+    [field: SerializeField] public EventReference CustomerJump { get; private set; }
+
+    [field: Header("Customer Enter SFX")]
+    [field: SerializeField] public EventReference CustomerEnter { get; private set; }
+
+    [field: Header("Customer Angry Male SFX")]
+    [field: SerializeField] public EventReference M_CustomerAngry { get; private set; }
+
+    [field: Header("Customer Angry Female SFX")]
+
+    [field: SerializeField] public EventReference F_CustomerAngry { get; private set; }
+
+    [field: Header("KOPI floating SFX")]
+
+    [field: SerializeField] public EventReference Float { get; private set; }
+
+
+
     public static FmodEvents instance {  get; private set; }
+
+
     private void Awake()
     {
         if (instance != null)

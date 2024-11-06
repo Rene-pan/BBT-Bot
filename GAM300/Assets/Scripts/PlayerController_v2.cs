@@ -259,6 +259,7 @@ public class PlayerController_v2 : MonoBehaviour
                     PressCount = 1;
                     ChangeState(PlayerCollection.THROW);
                     UIFinder("ActivateThrowmode").SetActive(false);
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.ActivateThrow, transform.position);
                     lr.enabled = true;
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 180, 0);
                 }
