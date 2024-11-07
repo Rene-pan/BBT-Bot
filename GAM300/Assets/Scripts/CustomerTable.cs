@@ -58,10 +58,10 @@ public class CustomerTable : MonoBehaviour
                     tableStandAnim.Play("TableStandShake");
                     tableStand.SetActive(false);
                 }
-                AudioManager.instance.PlayOneShot(FmodEvents.instance.HitTable, this.transform.position);
                 if (orders.Count == 0)
                 {
-                    AudioManager.instance.PlayRandom(FmodEvents.instance.crash, FoodTransform.position);
+                    //AudioManager.instance.PlayRandom(FmodEvents.instance.crash, FoodTransform.position);
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.HitTable, FoodTransform.position);
                     vfxScript.PlayVFX(vfxScript.FindVFX("ErrorBurst"), FoodTransform, 1.5f);
                     Destroy(other.gameObject, 1.5f);
                     StartCoroutine(ReActivateStand(1.5f));
@@ -74,7 +74,7 @@ public class CustomerTable : MonoBehaviour
                         //print(order.GetComponent<Order>().OrderName);
                         if (order == null)
                         {
-                            AudioManager.instance.PlayRandom(FmodEvents.instance.crash, FoodTransform.position);
+                            AudioManager.instance.PlayOneShot(FmodEvents.instance.HitTable, FoodTransform.position);
                             vfxScript.PlayVFX(vfxScript.FindVFX("ErrorBurst"), FoodTransform,1.5f);
                             Destroy(other.gameObject, 1.5f);
                             //print("food not destroyed");

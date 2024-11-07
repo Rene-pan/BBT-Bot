@@ -28,7 +28,7 @@ public class CustomerChair : MonoBehaviour
                 print("customer reached");
                 PLAYBACK_STATE playbackState;
                 customerScript.moveSFX.getPlaybackState(out playbackState);
-                customerScript.moveSFX.stop(STOP_MODE.IMMEDIATE);
+                customerScript.moveSFX.stop(STOP_MODE.ALLOWFADEOUT);
                 customerScript.nearestChair = gameObject;
                 seatPivot = gameObject.transform.GetChild(0).transform;
                 customerScript.ChangeState(Customer_v2.CustomerStates.ORDER);

@@ -86,8 +86,8 @@ public class FmodEvents : MonoBehaviour
     [field: Header("Customer Jump SFX")]
     [field: SerializeField] public EventReference CustomerJump { get; private set; }
 
-    [field: Header("Customer Enter SFX")]
-    [field: SerializeField] public EventReference CustomerEnter { get; private set; }
+    [field: Header("Order Created SFX")]
+    [field: SerializeField] public EventReference OrderCreated { get; private set; }
 
     [field: Header("Customer Angry Male SFX")]
     [field: SerializeField] public EventReference M_CustomerAngry { get; private set; }

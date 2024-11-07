@@ -189,6 +189,7 @@ public class Customer_v2 : MonoBehaviour
     #region CreateOrder
     GameObject CreateOrder()
     {
+        AudioManager.instance.PlayOneShot2D(FmodEvents.instance.OrderCreated);
         var CreateNewOrder = Instantiate(OrderUI[OrderUI_ID], OrderUIHolder.transform);
         //start timer for that specific order in customer side
         var OrderScript = CreateNewOrder.GetComponent<Order>();

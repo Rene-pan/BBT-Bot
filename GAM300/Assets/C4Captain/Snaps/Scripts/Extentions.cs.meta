@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ba8f362511ec69845bf6314e4887e899
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 217675
+  packageName: Many Snaps
+  packageVersion: 1.0
+  assetPath: Assets/C4Captain/Snaps/Scripts/Extentions.cs
+  uploadId: 492317

@@ -262,6 +262,7 @@ public class PlayerController_v2 : MonoBehaviour
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.ActivateThrow, transform.position);
                     lr.enabled = true;
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    UIFinder("ScrollToToggleDistance").SetActive(true);
                 }
                 //if both of the kopimaker is not ready, and player try to get cup by pressing E and its near collection point cannot collect, have error message pop up
                 var CannotCollectIngre = spawner.NoOfKopiMakerBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint 
@@ -319,6 +320,7 @@ public class PlayerController_v2 : MonoBehaviour
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.throwing, this.transform.position);
                     UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[0];
                     UIFinder("ActivateThrowmode").SetActive(true);
+                    UIFinder("ScrollToToggleDistance").SetActive(false);
                     canThrow = false;
                 }
                 else if (Input.GetMouseButtonDown(1) && PressCount == 2)
@@ -327,18 +329,21 @@ public class PlayerController_v2 : MonoBehaviour
                     hand_amount = 0;
                     UIFinder("ActivateThrowmode").SetActive(false);
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+                    UIFinder("ScrollToToggleDistance").SetActive(false);
                     ChangeState(PlayerCollection.COLLECT);
                 }
                 else if (Input.GetMouseButtonDown(1) && RightClickTimes == 0)
                 {
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+                    UIFinder("ScrollToToggleDistance").SetActive(false);
                     RightClickTimes = 1;
                 }
                 else if (Input.GetMouseButtonDown(1) && RightClickTimes == 1)
                 {
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 180, 0);
                     RightClickTimes = 0;
-
+                    UIFinder("ScrollToToggleDistance").SetActive(true);
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.ActivateThrow, transform.position);
                 }
                 break;
         }

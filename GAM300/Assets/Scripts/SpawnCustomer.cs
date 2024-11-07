@@ -52,7 +52,7 @@ public class SpawnCustomer : MonoBehaviour
         CheckKopiMachine();
         if (mainTimer.currentTime <= TriggerFastCustomerTime)
         {
-            maxShopCapacity = 5;
+            maxShopCapacity = 6;
         }
         if (currentCustomerCount < maxShopCapacity)
         {
@@ -168,7 +168,6 @@ public class SpawnCustomer : MonoBehaviour
     }
     void CreateCustomer(GameObject Spawnedcustomer)
     {
-        AudioManager.instance.PlayOneShot2D(FmodEvents.instance.CustomerEnter);
         var customer = Instantiate(Spawnedcustomer, gameObject.transform);
         var customerScript = customer.GetComponent<Customer_v2>();
         customerScript.nearestTable.GetComponent<CustomerTable>().customer = customer;

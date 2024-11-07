@@ -344,13 +344,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  <CustomerEnter>k__BackingField:
+  <OrderCreated>k__BackingField:
     Guid:
       Data1: -1823938565
       Data2: 1160611894
       Data3: 863492997
       Data4: 407612968
-    Path: event:/CustomerEnter
+    Path: event:/OrderCreated
   <M_CustomerAngry>k__BackingField:
     Guid:
       Data1: -1341031341
