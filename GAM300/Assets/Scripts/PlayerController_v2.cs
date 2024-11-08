@@ -18,7 +18,7 @@ public class PlayerController_v2 : MonoBehaviour
     public Transform hand;
     public int hand_amount = 0;
     public GameObject currentIngredient;
-    public GameObject currentFoodCollectable;
+    public GameObject currentFoodCollectable; //stores current food collectable
     public GameObject currentFoodThrowable;
     public GameObject currentKopiMaker;
     public GameObject currentCollectionArea;
@@ -52,6 +52,7 @@ public class PlayerController_v2 : MonoBehaviour
     private void Start()
     {
         lr.enabled = false;
+        spawner.DeactivateAllCustomerOutlines();
         time = 0;
         foreach (GameObject UI in GameObject.FindGameObjectsWithTag("PlayerUI"))
         {
@@ -263,6 +264,7 @@ public class PlayerController_v2 : MonoBehaviour
                     lr.enabled = true;
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 180, 0);
                     UIFinder("ScrollToToggleDistance").SetActive(true);
+                    spawner.CheckCustomerOrder(holdFood.GetComponent<HoldFood>().HoldFoodName);
                 }
                 //if both of the kopimaker is not ready, and player try to get cup by pressing E and its near collection point cannot collect, have error message pop up
                 var CannotCollectIngre = spawner.NoOfKopiMakerBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint 
@@ -321,6 +323,7 @@ public class PlayerController_v2 : MonoBehaviour
                     UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[0];
                     UIFinder("ActivateThrowmode").SetActive(true);
                     UIFinder("ScrollToToggleDistance").SetActive(false);
+                    spawner.DeactivateAllCustomerOutlines();
                     canThrow = false;
                 }
                 else if (Input.GetMouseButtonDown(1) && PressCount == 2)
@@ -330,6 +333,7 @@ public class PlayerController_v2 : MonoBehaviour
                     UIFinder("ActivateThrowmode").SetActive(false);
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 0, 0);
                     UIFinder("ScrollToToggleDistance").SetActive(false);
+                    spawner.DeactivateAllCustomerOutlines();
                     ChangeState(PlayerCollection.COLLECT);
                 }
                 else if (Input.GetMouseButtonDown(1) && RightClickTimes == 0)
@@ -337,6 +341,7 @@ public class PlayerController_v2 : MonoBehaviour
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 0, 0);
                     UIFinder("ScrollToToggleDistance").SetActive(false);
                     RightClickTimes = 1;
+                    spawner.DeactivateAllCustomerOutlines();
                 }
                 else if (Input.GetMouseButtonDown(1) && RightClickTimes == 1)
                 {
@@ -344,6 +349,7 @@ public class PlayerController_v2 : MonoBehaviour
                     RightClickTimes = 0;
                     UIFinder("ScrollToToggleDistance").SetActive(true);
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.ActivateThrow, transform.position);
+                    spawner.CheckCustomerOrder(holdFood.GetComponent<HoldFood>().HoldFoodName);
                 }
                 break;
         }

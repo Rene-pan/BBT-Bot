@@ -74,4 +74,9 @@ public class AudioManager : MonoBehaviour
     {
         eventInstance.setParameterByName("SwitchAudioTrack", trackIDToChangeTo);
     }
+    //adjust audio intensity
+    public void ChangeAudioVolume(EventInstance eventInstance, float VolumeAmount)
+    {
+        eventInstance.setVolume(VolumeAmount);
+    }
 }

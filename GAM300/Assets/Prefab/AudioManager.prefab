@@ -379,3 +379,31 @@ MonoBehaviour:
       Data3: -1676540272
       Data4: -1562941399
     Path: event:/MovingWall
+  <KarenOrder>k__BackingField:
+    Guid:
+      Data1: -933598435
+      Data2: 1260840402
+      Data3: -12193151
+      Data4: -1192981602
+    Path: event:/KAREN_OrderVoice
+  <M_KopiOrder>k__BackingField:
+    Guid:
+      Data1: -860929308
+      Data2: 1265823975
+      Data3: -1242497348
+      Data4: 542769414
+    Path: event:/KOPI_OrderVoice_M
+  <F_KopiOrder>k__BackingField:
+    Guid:
+      Data1: 296724665
+      Data2: 1202605897
+      Data3: 1119952050
+      Data4: -1320839697
+    Path: event:/KOPI_OrderVoice_F
+  <F_KayaTostOrder>k__BackingField:
+    Guid:
+      Data1: 1925608577
+      Data2: 1229707631
+      Data3: -1601614670
+      Data4: 2112451960
+    Path: event:/KAYATOAST_OrderVoice_F

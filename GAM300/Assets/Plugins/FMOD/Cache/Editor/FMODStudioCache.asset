@@ -81,6 +81,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-7622004901248062911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/KAYATOAST_OrderVoice_F
+  m_EditorClassIdentifier: 
+  Path: event:/KAYATOAST_OrderVoice_F
+  Guid:
+    Data1: 1925608577
+    Data2: 1229707631
+    Data3: -1601614670
+    Data4: 2112451960
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1088
 --- !u!114 &-6988649160353994629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +216,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
+--- !u!114 &-6257467218249403375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/SwitchAudioTrack
+  m_EditorClassIdentifier: 
+  Name: SwitchAudioTrack
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 559206406
+    data2: 939565340
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Org
+  - Fast
+  - Peace
+  Exists: 1
+--- !u!114 &-5893837099054018324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/KAYASpread
+  m_EditorClassIdentifier: 
+  Path: event:/KAYASpread
+  Guid:
+    Data1: -1619618362
+    Data2: 1234592130
+    Data3: 1833437083
+    Data4: 1346934625
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1229
 --- !u!114 &-5600261724705919369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +297,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1163
+--- !u!114 &-5276840933795055941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DeActivateThrowmode
+  m_EditorClassIdentifier: 
+  Path: event:/DeActivateThrowmode
+  Guid:
+    Data1: -578575230
+    Data2: 1307819222
+    Data3: -483003263
+    Data4: 1321497043
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-4592782150081206470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,10 +393,10 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638665925836959259
+  lastModified: 638666984380676145
   FileSizes:
   - Name: Desktop
-    Value: 3200
+    Value: 3474
   Exists: 1
 --- !u!114 &-3873928839523767538
 MonoBehaviour:
@@ -614,6 +722,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 105732
+--- !u!114 &-1052371284398610089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/KOPI_OrderVoice_M
+  m_EditorClassIdentifier: 
+  Path: event:/KOPI_OrderVoice_M
+  Guid:
+    Data1: -860929308
+    Data2: 1265823975
+    Data3: -1242497348
+    Data4: 542769414
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 803
 --- !u!114 &-511066889590710685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,9 +865,7 @@ MonoBehaviour:
   - {fileID: 2702628919488671918}
   - {fileID: 4019683710136694520}
   - {fileID: -241055606857971307}
-  - {fileID: 2690340965632031963}
   - {fileID: -1467140033199365665}
-  - {fileID: 3158007466930573704}
   - {fileID: 5704110386171887758}
   - {fileID: -8854800955259960119}
   - {fileID: 142818956379983475}
@@ -750,7 +883,6 @@ MonoBehaviour:
   - {fileID: 4614551604130424027}
   - {fileID: -3576548298770188257}
   - {fileID: 6112398041997249866}
-  - {fileID: 3961352888017371107}
   - {fileID: 857176003630253064}
   - {fileID: 3852325018190260320}
   - {fileID: -511066889590710685}
@@ -763,12 +895,20 @@ MonoBehaviour:
   - {fileID: 1700154598937714710}
   - {fileID: 5893986569868330282}
   - {fileID: -3056580116800359958}
+  - {fileID: 1929521695514629321}
+  - {fileID: -7622004901248062911}
+  - {fileID: 3916538510860210617}
+  - {fileID: 8986030621945236591}
+  - {fileID: -5893837099054018324}
+  - {fileID: -1052371284398610089}
+  - {fileID: 1725576087592192694}
+  - {fileID: -5276840933795055941}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8676306263783425934}
   StringsBanks:
   - {fileID: -4041246907502267445}
-  cacheTime: 638665925839860096
+  cacheTime: 638666984519791282
   cacheVersion: 131620
 --- !u!114 &142818956379983475
 MonoBehaviour:
@@ -851,7 +991,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 820
---- !u!114 &2690340965632031963
+--- !u!114 &1725576087592192694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -861,23 +1001,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Kopi Movement
+  m_Name: event:/Ambience
   m_EditorClassIdentifier: 
-  Path: event:/Kopi Movement
+  Path: event:/Ambience
   Guid:
-    Data1: -902867775
-    Data2: 1159782306
-    Data3: 1198137021
-    Data4: -1657096505
+    Data1: 5264182
+    Data2: 1232878559
+    Data3: 1541488563
+    Data4: 1893658213
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6257467218249403375}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1929521695514629321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/KAREN_OrderVoice
+  m_EditorClassIdentifier: 
+  Path: event:/KAREN_OrderVoice
+  Guid:
+    Data1: -933598435
+    Data2: 1260840402
+    Data3: -12193151
+    Data4: -1192981602
   Banks:
   - {fileID: 4221626663779672176}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 848
+  Length: 2697
 --- !u!114 &2702628919488671918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,33 +1100,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &3158007466930573704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience - M1
-  m_EditorClassIdentifier: 
-  Path: event:/Ambience - M1
-  Guid:
-    Data1: 1967492971
-    Data2: 1246319061
-    Data3: 566201991
-    Data4: 1054029893
-  Banks:
-  - {fileID: 4221626663779672176}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 180714
 --- !u!114 &3809875212635155558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,7 +1154,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1320
---- !u!114 &3961352888017371107
+--- !u!114 &3916538510860210617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1023,23 +1164,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/KayaSpread
+  m_Name: event:/KOPI_OrderVoice_F
   m_EditorClassIdentifier: 
-  Path: event:/KayaSpread
+  Path: event:/KOPI_OrderVoice_F
   Guid:
-    Data1: -1619618362
-    Data2: 1234592130
-    Data3: 1833437083
-    Data4: 1346934625
+    Data1: 296724665
+    Data2: 1202605897
+    Data3: 1119952050
+    Data4: -1320839697
   Banks:
   - {fileID: 4221626663779672176}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1229
+  Length: 803
 --- !u!114 &4019683710136694520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,10 +1278,10 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638665925839860096
+  lastModified: 638666984519791282
   FileSizes:
   - Name: Desktop
-    Value: 6070016
+    Value: 5146208
   Exists: 1
 --- !u!114 &4613984016298536748
 MonoBehaviour:
@@ -1386,7 +1527,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3340
+  Length: 3262
 --- !u!114 &6087792777054558153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,7 +1645,7 @@ MonoBehaviour:
   Name: SwitchAudioTrack
   StudioPath: 
   Min: 0
-  Max: 1
+  Max: 2
   Default: 0
   ID:
     data1: 559206406
@@ -1514,6 +1655,7 @@ MonoBehaviour:
   Labels:
   - Org
   - Fast
+  - Peace
   Exists: 1
 --- !u!114 &8676306263783425934
 MonoBehaviour:
@@ -1530,7 +1672,7 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638665925836943921
+  lastModified: 638666984380653518
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -1562,3 +1704,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8986030621945236591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/KOPI Movement
+  m_EditorClassIdentifier: 
+  Path: event:/KOPI Movement
+  Guid:
+    Data1: -902867775
+    Data2: 1159782306
+    Data3: 1198137021
+    Data4: -1657096505
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 848

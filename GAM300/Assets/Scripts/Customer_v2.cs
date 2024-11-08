@@ -30,12 +30,13 @@ public class Customer_v2 : MonoBehaviour
 
     [Header("Customer Order")]
     [SerializeField] List<GameObject> OrderUI;//all the order UI that customer will generate
-    [SerializeField] List<GameObject> OrderList; //all the genrated orderUI for this customer
+    public List<GameObject> OrderList; //all the generated orderUI for this customer
     [SerializeField] int OrderUI_ID;
     [SerializeField] GameObject OrderUIHolder; //contains all orders
     [SerializeField] float OrderWaitTime;
     [SerializeField] float currentTime;
     public float DecreasingValue;
+    private EventInstance OrderSFX;
 
     [Header("Customer Eat")]
     public GameObject Food;
@@ -71,6 +72,9 @@ public class Customer_v2 : MonoBehaviour
 
     [Header("Animator")]
     public Animator CustomerEat;
+
+    [Header("Customer Outline")]
+    public List<GameObject> CustomerBodyParts;
 
     private void OnEnable()
     {
@@ -215,6 +219,56 @@ public class Customer_v2 : MonoBehaviour
         {
             OrderUI_ID = 0;
             CreatedOrder = true;
+            //if Its Karen or other customer, play sfx
+            if (customerType == CustomerType.KAREN)
+            {
+                OrderSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.KarenOrder);
+                OrderSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                OrderSFX.start();
+                PLAYBACK_STATE playbackState;
+                OrderSFX.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    OrderSFX.stop(STOP_MODE.ALLOWFADEOUT);
+                }
+            }
+            else if (customerType == CustomerType.ANNOYING)
+            {
+                OrderSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.F_KopiOrder);
+                OrderSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                OrderSFX.start();
+                PLAYBACK_STATE playbackState;
+                OrderSFX.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    OrderSFX.stop(STOP_MODE.ALLOWFADEOUT);
+                }
+            }
+            else if (customerType == CustomerType.BIG)
+            {
+                OrderSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.M_KopiOrder);
+                OrderSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                OrderSFX.start();
+                PLAYBACK_STATE playbackState;
+                OrderSFX.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    OrderSFX.stop(STOP_MODE.ALLOWFADEOUT);
+                }
+            }
+            else if (customerType == CustomerType.NORMAL)
+            {
+                OrderSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.F_KayaTostOrder);
+                OrderSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                OrderSFX.start();
+                PLAYBACK_STATE playbackState;
+                OrderSFX.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    OrderSFX.stop(STOP_MODE.ALLOWFADEOUT);
+                }
+            }
+
             ChangeState(CustomerStates.WAIT);
         }
         else

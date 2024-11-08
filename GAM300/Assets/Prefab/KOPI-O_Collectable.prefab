@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1787096205465596635}
+  - component: {fileID: 4821110676512658725}
   m_Layer: 7
   m_Name: KOPI-O_Collectable
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 3068122704266835234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4821110676512658725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3830285009482138718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3b695ce22fdd4e8949ea4f4f437a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoldFoodName: KOPI-O
 --- !u!1001 &3251194471569674953
 PrefabInstance:
   m_ObjectHideFlags: 0

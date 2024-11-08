@@ -5,7 +5,6 @@ using UnityEngine;
 public class Throwable : MonoBehaviour
 {
     public string Name;
-    public GameObject eatCanvas;
     private void Start()
     {
         this.name = Name;

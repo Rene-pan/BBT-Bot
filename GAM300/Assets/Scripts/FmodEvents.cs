@@ -103,6 +103,18 @@ public class FmodEvents : MonoBehaviour
     [field: Header("Moving Wall SFX")]
     [field: SerializeField] public EventReference MovingEnter { get; private set; }
 
+    [field: Header("Karen Order SFX")]
+    [field: SerializeField] public EventReference KarenOrder { get; private set; }
+
+    [field: Header("Male Kopi Order SFX")]
+    [field: SerializeField] public EventReference M_KopiOrder { get; private set; }
+
+    [field: Header("Female Kopi Order SFX")]
+    [field: SerializeField] public EventReference F_KopiOrder { get; private set; }
+
+    [field: Header("Female Kaya Toast Order SFX")]
+    [field: SerializeField] public EventReference F_KayaTostOrder { get; private set; }
+
 
 
     public static FmodEvents instance {  get; private set; }

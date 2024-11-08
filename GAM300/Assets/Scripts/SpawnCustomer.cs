@@ -1,3 +1,4 @@
+using cakeslice;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -27,6 +28,9 @@ public class SpawnCustomer : MonoBehaviour
     public float TriggerFastCustomerTime;
     public float FastCustomerMoveSpeed;
     public float FastCustomerOrderDecreasingValue;
+
+    [Header("Spawned Customers")]
+    public List<GameObject> SpawnedCustomerList;
     private void Awake()
     {
         PopulateChairwayPoints();
@@ -171,6 +175,8 @@ public class SpawnCustomer : MonoBehaviour
         var customer = Instantiate(Spawnedcustomer, gameObject.transform);
         var customerScript = customer.GetComponent<Customer_v2>();
         customerScript.nearestTable.GetComponent<CustomerTable>().customer = customer;
+        // Add the customer here
+        AddSpawnCustomer(SpawnedCustomerList, customer);
         Parent(gameObject.transform, customer, 1);
     }
     private void OnTriggerEnter(Collider other)
@@ -180,6 +186,7 @@ public class SpawnCustomer : MonoBehaviour
         {
             case "Customer":
                 if (other.GetComponent<Customer_v2>().currentState != Customer_v2.CustomerStates.LEAVE) return;
+                RemoveCustomer(other.gameObject);
                 Destroy(other.gameObject);
                 currentCustomerCount -= 1;
                 //orderInfo.numberOfOrders -= 1;
@@ -228,6 +235,66 @@ public class SpawnCustomer : MonoBehaviour
             {
                 //if any maker is free
                 KayaStationsBusy = false;
+            }
+        }
+    }
+    void AddSpawnCustomer(List<GameObject> CustomerList, GameObject SpawnedCustomer)
+    {
+        CustomerList.Add(SpawnedCustomer);
+    }
+    public void RemoveCustomer(GameObject Customer)
+    {
+        SpawnedCustomerList.Remove(Customer);
+    }
+    public void CheckCustomerOrder(string PlayerCollectedFoodName)
+    {
+        if (SpawnedCustomerList.Count == 0) return;
+        foreach(var customer in SpawnedCustomerList)
+        {
+            var CustomerScript = customer.GetComponent<Customer_v2>();
+            var CustomerBodyParts = CustomerScript.CustomerBodyParts;
+            //look through a list of orders the customer created
+            foreach (var FoodItem in CustomerScript.OrderList)
+            {
+                if (PlayerCollectedFoodName == FoodItem.GetComponent<Order>().OrderName)
+                {
+                    foreach (var bodyPart in CustomerBodyParts)
+                    {
+                        bodyPart.GetComponent<Outline>().enabled = true;
+                        //break;
+                    }
+                }
+                else
+                {
+                    if (CustomerScript.OrderList.Count > 1)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        foreach (var bodyPart in CustomerBodyParts)
+                        {
+                            bodyPart.GetComponent<Outline>().enabled = false;
+                            //break;
+                        }
+                    }
+                }
+            }
+            //continue;
+            //if any of the customer created order's name matched with the player's currently carrying food item
+            //switch on the outline renderer of each of the customer's body parts
+        }
+    }
+    public void DeactivateAllCustomerOutlines()
+    {
+        if (SpawnedCustomerList.Count == 0) return;
+        foreach (var customer in SpawnedCustomerList)
+        {
+            var CustomerScript = customer.GetComponent<Customer_v2>();
+            var CustomerBodyParts = CustomerScript.CustomerBodyParts;
+            foreach (var bodyPart in CustomerBodyParts)
+            {
+                bodyPart.GetComponent<Outline>().enabled = false;
             }
         }
     }

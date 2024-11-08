@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858524469a079534db275e404823cbf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentType: 0
   ingredients:
   - {fileID: 3830285009482138718, guid: f16d127e14e192441a68fff0323e1a0a, type: 3}
-  - {fileID: 3830285009482138718, guid: d127174db4c4c1b4cbf37bef8078ac5b, type: 3}
   CurrentingredientID: 0
