@@ -115,6 +115,27 @@ public class FmodEvents : MonoBehaviour
     [field: Header("Female Kaya Toast Order SFX")]
     [field: SerializeField] public EventReference F_KayaTostOrder { get; private set; }
 
+    [field: Header("Deactivate SFX")]
+    [field: SerializeField] public EventReference DeActivateSFX { get; private set; }
+
+    [field: Header("Pause SFX")]
+    [field: SerializeField] public EventReference PauseSFX { get; private set; }
+
+    [field: Header("UNPause SFX")]
+    [field: SerializeField] public EventReference UNPauseSFX { get; private set; }
+
+    [field: Header("Platform Rise SFX")]
+    [field: SerializeField] public EventReference PlatformRiseSFX { get; private set; }
+
+    [field: Header("Platform Drop SFX")]
+    [field: SerializeField] public EventReference PlatformDropSFX { get; private set; }
+
+    [field: Header("M_CustomerComplain")]
+    [field: SerializeField] public EventReference MaleComplain { get; private set; }
+
+    [field: Header("F_CustomerComplain")]
+    [field: SerializeField] public EventReference FemaleComplain { get; private set; }
+
 
 
     public static FmodEvents instance {  get; private set; }

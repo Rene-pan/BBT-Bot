@@ -216,6 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5147769075050825804}
   - component: {fileID: 2726254053723211632}
+  - component: {fileID: 6048432576163035872}
   m_Layer: 0
   m_Name: MovingPlatform_Lvl2
   m_TagString: Untagged
@@ -259,6 +260,28 @@ MonoBehaviour:
   PlatformTYPE: 1
   amp: 0.6
   freq: 2
+  trackedValue: 0
+--- !u!65 &6048432576163035872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257226633565155725}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.5137825, y: 1.4256617, z: 4.1693726}
+  m_Center: {x: -0.23945236, y: -0.8834459, z: 2.8303318}
 --- !u!1 &1291914548881602373
 GameObject:
   m_ObjectHideFlags: 0

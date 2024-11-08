@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -28,6 +29,8 @@ public class MainMenu : MonoBehaviour
             {
                 case 0:
                     //pressed first time from gameplay
+                    //play pause SFX
+                    AudioManager.instance.PlayOneShot2D(FmodEvents.instance.PauseSFX);
                     //open pause menu
                     PauseScreen.SetActive(true);
                     //stop time
@@ -39,6 +42,8 @@ public class MainMenu : MonoBehaviour
                     break;
                 case 1:
                     //pressed second time from pause menu
+                    //play pause SFX
+                    AudioManager.instance.PlayOneShot2D(FmodEvents.instance.UNPauseSFX);
                     //close pause menu
                     PauseScreen.SetActive(false);
                     //unstop time
@@ -114,6 +119,7 @@ public class MainMenu : MonoBehaviour
     public void UnPausePress()
     {
         AudioManager.instance.PauseSounds(false);
+        AudioManager.instance.PlayOneShot2D(FmodEvents.instance.UNPauseSFX);
         PressEcount = 0;
         Time.timeScale = 1;
         PauseScreen.SetActive(false);

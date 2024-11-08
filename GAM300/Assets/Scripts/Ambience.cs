@@ -15,14 +15,16 @@ public class Ambience : MonoBehaviour
     public MainTimer timer;
     public float StartFastBGMTime;
     bool SwitchOnce = false;
+    public SpawnCustomer spawnCustomer;
+    public float currentAmbienceVol;
 
     //switching between music tracks stuff
-    public enum BGMStates
-    {
-        ORG_BGM = 0,
-        FAST_BGM = 1
-    }
-    public BGMStates currentState = BGMStates.ORG_BGM;
+    //public enum BGMStates
+    //{
+    //    ORG_BGM = 0,
+    //    FAST_BGM = 1
+    //}
+    //public BGMStates currentState = BGMStates.ORG_BGM;
   
     void Start()
     {
@@ -32,20 +34,8 @@ public class Ambience : MonoBehaviour
         PlayMusic();
 
     }
-    public int count = 0;
     private void Update()
     {
-        //var pressB = Input.GetKeyDown(KeyCode.B);
-        //if (count == 0 && pressB)
-        //{
-        //    AudioManager.instance.SwitchTrack(1, PlayBGM);
-        //    count++;
-        //}
-        //else if (count == 1 && pressB)
-        //{
-        //    AudioManager.instance.SwitchTrack(0, PlayBGM);
-        //    count--;
-        //}
         if (Input.GetKeyDown(KeyCode.B))
         {
             timer.currentTime = 65;
@@ -55,11 +45,15 @@ public class Ambience : MonoBehaviour
             //place time start sfx
             AudioManager.instance.PlayOneShot2D(FmodEvents.instance.TimeRing);
             AudioManager.instance.SwitchTrack(1, PlayBGM);
+            AudioManager.instance.SwitchTrack(1, PlayAmbience);
             SwitchOnce = true;
         }
+        //update Ambience Volume based on number of spawned customers
+        currentAmbienceVol = (spawnCustomer.SpawnedCustomerList.Count * 0.25f);
+        PlayAmbience.setVolume(currentAmbienceVol);
     }
     public void AmbiencePlay()
-        {
+    {
         PlayAmbience = AudioManager.instance.CreateInstance(FmodEvents.instance.ambience);
         PlayAmbience.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
         PLAYBACK_STATE playbackState;

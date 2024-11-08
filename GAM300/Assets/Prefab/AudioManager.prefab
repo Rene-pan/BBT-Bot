@@ -234,11 +234,11 @@ MonoBehaviour:
     Path: event:/BGMs
   <ambience>k__BackingField:
     Guid:
-      Data1: 1967492971
-      Data2: 1246319061
-      Data3: 566201991
-      Data4: 1054029893
-    Path: event:/Ambience - M1
+      Data1: 5264182
+      Data2: 1232878559
+      Data3: 1541488563
+      Data4: 1893658213
+    Path: event:/Ambience
   <UI_Interact>k__BackingField:
     Guid:
       Data1: -1521287498
@@ -407,3 +407,52 @@ MonoBehaviour:
       Data3: -1601614670
       Data4: 2112451960
     Path: event:/KAYATOAST_OrderVoice_F
+  <DeActivateSFX>k__BackingField:
+    Guid:
+      Data1: -578575230
+      Data2: 1307819222
+      Data3: -483003263
+      Data4: 1321497043
+    Path: event:/DeActivateThrowmode
+  <PauseSFX>k__BackingField:
+    Guid:
+      Data1: -2135944469
+      Data2: 1232805725
+      Data3: -1813234511
+      Data4: -295516715
+    Path: event:/Paused
+  <UNPauseSFX>k__BackingField:
+    Guid:
+      Data1: -1725754679
+      Data2: 1108050121
+      Data3: 2064456336
+      Data4: 1981414709
+    Path: event:/UnPaused
+  <PlatformRiseSFX>k__BackingField:
+    Guid:
+      Data1: 1169269387
+      Data2: 1191650859
+      Data3: -1531014744
+      Data4: -103493489
+    Path: event:/PlatformRise
+  <PlatformDropSFX>k__BackingField:
+    Guid:
+      Data1: -783209392
+      Data2: 1159082827
+      Data3: -1569805641
+      Data4: -2012996071
+    Path: event:/PlatformDrop
+  <MaleComplain>k__BackingField:
+    Guid:
+      Data1: -1728480082
+      Data2: 1294788786
+      Data3: 1045208229
+      Data4: -178342211
+    Path: event:/M_Complain
+  <FemaleComplain>k__BackingField:
+    Guid:
+      Data1: 1230560230
+      Data2: 1176652599
+      Data3: 1537717904
+      Data4: 830479981
+    Path: event:/F_Complain

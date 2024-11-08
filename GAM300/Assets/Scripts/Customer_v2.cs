@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+//using static UnityEngine.ParticleSystem;
 
 public class Customer_v2 : MonoBehaviour
 {
@@ -53,6 +54,8 @@ public class Customer_v2 : MonoBehaviour
     //[SerializeField] Color AngeredColor;
     [SerializeField] List<Sprite> Espressions; //this variable is shared with Customer EAT state
     [SerializeField] GameObject EmotionHolder; //this variable is shared with Customer EAT state
+    //angry sfx
+    EventInstance AngrySFX;
 
     [Header("Customer Leave")]
     [SerializeField] List<Transform> waypointsBack;
@@ -268,7 +271,14 @@ public class Customer_v2 : MonoBehaviour
                     OrderSFX.stop(STOP_MODE.ALLOWFADEOUT);
                 }
             }
-
+            if (Time.timeScale == 0)
+            {
+                OrderSFX.setPaused(true);
+            }
+            else
+            {
+                OrderSFX.setPaused(false);
+            }
             ChangeState(CustomerStates.WAIT);
         }
         else
@@ -344,6 +354,8 @@ public class Customer_v2 : MonoBehaviour
                 OrderList.Remove(OrderToDelete);
                 Destroy(OrderToDelete, 4);
             }
+            EmotionHolder.SetActive(true);
+            EmotionHolder.GetComponent<Image>().sprite = Espressions[1];
             CustomerEat.SetBool("Start", true);
             currentEatTime += Time.deltaTime * EatingSpeedMultiplier;
             if (OrderName == "KOPI-O")
@@ -406,6 +418,7 @@ public class Customer_v2 : MonoBehaviour
                     {
                         transform.GetChild(0).localEulerAngles = Vector3.zero;
                     }
+                    EmotionHolder.SetActive(false);
                     ChangeState(CustomerStates.LEAVE);
                 }
                 else if (nearestTable.GetComponent<CustomerTable>().succeedCount < nearestTable.GetComponent<CustomerTable>().TotalOrderCount)
@@ -415,6 +428,7 @@ public class Customer_v2 : MonoBehaviour
                     nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(true);
                     nearestTable.GetComponent<CustomerTable>().orders.Remove(OrderToDelete);
                     GetRandomSfx = false;
+                    EmotionHolder.SetActive(false);
                     ChangeState(CustomerStates.WAIT);
                 }
                 OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders -= 1;
@@ -427,6 +441,33 @@ public class Customer_v2 : MonoBehaviour
     #region CustomerAngry
     public void CustomerAngry()
     {
+        //different complain SFX 
+        switch (customerType) 
+        {
+            case CustomerType.NORMAL:
+                AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.FemaleComplain);
+                AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                break;
+            case CustomerType.BIG:
+                AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.MaleComplain);
+                AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                break;
+            case CustomerType.ANNOYING:
+                AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.FemaleComplain);
+                AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                break;
+            case CustomerType.KAREN:
+                AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.MaleComplain);
+                AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                break;
+        }
+        AngrySFX.start();
+        PLAYBACK_STATE playbackState;
+        AngrySFX.getPlaybackState(out playbackState);
+        if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+        {
+            AngrySFX.stop(STOP_MODE.IMMEDIATE);
+        }
         nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(false);
         //nearestTable.GetComponent<CustomerTable>().gameObject.GetComponent<Collider>().enabled = false;
         nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;

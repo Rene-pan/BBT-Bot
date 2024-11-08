@@ -334,6 +334,7 @@ public class PlayerController_v2 : MonoBehaviour
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 0, 0);
                     UIFinder("ScrollToToggleDistance").SetActive(false);
                     spawner.DeactivateAllCustomerOutlines();
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.DeActivateSFX, transform.position);
                     ChangeState(PlayerCollection.COLLECT);
                 }
                 else if (Input.GetMouseButtonDown(1) && RightClickTimes == 0)
@@ -341,6 +342,7 @@ public class PlayerController_v2 : MonoBehaviour
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 0, 0);
                     UIFinder("ScrollToToggleDistance").SetActive(false);
                     RightClickTimes = 1;
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.DeActivateSFX, transform.position);
                     spawner.DeactivateAllCustomerOutlines();
                 }
                 else if (Input.GetMouseButtonDown(1) && RightClickTimes == 1)
