@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1494465431112970153}
   - component: {fileID: 1224698599927358955}
   - component: {fileID: 3609382719319265337}
+  - component: {fileID: 2688079213755484017}
   m_Layer: 0
   m_Name: shutter_door
   m_TagString: Untagged
@@ -110,6 +111,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 943883463183387085, guid: f348f4b3f8a4d0b449b91b6376199773, type: 3}
+--- !u!114 &2688079213755484017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3140383006374716494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403a66153ba038c4093007d3d1fba0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxScript: {fileID: 0}
 --- !u!1 &4218064110161570689
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +137,7 @@ GameObject:
   - component: {fileID: 5669044186444678667}
   - component: {fileID: 8741708171452548962}
   - component: {fileID: 2081522540781184817}
+  - component: {fileID: 5066281128182670530}
   m_Layer: 8
   m_Name: Hand
   m_TagString: Untagged
@@ -239,6 +254,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: -0.0000076293945}
+--- !u!114 &5066281128182670530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4218064110161570689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403a66153ba038c4093007d3d1fba0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxScript: {fileID: 0}
 --- !u!1 &5440435536737549202
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +280,7 @@ GameObject:
   - component: {fileID: 1950928048432969419}
   - component: {fileID: 5576821678259575303}
   - component: {fileID: 7492159004262058993}
+  - component: {fileID: 4957512453173232136}
   m_Layer: 8
   m_Name: Hand1
   m_TagString: Untagged
@@ -368,6 +397,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4957512453173232136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5440435536737549202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403a66153ba038c4093007d3d1fba0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxScript: {fileID: 0}
 --- !u!1 &6009393637843331542
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +422,7 @@ GameObject:
   - component: {fileID: 5668197411853386201}
   - component: {fileID: 3964085523656795892}
   - component: {fileID: 9053623995493857514}
+  - component: {fileID: 1209315038753414784}
   m_Layer: 0
   m_Name: stall_entrance
   m_TagString: Untagged
@@ -476,6 +519,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7256734202550173727, guid: bb9cebbcc7f60054ab0f156a6bc06d34, type: 3}
+--- !u!114 &1209315038753414784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6009393637843331542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403a66153ba038c4093007d3d1fba0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxScript: {fileID: 0}
 --- !u!1 &7127089286607430508
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +544,7 @@ GameObject:
   - component: {fileID: 1289118255699164778}
   - component: {fileID: 189197370894137326}
   - component: {fileID: 3136800381262333030}
+  - component: {fileID: 1163713836530409643}
   m_Layer: 0
   m_Name: chonky_guy2
   m_TagString: Untagged
@@ -586,6 +643,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1821723, y: 1.5452483, z: 1.0417666}
   m_Center: {x: 0.00000008940697, y: 0.77262414, z: -0.000000029802322}
+--- !u!114 &1163713836530409643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127089286607430508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403a66153ba038c4093007d3d1fba0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxScript: {fileID: 0}
 --- !u!1 &9072889899143325693
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +709,7 @@ MonoBehaviour:
   PlatformTYPE: 2
   amp: 5
   freq: 2
+  trackedValue: 0
 --- !u!65 &6878890610578972985
 BoxCollider:
   m_ObjectHideFlags: 0

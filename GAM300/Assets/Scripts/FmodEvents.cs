@@ -136,6 +136,12 @@ public class FmodEvents : MonoBehaviour
     [field: Header("F_CustomerComplain")]
     [field: SerializeField] public EventReference FemaleComplain { get; private set; }
 
+    [field: Header("Female Kopi Order2")]
+    [field: SerializeField] public EventReference F_KopiOrder2 { get; private set; }
+
+    [field: Header("Female Jump Land")]
+    [field: SerializeField] public EventReference F_JumpLand { get; private set; }
+
 
 
     public static FmodEvents instance {  get; private set; }

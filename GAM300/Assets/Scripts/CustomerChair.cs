@@ -15,6 +15,7 @@ public class CustomerChair : MonoBehaviour
     public int OrderCount = 1;
     public List<Transform> waypoints;
     public Transform seatPivot;
+    public bool CustomerTouched;
     private void OnTriggerEnter(Collider other)
     {
         var tag = other.tag;
@@ -25,6 +26,7 @@ public class CustomerChair : MonoBehaviour
                 var customerScript = other.GetComponent<Customer_v2>();
                 if (customerScript.currentState == Customer_v2.CustomerStates.LEAVE 
                     || customerScript.currentState == Customer_v2.CustomerStates.WAIT) return;
+                CustomerTouched = true;
                 print("customer reached");
                 PLAYBACK_STATE playbackState;
                 customerScript.moveSFX.getPlaybackState(out playbackState);
@@ -54,6 +56,7 @@ public class CustomerChair : MonoBehaviour
                 var customerScript = other.GetComponent<Customer_v2>();
                 if (customerScript.currentState == Customer_v2.CustomerStates.LEAVE)
                 {
+                    CustomerTouched = false;
                     print("bye");
                     currentState = ChairState.AVAILABLE;
                 }

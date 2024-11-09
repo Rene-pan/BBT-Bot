@@ -318,7 +318,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 4221626663779672176}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -366,10 +366,10 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638667123598530405
+  lastModified: 638667957960381598
   FileSizes:
   - Name: Desktop
-    Value: 3606
+    Value: 3652
   Exists: 1
 --- !u!114 &-3873928839523767538
 MonoBehaviour:
@@ -695,7 +695,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 861
---- !u!114 &-1467140033199365665
+--- !u!114 &-1428627294529792671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -705,23 +705,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameBGM
+  m_Name: event:/KOPI_OrderVoice_F2
   m_EditorClassIdentifier: 
-  Path: event:/GameBGM
+  Path: event:/KOPI_OrderVoice_F2
   Guid:
-    Data1: 1290559601
-    Data2: 1164137123
-    Data3: -1118835024
-    Data4: -2073670060
+    Data1: 1603324352
+    Data2: 1278993683
+    Data3: -237835107
+    Data4: 267271543
   Banks:
   - {fileID: 4221626663779672176}
-  IsStream: 1
+  IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 105732
+  Length: 803
 --- !u!114 &-1052371284398610089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,7 +797,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 4221626663779672176}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -864,7 +864,6 @@ MonoBehaviour:
   - {fileID: 2702628919488671918}
   - {fileID: 4019683710136694520}
   - {fileID: -241055606857971307}
-  - {fileID: -1467140033199365665}
   - {fileID: 5704110386171887758}
   - {fileID: -8854800955259960119}
   - {fileID: 142818956379983475}
@@ -906,12 +905,14 @@ MonoBehaviour:
   - {fileID: 5163749818196235772}
   - {fileID: 6771430116330237856}
   - {fileID: 3644062681427692043}
+  - {fileID: -1428627294529792671}
+  - {fileID: 1961198701171676162}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8676306263783425934}
   StringsBanks:
   - {fileID: -4041246907502267445}
-  cacheTime: 638667137712512769
+  cacheTime: 638667957962947554
   cacheVersion: 131620
 --- !u!114 &142818956379983475
 MonoBehaviour:
@@ -1022,6 +1023,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2697
+--- !u!114 &1961198701171676162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/HitTableAftJump
+  m_EditorClassIdentifier: 
+  Path: event:/HitTableAftJump
+  Guid:
+    Data1: -907669904
+    Data2: 1333799255
+    Data3: -412278875
+    Data4: 2106154412
+  Banks:
+  - {fileID: 4221626663779672176}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 257
 --- !u!114 &2382292829248027957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1281,10 +1309,10 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638667137712512769
+  lastModified: 638667957962947554
   FileSizes:
   - Name: Desktop
-    Value: 8259264
+    Value: 6900768
   Exists: 1
 --- !u!114 &4613984016298536748
 MonoBehaviour:
@@ -1756,7 +1784,7 @@ MonoBehaviour:
   Path: C:/Users/User/Documents/FMOD Studio/AudioSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638667123598505310
+  lastModified: 638667957960341133
   FileSizes:
   - Name: Desktop
     Value: 1340

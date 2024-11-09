@@ -289,7 +289,7 @@ MonoBehaviour:
   OrderList: []
   OrderUI_ID: 0
   OrderUIHolder: {fileID: 0}
-  OrderWaitTime: 70
+  OrderWaitTime: 75
   currentTime: 0
   DecreasingValue: 1
   Food: {fileID: 0}

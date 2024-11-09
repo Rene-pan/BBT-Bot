@@ -339,11 +339,11 @@ MonoBehaviour:
     Path: event:/ActivateThrowmode
   <CustomerJump>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -311014363
+      Data2: 1246058095
+      Data3: -359693932
+      Data4: 1644641985
+    Path: event:/Customers/CustomerJump
   <OrderCreated>k__BackingField:
     Guid:
       Data1: -1823938565
@@ -456,3 +456,17 @@ MonoBehaviour:
       Data3: 1537717904
       Data4: 830479981
     Path: event:/F_Complain
+  <F_KopiOrder2>k__BackingField:
+    Guid:
+      Data1: 1603324352
+      Data2: 1278993683
+      Data3: -237835107
+      Data4: 267271543
+    Path: event:/KOPI_OrderVoice_F2
+  <F_JumpLand>k__BackingField:
+    Guid:
+      Data1: -907669904
+      Data2: 1333799255
+      Data3: -412278875
+      Data4: 2106154412
+    Path: event:/HitTableAftJump

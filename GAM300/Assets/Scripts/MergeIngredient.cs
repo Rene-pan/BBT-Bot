@@ -163,7 +163,7 @@ public class MergeIngredient : MonoBehaviour
                         {
                             ToastSFX.start();
                         }
-                        else if (Time.timeScale == 0)
+                        if (Time.timeScale == 0)
                         {
                             ToastSFX.stop(STOP_MODE.IMMEDIATE);
                         }
@@ -175,7 +175,7 @@ public class MergeIngredient : MonoBehaviour
                         {
                             MergingSFX.start();
                         }
-                        else if (Time.timeScale == 0)
+                        if (Time.timeScale == 0)
                         {
                             MergingSFX.stop(STOP_MODE.IMMEDIATE);
                         }

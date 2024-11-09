@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using System;
+using cakeslice;
 
 public class CustomerTable : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class CustomerTable : MonoBehaviour
 
     [Header("Customer Type Annoying")]
     [SerializeField] Vector3 RotateVector;
+
+    [Header("Table Outline")]
+    public Outline TableOutline;
     private void Start()
     {
         //find vfx list

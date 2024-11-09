@@ -5124,7 +5124,7 @@ Transform:
   m_GameObject: {fileID: 4797927818915823373}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.6250006, y: 0.85599995, z: 0.8659998}
+  m_LocalPosition: {x: -0.95, y: 6.35, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5206,12 +5206,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78da3f00f3328541b4526c0b0b5ec5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineThickness: 1.25
-  lineIntensity: 0.5
-  fillAmount: 0.2
+  lineThickness: 1.3
+  lineIntensity: 0.8
+  fillAmount: 0.4
   lineColor0: {r: 1, g: 0, b: 0, a: 1}
   lineColor1: {r: 0, g: 1, b: 0, a: 1}
-  lineColor2: {r: 0, g: 0, b: 1, a: 1}
+  lineColor2: {r: 0.9924528, g: 0.897027, b: 0, a: 1}
   additiveRendering: 0
   backfaceCulling: 1
   fillColor: {r: 0, g: 0, b: 1, a: 1}
@@ -5279,7 +5279,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   Newcam: {fileID: 6933572693198946752}
   MoveVector: {x: 0, y: 0, z: 0}
-  PlayerAnim: {fileID: 0}
+  PlayerAnim: {fileID: 4720162133145238428}
+  IdleMusicVolumeAmt: 0.4
 --- !u!54 &2775360039266524877
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5300,8 +5301,8 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -5358,7 +5359,7 @@ MonoBehaviour:
   horizontalSpeed: 2
   verticalSpeed: 2
   orbitingDamping: 30
-  Limit: {x: -30, y: 22}
+  Limit: {x: -15, y: 45}
 --- !u!1 &6046796752398837016
 GameObject:
   m_ObjectHideFlags: 0
@@ -5699,7 +5700,7 @@ MonoBehaviour:
   holdFood: {fileID: 0}
   spawner: {fileID: 0}
   CurrentHoldIngredientID: 0
-  PlayerObject: {fileID: 0}
+  PlayerObject: {fileID: 6046796752398837016}
   canThrow: 0
   ThrowOnce: 1
   throwscript: {fileID: 3801273640419899296}
@@ -5712,7 +5713,8 @@ MonoBehaviour:
   PressCount: 0
   currentKayaMachine: {fileID: 0}
   MakerBusyText: {fileID: 0}
-  ArmAnim: {fileID: 0}
+  ArmAnim: {fileID: 2377978429245704225}
+  ReCheck: 0
 --- !u!95 &4720162133145238428
 Animator:
   serializedVersion: 7
@@ -5869,23 +5871,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5753021661568132541, guid: 62d318ee30808404bafb77e449c21cd2, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
-      value: 0.49411768
+      value: 0.9324138
       objectReference: {fileID: 0}
     - target: {fileID: 5753021661568132541, guid: 62d318ee30808404bafb77e449c21cd2, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.g
-      value: 0.93725497
+      value: 0.98490566
       objectReference: {fileID: 0}
     - target: {fileID: 5753021661568132541, guid: 62d318ee30808404bafb77e449c21cd2, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.r
-      value: 0.95294124
+      value: 0.38467064
       objectReference: {fileID: 0}
     - target: {fileID: 5753021661568132541, guid: 62d318ee30808404bafb77e449c21cd2, type: 3}
       propertyPath: m_Parameters.colorGradient.key1.b
-      value: 0.37169808
+      value: 0.9641509
       objectReference: {fileID: 0}
     - target: {fileID: 5753021661568132541, guid: 62d318ee30808404bafb77e449c21cd2, type: 3}
       propertyPath: m_Parameters.colorGradient.key1.g
-      value: 0.37169808
+      value: 0.9641509
       objectReference: {fileID: 0}
     - target: {fileID: 5753021661568132541, guid: 62d318ee30808404bafb77e449c21cd2, type: 3}
       propertyPath: m_Parameters.colorGradient.key1.r

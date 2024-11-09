@@ -313,11 +313,13 @@ MonoBehaviour:
   slider: {fileID: 4532977604084567860}
   PopUp: {fileID: 4827795423692715936}
   CompletePopUp: {fileID: 7795399032751366861}
+  StationIcon: {fileID: 0}
   TimeSliderColors:
   - {r: 0.87058824, g: 0.9764706, b: 0.76862746, a: 1}
   - {r: 0.6117647, g: 0.85882354, b: 0.6509804, a: 1}
   - {r: 0.3137255, g: 0.7058824, b: 0.59607846, a: 1}
   - {r: 0.27450982, g: 0.52156866, b: 0.52156866, a: 1}
+  Anim: {fileID: 0}
 --- !u!1 &5052069746370637797
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +654,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6994150172918742201}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.034}
   m_LocalScale: {x: 0.86015904, y: 0.6899933, z: 1.0160347}
   m_ConstrainProportionsScale: 0
   m_Children: []

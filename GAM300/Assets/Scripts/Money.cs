@@ -87,11 +87,7 @@ public class Money : MonoBehaviour
             timer.TimerIsRunning = false;
             GameOverPlayOnce = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            print("Quit");
-            Application.Quit();
-        }
+        
     }
     public void CheckMoney()
     {

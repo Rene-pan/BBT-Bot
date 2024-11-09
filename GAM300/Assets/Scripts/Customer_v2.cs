@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class Customer_v2 : MonoBehaviour
 {
-    public enum CustomerType { NORMAL, BIG, ANNOYING, KAREN }
+    public enum CustomerType { NORMAL, BIG, ANNOYING, KAREN, NORMAL_KOPI }
     public enum CustomerStates { MOVE, ORDER, WAIT, EAT, ANGRY, LEAVE }
     public CustomerType customerType;
     public CustomerStates currentState;
@@ -34,8 +34,8 @@ public class Customer_v2 : MonoBehaviour
     public List<GameObject> OrderList; //all the generated orderUI for this customer
     [SerializeField] int OrderUI_ID;
     [SerializeField] GameObject OrderUIHolder; //contains all orders
-    [SerializeField] float OrderWaitTime;
-    [SerializeField] float currentTime;
+    public float OrderWaitTime;
+    public float currentTime;
     public float DecreasingValue;
     private EventInstance OrderSFX;
 
@@ -271,6 +271,18 @@ public class Customer_v2 : MonoBehaviour
                     OrderSFX.stop(STOP_MODE.ALLOWFADEOUT);
                 }
             }
+            else if (customerType == CustomerType.NORMAL_KOPI)
+            {
+                OrderSFX = AudioManager.instance.CreateInstance(FmodEvents.instance.F_KopiOrder2);
+                OrderSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                OrderSFX.start();
+                PLAYBACK_STATE playbackState;
+                OrderSFX.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    OrderSFX.stop(STOP_MODE.ALLOWFADEOUT);
+                }
+            }
             if (Time.timeScale == 0)
             {
                 OrderSFX.setPaused(true);
@@ -293,10 +305,36 @@ public class Customer_v2 : MonoBehaviour
         currentTime -= Time.deltaTime * DecreasingValue;
         orderSlider.value = currentTime;
         if (currentTime <= 0)
-        {
+        {        //different complain SFX 
+            switch (customerType)
+            {
+                case CustomerType.NORMAL:
+                    AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.FemaleComplain);
+                    AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                    break;
+                case CustomerType.BIG:
+                    AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.MaleComplain);
+                    AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                    break;
+                case CustomerType.ANNOYING:
+                    AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.FemaleComplain);
+                    AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                    break;
+                case CustomerType.KAREN:
+                    AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.MaleComplain);
+                    AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                    break;
+            }
+            AngrySFX.start();
+            PLAYBACK_STATE playbackState;
+            AngrySFX.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                AngrySFX.stop(STOP_MODE.IMMEDIATE);
+            }
             ChangeState(CustomerStates.ANGRY);
         }
-        else if (nearestTable.GetComponent<CustomerTable>().CompletedMeal && currentTime > 0)
+        else if (nearestTable.GetComponent<CustomerTable>().CompletedMeal && currentTime > 0 && Food != null)
         {
             ChangeState(CustomerStates.EAT);
         }
@@ -314,12 +352,12 @@ public class Customer_v2 : MonoBehaviour
     public void CustomerEats(float EatingSpeedMultiplier, float eatduration)
     {
         //ChangeState(CustomerStates.WAIT);
-        if (Food == null)
-        {
-            ChangeState(CustomerStates.WAIT);
-        }
-        else
-        {
+        //if (Food == null && currentState == CustomerStates.WAIT)
+        //{
+            //ChangeState(CustomerStates.WAIT);
+        //}
+        //else
+        //{
             if (customerType == CustomerType.BIG)
             {
                 TransfromOnce = true;
@@ -433,7 +471,7 @@ public class Customer_v2 : MonoBehaviour
                 }
                 OrderUIHolder.GetComponent<OrderInfo>().numberOfOrders -= 1;
             }
-        }
+        //}
         
     }
     #endregion
@@ -442,32 +480,32 @@ public class Customer_v2 : MonoBehaviour
     public void CustomerAngry()
     {
         //different complain SFX 
-        switch (customerType) 
-        {
-            case CustomerType.NORMAL:
-                AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.FemaleComplain);
-                AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
-                break;
-            case CustomerType.BIG:
-                AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.MaleComplain);
-                AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
-                break;
-            case CustomerType.ANNOYING:
-                AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.FemaleComplain);
-                AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
-                break;
-            case CustomerType.KAREN:
-                AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.MaleComplain);
-                AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
-                break;
-        }
-        AngrySFX.start();
-        PLAYBACK_STATE playbackState;
-        AngrySFX.getPlaybackState(out playbackState);
-        if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-        {
-            AngrySFX.stop(STOP_MODE.IMMEDIATE);
-        }
+        //switch (customerType) 
+        //{
+        //    case CustomerType.NORMAL:
+        //        AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.FemaleComplain);
+        //        AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+        //        break;
+        //    case CustomerType.BIG:
+        //        AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.MaleComplain);
+        //        AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+        //        break;
+        //    case CustomerType.ANNOYING:
+        //        AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.FemaleComplain);
+        //        AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+        //        break;
+        //    case CustomerType.KAREN:
+        //        AngrySFX = AudioManager.instance.CreateInstance(FmodEvents.instance.MaleComplain);
+        //        AngrySFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+        //        break;
+        //}
+        //AngrySFX.start();
+        //PLAYBACK_STATE playbackState;
+        //AngrySFX.getPlaybackState(out playbackState);
+        //if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+        //{
+        //    AngrySFX.stop(STOP_MODE.IMMEDIATE);
+        //}
         nearestTable.GetComponent<CustomerTable>().eatArea.SetActive(false);
         //nearestTable.GetComponent<CustomerTable>().gameObject.GetComponent<Collider>().enabled = false;
         nearestTable.GetComponent<CustomerTable>().destroyCollider.enabled = true;
@@ -516,6 +554,8 @@ public class Customer_v2 : MonoBehaviour
         CheckDistanceToWPNMove(distance);
         var TableScript = nearestTable.GetComponent<CustomerTable>();
         TableScript.orders.Clear();
+        TableScript.succeedCount = 0;
+        TableScript.TotalOrderCount = 0;
     }
 
     #endregion

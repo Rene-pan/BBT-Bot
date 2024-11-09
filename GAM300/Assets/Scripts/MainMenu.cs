@@ -1,6 +1,8 @@
+using NUnit.Framework.Internal.Builders;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
@@ -14,14 +16,21 @@ public class MainMenu : MonoBehaviour
     public GameObject LevelSelect;
     public GameObject StartScreen;
     public GameObject PauseScreen;
+    public GameObject CreditsScreen;
     public Ambience MusicScript;
+    public GameObject HowToPlayScreen;
 
     [Header("Press Esc to Pause")]
     public int PressEcount = 0;
+    public bool CanPressESC = false;
 
+    private void Start()
+    {
+        CanPressESC = false;
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && CanPressESC)
         {
             var Money = FindAnyObjectByType<Money>();
             Money.UnlockCursor();
@@ -67,14 +76,14 @@ public class MainMenu : MonoBehaviour
         if (!PressOnce)
         {
             SceneManager.LoadScene(sceneName);
-            Time.timeScale = 1;
+            Time.timeScale = 0;
             PressOnce = true;
             var Money = FindAnyObjectByType<Money>();
             Money.StopSuccessMusic();
             Money.StopFailureMusic();
             AudioManager.instance.PauseSounds(false);
             AudioManager.instance.StopAllSounds();
-            MusicScript.ResetMusic();
+            //MusicScript.ResetMusic();
             //Destroy(AudioManager.instance.gameObject);
         }
     }
@@ -84,12 +93,13 @@ public class MainMenu : MonoBehaviour
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
-            Time.timeScale = 1;
+            Time.timeScale = 0;
             PressReplay = true;
             var Money = FindAnyObjectByType<Money>();
             Money.StopFailureMusic();
             AudioManager.instance.PauseSounds(false);
             AudioManager.instance.StopAllSounds();
+            HowToPlayScreen.SetActive(false);
             //Invoke("OffSounds", 0.02f);
         }
     }
@@ -99,10 +109,11 @@ public class MainMenu : MonoBehaviour
         if (!MainMenuPress)
         {
             SceneManager.LoadScene(sceneName);
-            Time.timeScale = 1;
-            MainMenuPress = true;
             var BGM = FindAnyObjectByType<BGM>();
             BGM.StopMusic();
+            MainMenuPress = true;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     public void OpenLevelSelect()
@@ -141,5 +152,39 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.instance.StopAllSounds();
     }
-    
+
+    public void OpenCredits()
+    {
+        StartScreen.SetActive(false);
+        CreditsScreen.SetActive(true);
+    }
+    public void CloseCredits()
+    {
+        StartScreen.SetActive(true);
+        CreditsScreen.SetActive(false);
+    }
+    public void CloseHowToPlayButton()
+    {
+        CanPressESC = true;
+        HowToPlayScreen.SetActive(false);
+        PauseScreen.SetActive(true);
+    }
+
+    public void OpenHowToPlay()
+    {
+        //must close how to play then can unpause
+        CanPressESC = false;
+        HowToPlayScreen.SetActive(true);
+        PauseScreen.SetActive(false);
+
+    }
+    public void CloseHowToPlayNStartButton()
+    {
+        CanPressESC = true;
+        HowToPlayScreen.SetActive(false);
+        Time.timeScale = 1.0f;
+        var Money = FindAnyObjectByType<Money>();
+        Money.lockCursor();
+    }
+
 }

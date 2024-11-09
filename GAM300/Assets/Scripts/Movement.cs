@@ -104,6 +104,7 @@ public class Movement : MonoBehaviour
 
     private void UpdatePlayerMovementSFX()
     {
+        if (Time.timeScale == 0) return;   
         if (MovingNow)
         {
             //playerIdleRotate.stop(STOP_MODE.ALLOWFADEOUT);

@@ -40,12 +40,6 @@ public class CamController_v3 : MonoBehaviour
     public float wallPush = 0.7f;
     public float closestDistanceToPlayer = 2;
     public float evenCloserDistanceToPlayer = 1;
-
-    private void Start()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
     private void Update()
     {
         //if (Player.GetComponent<PlayerController_v2>().currentState == PlayerController_v2.PlayerCollection.COLLECT) return;

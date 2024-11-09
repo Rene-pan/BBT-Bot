@@ -49,6 +49,9 @@ public class PlayerController_v2 : MonoBehaviour
     [Header("Animations")]
     public Animator ArmAnim;
 
+    [Header("Indication")]
+    public bool ReCheck = false;
+
     private void Start()
     {
         lr.enabled = false;
@@ -57,7 +60,7 @@ public class PlayerController_v2 : MonoBehaviour
         foreach (GameObject UI in GameObject.FindGameObjectsWithTag("PlayerUI"))
         {
             PlayerUI.Add(UI);
-            if (UI.name == "OrderList" || UI.name == "Earnings")
+            if (UI.name == "OrderList" || UI.name == "Earnings" || UI.name == "HowToPlay")
             {
                 UI.SetActive(true);
             }
@@ -73,6 +76,7 @@ public class PlayerController_v2 : MonoBehaviour
             }
         }
     }
+
     private void Update()
     {
         PlayerStates();
@@ -264,7 +268,7 @@ public class PlayerController_v2 : MonoBehaviour
                     lr.enabled = true;
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 180, 0);
                     UIFinder("ScrollToToggleDistance").SetActive(true);
-                    spawner.CheckCustomerOrder(holdFood.GetComponent<HoldFood>().HoldFoodName);
+                    ReCheck = true;
                 }
                 //if both of the kopimaker is not ready, and player try to get cup by pressing E and its near collection point cannot collect, have error message pop up
                 var CannotCollectIngre = spawner.NoOfKopiMakerBusy && Input.GetKeyDown(KeyCode.E) && NearCollectionPoint 
@@ -309,6 +313,14 @@ public class PlayerController_v2 : MonoBehaviour
                 break;
 
             case PlayerCollection.THROW:
+
+                //ReCheck the Customer and Table Outlines only when another customer creates an order
+                //ReCheck the Customer and Table Outlines when customer's waiting time changes
+                if (ReCheck)
+                {
+                    spawner.CheckCustomerOrder(holdFood.GetComponent<HoldFood>().HoldFoodName);
+                }
+
                 //transform.localEulerAngles = new Vector3(0, 360, 0);
                 //player can only throw after collecting
                 if (Input.GetMouseButtonDown(0) && PressCount == 1)
@@ -323,6 +335,7 @@ public class PlayerController_v2 : MonoBehaviour
                     UIFinder("ActivateThrowmode").transform.GetChild(0).GetComponent<Image>().sprite = ThrowPrompts[0];
                     UIFinder("ActivateThrowmode").SetActive(true);
                     UIFinder("ScrollToToggleDistance").SetActive(false);
+                    ReCheck = false;
                     spawner.DeactivateAllCustomerOutlines();
                     canThrow = false;
                 }
@@ -333,6 +346,7 @@ public class PlayerController_v2 : MonoBehaviour
                     UIFinder("ActivateThrowmode").SetActive(false);
                     PlayerObject.transform.localEulerAngles = new Vector3(0, 0, 0);
                     UIFinder("ScrollToToggleDistance").SetActive(false);
+                    ReCheck = false;
                     spawner.DeactivateAllCustomerOutlines();
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.DeActivateSFX, transform.position);
                     ChangeState(PlayerCollection.COLLECT);
@@ -343,6 +357,7 @@ public class PlayerController_v2 : MonoBehaviour
                     UIFinder("ScrollToToggleDistance").SetActive(false);
                     RightClickTimes = 1;
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.DeActivateSFX, transform.position);
+                    ReCheck = false;
                     spawner.DeactivateAllCustomerOutlines();
                 }
                 else if (Input.GetMouseButtonDown(1) && RightClickTimes == 1)
@@ -351,7 +366,7 @@ public class PlayerController_v2 : MonoBehaviour
                     RightClickTimes = 0;
                     UIFinder("ScrollToToggleDistance").SetActive(true);
                     AudioManager.instance.PlayOneShot(FmodEvents.instance.ActivateThrow, transform.position);
-                    spawner.CheckCustomerOrder(holdFood.GetComponent<HoldFood>().HoldFoodName);
+                    ReCheck = true;
                 }
                 break;
         }

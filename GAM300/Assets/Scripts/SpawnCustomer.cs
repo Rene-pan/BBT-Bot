@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Xml;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class SpawnCustomer : MonoBehaviour
 {
+    public int levelID = 0;
     public List<GameObject> Customers;
     public List<Transform> chairList = new List<Transform>();//chairs
     public int currentCustomerID = 0;
@@ -31,19 +33,20 @@ public class SpawnCustomer : MonoBehaviour
 
     [Header("Spawned Customers")]
     public List<GameObject> SpawnedCustomerList;
+    public List<GameObject> TableList;
     private void Awake()
     {
         PopulateChairwayPoints();
         Addlist(kopiMakers, "kopiMakers");
         Addlist(toasters, "toastMakers");
         Addlist(kayaStations, "kayaStations");
-
         //AudioManager.instance.StopAllSounds();
+
     }
     private void Start()
     {
         time = 0;
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         //reset the stopOnce for the audio
         var Money = FindAnyObjectByType<Money>();
         Money.StopOnce = true;
@@ -56,7 +59,14 @@ public class SpawnCustomer : MonoBehaviour
         CheckKopiMachine();
         if (mainTimer.currentTime <= TriggerFastCustomerTime)
         {
-            maxShopCapacity = 6;
+            if (levelID == 2)
+            {
+                maxShopCapacity = 6;
+            }
+            else if (levelID == 1) 
+            {
+                maxShopCapacity = 3;
+            }
         }
         if (currentCustomerCount < maxShopCapacity)
         {
@@ -75,6 +85,7 @@ public class SpawnCustomer : MonoBehaviour
             canSpawn = false;
             Money.CheckMoney();
         }
+       
     }
 
     //check everytime for an available chair once
@@ -244,6 +255,9 @@ public class SpawnCustomer : MonoBehaviour
     }
     public void RemoveCustomer(GameObject Customer)
     {
+        var CustomerScript = Customer.GetComponent<Customer_v2>();
+        var CustomerTable = CustomerScript.nearestTable.GetComponent<CustomerTable>().TableOutline;
+        CustomerTable.enabled = false;
         SpawnedCustomerList.Remove(Customer);
     }
     public void CheckCustomerOrder(string PlayerCollectedFoodName)
@@ -253,6 +267,8 @@ public class SpawnCustomer : MonoBehaviour
         {
             var CustomerScript = customer.GetComponent<Customer_v2>();
             var CustomerBodyParts = CustomerScript.CustomerBodyParts;
+            var CustomerTable = CustomerScript.nearestTable;
+
             //look through a list of orders the customer created
             foreach (var FoodItem in CustomerScript.OrderList)
             {
@@ -261,7 +277,16 @@ public class SpawnCustomer : MonoBehaviour
                     foreach (var bodyPart in CustomerBodyParts)
                     {
                         bodyPart.GetComponent<Outline>().enabled = true;
+                        CheckCustomerTime(CustomerScript.OrderWaitTime, CustomerScript.currentTime, bodyPart.GetComponent<Outline>());
                         //break;
+                    }
+                    foreach (var table in TableList)
+                    {
+                        if (table == CustomerTable)
+                        {
+                            table.GetComponent<CustomerTable>().TableOutline.enabled = true;
+                            CheckCustomerTime(CustomerScript.OrderWaitTime, CustomerScript.currentTime, table.GetComponent<CustomerTable>().TableOutline);
+                        }
                     }
                 }
                 else
@@ -277,6 +302,13 @@ public class SpawnCustomer : MonoBehaviour
                             bodyPart.GetComponent<Outline>().enabled = false;
                             //break;
                         }
+                        foreach (var table in TableList)
+                        {
+                            if (table == CustomerTable)
+                            {
+                                table.GetComponent<CustomerTable>().TableOutline.enabled = false;
+                            }
+                        }
                     }
                 }
             }
@@ -287,15 +319,41 @@ public class SpawnCustomer : MonoBehaviour
     }
     public void DeactivateAllCustomerOutlines()
     {
-        if (SpawnedCustomerList.Count == 0) return;
+        //if (SpawnedCustomerList.Count == 0) return;
         foreach (var customer in SpawnedCustomerList)
         {
             var CustomerScript = customer.GetComponent<Customer_v2>();
             var CustomerBodyParts = CustomerScript.CustomerBodyParts;
+            var CustomerTable = CustomerScript.nearestTable;
             foreach (var bodyPart in CustomerBodyParts)
             {
                 bodyPart.GetComponent<Outline>().enabled = false;
             }
+
+        }
+            foreach (var table in TableList)
+            {
+                table.GetComponent<CustomerTable>().TableOutline.enabled = false;
+            }
+    }
+    //When any outlined customer's current waiting time is 50% of their total waiting time, change their outline colour and their table's outline colour to orange
+
+    void CheckCustomerTime(float customerTotalWaitingTime, float customerCurrentWaitingTime, Outline OutlineToChange)
+    {
+        //get the current waiting time percentage
+        var percentage = (float)((customerCurrentWaitingTime / customerTotalWaitingTime) *100);
+        print(percentage);
+        if (percentage <= 50f && percentage > 25f)
+        {
+            OutlineToChange.color = 2;
+        }
+        else if (percentage <= 100f && percentage > 50f)
+        {
+            OutlineToChange.color = 1;
+        }
+        else if (percentage <= 25f)
+        {
+            OutlineToChange.color = 0;
         }
     }
 }
